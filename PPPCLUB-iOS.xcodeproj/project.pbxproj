@@ -27,6 +27,11 @@
 		D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A752A528D4900869710 /* UICollectionReusableView+.swift */; };
 		D2614A782A528D5800869710 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A772A528D5800869710 /* UIFont+.swift */; };
 		D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A792A528D6E00869710 /* UITabbar+.swift */; };
+		D2614A7D2A528DBA00869710 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A7C2A528DBA00869710 /* SnapKit */; };
+		D2614A802A528E2800869710 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A7F2A528E2800869710 /* Then */; };
+		D2614A832A528EB400869710 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A822A528EB400869710 /* Kingfisher */; };
+		D2614A872A528FF600869710 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A862A528FF600869710 /* Moya */; };
+		D2614A8A2A52906D00869710 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A892A52906D00869710 /* KakaoSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +64,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2614A832A528EB400869710 /* Kingfisher in Frameworks */,
+				D2614A8A2A52906D00869710 /* KakaoSDK in Frameworks */,
+				D2614A7D2A528DBA00869710 /* SnapKit in Frameworks */,
+				D2614A872A528FF600869710 /* Moya in Frameworks */,
+				D2614A802A528E2800869710 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +167,13 @@
 			dependencies = (
 			);
 			name = "PPPCLUB-iOS";
+			packageProductDependencies = (
+				D2614A7C2A528DBA00869710 /* SnapKit */,
+				D2614A7F2A528E2800869710 /* Then */,
+				D2614A822A528EB400869710 /* Kingfisher */,
+				D2614A862A528FF600869710 /* Moya */,
+				D2614A892A52906D00869710 /* KakaoSDK */,
+			);
 			productName = "PPPCLUB-iOS";
 			productReference = D2614A422A52836E00869710 /* PPPCLUB-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -185,6 +202,13 @@
 				Base,
 			);
 			mainGroup = D2614A392A52836E00869710;
+			packageReferences = (
+				D2614A7B2A528DBA00869710 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D2614A7E2A528E2800869710 /* XCRemoteSwiftPackageReference "Then" */,
+				D2614A812A528EB400869710 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D2614A852A528FF600869710 /* XCRemoteSwiftPackageReference "Moya" */,
+				D2614A882A52906D00869710 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			productRefGroup = D2614A432A52836E00869710 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -446,6 +470,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D2614A7B2A528DBA00869710 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		D2614A7E2A528E2800869710 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D2614A812A528EB400869710 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D2614A852A528FF600869710 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D2614A882A52906D00869710 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D2614A7C2A528DBA00869710 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2614A7B2A528DBA00869710 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		D2614A7F2A528E2800869710 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2614A7E2A528E2800869710 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		D2614A822A528EB400869710 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2614A812A528EB400869710 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		D2614A862A528FF600869710 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2614A852A528FF600869710 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		D2614A892A52906D00869710 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2614A882A52906D00869710 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2614A3A2A52836E00869710 /* Project object */;
 }
