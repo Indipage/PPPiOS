@@ -7,5 +7,9 @@
 
 import UIKit
 
-final class SearchViewController: BaseViewController {}
+final class SearchViewController: BaseViewController {
+    override func viewDidLoad() {
+        self.view.backgroundColor = .blue
+    }
+}
 

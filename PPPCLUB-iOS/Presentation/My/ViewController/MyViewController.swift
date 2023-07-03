@@ -7,6 +7,10 @@
 
 import UIKit
 
-final class MyViewController: BaseViewController {}
+final class MyViewController: BaseViewController {
+    override func viewDidLoad() {
+        self.view.backgroundColor = .yellow
+    }
+}
 
 
