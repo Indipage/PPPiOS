@@ -110,13 +110,11 @@
 		D2614A442A52836E00869710 /* PPPCLUB-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D2B096012A529730007BC756 /* Resource */,
 				D2614A9B2A5291E300869710 /* Data */,
 				D2614A8B2A5290CC00869710 /* Network */,
 				D2614A5F2A528C3800869710 /* Global */,
 				D2614A592A528B7300869710 /* Application */,
-				D2614A4B2A52836F00869710 /* Main.storyboard */,
-				D2614A4E2A52837000869710 /* Assets.xcassets */,
-				D2614A502A52837000869710 /* LaunchScreen.storyboard */,
 				D2614A532A52837000869710 /* Info.plist */,
 			);
 			path = "PPPCLUB-iOS";
@@ -205,6 +203,24 @@
 				D2614A9D2A5291F400869710 /* VoidResult.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		D2B096012A529730007BC756 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D2B096022A529748007BC756 /* Font */,
+				D2614A4B2A52836F00869710 /* Main.storyboard */,
+				D2614A4E2A52837000869710 /* Assets.xcassets */,
+				D2614A502A52837000869710 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D2B096022A529748007BC756 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
