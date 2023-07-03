@@ -32,6 +32,14 @@
 		D2614A832A528EB400869710 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A822A528EB400869710 /* Kingfisher */; };
 		D2614A872A528FF600869710 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A862A528FF600869710 /* Moya */; };
 		D2614A8A2A52906D00869710 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D2614A892A52906D00869710 /* KakaoSDK */; };
+		D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A8D2A52911000869710 /* GenericResponse.swift */; };
+		D2614A902A52912200869710 /* SimpleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A8F2A52912200869710 /* SimpleResponse.swift */; };
+		D2614A922A52913900869710 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A912A52913900869710 /* APIConstants.swift */; };
+		D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A932A52916800869710 /* MoyaLoggerPlugin.swift */; };
+		D2614A962A52917B00869710 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A952A52917B00869710 /* NetworkResult.swift */; };
+		D2614A982A52918A00869710 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A972A52918A00869710 /* BaseTargetType.swift */; };
+		D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A992A52919A00869710 /* BaseAPI.swift */; };
+		D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A9D2A5291F400869710 /* VoidResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +65,14 @@
 		D2614A752A528D4900869710 /* UICollectionReusableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+.swift"; sourceTree = "<group>"; };
 		D2614A772A528D5800869710 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		D2614A792A528D6E00869710 /* UITabbar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabbar+.swift"; sourceTree = "<group>"; };
+		D2614A8D2A52911000869710 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		D2614A8F2A52912200869710 /* SimpleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleResponse.swift; sourceTree = "<group>"; };
+		D2614A912A52913900869710 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		D2614A932A52916800869710 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
+		D2614A952A52917B00869710 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		D2614A972A52918A00869710 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
+		D2614A992A52919A00869710 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		D2614A9D2A5291F400869710 /* VoidResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,8 @@
 		D2614A442A52836E00869710 /* PPPCLUB-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D2614A9B2A5291E300869710 /* Data */,
+				D2614A8B2A5290CC00869710 /* Network */,
 				D2614A5F2A528C3800869710 /* Global */,
 				D2614A592A528B7300869710 /* Application */,
 				D2614A4B2A52836F00869710 /* Main.storyboard */,
@@ -149,6 +167,44 @@
 				D2614A792A528D6E00869710 /* UITabbar+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D2614A8B2A5290CC00869710 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D2614A8C2A5290D100869710 /* Foundation */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D2614A8C2A5290D100869710 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				D2614A8D2A52911000869710 /* GenericResponse.swift */,
+				D2614A8F2A52912200869710 /* SimpleResponse.swift */,
+				D2614A912A52913900869710 /* APIConstants.swift */,
+				D2614A932A52916800869710 /* MoyaLoggerPlugin.swift */,
+				D2614A952A52917B00869710 /* NetworkResult.swift */,
+				D2614A972A52918A00869710 /* BaseTargetType.swift */,
+				D2614A992A52919A00869710 /* BaseAPI.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		D2614A9B2A5291E300869710 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D2614A9C2A5291E900869710 /* Common */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D2614A9C2A5291E900869710 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D2614A9D2A5291F400869710 /* VoidResult.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +292,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
+				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
 				D2614A5E2A528C2A00869710 /* Image.swift in Sources */,
@@ -247,12 +305,18 @@
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
+				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
+				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
+				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
+				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
 				D2614A682A528C9100869710 /* UITextField+.swift in Sources */,
+				D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */,
 				D2614A6A2A528CA300869710 /* UIColor+.swift in Sources */,
+				D2614A982A52918A00869710 /* BaseTargetType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

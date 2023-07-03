@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 extension UIViewController{
     
     func changeRootViewController(_ viewControllerToPresent: UIViewController) {
