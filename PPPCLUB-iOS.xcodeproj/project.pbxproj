@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
+		D221886F2A5924D200F097C7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailView.swift */; };
+		D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */; };
+		D22188732A5925B000F097C7 /* BioRhyme-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */; };
+		D22188752A5925B700F097C7 /* BioRhyme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */; };
+		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
+		D22188792A5925F900F097C7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188782A5925F900F097C7 /* Pretendard-Medium.otf */; };
+		D221887B2A59260300F097C7 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D221887A2A59260300F097C7 /* Pretendard-Light.otf */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -53,6 +61,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D221886E2A5924D200F097C7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Bold.ttf"; sourceTree = "<group>"; };
+		D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Light.ttf"; sourceTree = "<group>"; };
+		D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Regular.ttf"; sourceTree = "<group>"; };
+		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		D22188782A5925F900F097C7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		D221887A2A59260300F097C7 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +127,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D22188692A5924A600F097C7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D221886B2A5924BD00F097C7 /* View */,
+				D221886A2A5924B400F097C7 /* ViewController */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		D221886A2A5924B400F097C7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D221886C2A5924C600F097C7 /* DetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D221886B2A5924BD00F097C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D221886E2A5924D200F097C7 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D2614A392A52836E00869710 = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +281,12 @@
 		D2B096022A529748007BC756 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				D221887A2A59260300F097C7 /* Pretendard-Light.otf */,
+				D22188782A5925F900F097C7 /* Pretendard-Medium.otf */,
+				D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */,
+				D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */,
+				D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */,
+				D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -247,6 +294,7 @@
 		D2B096032A529794007BC756 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D22188692A5924A600F097C7 /* Detail */,
 				D2B096082A52982E007BC756 /* Ticket */,
 				D2B096072A5297DD007BC756 /* Search */,
 				D2B096062A5297D7007BC756 /* My */,
@@ -439,7 +487,13 @@
 			files = (
 				D2614A522A52837000869710 /* LaunchScreen.storyboard in Resources */,
 				D2614A4F2A52837000869710 /* Assets.xcassets in Resources */,
+				D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */,
+				D22188792A5925F900F097C7 /* Pretendard-Medium.otf in Resources */,
+				D22188732A5925B000F097C7 /* BioRhyme-Light.ttf in Resources */,
+				D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */,
+				D22188752A5925B700F097C7 /* BioRhyme-Regular.ttf in Resources */,
 				D2614A4D2A52836F00869710 /* Main.storyboard in Resources */,
+				D221887B2A59260300F097C7 /* Pretendard-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,8 +529,10 @@
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
+				D221886F2A5924D200F097C7 /* DetailView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
+				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketView.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
