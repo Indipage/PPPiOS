@@ -16,9 +16,9 @@
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/HELLOHIDI"><img src="" width="220px;" alt=""/><br /><titleb><b>옥지</b></titleb></a><br /><a href="https://github.com/HELLOHIDI" title="Code">📱</a></td>
-    <td align="center"><a href="https://github.com/binisnil"><img src="" width="220px;" alt=""/><br /><titleb><b>춘자</b></titleb></a><br /><a href="https://github.com/binisnil" title="Code" title="Code">📱</a></td>
-    <td align="center"><a href="https://github.com/ena-isme"><img src="" width="220px;" alt=""/><br /><titleb><b>봉봉</b></titleb></a><br /><a href="https://github.com/ena-isme" title="Code">📱</a></td>
+    <td align="center"><a href="https://github.com/HELLOHIDI"><img src="https://github.com/Indipage/PPPiOS/assets/54922625/344a573d-8f3c-4615-9ae8-8c63f212e599" width="220px;" alt=""/><br /><titleb><b>류희재(a.k.a 옥지)</b></titleb></a><br /><a href="https://github.com/HELLOHIDI" title="Code">📱</a></td>
+    <td align="center"><a href="https://github.com/binisnil"><img src="https://github.com/Indipage/PPPiOS/assets/54922625/83eb21bf-b945-4c34-b4ba-bf71e81a62f5" width="220px;" alt=""/><br /><titleb><b>박윤빈(a.k.a 춘자)</b></titleb></a><br /><a href="https://github.com/binisnil" title="Code" title="Code">📱</a></td>
+    <td align="center"><a href="https://github.com/ena-isme"><img src="https://github.com/Indipage/PPPiOS/assets/54922625/aaae0862-d492-49f1-af96-3c684ab8a748" width="220px;" alt=""/><br /><titleb><b>신지원(a.k.a 봉봉)</b></titleb></a><br /><a href="https://github.com/ena-isme" title="Code">📱</a></td>
   </tr>
 </table>
 
@@ -52,4 +52,5 @@
 - [폴더링 Convention](https://ppp-club.notion.site/360abaf3d15b4fb9a059d508ae682f5c?pvs=4)
 
 ## 📌 프로젝트 설계
+[프로젝트 설계](https://www.figma.com/file/pWuyCsFSjAfmulPBGSgZRE/PPP-Club-iOS-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%84%A4%EA%B3%84?type=whiteboard&node-id=0%3A1&t=gj8pnRQHaqXWCXhw-1)
 
