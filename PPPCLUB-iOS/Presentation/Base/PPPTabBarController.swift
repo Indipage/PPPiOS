@@ -18,12 +18,12 @@ class PPPTabBarController: UITabBarController {
     let homeViewController = HomeViewController()
     let searchViewController = SearchViewController()
     let myViewController = MyViewController()
-    let bookmarkController = BookmarkViewController()
+    let ticketViewController = TicketViewController()
     
     lazy var homeNavigationContrller = UINavigationController(rootViewController: homeViewController)
     lazy var searchNavigationContrller = UINavigationController(rootViewController: searchViewController)
     lazy var myNavigationContrller = UINavigationController(rootViewController: myViewController)
-    lazy var bookmarkNavigationContrller = UINavigationController(rootViewController: bookmarkController)
+    lazy var ticketNavigationContrller = UINavigationController(rootViewController: ticketViewController)
     
     //MARK: - UI Components
     
@@ -71,19 +71,19 @@ class PPPTabBarController: UITabBarController {
         homeNavigationContrller.setNavigationBarHidden(true, animated: true)
         searchNavigationContrller.setNavigationBarHidden(true, animated: true)
         myNavigationContrller.setNavigationBarHidden(true, animated: true)
-        bookmarkNavigationContrller.setNavigationBarHidden(true, animated: true)
+        ticketNavigationContrller.setNavigationBarHidden(true, animated: true)
     }
     
     private func setViewController(){
         homeNavigationContrller.tabBarItem = UITabBarItem(title: "홈", image: nil, selectedImage: nil)
         searchNavigationContrller.tabBarItem = UITabBarItem(title: "검색", image: nil, selectedImage: nil)
-        bookmarkNavigationContrller.tabBarItem = UITabBarItem(title: "북마크", image: nil, selectedImage: nil)
+        ticketNavigationContrller.tabBarItem = UITabBarItem(title: "북마크", image: nil, selectedImage: nil)
         myNavigationContrller.tabBarItem = UITabBarItem(title: "마이", image: nil, selectedImage: nil)
         
         viewControllers = [
             homeNavigationContrller,
             searchNavigationContrller,
-            bookmarkNavigationContrller,
+            ticketNavigationContrller,
             myNavigationContrller
         ]
     }

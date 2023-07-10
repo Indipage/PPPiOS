@@ -15,6 +15,9 @@
 		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
 		D22188792A5925F900F097C7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188782A5925F900F097C7 /* Pretendard-Medium.otf */; };
 		D221887B2A59260300F097C7 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D221887A2A59260300F097C7 /* Pretendard-Light.otf */; };
+		D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */; };
+		D221887F2A5BD99300F097C7 /* TicketCheckQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */; };
+		D22188842A5BDC1A00F097C7 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22188832A5BDC1A00F097C7 /* Size.swift */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -69,6 +72,9 @@
 		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		D22188782A5925F900F097C7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		D221887A2A59260300F097C7 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeViewController.swift; sourceTree = "<group>"; };
+		D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeView.swift; sourceTree = "<group>"; };
+		D22188832A5BDC1A00F097C7 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +158,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D22188802A5BDB3100F097C7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		D2614A392A52836E00869710 = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +209,7 @@
 			children = (
 				D2614A5B2A528C2300869710 /* URLs.swift */,
 				D2614A5D2A528C2A00869710 /* Image.swift */,
+				D22188832A5BDC1A00F097C7 /* Size.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -203,6 +217,7 @@
 		D2614A5F2A528C3800869710 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				D22188802A5BDB3100F097C7 /* Utility */,
 				D2614A602A528C4500869710 /* Extension */,
 				D2614A5A2A528C0F00869710 /* Constant */,
 			);
@@ -353,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				D2B096152A529963007BC756 /* TicketView.swift */,
+				D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -361,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				D2B096232A529A8C007BC756 /* TicketViewController.swift */,
+				D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -504,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
@@ -523,6 +541,7 @@
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
+				D221887F2A5BD99300F097C7 /* TicketCheckQRCodeView.swift in Sources */,
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
@@ -531,6 +550,7 @@
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
+				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
