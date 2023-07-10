@@ -17,5 +17,8 @@ struct Size {
     static var height: CGFloat {
         return UIScreen.main.bounds.height
     }
-}
     
+    static var qrFocusZone: CGRect {
+        return CGRect(x: (Size.width - 200) / 2 , y: (Size.height - 200) / 2, width: 200, height: 200)
+    }
+}

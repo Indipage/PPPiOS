@@ -52,6 +52,7 @@
 		D2614A982A52918A00869710 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A972A52918A00869710 /* BaseTargetType.swift */; };
 		D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A992A52919A00869710 /* BaseAPI.swift */; };
 		D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A9D2A5291F400869710 /* VoidResult.swift */; };
+		D26594072A5C56F50089E56A /* QRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594062A5C56F50089E56A /* QRManager.swift */; };
 		D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096092A529893007BC756 /* BaseViewController.swift */; };
 		D2B096162A529963007BC756 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* TicketView.swift */; };
 		D2B096182A529984007BC756 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096172A529984007BC756 /* SearchViewController.swift */; };
@@ -107,6 +108,7 @@
 		D2614A972A52918A00869710 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		D2614A992A52919A00869710 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		D2614A9D2A5291F400869710 /* VoidResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidResult.swift; sourceTree = "<group>"; };
+		D26594062A5C56F50089E56A /* QRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRManager.swift; sourceTree = "<group>"; };
 		D2B096092A529893007BC756 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2B096152A529963007BC756 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		D2B096172A529984007BC756 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		D22188802A5BDB3100F097C7 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D26594062A5C56F50089E56A /* QRManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				D2614A5E2A528C2A00869710 /* Image.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
+				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
