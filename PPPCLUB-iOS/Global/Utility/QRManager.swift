@@ -43,7 +43,7 @@ final class QRManager {
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr] // Camera로 들어오는 데이터 타입이 QR코드 임을 명시
     }
     
-    func start() {
+    static func start() {
         print("# AVCaptureSession Start Running")
         DispatchQueue.global(qos: .userInitiated).async {
             print("🔫시작했습니다🔫")
@@ -51,7 +51,7 @@ final class QRManager {
         }
     }
     
-    func stop() {
+    static func stop() {
         QRManager.captureSession.stopRunning()
     }
     

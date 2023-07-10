@@ -16,7 +16,6 @@
 		D22188792A5925F900F097C7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188782A5925F900F097C7 /* Pretendard-Medium.otf */; };
 		D221887B2A59260300F097C7 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D221887A2A59260300F097C7 /* Pretendard-Light.otf */; };
 		D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */; };
-		D221887F2A5BD99300F097C7 /* TicketCheckQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */; };
 		D22188842A5BDC1A00F097C7 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22188832A5BDC1A00F097C7 /* Size.swift */; };
 		D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22188872A5BF8BA00F097C7 /* CGPoint+.swift */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
@@ -75,7 +74,6 @@
 		D22188782A5925F900F097C7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		D221887A2A59260300F097C7 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeViewController.swift; sourceTree = "<group>"; };
-		D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeView.swift; sourceTree = "<group>"; };
 		D22188832A5BDC1A00F097C7 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		D22188872A5BF8BA00F097C7 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -374,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				D2B096152A529963007BC756 /* TicketView.swift */,
-				D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -549,7 +546,6 @@
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
-				D221887F2A5BD99300F097C7 /* TicketCheckQRCodeView.swift in Sources */,
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,

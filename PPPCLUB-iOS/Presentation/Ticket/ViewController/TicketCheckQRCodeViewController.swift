@@ -20,6 +20,7 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     
     init(qrManager: QRManager) {
         self.qrManager = qrManager
+        self.qrManager.setCamera()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,15 +29,18 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
-        self.qrManager.setCamera()
+        super.viewDidLoad()
         
         delegate()
+        
         layout()
-        layoutLabel()
     }
     
-    
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        QRManager.start()
+    }
     
     //MARK: - Custom Method
     
@@ -51,8 +55,7 @@ final class TicketCheckQRCodeViewController: BaseViewController {
         
         self.videoPreviewLayer?.frame = self.view.layer.bounds
         self.view.layer.addSublayer(self.videoPreviewLayer!)
-        setPreviewLayer() // 중앙에 사각형의 Focus Zone Layer을 설정합니다.
-        self.qrManager.start() // startRunning을 실행시켜야 화면이 보이게 됩니다.
+        setPreviewLayer()
     }
     
 }
@@ -69,13 +72,21 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
             guard let qrCodeStringData = metaDataObj.stringValue else { return }
             print("🔫qr이 맞습니다!🔫")
             print("🔫\(qrCodeStringData)🔫")
-            self.qrManager.stop()
+            QRManager.stop()
         }
     }
 }
 
 extension TicketCheckQRCodeViewController {
-    /// 중앙에 사각형의 Focus Zone Layer을 설정합니다.
+    private func setVideoLayer(rectOfInterest: CGRect) -> CGRect {
+        let videoLayer = AVCaptureVideoPreviewLayer(session: QRManager.captureSession) // 영상을 담을 공간.
+        videoLayer.frame = view.layer.bounds //카메라의 크기 지정
+        videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill //카메라의 비율지정
+        view.layer.addSublayer(videoLayer)
+        
+        return videoLayer.metadataOutputRectConverted(fromLayerRect: rectOfInterest)
+    }
+    
     private func setPreviewLayer() {
         let readingRect = Size.qrFocusZone
         let previewLayer = AVCaptureVideoPreviewLayer(session: QRManager.captureSession) // AVCaptureVideoPreviewLayer를 구성.
@@ -98,9 +109,7 @@ extension TicketCheckQRCodeViewController {
         
         self.view.layer.addSublayer(previewLayer)
         self.videoPreviewLayer = previewLayer
-    }
-    
-    private func layoutLabel() {
+        
         let describeLabel = UILabel()
         describeLabel.do {
             $0.text = "서점 내 QR 코드를 스캔해보세요 !"
@@ -110,17 +119,5 @@ extension TicketCheckQRCodeViewController {
             $0.top.equalToSuperview().offset(173)
             $0.centerX.equalToSuperview()
         }
-        
-}
-        
-        
-        //카메라 인식 관련
-        private func setVideoLayer(rectOfInterest: CGRect) -> CGRect{
-            let videoLayer = AVCaptureVideoPreviewLayer(session: QRManager.captureSession) // 영상을 담을 공간.
-            videoLayer.frame = view.layer.bounds //카메라의 크기 지정
-            videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill //카메라의 비율지정
-            view.layer.addSublayer(videoLayer)
-            
-            return videoLayer.metadataOutputRectConverted(fromLayerRect: rectOfInterest)
-        }
     }
+}
