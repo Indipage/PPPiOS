@@ -12,7 +12,7 @@ struct Tag {
 }
 
 extension Tag {
-    func dummy() -> Tag {
+    static func dummy() -> Tag {
         return Tag(tagList: ["#칵테일", "#카페", "#글쓰기"])
     }
 }

@@ -26,12 +26,16 @@ final class DetailTopView: UIView {
     private let restLabel = UILabel()
     private let restBar = UIView()
     private lazy var detailRestLabel = UILabel()
-    private lazy var tagCollectionView = UICollectionView()
+    lazy var tagCollectionView = UICollectionView(frame: .zero,
+                                                  collectionViewLayout: UICollectionViewFlowLayout())
     
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        style()
+        hieararchy()
+        layout()
     }
     
     required init?(coder: NSCoder) {
@@ -43,6 +47,7 @@ final class DetailTopView: UIView {
     private func style() {
         
         shopImageView.do {
+            $0.image = UIImage(systemName: "paperplane.fill")
             $0.backgroundColor = .red
             $0.contentMode = .scaleAspectFill
         }
@@ -104,6 +109,10 @@ final class DetailTopView: UIView {
             $0.font = .pppCaption1
             $0.textColor = .white
         }
+        
+        tagCollectionView.do {
+            $0.backgroundColor = .clear
+        }
     }
     
     private func hieararchy() {
@@ -125,9 +134,7 @@ final class DetailTopView: UIView {
     private func layout() {
         
         shopImageView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(381 / 812)
-            $0.width.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         saveButton.snp.makeConstraints {
@@ -139,6 +146,8 @@ final class DetailTopView: UIView {
         tagCollectionView.snp.makeConstraints {
             $0.bottom.equalTo(shopImageView).inset(23)
             $0.leading.equalToSuperview().inset(21)
+            $0.height.equalTo(30)
+            $0.trailing.equalToSuperview()
         }
         
         restLabel.snp.makeConstraints {
@@ -148,7 +157,7 @@ final class DetailTopView: UIView {
         
         restBar.snp.makeConstraints {
             $0.leading.equalTo(restLabel.snp.trailing).offset(3)
-            $0.height.equalTo(restLabel)
+            $0.height.equalTo(10)
             $0.width.equalTo(1)
             $0.centerY.equalTo(restLabel)
         }
@@ -159,13 +168,13 @@ final class DetailTopView: UIView {
         }
         
         runTimeLabel.snp.makeConstraints {
-            $0.bottom.equalTo(restLabel.snp.top).offset(8)
+            $0.bottom.equalTo(restLabel.snp.top).offset(-8)
             $0.leading.equalToSuperview().inset(23)
         }
         
         runTimeBar.snp.makeConstraints {
-            $0.leading.equalTo(runTimeLabel.snp.trailing).offset(-3)
-            $0.height.equalTo(runTimeLabel)
+            $0.leading.equalTo(runTimeLabel.snp.trailing).offset(3)
+            $0.height.equalTo(10)
             $0.width.equalTo(1)
             $0.centerY.equalTo(runTimeLabel)
         }
@@ -181,8 +190,8 @@ final class DetailTopView: UIView {
         }
         
         addressBar.snp.makeConstraints {
-            $0.leading.equalTo(addressLabel.snp.trailing).offset(-3)
-            $0.height.equalTo(addressLabel)
+            $0.leading.equalTo(addressLabel.snp.trailing).offset(3)
+            $0.height.equalTo(10)
             $0.width.equalTo(1)
             $0.centerY.equalTo(addressLabel)
         }

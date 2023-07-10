@@ -43,12 +43,12 @@ class PPPTagView: UIView {
             $0.axis = .horizontal
             $0.alignment = .center
             $0.distribution = .fill
-            $0.layer.cornerRadius = 20
+            $0.layer.cornerRadius = 7
             $0.layer.backgroundColor = UIColor.pppGrey1.cgColor
         }
         
         tagLabel.do {
-            $0.font = .pppBody2
+            $0.font = .pppCaption2
             $0.textColor = .pppWhite1
             $0.textAlignment = .center
             $0.frame.size = $0.intrinsicContentSize
@@ -65,12 +65,12 @@ class PPPTagView: UIView {
         }
         
         emptyLabel1.snp.makeConstraints {
-            $0.width.equalTo(10)
+            $0.width.equalTo(5)
             $0.height.equalTo(18)
         }
         
         emptyLabel2.snp.makeConstraints {
-            $0.width.equalTo(10)
+            $0.width.equalTo(5)
             $0.height.equalTo(18)
         }
     }
