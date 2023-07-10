@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BookmarkViewController: BaseViewController {
+final class TicketViewController: BaseViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = .green
     }

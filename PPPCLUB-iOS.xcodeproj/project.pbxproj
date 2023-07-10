@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
+		D221886F2A5924D200F097C7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailView.swift */; };
+		D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */; };
+		D22188732A5925B000F097C7 /* BioRhyme-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */; };
+		D22188752A5925B700F097C7 /* BioRhyme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */; };
+		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
+		D22188792A5925F900F097C7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188782A5925F900F097C7 /* Pretendard-Medium.otf */; };
+		D221887B2A59260300F097C7 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D221887A2A59260300F097C7 /* Pretendard-Light.otf */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -41,18 +49,26 @@
 		D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A992A52919A00869710 /* BaseAPI.swift */; };
 		D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A9D2A5291F400869710 /* VoidResult.swift */; };
 		D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096092A529893007BC756 /* BaseViewController.swift */; };
-		D2B096162A529963007BC756 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* BookmarkView.swift */; };
+		D2B096162A529963007BC756 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* TicketView.swift */; };
 		D2B096182A529984007BC756 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096172A529984007BC756 /* SearchViewController.swift */; };
 		D2B0961A2A529994007BC756 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096192A529994007BC756 /* SearchView.swift */; };
 		D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0961B2A5299A0007BC756 /* MyViewController.swift */; };
 		D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0961D2A5299B2007BC756 /* MyView.swift */; };
 		D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0961F2A5299C2007BC756 /* HomeViewController.swift */; };
 		D2B096222A5299CC007BC756 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096212A5299CC007BC756 /* HomeView.swift */; };
-		D2B096242A529A8C007BC756 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096232A529A8C007BC756 /* BookmarkViewController.swift */; };
+		D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096232A529A8C007BC756 /* TicketViewController.swift */; };
 		D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096252A529AC4007BC756 /* PPPTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D221886E2A5924D200F097C7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Bold.ttf"; sourceTree = "<group>"; };
+		D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Light.ttf"; sourceTree = "<group>"; };
+		D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Regular.ttf"; sourceTree = "<group>"; };
+		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		D22188782A5925F900F097C7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		D221887A2A59260300F097C7 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,14 +100,14 @@
 		D2614A992A52919A00869710 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		D2614A9D2A5291F400869710 /* VoidResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidResult.swift; sourceTree = "<group>"; };
 		D2B096092A529893007BC756 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		D2B096152A529963007BC756 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		D2B096152A529963007BC756 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		D2B096172A529984007BC756 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D2B096192A529994007BC756 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D2B0961B2A5299A0007BC756 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		D2B0961D2A5299B2007BC756 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		D2B0961F2A5299C2007BC756 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D2B096212A5299CC007BC756 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		D2B096232A529A8C007BC756 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		D2B096232A529A8C007BC756 /* TicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
 		D2B096252A529AC4007BC756 /* PPPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +127,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D22188692A5924A600F097C7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D221886B2A5924BD00F097C7 /* View */,
+				D221886A2A5924B400F097C7 /* ViewController */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		D221886A2A5924B400F097C7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D221886C2A5924C600F097C7 /* DetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D221886B2A5924BD00F097C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D221886E2A5924D200F097C7 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D2614A392A52836E00869710 = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +281,12 @@
 		D2B096022A529748007BC756 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				D221887A2A59260300F097C7 /* Pretendard-Light.otf */,
+				D22188782A5925F900F097C7 /* Pretendard-Medium.otf */,
+				D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */,
+				D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */,
+				D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */,
+				D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -247,7 +294,8 @@
 		D2B096032A529794007BC756 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				D2B096082A52982E007BC756 /* Bookmark */,
+				D22188692A5924A600F097C7 /* Detail */,
+				D2B096082A52982E007BC756 /* Ticket */,
 				D2B096072A5297DD007BC756 /* Search */,
 				D2B096062A5297D7007BC756 /* My */,
 				D2B096052A5297A4007BC756 /* Home */,
@@ -292,19 +340,19 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		D2B096082A52982E007BC756 /* Bookmark */ = {
+		D2B096082A52982E007BC756 /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
 				D2B0960C2A5298EF007BC756 /* ViewController */,
 				D2B0960B2A5298DF007BC756 /* View */,
 			);
-			path = Bookmark;
+			path = Ticket;
 			sourceTree = "<group>";
 		};
 		D2B0960B2A5298DF007BC756 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D2B096152A529963007BC756 /* BookmarkView.swift */,
+				D2B096152A529963007BC756 /* TicketView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,7 +360,7 @@
 		D2B0960C2A5298EF007BC756 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D2B096232A529A8C007BC756 /* BookmarkViewController.swift */,
+				D2B096232A529A8C007BC756 /* TicketViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -439,7 +487,13 @@
 			files = (
 				D2614A522A52837000869710 /* LaunchScreen.storyboard in Resources */,
 				D2614A4F2A52837000869710 /* Assets.xcassets in Resources */,
+				D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */,
+				D22188792A5925F900F097C7 /* Pretendard-Medium.otf in Resources */,
+				D22188732A5925B000F097C7 /* BioRhyme-Light.ttf in Resources */,
+				D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */,
+				D22188752A5925B700F097C7 /* BioRhyme-Regular.ttf in Resources */,
 				D2614A4D2A52836F00869710 /* Main.storyboard in Resources */,
+				D221887B2A59260300F097C7 /* Pretendard-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +519,7 @@
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
-				D2B096242A529A8C007BC756 /* BookmarkViewController.swift in Sources */,
+				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
@@ -475,10 +529,12 @@
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
+				D221886F2A5924D200F097C7 /* DetailView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
+				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
-				D2B096162A529963007BC756 /* BookmarkView.swift in Sources */,
+				D2B096162A529963007BC756 /* TicketView.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
 				D2614A682A528C9100869710 /* UITextField+.swift in Sources */,
 				D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */,
