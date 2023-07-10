@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058326872A5BF893004A295F /* PPPTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326862A5BF893004A295F /* PPPTagView.swift */; };
+		058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */; };
+		0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583268D2A5C0158004A295F /* DetailTagModel.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
-		D221886F2A5924D200F097C7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailView.swift */; };
+		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */; };
 		D22188732A5925B000F097C7 /* BioRhyme-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */; };
 		D22188752A5925B700F097C7 /* BioRhyme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */; };
@@ -61,8 +64,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		058326862A5BF893004A295F /* PPPTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTagView.swift; sourceTree = "<group>"; };
+		058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		0583268D2A5C0158004A295F /* DetailTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagModel.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		D221886E2A5924D200F097C7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Bold.ttf"; sourceTree = "<group>"; };
 		D22188722A5925B000F097C7 /* BioRhyme-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Light.ttf"; sourceTree = "<group>"; };
 		D22188742A5925B700F097C7 /* BioRhyme-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Regular.ttf"; sourceTree = "<group>"; };
@@ -127,6 +133,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		058326832A5BF08C004A295F /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				058326862A5BF893004A295F /* PPPTagView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		0583268A2A5C012C004A295F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0583268C2A5C013B004A295F /* APIModel */,
+				0583268B2A5C0134004A295F /* Model */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		0583268B2A5C0134004A295F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0583268C2A5C013B004A295F /* APIModel */ = {
+			isa = PBXGroup;
+			children = (
+				0583268D2A5C0158004A295F /* DetailTagModel.swift */,
+			);
+			path = APIModel;
+			sourceTree = "<group>";
+		};
 		D22188692A5924A600F097C7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +185,8 @@
 		D221886B2A5924BD00F097C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D221886E2A5924D200F097C7 /* DetailView.swift */,
+				D221886E2A5924D200F097C7 /* DetailTopView.swift */,
+				058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,6 +293,7 @@
 		D2614A9B2A5291E300869710 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0583268A2A5C012C004A295F /* Detail */,
 				D2614A9C2A5291E900869710 /* Common */,
 			);
 			path = Data;
@@ -294,6 +334,7 @@
 		D2B096032A529794007BC756 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				058326832A5BF08C004A295F /* Component */,
 				D22188692A5924A600F097C7 /* Detail */,
 				D2B096082A52982E007BC756 /* Ticket */,
 				D2B096072A5297DD007BC756 /* Search */,
@@ -517,6 +558,7 @@
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
+				058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */,
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
@@ -529,15 +571,17 @@
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
-				D221886F2A5924D200F097C7 /* DetailView.swift in Sources */,
+				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
+				0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketView.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
 				D2614A682A528C9100869710 /* UITextField+.swift in Sources */,
 				D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */,
+				058326872A5BF893004A295F /* PPPTagView.swift in Sources */,
 				D2614A6A2A528CA300869710 /* UIColor+.swift in Sources */,
 				D2614A982A52918A00869710 /* BaseTargetType.swift in Sources */,
 				D2B096182A529984007BC756 /* SearchViewController.swift in Sources */,
