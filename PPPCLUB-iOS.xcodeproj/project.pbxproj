@@ -11,6 +11,8 @@
 		058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */; };
 		0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583268D2A5C0158004A295F /* DetailTagModel.swift */; };
 		058326902A5C290A004A295F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583268F2A5C290A004A295F /* DetailView.swift */; };
+		05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */; };
+		05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */; };
@@ -73,6 +75,8 @@
 		058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		0583268D2A5C0158004A295F /* DetailTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagModel.swift; sourceTree = "<group>"; };
 		0583268F2A5C290A004A295F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOwnerView.swift; sourceTree = "<group>"; };
+		05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Bold.ttf"; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				D221886E2A5924D200F097C7 /* DetailTopView.swift */,
 				058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */,
 				0583268F2A5C290A004A295F /* DetailView.swift */,
+				05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */,
+				05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,
 				D2614A5E2A528C2A00869710 /* Image.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
+				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
 				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
@@ -597,6 +604,7 @@
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
+				05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
