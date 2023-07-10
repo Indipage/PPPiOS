@@ -60,7 +60,8 @@ final class DetailViewController: BaseViewController {
 
     private func layout() {
         detailView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(-1)
         }
     }
         
