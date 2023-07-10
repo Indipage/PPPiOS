@@ -17,6 +17,7 @@ final class DetailView: UIScrollView {
     // MARK: - UI Components
     
     let detailTopView = DetailTopView()
+    let ownerView = DetailOwnerView()
     
     // MARK: - Life Cycle
     
@@ -34,15 +35,21 @@ final class DetailView: UIScrollView {
     // MARK: - Custom Method
     
     private func hieararchy() {
-        self.addSubview(detailTopView)
+        self.addSubviews(detailTopView,
+                         ownerView)
     }
     
     private func layout() {
         detailTopView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
             $0.height.equalToSuperview().multipliedBy(381.0 / 821.0)
+        }
+        
+        ownerView.snp.makeConstraints {
+            $0.top.equalTo(detailTopView.snp.bottom)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 }
