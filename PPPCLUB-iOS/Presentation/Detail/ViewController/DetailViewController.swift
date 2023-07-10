@@ -111,8 +111,8 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
             return 3
-//        case detailView.ownerView.bookCollectionView:
-//            return 32
+        case detailView.ownerView.bookCollectionView:
+            return 32
         default:
             return 0
         }
@@ -126,7 +126,9 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: Int(label.intrinsicContentSize.width) , height: 18)
             
         case detailView.ownerView.bookCollectionView:
-            return CGSize(width: 116 , height: collectionView.frame.height)
+            let bookWidth = (collectionView.frame.width - 64) / 3
+            return CGSize(width: bookWidth ,
+                          height: bookWidth * 1.5 )
             
         default:
             return CGSize()

@@ -63,7 +63,7 @@ final class DetailOwnerView: UIView {
         
         flowLayout.do {
             $0.scrollDirection = .horizontal
-            $0.minimumLineSpacing = 40
+            $0.minimumLineSpacing = 32
         }
         
         bookCollectionView.do {
@@ -113,8 +113,8 @@ final class DetailOwnerView: UIView {
         
         bookCollectionView.snp.makeConstraints {
             $0.top.equalTo(recommendBookLabel.snp.bottom).offset(21)
-            $0.height.equalTo(156)
             $0.center.leading.trailing.equalToSuperview()
+            $0.height.equalTo((Size.width - 64) / 3 * 1.5 + 1)
         }
         
         bookNameLabel.snp.makeConstraints {

@@ -47,7 +47,6 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
     private func layout() {
         bookImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.height.width.equalToSuperview()
         }
     }
     
