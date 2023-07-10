@@ -19,6 +19,9 @@
 		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
 		D22188792A5925F900F097C7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188782A5925F900F097C7 /* Pretendard-Medium.otf */; };
 		D221887B2A59260300F097C7 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D221887A2A59260300F097C7 /* Pretendard-Light.otf */; };
+		D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */; };
+		D22188842A5BDC1A00F097C7 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22188832A5BDC1A00F097C7 /* Size.swift */; };
+		D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22188872A5BF8BA00F097C7 /* CGPoint+.swift */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -52,6 +55,7 @@
 		D2614A982A52918A00869710 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A972A52918A00869710 /* BaseTargetType.swift */; };
 		D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A992A52919A00869710 /* BaseAPI.swift */; };
 		D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A9D2A5291F400869710 /* VoidResult.swift */; };
+		D26594072A5C56F50089E56A /* QRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594062A5C56F50089E56A /* QRManager.swift */; };
 		D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096092A529893007BC756 /* BaseViewController.swift */; };
 		D2B096162A529963007BC756 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* TicketView.swift */; };
 		D2B096182A529984007BC756 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096172A529984007BC756 /* SearchViewController.swift */; };
@@ -77,6 +81,9 @@
 		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		D22188782A5925F900F097C7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		D221887A2A59260300F097C7 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeViewController.swift; sourceTree = "<group>"; };
+		D22188832A5BDC1A00F097C7 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		D22188872A5BF8BA00F097C7 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +114,7 @@
 		D2614A972A52918A00869710 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		D2614A992A52919A00869710 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		D2614A9D2A5291F400869710 /* VoidResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidResult.swift; sourceTree = "<group>"; };
+		D26594062A5C56F50089E56A /* QRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRManager.swift; sourceTree = "<group>"; };
 		D2B096092A529893007BC756 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2B096152A529963007BC756 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		D2B096172A529984007BC756 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +202,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D22188802A5BDB3100F097C7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D26594062A5C56F50089E56A /* QRManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		D2614A392A52836E00869710 = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +254,7 @@
 			children = (
 				D2614A5B2A528C2300869710 /* URLs.swift */,
 				D2614A5D2A528C2A00869710 /* Image.swift */,
+				D22188832A5BDC1A00F097C7 /* Size.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -245,6 +262,7 @@
 		D2614A5F2A528C3800869710 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				D22188802A5BDB3100F097C7 /* Utility */,
 				D2614A602A528C4500869710 /* Extension */,
 				D2614A5A2A528C0F00869710 /* Constant */,
 			);
@@ -267,6 +285,7 @@
 				D2614A752A528D4900869710 /* UICollectionReusableView+.swift */,
 				D2614A772A528D5800869710 /* UIFont+.swift */,
 				D2614A792A528D6E00869710 /* UITabbar+.swift */,
+				D22188872A5BF8BA00F097C7 /* CGPoint+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -405,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				D2B096232A529A8C007BC756 /* TicketViewController.swift */,
+				D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -548,10 +568,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
+				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,
@@ -559,6 +581,7 @@
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
+				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
@@ -577,6 +600,7 @@
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
+				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
@@ -664,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -718,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -738,6 +762,7 @@
 				DEVELOPMENT_TEAM = 3DGF5D388H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -766,6 +791,7 @@
 				DEVELOPMENT_TEAM = 3DGF5D388H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
