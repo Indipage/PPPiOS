@@ -18,6 +18,7 @@ final class DetailView: UIScrollView {
     
     let detailTopView = DetailTopView()
     let ownerView = DetailOwnerView()
+    private let uniqueView = DetailUniqueView()
     
     // MARK: - Life Cycle
     
@@ -34,9 +35,17 @@ final class DetailView: UIScrollView {
     
     // MARK: - Custom Method
     
+    private func style() {
+        ownerView.do {
+            $0.frame.size = $0.intrinsicContentSize
+        }
+    }
+    
     private func hieararchy() {
         self.addSubviews(detailTopView,
-                         ownerView)
+                         ownerView,
+                         uniqueView
+        )
     }
     
     private func layout() {
@@ -49,6 +58,13 @@ final class DetailView: UIScrollView {
         ownerView.snp.makeConstraints {
             $0.top.equalTo(detailTopView.snp.bottom)
             $0.width.equalToSuperview()
+        }
+        
+        // FIXME: - ownerView.curationLabel에 접근하지 않고 레이아웃 잡을 수 있는 방법 찾아보기
+        uniqueView.snp.makeConstraints {
+            $0.top.equalTo(ownerView.curationLabel.snp.bottom)
+            $0.width.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
     }

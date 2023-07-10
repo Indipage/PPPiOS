@@ -13,6 +13,7 @@
 		058326902A5C290A004A295F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583268F2A5C290A004A295F /* DetailView.swift */; };
 		05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */; };
 		05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */; };
+		05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D42A5C9690003EEE84 /* DetailUniqueView.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */; };
@@ -77,6 +78,7 @@
 		0583268F2A5C290A004A295F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOwnerView.swift; sourceTree = "<group>"; };
 		05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookCollectionViewCell.swift; sourceTree = "<group>"; };
+		05CD07D42A5C9690003EEE84 /* DetailUniqueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUniqueView.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Bold.ttf"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				0583268F2A5C290A004A295F /* DetailView.swift */,
 				05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */,
 				05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */,
+				05CD07D42A5C9690003EEE84 /* DetailUniqueView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
 				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
+				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,

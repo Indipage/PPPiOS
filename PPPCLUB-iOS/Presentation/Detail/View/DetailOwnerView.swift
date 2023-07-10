@@ -25,12 +25,13 @@ final class DetailOwnerView: UIView {
     lazy var bookCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: flowLayout)
     private lazy var bookNameLabel = UILabel()
-    private lazy var curationLabel = UILabel()
+    lazy var curationLabel = UILabel()
     
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         style()
         hieararchy()
         layout()
@@ -56,7 +57,7 @@ final class DetailOwnerView: UIView {
         }
         
         recommendBookLabel.do {
-            $0.text = "💡책방지기 추천 서가"
+            $0.text = "💡 책방지기 추천 서가"
             $0.font = .pppTitle1
             $0.textColor = .black
         }
