@@ -18,6 +18,7 @@
 		D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */; };
 		D221887F2A5BD99300F097C7 /* TicketCheckQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */; };
 		D22188842A5BDC1A00F097C7 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22188832A5BDC1A00F097C7 /* Size.swift */; };
+		D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22188872A5BF8BA00F097C7 /* CGPoint+.swift */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -75,6 +76,7 @@
 		D221887C2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeViewController.swift; sourceTree = "<group>"; };
 		D221887E2A5BD99300F097C7 /* TicketCheckQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeView.swift; sourceTree = "<group>"; };
 		D22188832A5BDC1A00F097C7 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		D22188872A5BF8BA00F097C7 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				D2614A752A528D4900869710 /* UICollectionReusableView+.swift */,
 				D2614A772A528D5800869710 /* UIFont+.swift */,
 				D2614A792A528D6E00869710 /* UITabbar+.swift */,
+				D22188872A5BF8BA00F097C7 /* CGPoint+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
+				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,

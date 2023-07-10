@@ -49,6 +49,18 @@ class QRManager {
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr] // Camera로 들어오는 데이터 타입이 QR코드 임을 명시
     }
     
+    func start() {
+        print("# AVCaptureSession Start Running")
+        DispatchQueue.global(qos: .userInitiated).async {
+            print("🔫시작했습니다🔫")
+            self.captureSession.startRunning()
+        }
+    }
+    
+    func stop() {
+        self.captureSession.stopRunning()
+    }
+    
     func setCamera() {
         initCameraDevice()
         initCameraInputData()
@@ -70,80 +82,54 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     }
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    
-    private var cornerLength: CGFloat = 20
-    private var cornerLineWidth: CGFloat = 6
-    
+
     private var rectOfInterest: CGRect {
-        CGRect(x: (UIScreen.main.bounds.width - 200) / 2 , y: (UIScreen.main.bounds.height - 200) / 2, width: 200, height: 200)
+        CGRect(x: (Size.width - 200) / 2 , y: (Size.height - 200) / 2, width: 200, height: 200)
     }
     
-    // 당연히 지금까지는 Delegate에 대한 프로토콜을 채택하지 않았기 때문에, 빨간 줄이 뜰 것입니다.
-    func delegate() {
-        self.qrManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main) // Output 데이터가 들어왔을 때, 처리할 Delegate 설정
+    override func viewDidLoad() {
+        self.qrManager.setCamera()
+        
+        delegate()
+        layout()
+    }
+    
+    //MARK: - Custom Method
+    
+    private func delegate() {
+        self.qrManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         self.qrManager.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: rectOfInterest)
     }
     
-    private func displayPreview() {
+    private func layout() {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: qrManager.captureSession)
         videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         self.videoPreviewLayer?.frame = self.view.layer.bounds
         self.view.layer.addSublayer(self.videoPreviewLayer!)
         setPreviewLayer() // 중앙에 사각형의 Focus Zone Layer을 설정합니다.
-        self.start() // startRunning을 실행시켜야 화면이 보이게 됩니다.
-        
+        self.qrManager.start() // startRunning을 실행시켜야 화면이 보이게 됩니다.
     }
-    
-    override func viewDidLoad() {
-        self.qrManager.setCamera()
-        delegate()
-        displayPreview()
-    }
-    
-    //MARK: - Custom Method
     
 }
 
 extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegate {
-    // MetaData가 들어올 때마다 실행되는 메소드
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         print(#function)
         
-        // MetaData을 사람이 읽을 수 있는 Data로 캐스팅
         guard let metaDataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject else {
-            print("Fail to cast MetaData as AVMetadataMachineReadableCodeObject")
+            print("QR인식에 실패했습니다!")
             return
         }
         
-        // QR 데이터인 경우
         if metaDataObj.type == .qr {
-            print("qr이 맞습니다!🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫")
-            
-            // 여기서 직접적으로 가져온 QR Code 데이터를 해독한다.
             guard let qrCodeStringData = metaDataObj.stringValue else { return }
-            
-            print(qrCodeStringData)
-            self.stop(isButtonTap: true)
+            print("🔫qr이 맞습니다!🔫")
+            print("🔫\(qrCodeStringData)🔫")
+            self.qrManager.stop()
         }
     }
 }
-
-extension TicketCheckQRCodeViewController {
-    func start() {
-        print("# AVCaptureSession Start Running")
-        DispatchQueue.global(qos: .userInitiated).async {
-            print("🔫시작했습니다🔫")
-            self.qrManager.captureSession.startRunning()
-        }
-    }
-    
-    func stop(isButtonTap: Bool) {
-        self.qrManager.captureSession.stopRunning()
-    }
-}
-
-
 
 extension TicketCheckQRCodeViewController {
     /// 중앙에 사각형의 Focus Zone Layer을 설정합니다.
@@ -166,7 +152,7 @@ extension TicketCheckQRCodeViewController {
         
         previewLayer.addSublayer(maskLayer)
         
-        
+
         self.view.layer.addSublayer(previewLayer)
         self.videoPreviewLayer = previewLayer
     }
@@ -177,18 +163,7 @@ extension TicketCheckQRCodeViewController {
         videoLayer.frame = view.layer.bounds //카메라의 크기 지정
         videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill //카메라의 비율지정
         view.layer.addSublayer(videoLayer)
-        
-        return videoLayer.metadataOutputRectConverted(fromLayerRect: rectOfInterest)
-    }
-}
 
-internal extension CGPoint {
-    
-    // MARK: - CGPoint+offsetBy
-    func offsetBy(dx: CGFloat, dy: CGFloat) -> CGPoint {
-        var point = self
-        point.x += dx
-        point.y += dy
-        return point
+        return videoLayer.metadataOutputRectConverted(fromLayerRect: rectOfInterest)
     }
 }
