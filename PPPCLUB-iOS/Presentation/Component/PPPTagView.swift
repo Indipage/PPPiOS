@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class PPPTagView: UIView {
+final class PPPTagView: UIView {
     
     // MARK: - UI Components
 
@@ -38,7 +38,6 @@ class PPPTagView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-        
         tagStackView.do {
             $0.axis = .horizontal
             $0.alignment = .center

@@ -22,6 +22,7 @@ final class DetailView: UIScrollView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         hieararchy()
         layout()
     }

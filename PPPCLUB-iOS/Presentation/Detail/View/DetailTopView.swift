@@ -33,6 +33,7 @@ final class DetailTopView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         style()
         hieararchy()
         layout()
@@ -45,7 +46,6 @@ final class DetailTopView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-        
         shopImageView.do {
             $0.image = UIImage(systemName: "paperplane.fill")
             $0.backgroundColor = .red
@@ -128,11 +128,11 @@ final class DetailTopView: UIView {
                          restLabel,
                          restBar,
                          detailRestLabel,
-                         tagCollectionView)
+                         tagCollectionView
+        )
     }
     
     private func layout() {
-        
         shopImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

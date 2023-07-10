@@ -24,7 +24,6 @@ final class DetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
     
         target()
         register()
@@ -40,7 +39,8 @@ final class DetailViewController: BaseViewController {
     private func target() {}
 
     private func register() {
-        detailView.detailTopView.tagCollectionView.register(DetailTagCollectionViewCell.self, forCellWithReuseIdentifier: DetailTagCollectionViewCell.cellIdentifier)
+        detailView.detailTopView.tagCollectionView.register(DetailTagCollectionViewCell.self,
+                                                            forCellWithReuseIdentifier: DetailTagCollectionViewCell.cellIdentifier)
     }
 
     private func delegate() {
@@ -49,6 +49,8 @@ final class DetailViewController: BaseViewController {
     }
 
     private func style() {
+        view.backgroundColor = .white
+        
         detailView.do {
             $0.contentInsetAdjustmentBehavior = .never
         }
@@ -64,17 +66,11 @@ final class DetailViewController: BaseViewController {
             $0.top.equalToSuperview().offset(-1)
         }
     }
-        
-    
-    //MARK: - Action Method
-    
 }
 
 // MARK: - UICollectionViewDelegate
 
-extension DetailViewController: UICollectionViewDelegate {}
 extension DetailViewController: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dummy.tagList.count
     }
@@ -84,11 +80,9 @@ extension DetailViewController: UICollectionViewDataSource {
         cell.configureCell(text: dummy.tagList[indexPath.row])
         return cell
     }
-    
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 3
     }

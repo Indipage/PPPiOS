@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class DetailTagCollectionViewCell: UICollectionViewCell {
+final class DetailTagCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     
@@ -20,6 +20,7 @@ class DetailTagCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         hieararchy()
         layout()
     }
