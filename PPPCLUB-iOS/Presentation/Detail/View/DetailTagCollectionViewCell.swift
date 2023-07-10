@@ -1,5 +1,5 @@
 //
-//  DetailView.swift
+//  DetailTagCollectionViewCell.swift
 //  PPPCLUB-iOS
 //
 //  Created by 박윤빈 on 2023/07/10.
@@ -10,15 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
-final class DetailView: UIScrollView {
-    
-    // MARK: - Properties
+final class DetailTagCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     
-    let detailTopView = DetailTopView()
+    lazy var tagView = PPPTagView()
     
-    // MARK: - Life Cycle
+    // MARK: - Life Cycles
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +25,7 @@ final class DetailView: UIScrollView {
         layout()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -34,15 +33,17 @@ final class DetailView: UIScrollView {
     // MARK: - Custom Method
     
     private func hieararchy() {
-        self.addSubview(detailTopView)
+        contentView.addSubview(tagView)
     }
     
     private func layout() {
-        detailTopView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(381.0 / 821.0)
+        tagView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+            $0.height.equalTo(18)
         }
+    }
+    
+    func configureCell(text: String) {
+        tagView.tagLabel.text = text
     }
 }
