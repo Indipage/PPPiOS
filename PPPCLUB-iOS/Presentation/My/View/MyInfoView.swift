@@ -34,14 +34,15 @@ final class MyInfoView: UITableView {
     
     private func register() {
         self.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.cellIdentifier)
+        self.register(MySeparatorFooterView.self, forHeaderFooterViewReuseIdentifier: MySeparatorFooterView.cellIdentifier)
     }
     
     private func tableStyle() {
         self.do {
-            $0.backgroundColor = .green
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.separatorStyle = .none
             $0.isScrollEnabled = false
         }
     }
 }
+

@@ -42,9 +42,7 @@ final class MyInfoTableViewCell: UITableViewCell {
         contentView.do {
             $0.backgroundColor = .yellow
         }
-        infoTitleLabel.do {
-            $0.text = "자주 묻는 질문"
-        }
+        
         arrowImageView.do {
             $0.backgroundColor = .green
         }
@@ -57,13 +55,18 @@ final class MyInfoTableViewCell: UITableViewCell {
     private func layout() {
         infoTitleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview()
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(23)
         }
         
         arrowImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview()
+            $0.top.equalToSuperview().offset(20)
             $0.size.equalTo(24)
         }
+    }
+    
+    func configureCell(title: String) {
+        infoTitleLabel.text = title
     }
 }
 

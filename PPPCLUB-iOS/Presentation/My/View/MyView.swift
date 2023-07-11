@@ -20,6 +20,7 @@ final class MyView: UIView {
     private let contentView = UIView()
     private let profileView = MyProfileView()
     lazy var infoTableView = MyInfoView()
+    private let appInformationLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -41,14 +42,17 @@ final class MyView: UIView {
         scrollView.do {
             $0.backgroundColor = .white
             $0.isScrollEnabled = true
-            $0.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
+        }
+        
+        appInformationLabel.do {
+            $0.text = "앱 버전 v.1.1.0"
         }
     }
     
     private func hierarchy() {
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(profileView, infoTableView)
+        contentView.addSubviews(profileView, infoTableView, appInformationLabel)
     }
     
     private func layout() {
@@ -57,20 +61,27 @@ final class MyView: UIView {
         }
         
         contentView.snp.makeConstraints {
-            $0.edges.equalTo(scrollView.safeAreaLayoutGuide)
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.height.equalTo(scrollView.frameLayoutGuide).priority(.low)
-            $0.width.equalTo(scrollView.safeAreaLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
         }
         
         profileView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide)
+            $0.top.equalToSuperview()
             $0.width.equalToSuperview()
             $0.height.equalTo(382)
         }
+        
         infoTableView.snp.makeConstraints {
             $0.top.equalTo(self.profileView.snp.bottom).offset(5)
             $0.leading.trailing.equalToSuperview().inset(28)
-            $0.height.equalTo(100)
+            $0.height.equalTo(217)
+        }
+        
+        appInformationLabel.snp.makeConstraints {
+            $0.top.equalTo(self.infoTableView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(28)
+            $0.bottom.equalToSuperview()
         }
     }
 }
