@@ -117,6 +117,7 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCardCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCardCollectionViewCell else {
@@ -130,8 +131,25 @@ extension TicketViewController: UICollectionViewDataSource {
     }
 }
 
+//MARK: - TicketCardDelegate
+
 extension TicketViewController: TicketCardDelegate {
     func cardImageButtonDidTap() {
         print("버튼이 눌렷습니다!")
+    }
+}
+
+//MARK: - TicketDelegate
+
+extension TicketViewController: TicketDelegate {
+    func ticketImageDidSwapped() {
+        pushToQRChecktView()
+    }
+}
+
+extension TicketViewController {
+    func pushToQRChecktView() {
+        let qrcheckViewController = TicketCheckQRCodeViewController()
+        self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
 }

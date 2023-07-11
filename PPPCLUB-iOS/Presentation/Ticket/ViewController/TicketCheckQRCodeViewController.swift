@@ -1,16 +1,16 @@
-////
-////  TicketCheckQRCodeViewController.swift
-////  PPPCLUB-iOS
-////
-////  Created by 류희재 on 2023/07/10.
-////
 //
-//import AVFoundation
-//import UIKit
+//  TicketCheckQRCodeViewController.swift
+//  PPPCLUB-iOS
 //
+//  Created by 류희재 on 2023/07/10.
 //
-//final class TicketCheckQRCodeViewController: BaseViewController {
-//    
+
+import AVFoundation
+import UIKit
+
+
+final class TicketCheckQRCodeViewController: BaseViewController {
+    
 //    //MARK: - Properties
 //    
 //    var qrManager: QRManager
@@ -120,4 +120,4 @@
 //            $0.centerX.equalToSuperview()
 //        }
 //    }
-//}
+}
