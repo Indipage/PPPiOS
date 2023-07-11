@@ -27,7 +27,6 @@ final class TicketCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
     //MARK: - Custom Method
     
     private func style() {

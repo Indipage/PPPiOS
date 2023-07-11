@@ -10,16 +10,26 @@ import UIKit
 import SnapKit
 import Then
 
+protocol TicketCardDelegate: AnyObject {
+    func cardImageButtonDidTap()
+}
+
 final class TicketCardCollectionViewCell: UICollectionViewCell {
+    
+    //MARK: - Properties
+    
+    weak var delegate: TicketCardDelegate?
     
     //MARK: - UI Components
     
-    private let ticketImageView = UIView()
+    private lazy var cardImageButton = UIButton()
     
     //MARK: - Life Cycles
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        target()
         
         style()
         hierarchy()
@@ -33,8 +43,12 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Custom Method
     
+    private func target() {
+        cardImageButton.addTarget(self, action: #selector(cardImageButtonDidTap), for: .touchUpInside)
+    }
+    
     private func style() {
-        ticketImageView.do {
+        cardImageButton.do {
             $0.backgroundColor = .blue
             $0.makeCornerRadius(ratio: 4)
             $0.makeShadow(color: .black, offset: CGSize(width: 2, height: 2), radius: 2.5, opacity: 0.25)
@@ -42,13 +56,17 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
     }
     
     private func hierarchy() {
-        contentView.addSubview(ticketImageView)
+        contentView.addSubview(cardImageButton)
     }
     
     private func layout() {
-        ticketImageView.snp.makeConstraints {
+        cardImageButton.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    @objc func cardImageButtonDidTap() {
+        delegate?.cardImageButtonDidTap()
     }
 }
 

@@ -41,8 +41,6 @@ final class TicketView: UIView {
             $0.backgroundColor = .green
             $0.makeCornerRadius(ratio: 20)
         }
-        
-        ticketView.isHidden = true
     }
     
     private func hieararchy() {
@@ -51,7 +49,7 @@ final class TicketView: UIView {
     
     private func layout() {
         displayModeButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(50)
+            $0.top.equalTo(self.safeAreaInsets).offset(50)
             $0.centerX.equalToSuperview()
             $0.leading.equalTo(28)
             $0.height.equalToSuperview().multipliedBy(40/Size.height)

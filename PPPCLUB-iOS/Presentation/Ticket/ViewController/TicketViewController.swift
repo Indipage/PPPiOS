@@ -17,6 +17,8 @@ final class TicketViewController: BaseViewController {
     
     let rootView = TicketView()
     
+    //MARK: - Life Cycle
+    
     override func loadView() {
         self.view = rootView
     }
@@ -26,7 +28,11 @@ final class TicketViewController: BaseViewController {
         
         delegate()
         target()
+        
+        style()
     }
+    
+    //MARK: - Custom Method
     
     private func target() {
         print(#function)
@@ -46,11 +52,15 @@ final class TicketViewController: BaseViewController {
         rootView.ticketView.isHidden = !displayMode
     }
     
+    //MARK: - Action Method
+    
     @objc func displayModeButtonDidTap() {
         rootView.cardView.isHidden.toggle()
         rootView.ticketView.isHidden.toggle()
     }
 }
+
+//MARK: - UICollectionViewDelegate
 
 extension TicketViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -86,6 +96,9 @@ extension TicketViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+//MARK: - UICollectionViewDataSource
+
 extension TicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -109,11 +122,16 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCardCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCardCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.delegate = self
             return cell
         default:
             return UICollectionViewCell()
         }
-        
     }
 }
 
+extension TicketViewController: TicketCardDelegate {
+    func cardImageButtonDidTap() {
+        print("버튼이 눌렷습니다!")
+    }
+}
