@@ -31,6 +31,12 @@ extension UIView{
         clipsToBounds = true
     }
     
+    func makeCornerRound(ratio : CGFloat) {
+        layer.cornerRadius = self.frame.height / ratio
+        layer.masksToBounds = true
+        clipsToBounds = true
+    }
+    
     func makeCornerBorder(borderWidth: CGFloat, borderColor: UIColor) {
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor
