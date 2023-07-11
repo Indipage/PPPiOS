@@ -7,6 +7,9 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
