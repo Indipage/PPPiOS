@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BaseViewController : UIViewController{
+class BaseViewController : UIViewController {
     
     //MARK: - Properties
     
@@ -37,7 +37,7 @@ class BaseViewController : UIViewController{
     //MARK: - Custom Method
     
     func setUI(){
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         self.navigationController?.isNavigationBarHidden = true
     }
     
