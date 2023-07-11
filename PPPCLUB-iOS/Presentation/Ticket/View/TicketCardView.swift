@@ -45,6 +45,7 @@ final class TicketCardView: UIView {
         cardImageView.do {
             $0.backgroundColor = .gray
             $0.makeCornerRadius(ratio: 17.4)
+            $0.makeShadow(color: .black, offset: CGSize(width: 4, height: 4), radius: 5, opacity: 0.25)
         }
         
         ticketCardCollectionView.do {
@@ -52,10 +53,7 @@ final class TicketCardView: UIView {
             layout.scrollDirection = .horizontal
             
             $0.collectionViewLayout = layout
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.isScrollEnabled = true
             $0.showsHorizontalScrollIndicator = false
-            $0.alwaysBounceVertical = true
             $0.backgroundColor = .systemPink
         }
     }
@@ -68,15 +66,15 @@ final class TicketCardView: UIView {
         cardImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(284)
-            $0.height.equalTo(449)
+            $0.width.equalToSuperview().multipliedBy(284/Size.width)
+            $0.height.equalToSuperview().multipliedBy(449/Size.height)
         }
         
         ticketCardCollectionView.snp.makeConstraints {
             $0.top.equalTo(self.cardImageView.snp.bottom).offset(25)
             $0.leading.equalToSuperview().offset(28)
             $0.width.equalToSuperview()
-            $0.height.equalTo(108)
+            $0.height.equalToSuperview().multipliedBy(108/Size.height)
         }
     }
 }

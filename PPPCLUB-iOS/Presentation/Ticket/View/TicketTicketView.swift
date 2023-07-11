@@ -42,14 +42,12 @@ final class TicketTicketView: UIView {
     
     private func style() {
         ticketCollectionView.do {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.isScrollEnabled = true
-            $0.showsVerticalScrollIndicator = false
-            $0.alwaysBounceVertical = true
-            $0.backgroundColor = .systemPink
-            
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
+            
+            $0.collectionViewLayout = layout
+            $0.showsVerticalScrollIndicator = false
+            $0.backgroundColor = .systemPink
         }
     }
     
@@ -59,7 +57,10 @@ final class TicketTicketView: UIView {
     
     private func layout() {
         ticketCollectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.width.equalToSuperview().multipliedBy(320/Size.width)
+            $0.bottom.equalToSuperview().inset(100)
         }
     }
 }
