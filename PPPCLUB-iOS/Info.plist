@@ -4,10 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>BioRhyme-Light.otf</string>
-		<string>BioRhyme-Regular.otf</string>
-		<string>BioRhyme-Bold.otf</string>
-		<string>Pretendard-Light.otf</string>
+		<string>Unbounded-SemiBold.ttf</string>
+		<string>Unbounded-Light.ttf</string>
+		<string>Unbounded-Regular.ttf</string>
+		<string>Pretendard-Bold.otf</string>
 		<string>Pretendard-Medium.otf</string>
 		<string>Pretendard-Semibold.otf</string>
 	</array>
