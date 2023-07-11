@@ -48,7 +48,7 @@ final class PPPTagView: UIView {
         
         tagLabel.do {
             $0.font = .pppCaption2
-            $0.textColor = .pppWhite1
+            $0.textColor = .white
             $0.textAlignment = .center
             $0.frame.size = $0.intrinsicContentSize
         }
