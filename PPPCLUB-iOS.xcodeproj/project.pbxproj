@@ -14,6 +14,8 @@
 		05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */; };
 		05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */; };
 		05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D42A5C9690003EEE84 /* DetailUniqueView.swift */; };
+		05CD07D92A5D2505003EEE84 /* DetailArticleRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07D82A5D2505003EEE84 /* DetailArticleRequestView.swift */; };
+		05CD07DB2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07DA2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188712A5925A600F097C7 /* BioRhyme-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */; };
@@ -79,6 +81,8 @@
 		05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOwnerView.swift; sourceTree = "<group>"; };
 		05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		05CD07D42A5C9690003EEE84 /* DetailUniqueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUniqueView.swift; sourceTree = "<group>"; };
+		05CD07D82A5D2505003EEE84 /* DetailArticleRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleRequestView.swift; sourceTree = "<group>"; };
+		05CD07DA2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMoveToArticleView.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188702A5925A600F097C7 /* BioRhyme-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BioRhyme-Bold.ttf"; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				05CD07D02A5C6FEE003EEE84 /* DetailOwnerView.swift */,
 				05CD07D22A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift */,
 				05CD07D42A5C9690003EEE84 /* DetailUniqueView.swift */,
+				05CD07D82A5D2505003EEE84 /* DetailArticleRequestView.swift */,
+				05CD07DA2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
+				05CD07D92A5D2505003EEE84 /* DetailArticleRequestView.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
@@ -610,6 +617,7 @@
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
+				05CD07DB2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,

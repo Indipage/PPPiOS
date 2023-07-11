@@ -56,11 +56,12 @@ final class DetailUniqueView: UIView {
         uniqueLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(25)
             $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(24)
         }
         
         uniqueImageView.snp.makeConstraints {
             $0.top.equalTo(uniqueLabel.snp.bottom).offset(16)
-            $0.height.equalTo(156)
+            $0.height.equalTo(234)
             $0.center.leading.trailing.equalToSuperview()
         }
     }

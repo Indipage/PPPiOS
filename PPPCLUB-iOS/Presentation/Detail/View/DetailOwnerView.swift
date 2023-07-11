@@ -54,6 +54,7 @@ final class DetailOwnerView: UIView {
             $0.text = "독립서점 소개글 작성란"
             $0.font = .pppBody2
             $0.textColor = .black
+            $0.sizeToFit()
         }
         
         recommendBookLabel.do {
@@ -78,11 +79,13 @@ final class DetailOwnerView: UIView {
         }
         
         curationLabel.do {
-            $0.text = "큐레이션 멘트"
+            $0.text = "큐레이션 멘트 진짜 엄청엄청엄청 긴 큐레이션 멘트 진짜너무긴 큐레이션멘트 완전길지? 너무 길지? 당황스럽지? 큐레이션 멘트 진짜 엄청엄청엄청 긴 큐레이션 멘트 진짜너무긴 큐레이션멘트 완전길지? 너무 길지? 당황스럽지?큐레이션 멘트 진짜 엄청엄청엄청 긴 큐레이션 멘트 진짜너무긴 큐레이션멘트 완전길지? 너무 길지? 당황스럽지? 큐레이션 멘트 진짜 엄청엄청엄청 긴 큐레이션 멘트 진짜너무긴 큐레이션멘트 완전길지? 너무 길지? 당황스럽지?큐레이션 멘트 진짜 엄청엄청엄청 긴 큐레이션 멘트 진짜너무긴 큐레이션멘트 완전길지? 너무 길지? 당황스럽지? 큐레이션 멘트 진짜 엄청엄청엄청 긴 큐레이션 멘트 진짜너무긴 큐레이션멘트 완전길지? 너무 길지? 당황스럽지?"
             $0.font = .pppBody2
             $0.textColor = .black
             $0.textAlignment = .center
-            $0.numberOfLines = 2
+            $0.numberOfLines = 15
+            $0.backgroundColor = .systemBlue
+            $0.sizeToFit()
         }
     }
     
@@ -100,16 +103,19 @@ final class DetailOwnerView: UIView {
         ownerIntroLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(18)
             $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(24)
         }
         
         introduceLabel.snp.makeConstraints {
             $0.top.equalTo(ownerIntroLabel.snp.bottom).offset(7)
-            $0.leading.equalTo(ownerIntroLabel)
+            $0.leading.trailing.equalToSuperview().inset(28)
+//            $0.height.equalTo(72)
         }
         
         recommendBookLabel.snp.makeConstraints {
             $0.top.equalTo(introduceLabel.snp.bottom).offset(32)
             $0.leading.equalToSuperview().inset(21)
+            $0.height.equalTo(24)
         }
         
         bookCollectionView.snp.makeConstraints {
@@ -121,12 +127,14 @@ final class DetailOwnerView: UIView {
         bookNameLabel.snp.makeConstraints {
             $0.top.equalTo(bookCollectionView.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(21)
         }
         
         curationLabel.snp.makeConstraints {
             $0.top.equalTo(bookNameLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(bookNameLabel)
             $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
         }
     }
 }
