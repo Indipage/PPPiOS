@@ -28,6 +28,13 @@
 		D224D4B42A5DFB6B00B014ED /* Unbounded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */; };
 		D224D4B62A5DFB7300B014ED /* Unbounded-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */; };
 		D224D4B82A5DFBC300B014ED /* Unbounded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */; };
+		D224D49C2A5D9A9700B014ED /* MySavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D49B2A5D9A9700B014ED /* MySavedView.swift */; };
+		D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D49E2A5DA6B900B014ED /* MyInfoTableViewCell.swift */; };
+		D224D4A12A5DA95600B014ED /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4A02A5DA95600B014ED /* MyInfoView.swift */; };
+		D224D4A32A5DA97D00B014ED /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4A22A5DA97D00B014ED /* MyProfileView.swift */; };
+		D224D4A92A5DB66800B014ED /* MyInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4A82A5DB66800B014ED /* MyInfoModel.swift */; };
+		D224D4AB2A5DCB7800B014ED /* MySeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4AA2A5DCB7800B014ED /* MySeparatorFooterView.swift */; };
+		D224D4AD2A5DF15600B014ED /* MyAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4AC2A5DF15600B014ED /* MyAccountModel.swift */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -101,6 +108,13 @@
 		D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Regular.ttf"; sourceTree = "<group>"; };
 		D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Light.ttf"; sourceTree = "<group>"; };
 		D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-SemiBold.ttf"; sourceTree = "<group>"; };
+		D224D49B2A5D9A9700B014ED /* MySavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedView.swift; sourceTree = "<group>"; };
+		D224D49E2A5DA6B900B014ED /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
+		D224D4A02A5DA95600B014ED /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
+		D224D4A22A5DA97D00B014ED /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		D224D4A82A5DB66800B014ED /* MyInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoModel.swift; sourceTree = "<group>"; };
+		D224D4AA2A5DCB7800B014ED /* MySeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySeparatorFooterView.swift; sourceTree = "<group>"; };
+		D224D4AC2A5DF15600B014ED /* MyAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountModel.swift; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +248,40 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		D224D49D2A5DA5C100B014ED /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D224D4AE2A5DF25600B014ED /* HeaderFooterView */,
+				D224D49E2A5DA6B900B014ED /* MyInfoTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		D224D4A42A5DB5F900B014ED /* My */ = {
+			isa = PBXGroup;
+			children = (
+				D224D4A72A5DB65E00B014ED /* Model */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		D224D4A72A5DB65E00B014ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D224D4A82A5DB66800B014ED /* MyInfoModel.swift */,
+				D224D4AC2A5DF15600B014ED /* MyAccountModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D224D4AE2A5DF25600B014ED /* HeaderFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				D224D4AA2A5DCB7800B014ED /* MySeparatorFooterView.swift */,
+			);
+			name = HeaderFooterView;
+			sourceTree = "<group>";
+		};
 		D2614A392A52836E00869710 = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +387,7 @@
 		D2614A9B2A5291E300869710 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D224D4A42A5DB5F900B014ED /* My */,
 				D265940F2A5CF43B0089E56A /* Ticket */,
 				0583268A2A5C012C004A295F /* Detail */,
 				D2614A9C2A5291E900869710 /* Common */,
@@ -446,6 +495,7 @@
 		D2B096062A5297D7007BC756 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				D224D49D2A5DA5C100B014ED /* Cell */,
 				D2B096102A529913007BC756 /* ViewController */,
 				D2B0960F2A52990C007BC756 /* View */,
 			);
@@ -514,6 +564,9 @@
 			isa = PBXGroup;
 			children = (
 				D2B0961D2A5299B2007BC756 /* MyView.swift */,
+				D224D49B2A5D9A9700B014ED /* MySavedView.swift */,
+				D224D4A02A5DA95600B014ED /* MyInfoView.swift */,
+				D224D4A22A5DA97D00B014ED /* MyProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -633,11 +686,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D224D4A12A5DA95600B014ED /* MyInfoView.swift in Sources */,
 				D224D4982A5D1D6300B014ED /* TicketSuccessView.swift in Sources */,
 				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
+				D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
 				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
@@ -657,6 +712,7 @@
 				D265940C2A5C88A80089E56A /* TicketCollectionViewCell.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
 				058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */,
+				D224D4A92A5DB66800B014ED /* MyInfoModel.swift in Sources */,
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
@@ -666,10 +722,13 @@
 				D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */,
 				D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */,
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
+				D224D49C2A5D9A9700B014ED /* MySavedView.swift in Sources */,
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
+				D224D4AD2A5DF15600B014ED /* MyAccountModel.swift in Sources */,
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
+				D224D4A32A5DA97D00B014ED /* MyProfileView.swift in Sources */,
 				05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
@@ -679,6 +738,7 @@
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
+				D224D4AB2A5DCB7800B014ED /* MySeparatorFooterView.swift in Sources */,
 				0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */,
 				D224D4962A5D1D0600B014ED /* TicketResultView.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */,
