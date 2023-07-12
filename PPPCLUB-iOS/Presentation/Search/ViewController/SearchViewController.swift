@@ -35,6 +35,11 @@ final class SearchViewController: BaseViewController {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dismissKeyboardWhenTappedAround()
+    }
+    
     // MARK: - Custom Method
 
     private func register() {
@@ -70,6 +75,7 @@ final class SearchViewController: BaseViewController {
             return place.location.lowercased().contains(searchText.lowercased())
         })
         searchView.searchHeaderView.allLabel.text = searchText
+        searchView.searchBar.resignFirstResponder()
         searchView.searchTableView.reloadData()
     }
     
@@ -134,9 +140,5 @@ extension SearchViewController: UISearchBarDelegate {
     // 서치바 검색이 끝났을 때 호출
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.searchView.searchTableView.reloadData()
-    }
-    
-    override func dismissKeyboard() {
-        searchView.searchBar.resignFirstResponder()
     }
 }
