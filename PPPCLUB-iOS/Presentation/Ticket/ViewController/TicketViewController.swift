@@ -163,7 +163,7 @@ extension TicketViewController: TicketDelegate {
 
 extension TicketViewController {
     func pushToQRChecktView() {
-        let qrcheckViewController = TicketCheckQRCodeViewController()
+        let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
 }
