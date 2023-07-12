@@ -78,11 +78,11 @@ extension UIFont{
         return UIFont(name: "Unbounded-Regular", size: 16)!
     }
     
-    class var pppCaption: UIFont {
+    class var pppEnCaption: UIFont {
         return UIFont(name: "Unbounded-Light", size: 14)!
     }
     
-    class var pppNav: UIFont {
+    class var pppEnNav: UIFont {
         return UIFont(name: "Unbounded-Light", size: 12)!
     }
 }

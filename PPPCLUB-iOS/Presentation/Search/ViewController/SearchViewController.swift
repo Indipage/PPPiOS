@@ -46,6 +46,7 @@ final class SearchViewController: BaseViewController {
     private func delegate() {
         searchView.searchTableView.dataSource = self
         searchView.searchTableView.delegate = self
+        searchView.searchBar.delegate = self
     }
 
     private func style() {}
@@ -63,13 +64,7 @@ final class SearchViewController: BaseViewController {
 
 // MARK: - UITableViewDataSource
 
-extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.contentView.preservesSuperviewLayoutMargins = true
-        cell.contentView.layoutMargins.top = 10 // 셀의 위 간격을 10 포인트로 설정
-        cell.contentView.layoutMargins.bottom = 10 // 셀의 아래 간격을 10 포인트로 설정
-    }
-}
+extension SearchViewController: UITableViewDelegate {}
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,4 +84,18 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 108
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return searchView.searchHeaderView
+    }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text!)
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
 }

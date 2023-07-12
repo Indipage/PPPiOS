@@ -52,6 +52,7 @@ class SearchTableViewCell: UITableViewCell {
         locationLabel.do {
             $0.font = .pppCaption1
             $0.textColor = .pppGrey6
+            $0.numberOfLines = 2
         }
         
         infoStackView.do {
@@ -77,6 +78,7 @@ class SearchTableViewCell: UITableViewCell {
         infoStackView.snp.makeConstraints {
             $0.centerY.equalTo(placeImageView)
             $0.leading.equalTo(placeImageView.snp.trailing).offset(12)
+            $0.trailing.equalToSuperview().inset(10)
         }
     }
 }

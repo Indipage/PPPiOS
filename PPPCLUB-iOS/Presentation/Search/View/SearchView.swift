@@ -11,11 +11,19 @@ import SnapKit
 import Then
 
 final class SearchView: UIView {
+    
+    // MARK: - Properties
+    
+    let placeholder: String = "지역명으로 검색해보세요 ex) 서초구"
+    private lazy var attributedString = NSMutableAttributedString(string: placeholder,
+                                                     attributes: [NSAttributedString.Key.font: UIFont.pppBody4 ,
+                                                                  NSAttributedString.Key.foregroundColor: UIColor.pppGrey5])
         
     // MARK: - UI Components
     
-    lazy var searchTableView = UITableView()
-    private lazy var searchLabel = UILabel()
+    lazy var searchTableView = UITableView(frame: .zero, style: .grouped)
+    lazy var searchBar = UISearchBar()
+    lazy var searchHeaderView = SearchHeaderView()
     
     // MARK: - Life Cycle
     
@@ -37,32 +45,40 @@ final class SearchView: UIView {
         searchTableView.do {
             $0.separatorStyle = .none
             $0.showsVerticalScrollIndicator = false
+            $0.backgroundColor = .white
         }
         
-        searchLabel.do {
-            $0.text = "전체"
-            $0.font = .pppSubHead1
-            $0.textColor = .pppBlack
+        searchBar.do {
+            $0.showsCancelButton = false
+            $0.backgroundImage = UIImage()
+            $0.searchTextField.backgroundColor = .pppGrey2
+            $0.searchTextField.leftView?.tintColor = .pppGrey5
+            $0.searchTextField.attributedPlaceholder = attributedString
         }
     }
     
     private func hierarchy() {
-        self.addSubviews(searchLabel,
-                         searchTableView
+        self.addSubviews(searchTableView,
+                         searchBar
         )
     }
     
     private func layout() {
-        searchLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(30)
-            $0.leading.equalToSuperview().inset(28)
-            $0.height.equalTo(24)
+        searchBar.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.height.equalTo(40)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+                
+        searchTableView.snp.makeConstraints {
+            $0.top.equalTo(searchBar.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(28)
+            $0.bottom.equalToSuperview()
+            
         }
         
-        searchTableView.snp.makeConstraints {
-            $0.top.equalTo(searchLabel.snp.bottom).offset(24)
-            $0.leading.trailing.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview()
+        searchHeaderView.snp.makeConstraints {
+            $0.height.equalTo(28)
         }
     }
 }
