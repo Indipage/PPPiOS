@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class TicketResultViewController: BaseViewController {
+final class TicketSuccessViewController: BaseViewController {
     
     //MARK: - Properties
     

@@ -36,9 +36,10 @@ final class TicketCheckQRCodeViewController: BaseViewController {
         layout()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        tabBarController?.tabBar.isHidden = true
         QRManager.start()
     }
     
@@ -74,7 +75,7 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
             print("🔫\(qrCodeStringData)🔫")
             QRManager.stop()
             
-            pushTicketResultView()
+            pushTicketResultView(result: qrCodeStringData)
         }
     }
 }
@@ -125,9 +126,22 @@ extension TicketCheckQRCodeViewController {
         }
     }
     
-    private func pushTicketResultView() {
-        let ticketResultView = TicketResultViewController()
-        self.navigationController?.pushViewController(ticketResultView, animated: true)
-        
+    private func pushTicketResultView(result: String) {
+        if result == "http://itwiki.kr/" {
+            let ticketSuccessView = TicketSuccessViewController()
+            self.navigationController?.pushViewController(ticketSuccessView, animated: true)
+        } else {
+            let ticketFailView = TicketFailureViewController()
+            ticketFailView.delagate = self
+            self.modalPresentationStyle = .fullScreen
+            self.present(ticketFailView, animated: true)
+        }
+    }
+}
+
+extension TicketCheckQRCodeViewController: ExitButtonDelegate {
+    func exitButtonDidTap() {
+        print(#function)
+        self.navigationController?.popViewController(animated: false)
     }
 }
