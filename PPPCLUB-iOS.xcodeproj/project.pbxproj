@@ -19,6 +19,8 @@
 		2CED4DA92A5E94A4002F07B4 /* HomeArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DA82A5E94A4002F07B4 /* HomeArticleViewController.swift */; };
 		2CED4DAB2A5E954F002F07B4 /* HomeArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DAA2A5E954F002F07B4 /* HomeArticleView.swift */; };
 		2CED4DAD2A5E9567002F07B4 /* HomeArticleNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DAC2A5E9567002F07B4 /* HomeArticleNavigationView.swift */; };
+		2CED4DB22A5EB2ED002F07B4 /* HomeArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DB12A5EB2ED002F07B4 /* HomeArticleHeaderView.swift */; };
+		2CED4DB42A5EB2FC002F07B4 /* HomeArticleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DB32A5EB2FC002F07B4 /* HomeArticleFooterView.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
@@ -105,6 +107,8 @@
 		2CED4DA82A5E94A4002F07B4 /* HomeArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleViewController.swift; sourceTree = "<group>"; };
 		2CED4DAA2A5E954F002F07B4 /* HomeArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleView.swift; sourceTree = "<group>"; };
 		2CED4DAC2A5E9567002F07B4 /* HomeArticleNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleNavigationView.swift; sourceTree = "<group>"; };
+		2CED4DB12A5EB2ED002F07B4 /* HomeArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleHeaderView.swift; sourceTree = "<group>"; };
+		2CED4DB32A5EB2FC002F07B4 /* HomeArticleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleFooterView.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -221,6 +225,31 @@
 				0583268D2A5C0158004A295F /* DetailTagModel.swift */,
 			);
 			path = APIModel;
+			sourceTree = "<group>";
+		};
+		2CED4DAE2A5EB20D002F07B4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2CED4DB02A5EB217002F07B4 /* HeaderFooterView */,
+				2CED4DAF2A5EB213002F07B4 /* Cell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2CED4DAF2A5EB213002F07B4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2CED4DB02A5EB217002F07B4 /* HeaderFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				2CED4DB12A5EB2ED002F07B4 /* HomeArticleHeaderView.swift */,
+				2CED4DB32A5EB2FC002F07B4 /* HomeArticleFooterView.swift */,
+			);
+			path = HeaderFooterView;
 			sourceTree = "<group>";
 		};
 		D22188692A5924A600F097C7 /* Detail */ = {
@@ -501,6 +530,7 @@
 		D2B096052A5297A4007BC756 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2CED4DAE2A5EB20D002F07B4 /* Cell */,
 				D2B096122A529921007BC756 /* ViewController */,
 				D2B096112A52991A007BC756 /* View */,
 			);
@@ -747,6 +777,7 @@
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
 				D224D4AD2A5DF15600B014ED /* MyAccountModel.swift in Sources */,
+				2CED4DB22A5EB2ED002F07B4 /* HomeArticleHeaderView.swift in Sources */,
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				2CED4DAB2A5E954F002F07B4 /* HomeArticleView.swift in Sources */,
@@ -767,6 +798,7 @@
 				D224D4962A5D1D0600B014ED /* TicketResultView.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
+				2CED4DB42A5EB2FC002F07B4 /* HomeArticleFooterView.swift in Sources */,
 				D2614A682A528C9100869710 /* UITextField+.swift in Sources */,
 				D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */,
 				058326872A5BF893004A295F /* PPPTagView.swift in Sources */,
