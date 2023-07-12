@@ -16,12 +16,18 @@ final class TicketResultViewController: BaseViewController {
     
     //MARK: - UI Components
     
-    let rootView = TicketFailureView()
+    let rootView = TicketSuccessView()
     
     //MARK: - Life Cycle
     
     override func loadView() {
         self.view = rootView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLoad() {

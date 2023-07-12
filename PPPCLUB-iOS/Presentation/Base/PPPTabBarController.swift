@@ -18,7 +18,7 @@ class PPPTabBarController: UITabBarController {
     let homeViewController = HomeViewController()
     let searchViewController = SearchViewController()
     let myViewController = MyViewController()
-    let ticketViewController = TicketViewController()
+    let ticketViewController = TicketResultViewController()
     
     lazy var homeNavigationContrller = UINavigationController(rootViewController: homeViewController)
     lazy var searchNavigationContrller = UINavigationController(rootViewController: searchViewController)
@@ -80,7 +80,6 @@ class PPPTabBarController: UITabBarController {
     
     private func setTabBarItem(image: UIImage, selectedImage: UIImage) -> UITabBarItem {
         let tabBarItem = UITabBarItem(title: nil, image: image, selectedImage: selectedImage)
-        //tabBarItem.imageInsets = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         return tabBarItem
     }
 }

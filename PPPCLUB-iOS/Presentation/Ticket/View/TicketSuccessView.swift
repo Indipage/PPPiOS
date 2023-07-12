@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class TicketSuccessViewd: UIView {
+final class TicketSuccessView: UIView {
     
     // MARK: - Properties
     
@@ -41,10 +41,16 @@ final class TicketSuccessViewd: UIView {
     private func style() {
         titleLabel.do {
             $0.text = "인증 성공!"
+            $0.font = .pppSubHead1
+            $0.textAlignment = .center
+            $0.textColor = .pppBlack
         }
         
         subTitleLabel.do {
             $0.text = "카드를 획득했어요!"
+            $0.font = .pppBody2
+            $0.textAlignment = .center
+            $0.textColor = .pppBlack
         }
         
         cardImageView.do {
@@ -55,9 +61,10 @@ final class TicketSuccessViewd: UIView {
         }
         
         cardViewButton.do {
-            $0.backgroundColor = .purple
+            $0.backgroundColor = .pppMainPurple
             $0.setTitle("카드 보러가기", for: .normal)
-            $0.setTitleColor(.white, for: .normal)
+            $0.setTitleColor(.pppWhite, for: .normal)
+            $0.titleLabel?.font = .pppBody1
             $0.makeCornerRadius(ratio: 6)
         }
     }
@@ -87,8 +94,8 @@ final class TicketSuccessViewd: UIView {
         cardViewButton.snp.makeConstraints {
             $0.top.equalTo(self.cardImageView.snp.bottom).offset(69)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(299/Size.width)
-            $0.height.equalToSuperview().multipliedBy(40/Size.height)
+            $0.width.equalToSuperview().multipliedBy(319/Size.width)
+            $0.height.equalToSuperview().multipliedBy(60/Size.height)
         }
         
     }
