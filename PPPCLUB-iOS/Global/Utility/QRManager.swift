@@ -40,6 +40,7 @@ final class QRManager {
         if QRManager.captureSession.canAddOutput(captureMetadataOutput) {
             QRManager.captureSession.addOutput(captureMetadataOutput)
         }
+        //         captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr] // Camera로 들어오는 데이터 타입이 QR코드 임을 명시
         if captureMetadataOutput.availableMetadataObjectTypes.contains(AVMetadataObject.ObjectType.qr) {
             captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         } else {
@@ -59,6 +60,7 @@ final class QRManager {
     static func stop() {
         QRManager.captureSession.stopRunning()
     }
+    
     
     func setCamera() {
         initCameraDevice()

@@ -57,8 +57,8 @@ final class TicketFailureViewController: UIViewController {
     }
     
     @objc func tryButtonDidTap() {
-        QRManager.start()
         self.dismiss(animated: true)
+        QRManager.start()
     }
 }
 

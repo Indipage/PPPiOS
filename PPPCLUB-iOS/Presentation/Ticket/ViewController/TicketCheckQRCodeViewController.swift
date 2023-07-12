@@ -127,7 +127,7 @@ extension TicketCheckQRCodeViewController {
     }
     
     private func pushTicketResultView(result: String) {
-        if result == "http://itwiki.kr/" {
+        if result == "http://en.m.wikipedia.org" {
             let ticketSuccessView = TicketSuccessViewController()
             self.navigationController?.pushViewController(ticketSuccessView, animated: true)
         } else {
@@ -141,7 +141,6 @@ extension TicketCheckQRCodeViewController {
 
 extension TicketCheckQRCodeViewController: ExitButtonDelegate {
     func exitButtonDidTap() {
-        print(#function)
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
 }
