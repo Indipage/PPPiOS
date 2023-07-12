@@ -45,7 +45,7 @@ final class TicketEmptyView: UIView {
         titleLabel.do {
             $0.text = "발급받은 티켓이 없어요!"
             $0.textColor = .pppGrey5
-            $0.font = .pppBody1
+            $0.font = .pppSubHead2
         }
         
         subTitleLabel.do {

@@ -8,8 +8,8 @@
 		<string>Unbounded-Light.ttf</string>
 		<string>Unbounded-Regular.ttf</string>
 		<string>Pretendard-Bold.otf</string>
-		<string>Pretendard-Medium.otf</string>
-		<string>Pretendard-Semibold.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

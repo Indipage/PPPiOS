@@ -90,6 +90,7 @@
 		D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D22A5E811E002004A5 /* CALayer+.swift */; };
 		D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */; };
 		D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */; };
+		D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +174,7 @@
 		D2E8C3D22A5E811E002004A5 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEmptyView.swift; sourceTree = "<group>"; };
 		D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardEmptyView.swift; sourceTree = "<group>"; };
+		D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				D26594122A5CF4580089E56A /* TicketCardModel.swift */,
+				D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
 				05CD07D92A5D2505003EEE84 /* DetailArticleRequestView.swift in Sources */,
+				D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
 				D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */,
 				D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */,

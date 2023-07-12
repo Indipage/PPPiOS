@@ -15,6 +15,9 @@ final class TicketViewController: BaseViewController {
     //MARK: - Properties
     
     private var displayMode: Bool = true
+    private var isEmpty: Bool = true
+    private var ticketMockData = TicketModel.mockDummy()
+    private var cardMockData = TicketCardModel.mockDummy()
     
     //MARK: - UI Components
     
@@ -51,6 +54,7 @@ final class TicketViewController: BaseViewController {
     }
     
     private func style() {
+        
         rootView.cardView.isHidden = displayMode
         rootView.ticketView.isHidden = !displayMode
     }
@@ -106,9 +110,9 @@ extension TicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return 10
+            return ticketMockData.count
         case rootView.cardView.ticketCardCollectionView:
-            return 10
+            return cardMockData.count
         default:
             return 0
         }
@@ -120,6 +124,7 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.configureCell(ticket: ticketMockData[indexPath.item])
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
@@ -127,6 +132,7 @@ extension TicketViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.delegate = self
+            cell.configureCell(card: cardMockData[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
