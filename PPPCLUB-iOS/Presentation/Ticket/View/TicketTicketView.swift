@@ -51,7 +51,7 @@ final class TicketTicketView: UIView {
             
             $0.collectionViewLayout = layout
             $0.showsVerticalScrollIndicator = false
-            $0.backgroundColor = .systemPink
+            $0.backgroundColor = .pppWhite
         }
     }
     

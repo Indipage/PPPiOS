@@ -42,6 +42,7 @@ final class TicketViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        isEmptyView()
     }
     
     //MARK: - Custom Method
@@ -59,7 +60,6 @@ final class TicketViewController: BaseViewController {
     }
     
     private func style() {
-        
         rootView.cardView.isHidden = displayMode
         rootView.ticketView.isHidden = !displayMode
     }
@@ -165,5 +165,18 @@ extension TicketViewController {
     func pushToQRChecktView() {
         let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
+    }
+    
+    func isEmptyView() {
+        if ticketMockData.isEmpty {
+            rootView.ticketView.noTicketView.isHidden = false
+            rootView.ticketView.ticketCollectionView.isHidden = true
+        }
+        
+        if cardMockData.isEmpty {
+            rootView.cardView.noTicketCardView.isHidden = false
+            rootView.cardView.ticketCardCollectionView.isHidden = true
+            rootView.cardView.cardImageView.isHidden = true
+        }
     }
 }
