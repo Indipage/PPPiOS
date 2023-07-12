@@ -54,6 +54,7 @@ final class SearchView: UIView {
             $0.searchTextField.backgroundColor = .pppGrey2
             $0.searchTextField.leftView?.tintColor = .pppGrey5
             $0.searchTextField.attributedPlaceholder = attributedString
+            $0.showsCancelButton = false
         }
     }
     
