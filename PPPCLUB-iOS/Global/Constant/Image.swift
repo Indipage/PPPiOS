@@ -8,11 +8,9 @@
 import UIKit
 
 public enum Image {
-    //MARK: - Logo
     
-    static let logoAppIcon = UIImage(named: "logo_app_icon")!
-    static let logoCombination = UIImage(named: "logo_combination")!
-    static let logoSymbol = UIImage(named: "logo_symbol")!
+    //MARK: - Logo
+
     
     //MARK: - Icon
     
@@ -20,7 +18,17 @@ public enum Image {
     static let bookmark = UIImage(named: "bookmark")!
     static let bookmarkFill = UIImage(named: "bookmark.fill")!
     static let forward = UIImage(named: "forward")!
-    static let ticket = UIImage(named: "ticket")!
+    static let ticketIcon = UIImage(named: "ticketIcon")!
+    
+    //MARK: - TabBar
+    static let article = UIImage(named: "article")
+    static let articleFill = UIImage(named: "article.fill")
+    static let search = UIImage(named: "search")
+    static let searchFill = UIImage(named: "search.fill")
+    static let ticket = UIImage(named: "ticket")
+    static let ticketFill = UIImage(named: "ticket.fill")
+    static let my = UIImage(named: "my")
+    static let myFill = UIImage(named: "my.fill")
     
     //MARK: - Mock
     

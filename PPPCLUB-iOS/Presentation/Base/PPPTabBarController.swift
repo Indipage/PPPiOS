@@ -13,7 +13,7 @@ import Then
 class PPPTabBarController: UITabBarController {
     
     
-    //MARK: - Properties
+    //MARK: - UI Components
     
     let homeViewController = HomeViewController()
     let searchViewController = SearchViewController()
@@ -25,8 +25,6 @@ class PPPTabBarController: UITabBarController {
     lazy var myNavigationContrller = UINavigationController(rootViewController: myViewController)
     lazy var ticketNavigationContrller = UINavigationController(rootViewController: ticketViewController)
     
-    //MARK: - UI Components
-    
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -36,7 +34,6 @@ class PPPTabBarController: UITabBarController {
         setStyle()
         setNavigationController()
         setViewController()
-        setCornerRadius()
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,22 +46,16 @@ class PPPTabBarController: UITabBarController {
     //MARK: - Custom Method
     
     private func setTabBar(){
-        
-        //tabBar.isTranslucent = false
-        tabBar.backgroundColor = .white
+        tabBar.backgroundColor = .pppWhite
         tabBar.itemPositioning = .centered
-        tabBar.itemSpacing = 130
+        tabBar.itemSpacing = 100
+        
+        tabBar.layer.borderWidth = 1
+        tabBar.layer.borderColor = UIColor.pppGrey3.cgColor
     }
     
     private func setStyle(){
         UITabBar.clearShadow()
-        tabBar.layer.applyShadow(color: .gray, alpha: 0.15, x: 0, y: -2, blur: 4)
-    }
-    
-    private func setCornerRadius(){
-        tabBar.layer.cornerRadius = 20
-        tabBar.layer.maskedCorners = [.layerMinXMinYCorner,
-                                      .layerMaxXMinYCorner]
     }
     
     private func setNavigationController() {
@@ -75,10 +66,10 @@ class PPPTabBarController: UITabBarController {
     }
     
     private func setViewController(){
-        homeNavigationContrller.tabBarItem = UITabBarItem(title: "홈", image: nil, selectedImage: nil)
-        searchNavigationContrller.tabBarItem = UITabBarItem(title: "검색", image: nil, selectedImage: nil)
-        ticketNavigationContrller.tabBarItem = UITabBarItem(title: "북마크", image: nil, selectedImage: nil)
-        myNavigationContrller.tabBarItem = UITabBarItem(title: "마이", image: nil, selectedImage: nil)
+        homeNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.article, selectedImage: Image.articleFill)
+        searchNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.search, selectedImage: Image.searchFill)
+        ticketNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.ticket, selectedImage: Image.ticketFill)
+        myNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.my, selectedImage: Image.myFill)
         
         viewControllers = [
             homeNavigationContrller,

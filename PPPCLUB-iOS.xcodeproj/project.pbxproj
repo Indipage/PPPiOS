@@ -23,11 +23,6 @@
 		D224D4962A5D1D0600B014ED /* TicketResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4952A5D1D0600B014ED /* TicketResultView.swift */; };
 		D224D4982A5D1D6300B014ED /* TicketSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4972A5D1D6300B014ED /* TicketSuccessView.swift */; };
 		D224D49A2A5D1D7400B014ED /* TicketFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4992A5D1D7400B014ED /* TicketFailureView.swift */; };
-		D224D4B02A5DFAC400B014ED /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4AF2A5DFAC300B014ED /* Pretendard-Bold.otf */; };
-		D224D4B22A5DFAE900B014ED /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B12A5DFAE900B014ED /* Pretendard-Regular.otf */; };
-		D224D4B42A5DFB6B00B014ED /* Unbounded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */; };
-		D224D4B62A5DFB7300B014ED /* Unbounded-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */; };
-		D224D4B82A5DFBC300B014ED /* Unbounded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */; };
 		D224D49C2A5D9A9700B014ED /* MySavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D49B2A5D9A9700B014ED /* MySavedView.swift */; };
 		D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D49E2A5DA6B900B014ED /* MyInfoTableViewCell.swift */; };
 		D224D4A12A5DA95600B014ED /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4A02A5DA95600B014ED /* MyInfoView.swift */; };
@@ -35,6 +30,11 @@
 		D224D4A92A5DB66800B014ED /* MyInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4A82A5DB66800B014ED /* MyInfoModel.swift */; };
 		D224D4AB2A5DCB7800B014ED /* MySeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4AA2A5DCB7800B014ED /* MySeparatorFooterView.swift */; };
 		D224D4AD2A5DF15600B014ED /* MyAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D224D4AC2A5DF15600B014ED /* MyAccountModel.swift */; };
+		D224D4B02A5DFAC400B014ED /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4AF2A5DFAC300B014ED /* Pretendard-Bold.otf */; };
+		D224D4B22A5DFAE900B014ED /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B12A5DFAE900B014ED /* Pretendard-Regular.otf */; };
+		D224D4B42A5DFB6B00B014ED /* Unbounded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */; };
+		D224D4B62A5DFB7300B014ED /* Unbounded-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */; };
+		D224D4B82A5DFBC300B014ED /* Unbounded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -84,6 +84,7 @@
 		D2B096222A5299CC007BC756 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096212A5299CC007BC756 /* HomeView.swift */; };
 		D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096232A529A8C007BC756 /* TicketViewController.swift */; };
 		D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096252A529AC4007BC756 /* PPPTabBarController.swift */; };
+		D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D22A5E811E002004A5 /* CALayer+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,11 +104,6 @@
 		D224D4952A5D1D0600B014ED /* TicketResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketResultView.swift; sourceTree = "<group>"; };
 		D224D4972A5D1D6300B014ED /* TicketSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSuccessView.swift; sourceTree = "<group>"; };
 		D224D4992A5D1D7400B014ED /* TicketFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFailureView.swift; sourceTree = "<group>"; };
-		D224D4AF2A5DFAC300B014ED /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		D224D4B12A5DFAE900B014ED /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
-		D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Regular.ttf"; sourceTree = "<group>"; };
-		D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Light.ttf"; sourceTree = "<group>"; };
-		D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-SemiBold.ttf"; sourceTree = "<group>"; };
 		D224D49B2A5D9A9700B014ED /* MySavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedView.swift; sourceTree = "<group>"; };
 		D224D49E2A5DA6B900B014ED /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
 		D224D4A02A5DA95600B014ED /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
@@ -115,6 +111,11 @@
 		D224D4A82A5DB66800B014ED /* MyInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoModel.swift; sourceTree = "<group>"; };
 		D224D4AA2A5DCB7800B014ED /* MySeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySeparatorFooterView.swift; sourceTree = "<group>"; };
 		D224D4AC2A5DF15600B014ED /* MyAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountModel.swift; sourceTree = "<group>"; };
+		D224D4AF2A5DFAC300B014ED /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		D224D4B12A5DFAE900B014ED /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Regular.ttf"; sourceTree = "<group>"; };
+		D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Light.ttf"; sourceTree = "<group>"; };
+		D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-SemiBold.ttf"; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		D2B096212A5299CC007BC756 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D2B096232A529A8C007BC756 /* TicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
 		D2B096252A529AC4007BC756 /* PPPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTabBarController.swift; sourceTree = "<group>"; };
+		D2E8C3D22A5E811E002004A5 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +360,7 @@
 				D2614A772A528D5800869710 /* UIFont+.swift */,
 				D2614A792A528D6E00869710 /* UITabbar+.swift */,
 				D22188872A5BF8BA00F097C7 /* CGPoint+.swift */,
+				D2E8C3D22A5E811E002004A5 /* CALayer+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
 				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
+				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				D26594092A5C6FE70089E56A /* TicketCardView.swift in Sources */,
 				D265940C2A5C88A80089E56A /* TicketCollectionViewCell.swift in Sources */,
