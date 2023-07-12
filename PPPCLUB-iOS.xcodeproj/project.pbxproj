@@ -91,6 +91,7 @@
 		D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */; };
 		D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */; };
 		D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */; };
+		D2E8C3DD2A5EF810002004A5 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +176,7 @@
 		D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEmptyView.swift; sourceTree = "<group>"; };
 		D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardEmptyView.swift; sourceTree = "<group>"; };
 		D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
+		D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +378,7 @@
 				D2614A792A528D6E00869710 /* UITabbar+.swift */,
 				D22188872A5BF8BA00F097C7 /* CGPoint+.swift */,
 				D2E8C3D22A5E811E002004A5 /* CALayer+.swift */,
+				D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */,
 				D224D4AD2A5DF15600B014ED /* MyAccountModel.swift in Sources */,
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
+				D2E8C3DD2A5EF810002004A5 /* CGFloat+.swift in Sources */,
 				D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				D224D4A32A5DA97D00B014ED /* MyProfileView.swift in Sources */,

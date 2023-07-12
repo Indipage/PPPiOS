@@ -89,7 +89,7 @@ final class TicketFailureView: UIView {
         }
         
         failView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(248)
+            $0.centerY.equalToSuperview()
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(299/Size.width)
             $0.height.equalToSuperview().multipliedBy(317/Size.height)

@@ -75,27 +75,27 @@ final class TicketSuccessView: UIView {
     
     private func layout() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).offset(80)
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(80.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         subTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(8.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         cardImageView.snp.makeConstraints {
-            $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(39)
+            $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(39.adjusted)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(243/Size.width)
-            $0.height.equalToSuperview().multipliedBy(384/Size.height)
+            $0.width.equalTo(243)
+            $0.height.equalTo(384.adjusted)
         }
         
         cardViewButton.snp.makeConstraints {
-            $0.top.equalTo(self.cardImageView.snp.bottom).offset(69)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(16.adjusted)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(319/Size.width)
-            $0.height.equalToSuperview().multipliedBy(60/Size.height)
+            $0.width.equalTo(319)
+            $0.height.equalTo(60.adjusted)
         }
         
     }
