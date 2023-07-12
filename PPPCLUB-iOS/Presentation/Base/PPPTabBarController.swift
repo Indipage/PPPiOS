@@ -39,7 +39,7 @@ class PPPTabBarController: UITabBarController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tabBar.frame.size.height = 100
+        tabBar.frame.size.height = 116
         tabBar.frame.origin.y = view.frame.height - 100
     }
     
@@ -48,10 +48,9 @@ class PPPTabBarController: UITabBarController {
     private func setTabBar(){
         tabBar.backgroundColor = .pppWhite
         tabBar.itemPositioning = .centered
-        tabBar.itemSpacing = 100
+        tabBar.tintColor = .pppBlack
         
-        tabBar.layer.borderWidth = 1
-        tabBar.layer.borderColor = UIColor.pppGrey3.cgColor
+        tabBar.layer.addBorder([.top], color: .pppGrey3, width: 1)
     }
     
     private func setStyle(){
@@ -66,10 +65,10 @@ class PPPTabBarController: UITabBarController {
     }
     
     private func setViewController(){
-        homeNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.article, selectedImage: Image.articleFill)
-        searchNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.search, selectedImage: Image.searchFill)
-        ticketNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.ticket, selectedImage: Image.ticketFill)
-        myNavigationContrller.tabBarItem = UITabBarItem(title: nil, image: Image.my, selectedImage: Image.myFill)
+        homeNavigationContrller.tabBarItem = setTabBarItem(image: Image.article, selectedImage: Image.articleFill)
+        searchNavigationContrller.tabBarItem = setTabBarItem(image: Image.search, selectedImage: Image.searchFill)
+        ticketNavigationContrller.tabBarItem = setTabBarItem(image: Image.ticket, selectedImage: Image.ticketFill)
+        myNavigationContrller.tabBarItem = setTabBarItem(image: Image.my, selectedImage: Image.myFill)
         
         viewControllers = [
             homeNavigationContrller,
@@ -77,6 +76,12 @@ class PPPTabBarController: UITabBarController {
             ticketNavigationContrller,
             myNavigationContrller
         ]
+    }
+    
+    private func setTabBarItem(image: UIImage, selectedImage: UIImage) -> UITabBarItem {
+        let tabBarItem = UITabBarItem(title: nil, image: image, selectedImage: selectedImage)
+        //tabBarItem.imageInsets = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        return tabBarItem
     }
 }
 
