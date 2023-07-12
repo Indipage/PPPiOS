@@ -46,6 +46,8 @@ final class MyView: UIView {
         
         appInformationLabel.do {
             $0.text = "앱 버전 v.1.1.0"
+            $0.textColor = .pppBlack
+            $0.font = .pppCaption1
         }
     }
     
@@ -75,11 +77,11 @@ final class MyView: UIView {
         infoTableView.snp.makeConstraints {
             $0.top.equalTo(self.profileView.snp.bottom).offset(5)
             $0.leading.trailing.equalToSuperview().inset(28)
-            $0.height.equalTo(217)
+            $0.height.equalTo(235)
         }
         
         appInformationLabel.snp.makeConstraints {
-            $0.top.equalTo(self.infoTableView.snp.bottom).offset(20)
+            $0.top.equalTo(self.infoTableView.snp.bottom)
             $0.leading.equalToSuperview().offset(28)
             $0.bottom.equalToSuperview()
         }

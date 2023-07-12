@@ -88,6 +88,10 @@
 		D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096232A529A8C007BC756 /* TicketViewController.swift */; };
 		D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096252A529AC4007BC756 /* PPPTabBarController.swift */; };
 		D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D22A5E811E002004A5 /* CALayer+.swift */; };
+		D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */; };
+		D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */; };
+		D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */; };
+		D2E8C3DD2A5EF810002004A5 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +173,10 @@
 		D2B096232A529A8C007BC756 /* TicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
 		D2B096252A529AC4007BC756 /* PPPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTabBarController.swift; sourceTree = "<group>"; };
 		D2E8C3D22A5E811E002004A5 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEmptyView.swift; sourceTree = "<group>"; };
+		D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardEmptyView.swift; sourceTree = "<group>"; };
+		D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
+		D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -370,6 +378,7 @@
 				D2614A792A528D6E00869710 /* UITabbar+.swift */,
 				D22188872A5BF8BA00F097C7 /* CGPoint+.swift */,
 				D2E8C3D22A5E811E002004A5 /* CALayer+.swift */,
+				D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -444,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				D26594122A5CF4580089E56A /* TicketCardModel.swift */,
+				D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -542,6 +552,8 @@
 				D224D4952A5D1D0600B014ED /* TicketResultView.swift */,
 				D224D4972A5D1D6300B014ED /* TicketSuccessView.swift */,
 				D224D4992A5D1D7400B014ED /* TicketFailureView.swift */,
+				D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */,
+				D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -733,6 +745,7 @@
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
 				05CD07D92A5D2505003EEE84 /* DetailArticleRequestView.swift in Sources */,
+				D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
 				D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */,
 				D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */,
@@ -740,8 +753,11 @@
 				D224D49C2A5D9A9700B014ED /* MySavedView.swift in Sources */,
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
+				D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */,
 				D224D4AD2A5DF15600B014ED /* MyAccountModel.swift in Sources */,
 				D2614A942A52916800869710 /* MoyaLoggerPlugin.swift in Sources */,
+				D2E8C3DD2A5EF810002004A5 /* CGFloat+.swift in Sources */,
+				D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */,
 				D2614A742A528D2D00869710 /* UICollectionViewCell+.swift in Sources */,
 				D224D4A32A5DA97D00B014ED /* MyProfileView.swift in Sources */,
 				05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */,

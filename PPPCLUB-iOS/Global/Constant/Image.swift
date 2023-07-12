@@ -17,7 +17,7 @@ public enum Image {
     static let arrowDown = UIImage(named: "back")!
     static let bookmark = UIImage(named: "bookmark")!
     static let bookmarkFill = UIImage(named: "bookmark.fill")!
-    static let forward = UIImage(named: "forward")!
+    static let right = UIImage(named: "right")!
     static let ticketIcon = UIImage(named: "ticketIcon")!
     
     //MARK: - TabBar
@@ -37,4 +37,10 @@ public enum Image {
     static let mockArticleCardPacked = UIImage(named: "mockArticleCardPacked")!
     static let mockBook = UIImage(named: "mockBook")!
     static let mockBookStore = UIImage(named: "mockBookStore")!
+    static let mockTicket = UIImage(named: "mockTicket")!
+    
+    //MARK: - Ticket
+    
+    static let noTicket = UIImage(named: "noTicket")!
+    static let noCard = UIImage(named: "noCard")!
 }
