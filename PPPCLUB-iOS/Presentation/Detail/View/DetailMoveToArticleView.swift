@@ -45,7 +45,7 @@ final class DetailMoveToArticleView: UIView {
         shopImageButton.do {
             $0.setImage(UIImage(systemName: "pencil"), for: .normal)
             $0.layer.cornerRadius = 10
-            $0.backgroundColor = .pppMainPink
+//            $0.backgroundColor = .pppMainPink
         }
         
         goReadButton.do {
