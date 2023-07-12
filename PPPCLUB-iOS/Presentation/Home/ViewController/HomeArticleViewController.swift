@@ -14,10 +14,10 @@ import Then
 class HomeArticleViewController: UIViewController {
     
     // MARK: - Properties
+//    private var scrollRowHeight = HomeArticleHeaderView().headerHeight ?? 0
     
     // MARK: - UI Components
-    private var rootView = HomeArticleView()
-    private var navigationView = HomeArticleNavigationView()
+    private let rootView = HomeArticleView()
     
     // MARK: - Life Cycles
     
@@ -30,6 +30,7 @@ class HomeArticleViewController: UIViewController {
         
         target()
         register()
+        delegate()
         
         style()
         hierarchy()
@@ -38,30 +39,50 @@ class HomeArticleViewController: UIViewController {
     
     // MARK: - Custom Method
     
-    private func target() {}
+    private func target() {
+        
+    }
     
-    private func register() {}
+    private func register() {
+        
+    }
     
-    private func delegate() {}
+    private func delegate() {
+        rootView.articleTableView.delegate = self
+        rootView.articleTableView.dataSource = self
+    }
     
     private func style() {
-        navigationView.do {
-            $0.backgroundColor = .white
-        }
     }
     
     private func hierarchy() {
-        self.view.addSubviews(navigationView)
     }
     
     private func layout() {
-        navigationView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(66)
-            $0.width.equalToSuperview()
-        }
     }
     
     //MARK: - Action Method
+    
+}
+
+extension HomeArticleViewController: UITableViewDelegate {
+    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> Int {
+        return 475
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleHeaderView.cellIdentifier) as? HomeArticleHeaderView else { return UIView()}
+        return header
+    }
+}
+
+extension HomeArticleViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
     
 }

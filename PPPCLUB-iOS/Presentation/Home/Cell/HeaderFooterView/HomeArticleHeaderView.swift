@@ -9,7 +9,6 @@ import UIKit
 
 class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
-    // MARK: - Properties
     
     // MARK: - UI Components
     private var articleImage = UILabel()
@@ -37,6 +36,8 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     // MARK: - Custom Method
     
     private func style() {
+        self.backgroundColor = .white
+        
         articleImage.do {
             $0.backgroundColor = .black
         }
@@ -78,6 +79,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         articleImage.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.height.equalTo(228)
+            $0.top.equalToSuperview()
         }
         
         editorLabel.snp.makeConstraints {
@@ -98,7 +100,10 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         enterStoreButton.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(16)
             $0.width.equalToSuperview()
+            
+//            headerHeight = Int(self.enterStoreButton.bottomAnchor)
+//            print("⭐️⭐️⭐️\(headerHeight)")
         }
     }
-    
 }
+
