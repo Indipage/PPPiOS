@@ -14,7 +14,7 @@ final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private var displayMode: Bool = true
+    var displayMode: Bool = true
     private var isEmpty: Bool = true
     private var ticketMockData = TicketModel.mockDummy()
     private var cardMockData = TicketCardModel.mockDummy()
@@ -38,10 +38,15 @@ final class TicketViewController: BaseViewController {
         style()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     //MARK: - Custom Method
     
     private func target() {
-        print(#function)
         rootView.displayModeButton.addTarget(self, action: #selector(displayModeButtonDidTap), for: .touchUpInside)
     }
     

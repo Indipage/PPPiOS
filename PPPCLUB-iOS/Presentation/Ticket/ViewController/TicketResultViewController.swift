@@ -33,22 +33,20 @@ final class TicketResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate()
         target()
-        
-        style()
     }
     
     //MARK: - Custom Method
     
     private func target() {
-    }
-    
-    private func delegate() {
-    }
-    
-    private func style() {
+        rootView.cardViewButton.addTarget(self, action: #selector(cardButtonDidTap), for: .touchUpInside)
     }
     
     //MARK: - Action Method
+    
+    @objc func cardButtonDidTap() {
+        let ticketViewController = TicketViewController()
+        ticketViewController.displayMode = false
+        self.navigationController?.pushViewController(ticketViewController, animated: true)
+    }
 }
