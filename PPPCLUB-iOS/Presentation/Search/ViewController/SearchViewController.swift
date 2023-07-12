@@ -78,9 +78,6 @@ final class SearchViewController: BaseViewController {
         searchView.searchBar.resignFirstResponder()
         searchView.searchTableView.reloadData()
     }
-    
-    func target() {
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -118,7 +115,12 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return searchView.searchHeaderView
-    }    
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -132,12 +134,10 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
     
-    // 서치바에서 검색 버튼을 눌렀을 때 호출
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         filterContentForSearchText(searchView.searchBar.text ?? String())
     }
     
-    // 서치바 검색이 끝났을 때 호출
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.searchView.searchTableView.reloadData()
     }
