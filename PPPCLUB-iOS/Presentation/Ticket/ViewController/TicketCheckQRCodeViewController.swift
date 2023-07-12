@@ -112,7 +112,9 @@ final class TicketCheckQRCodeViewController: BaseViewController {
 //        
 //        let describeLabel = UILabel()
 //        describeLabel.do {
-//            $0.text = "서점 내 QR 코드를 스캔해보세요 !"
+//            $0.text = "QR코드를 인식해보세요!"
+//            $0.textColor = .pppWhite
+//            $0.font = .pppSubHead1
 //        }
 //        self.view.addSubview(describeLabel)
 //        describeLabel.snp.makeConstraints {

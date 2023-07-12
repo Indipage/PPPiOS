@@ -16,7 +16,7 @@ final class TicketResultViewController: BaseViewController {
     
     //MARK: - UI Components
     
-    let rootView = TicketSuccessView()
+    let rootView = TicketFailureView()
     
     //MARK: - Life Cycle
     
