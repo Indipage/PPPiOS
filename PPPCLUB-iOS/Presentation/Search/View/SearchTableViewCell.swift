@@ -12,10 +12,6 @@ import Then
 
 class SearchTableViewCell: UITableViewCell {
     
-    // MARK: - Properties
-    
-    static let identifier = "SearchTableViewCell"
-    
     // MARK: - UI Components
     
     lazy var placeImageView = UIImageView()
@@ -24,7 +20,7 @@ class SearchTableViewCell: UITableViewCell {
     private lazy var infoStackView = UIStackView(arrangedSubviews: [placeNameLabel,
                                                                     locationLabel])
     
-    // MARK: - init
+    // MARK: - Lift Cycles
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -73,8 +69,9 @@ class SearchTableViewCell: UITableViewCell {
     
     func setLayout() {
         placeImageView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(12)
             $0.height.width.equalTo(84)
+            $0.leading.equalToSuperview()
         }
         
         infoStackView.snp.makeConstraints {
