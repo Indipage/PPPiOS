@@ -1,8 +1,8 @@
 //
-//  ArticleView.swift
+//  HomeArticleView.swift
 //  PPPCLUB-iOS
 //
-//  Created by 류희재 on 2023/07/03.
+//  Created by 신지원 on 2023/07/12.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class HomeView: UIView {
+class HomeArticleView: UIView {
     
     // MARK: - Properties
     
@@ -21,7 +21,7 @@ final class HomeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         style()
         hierarchy()
         layout()
@@ -34,14 +34,14 @@ final class HomeView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-    
+        
     }
     
     private func hierarchy() {
-
+        
     }
     
     private func layout() {
-
+        
     }
 }
