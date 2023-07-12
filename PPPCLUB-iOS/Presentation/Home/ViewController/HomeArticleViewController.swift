@@ -74,6 +74,23 @@ extension HomeArticleViewController: UITableViewDelegate {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleHeaderView.cellIdentifier) as? HomeArticleHeaderView else { return UIView()}
         return header
     }
+    
+    private func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> Int {
+        if (section == 500) {
+            return 692
+        }
+        else {
+            return 0
+        }
+    }
+//    private func tableView(_ tableView: UITableView, willDisplayFooterView view: HomeArticleFooterView, forSection section: Int) {
+//        view.tintColor = UIColor.clear
+//    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
+        return footer
+    }
 }
 
 extension HomeArticleViewController: UITableViewDataSource {
@@ -82,7 +99,7 @@ extension HomeArticleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 3
     }
     
 }

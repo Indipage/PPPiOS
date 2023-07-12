@@ -35,8 +35,7 @@ class HomeArticleTableView: UITableView {
     private func tableStyle() {
         self.do {
             $0.backgroundColor = .pppWhite
-            $0.isScrollEnabled = true
-            $0.showsVerticalScrollIndicator = false
+            $0.showsVerticalScrollIndicator = true
             $0.separatorStyle = .none
         }
         
@@ -44,6 +43,8 @@ class HomeArticleTableView: UITableView {
     
     private func register() {
         self.register(HomeArticleHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeArticleHeaderView.cellIdentifier)
+        
+        self.register(HomeArticleFooterView.self, forHeaderFooterViewReuseIdentifier: HomeArticleFooterView.cellIdentifier)
     }
     
 }

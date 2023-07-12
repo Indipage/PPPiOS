@@ -17,8 +17,8 @@ public enum Image {
     //MARK: - Icon
     
     static let arrowDown = UIImage(named: "back")!
-    static let bookmark = UIImage(named: "bookmark")!
-    static let bookmarkFill = UIImage(named: "bookmark.fill")!
+    static let bookmark = UIImage(named: "bookMark")!
+    static let bookmarkFill = UIImage(named: "bookMark.fill")!
     static let forward = UIImage(named: "forward")!
     static let ticket = UIImage(named: "ticket")!
     

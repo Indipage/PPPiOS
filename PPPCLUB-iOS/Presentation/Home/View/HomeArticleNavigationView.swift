@@ -50,7 +50,9 @@ class HomeArticleNavigationView: UIView {
         }
         saveButton.do {
             $0.setImage(Image.bookmark, for: .normal)
-            //$0.setImage(Image.bookmarkFill, for: .selected)
+            $0.setImage(Image.bookmarkFill, for: .selected)
+            
+            $0.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
             
         }
     }
@@ -79,4 +81,10 @@ class HomeArticleNavigationView: UIView {
             $0.trailing.equalToSuperview().inset(28)
         }
     }
+    
+    @objc
+    func saveButtonTap() {
+        saveButton.isSelected.toggle()
+    }
 }
+

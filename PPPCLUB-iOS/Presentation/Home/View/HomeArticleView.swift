@@ -42,6 +42,7 @@ class HomeArticleView: UIView {
         }
         articleTableView.do {
             $0.backgroundColor = .white
+            $0.isScrollEnabled = true
         }
     }
     
@@ -59,7 +60,8 @@ class HomeArticleView: UIView {
         articleTableView.snp.makeConstraints {
             $0.top.equalTo(navigationView.snp.bottom)
             $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            //$0.bottom.equalToSuperview()
+            $0.height.equalTo(2000)
         }
     }
 }

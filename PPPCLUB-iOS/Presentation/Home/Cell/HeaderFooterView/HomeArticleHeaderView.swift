@@ -18,6 +18,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     private var articleTitleLabel = UILabel()
     private var dateLabel = UILabel()
     private var enterStoreButton = UIButton()
+    private var divideBarView = UIView()
     
     // MARK: - Life Cycle
     
@@ -37,7 +38,6 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     private func style() {
         self.backgroundColor = .pppWhite
-        
         articleImage.do {
             $0.backgroundColor = .black
         }
@@ -53,6 +53,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.textColor = .pppBlack
             $0.textAlignment = .center
             $0.numberOfLines = 0
+            $0.setLineSpacing(spacing: 7)
         }
         dateLabel.do {
             $0.text = "2023-06-08"
@@ -63,6 +64,9 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         enterStoreButton.do {
             $0.setImage( Image.mockEnterBookStore, for: .normal)
         }
+        divideBarView.do {
+            $0.backgroundColor = .pppGrey2
+        }
         
     }
     
@@ -71,7 +75,8 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
                          editorLabel,
                          articleTitleLabel,
                          dateLabel,
-                         enterStoreButton
+                         enterStoreButton,
+                         divideBarView
         )
     }
     
@@ -100,6 +105,14 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         enterStoreButton.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(16)
             $0.width.equalToSuperview()
+        }
+        
+        divideBarView.snp.makeConstraints {
+            $0.top.equalTo(enterStoreButton.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
 }
