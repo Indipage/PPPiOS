@@ -46,6 +46,7 @@ final class SearchView: UIView {
             $0.separatorStyle = .none
             $0.showsVerticalScrollIndicator = false
             $0.backgroundColor = .white
+            $0.keyboardDismissMode = .onDrag
         }
         
         searchBar.do {
