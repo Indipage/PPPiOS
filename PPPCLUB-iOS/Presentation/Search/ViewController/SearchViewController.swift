@@ -87,7 +87,7 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return searchView.searchHeaderView
-    }
+    }    
 }
 
 extension SearchViewController: UISearchResultsUpdating {

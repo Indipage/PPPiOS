@@ -74,11 +74,10 @@ final class SearchView: UIView {
             $0.top.equalTo(searchBar.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(28)
             $0.bottom.equalToSuperview()
-            
         }
         
         searchHeaderView.snp.makeConstraints {
-            $0.height.equalTo(28)
+            $0.height.equalTo(46)
         }
     }
 }
