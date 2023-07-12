@@ -34,7 +34,7 @@ final class MySeparatorFooterView: UITableViewHeaderFooterView {
     
     private func cellStyle() {
         separator.do {
-            $0.backgroundColor = .red
+            $0.backgroundColor = .pppGrey2
         }
     }
     

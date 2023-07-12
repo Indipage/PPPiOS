@@ -10,14 +10,43 @@ import UIKit
 import SnapKit
 import Then
 
+enum SavedViewType {
+    case article
+    case store
+    
+    var image: UIImage? {
+        switch self {
+        case .article:
+            return nil
+        case .store:
+            return nil
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .article:
+            return "Article"
+        case .store:
+            return "Store"
+        }
+    }
+    
+    var subTitle: String {
+        switch self {
+        case .article:
+            return "저장한 아티클"
+        case .store:
+            return "저장한 서점"
+        }
+    }
+}
+
 final class MySavedView: UIView {
     
     //MARK: - Properties
     
-//    let image: UIImage?
-//    let title: String?
-//    let subTitle: String?
-    
+    let savedViewType: SavedViewType?
     
     //MARK: - UI Components
     
@@ -27,11 +56,13 @@ final class MySavedView: UIView {
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(frame: CGRect, savedViewType: SavedViewType) {
+        self.savedViewType = savedViewType
         
+        super.init(frame: frame)
+
         style()
-        hieararchy()
+        hierarchy()
         layout()
     }
     
@@ -42,22 +73,33 @@ final class MySavedView: UIView {
     //MARK: - Custom Method
     
     private func style() {
-        self.backgroundColor = .white
+        self.do {
+            $0.backgroundColor = .pppWhite
+            $0.makeCornerRadius(ratio: 4)
+        }
         
         savedImageView.do {
-            $0.backgroundColor = .blue
+            $0.image = savedViewType?.image
+            $0.makeCornerRadius(ratio: 4)
+            $0.backgroundColor = .pppGrey3
         }
         
         savedTitleLabel.do {
-            $0.text = "Article"
+            $0.text = savedViewType?.title
+            $0.textColor = .pppBlack
+            $0.textAlignment = .center
+            $0.font = .pppEnBody2
         }
         
         savedSubTitleLabel.do {
-            $0.text = "저장한 아티클"
+            $0.text = savedViewType?.subTitle
+            $0.textColor = .pppGrey5
+            $0.textAlignment = .center
+            $0.font = .pppCaption1
         }
     }
     
-    private func hieararchy() {
+    private func hierarchy() {
         self.addSubviews(savedImageView, savedTitleLabel, savedSubTitleLabel)
     }
     

@@ -17,7 +17,7 @@ public enum Image {
     static let arrowDown = UIImage(named: "back")!
     static let bookmark = UIImage(named: "bookmark")!
     static let bookmarkFill = UIImage(named: "bookmark.fill")!
-    static let forward = UIImage(named: "forward")!
+    static let right = UIImage(named: "right")!
     static let ticketIcon = UIImage(named: "ticketIcon")!
     
     //MARK: - TabBar
