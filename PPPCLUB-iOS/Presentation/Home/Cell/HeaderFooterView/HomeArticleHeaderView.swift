@@ -36,7 +36,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     // MARK: - Custom Method
     
     private func style() {
-        self.backgroundColor = .white
+        self.backgroundColor = .pppWhite
         
         articleImage.do {
             $0.backgroundColor = .black
@@ -100,9 +100,6 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         enterStoreButton.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(16)
             $0.width.equalToSuperview()
-            
-//            headerHeight = Int(self.enterStoreButton.bottomAnchor)
-//            print("⭐️⭐️⭐️\(headerHeight)")
         }
     }
 }

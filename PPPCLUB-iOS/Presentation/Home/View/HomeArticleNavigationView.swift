@@ -37,18 +37,20 @@ class HomeArticleNavigationView: UIView {
     // MARK: - Custom Method
     
     private func style() {
+        self.backgroundColor = .pppWhite
+        
         backButton.do {
-            $0.backgroundColor = .yellow
+            $0.setImage(Image.arrowDown, for: .normal)
         }
         storeLabel.do {
-            $0.backgroundColor = .gray
             $0.text = "문학살롱 초고"
-            $0.font = .systemFont(ofSize: 20)
-            $0.textColor = .black
+            $0.font = .pppEnSubHead1
+            $0.textColor = .pppBlack
             $0.textAlignment = .center
         }
         saveButton.do {
-            $0.backgroundColor = .purple
+            $0.setImage(Image.bookmark, for: .normal)
+            //$0.setImage(Image.bookmarkFill, for: .selected)
             
         }
     }

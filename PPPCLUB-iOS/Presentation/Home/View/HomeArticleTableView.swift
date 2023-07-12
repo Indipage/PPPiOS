@@ -34,6 +34,7 @@ class HomeArticleTableView: UITableView {
     
     private func tableStyle() {
         self.do {
+            $0.backgroundColor = .pppWhite
             $0.isScrollEnabled = true
             $0.showsVerticalScrollIndicator = false
             $0.separatorStyle = .none

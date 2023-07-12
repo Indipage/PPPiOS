@@ -35,6 +35,8 @@ class HomeArticleView: UIView {
     // MARK: - Custom Method
     
     private func style() {
+        self.backgroundColor = .pppWhite
+        
         navigationView.do {
             $0.backgroundColor = .white
         }
