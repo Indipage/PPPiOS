@@ -96,7 +96,7 @@
 		D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */; };
 		D2E8C3DD2A5EF810002004A5 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */; };
 		D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DE2A5F3934002004A5 /* TicketFailureViewController.swift */; };
-		D2E8C3E12A5FF2D0002004A5 /* TicketToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3E02A5FF2D0002004A5 /* TicketToggleButton.swift */; };
+		D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */; };
 		D2E8C3E32A600163002004A5 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3E22A600163002004A5 /* BaseButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -187,7 +187,7 @@
 		D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		D2E8C3DE2A5F3934002004A5 /* TicketFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFailureViewController.swift; sourceTree = "<group>"; };
-		D2E8C3E02A5FF2D0002004A5 /* TicketToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketToggleButton.swift; sourceTree = "<group>"; };
+		D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketToggleView.swift; sourceTree = "<group>"; };
 		D2E8C3E22A600163002004A5 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				058326862A5BF893004A295F /* PPPTagView.swift */,
-				D2E8C3E02A5FF2D0002004A5 /* TicketToggleButton.swift */,
+				D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -769,7 +769,7 @@
 				D224D49A2A5D1D7400B014ED /* TicketFailureView.swift in Sources */,
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
-				D2E8C3E12A5FF2D0002004A5 /* TicketToggleButton.swift in Sources */,
+				D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */,
 				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,

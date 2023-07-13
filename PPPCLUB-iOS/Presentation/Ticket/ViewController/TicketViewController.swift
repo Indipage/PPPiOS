@@ -1,5 +1,5 @@
 //
-//  BookmarkViewController.swift
+//  TicketViewController.swift
 //  PPPCLUB-iOS
 //
 //  Created by 류희재 on 2023/07/03.
@@ -46,8 +46,8 @@ final class TicketViewController: BaseViewController {
     //MARK: - Custom Method
     
     private func target() {
-        rootView.ticketToggleButton.ticketToggleButton.addTarget(self, action: #selector(ticketToggleButtonDidTap), for: .touchUpInside)
-        rootView.ticketToggleButton.cardToggleButton.addTarget(self, action: #selector(cardToggleButtonDidTap), for: .touchUpInside)
+        rootView.ticketToggleView.ticketToggleButton.addTarget(self, action: #selector(ticketToggleButtonDidTap), for: .touchUpInside)
+        rootView.ticketToggleView.cardToggleButton.addTarget(self, action: #selector(cardToggleButtonDidTap), for: .touchUpInside)
     }
     
     private func delegate() {
@@ -66,9 +66,9 @@ final class TicketViewController: BaseViewController {
             delay: 0,
             options: .curveEaseInOut,
             animations: {
-                self.rootView.ticketToggleButton.toggleButton.transform = .identity
-                self.rootView.ticketToggleButton.cardLabel.textColor = .pppWhite
-                self.rootView.ticketToggleButton.ticketLabel.textColor = .pppGrey4
+                self.rootView.ticketToggleView.toggleButton.transform = .identity
+                self.rootView.ticketToggleView.cardLabel.textColor = .pppGrey4
+                self.rootView.ticketToggleView.ticketLabel.textColor = .pppWhite
             }
         )
         showSelectedView()
@@ -80,9 +80,9 @@ final class TicketViewController: BaseViewController {
             delay: 0,
             options: .curveEaseInOut,
             animations: {
-                self.rootView.ticketToggleButton.toggleButton.transform = CGAffineTransform(translationX: 175, y: 0)
-                self.rootView.ticketToggleButton.cardLabel.textColor = .pppWhite
-                self.rootView.ticketToggleButton.ticketLabel.textColor = .pppGrey4
+                self.rootView.ticketToggleView.toggleButton.transform = CGAffineTransform(translationX: 175, y: 0)
+                self.rootView.ticketToggleView.cardLabel.textColor = .pppWhite
+                self.rootView.ticketToggleView.ticketLabel.textColor = .pppGrey4
             }
         )
         showSelectedView()
@@ -95,7 +95,7 @@ extension TicketViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return CGSize(width: 320, height: 247)
+            return CGSize(width: Size.width, height: 247)
         case rootView.cardView.ticketCardCollectionView:
             return CGSize(width: 68, height: 108)
         default:
@@ -146,7 +146,7 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(ticket: ticketMockData[indexPath.item])
+            cell.configureCell(ticket: ticketMockData[indexPath.item], point: cell.center)
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:

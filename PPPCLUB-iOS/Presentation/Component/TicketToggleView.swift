@@ -9,19 +9,17 @@ import UIKit
 
 import SnapKit
 
-final class TicketToggleButton: UIView {
-    
-    //MARK: - Properties
-    
-    var isOn = false
+final class TicketToggleView: UIView {
     
     //MARK: - UI Components
     
-    lazy var toggleButton = BaseButton()
+    let contentView = UIView()
+    lazy var toggleButton = UIView()
     lazy var ticketToggleButton = UIButton()
     lazy var cardToggleButton = UIButton()
     let ticketLabel = UILabel()
     let cardLabel = UILabel()
+    private let separator = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,7 +34,7 @@ final class TicketToggleButton: UIView {
     }
     
     private func style() {
-        self.do {
+        contentView.do {
             $0.backgroundColor = .pppGrey2
             $0.makeCornerRadius(ratio: 20)
         }
@@ -59,13 +57,31 @@ final class TicketToggleButton: UIView {
             $0.textAlignment = .center
             $0.font = .pppBody5
         }
+        
+        separator.do {
+            $0.backgroundColor = .pppGrey2
+        }
     }
     
     private func hierarchy() {
-        self.addSubviews(ticketToggleButton, cardToggleButton, toggleButton, ticketLabel, cardLabel)
+        self.addSubviews(contentView, separator)
+        contentView.addSubviews(
+            ticketToggleButton,
+            cardToggleButton,
+            toggleButton,
+            ticketLabel,
+            cardLabel
+        )
     }
     
     private func layout() {
+        contentView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(28)
+            $0.height.equalTo(40)
+        }
+        
         ticketLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(68)
@@ -92,6 +108,12 @@ final class TicketToggleButton: UIView {
             $0.centerY.equalToSuperview()
             $0.top.leading.bottom.equalToSuperview().inset(3)
             $0.width.equalTo(155)
+        }
+        
+        separator.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(1)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
 }
