@@ -34,8 +34,6 @@ final class TicketViewController: BaseViewController {
         
         delegate()
         target()
-        
-        style()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +46,8 @@ final class TicketViewController: BaseViewController {
     //MARK: - Custom Method
     
     private func target() {
-        rootView.ticketToggleButton.toggleButton.addTarget(self, action: #selector(toggleButtonDidTap), for: .touchUpInside)
+        rootView.ticketToggleButton.ticketToggleButton.addTarget(self, action: #selector(ticketToggleButtonDidTap), for: .touchUpInside)
+        rootView.ticketToggleButton.cardToggleButton.addTarget(self, action: #selector(cardToggleButtonDidTap), for: .touchUpInside)
     }
     
     private func delegate() {
@@ -59,16 +58,34 @@ final class TicketViewController: BaseViewController {
         rootView.cardView.ticketCardCollectionView.dataSource = self
     }
     
-    private func style() {
-        rootView.cardView.isHidden = displayMode
-        rootView.ticketView.isHidden = !displayMode
-    }
-    
     //MARK: - Action Method
     
-    @objc func displayModeButtonDidTap() {
-        rootView.cardView.isHidden.toggle()
-        rootView.ticketView.isHidden.toggle()
+    @objc func ticketToggleButtonDidTap() {
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.rootView.ticketToggleButton.toggleButton.transform = .identity
+                self.rootView.ticketToggleButton.cardLabel.textColor = .pppWhite
+                self.rootView.ticketToggleButton.ticketLabel.textColor = .pppGrey4
+            }
+        )
+        showSelectedView()
+    }
+    
+    @objc func cardToggleButtonDidTap() {
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.rootView.ticketToggleButton.toggleButton.transform = CGAffineTransform(translationX: 175, y: 0)
+                self.rootView.ticketToggleButton.cardLabel.textColor = .pppWhite
+                self.rootView.ticketToggleButton.ticketLabel.textColor = .pppGrey4
+            }
+        )
+        showSelectedView()
     }
 }
 
@@ -162,12 +179,12 @@ extension TicketViewController: TicketDelegate {
 }
 
 extension TicketViewController {
-    func pushToQRChecktView() {
+    private func pushToQRChecktView() {
         let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     
-    func isEmptyView() {
+    private func isEmptyView() {
         if ticketMockData.isEmpty {
             rootView.ticketView.noTicketView.isHidden = false
             rootView.ticketView.ticketCollectionView.isHidden = true
@@ -180,37 +197,7 @@ extension TicketViewController {
         }
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        
-        self.displayMode = !self.displayMode
-    }
-    
-    @objc func toggleButtonDidTap() {
-        
-        if self.displayMode {
-            UIView.animate(
-                withDuration: 0.25,
-                delay: 0,
-                options: .curveEaseInOut,
-                animations: {
-                    self.rootView.ticketToggleButton.toggleButton.transform = CGAffineTransform(translationX: 175, y: 0)
-                    self.rootView.ticketToggleButton.cardLabel.textColor = .pppWhite
-                    self.rootView.ticketToggleButton.ticketLabel.textColor = .pppGrey4
-                }
-            )
-        } else {
-            UIView.animate(
-                withDuration: 0.25,
-                delay: 0,
-                options: .curveEaseInOut,
-                animations: {
-                    self.rootView.ticketToggleButton.toggleButton.transform = CGAffineTransform.identity
-                    self.rootView.ticketToggleButton.ticketLabel.textColor = .pppWhite
-                    self.rootView.ticketToggleButton.cardLabel.textColor = .pppGrey4
-                }
-            )
-        }
+    private func showSelectedView() {
         rootView.ticketView.isHidden = displayMode
         rootView.cardView.isHidden = !displayMode
         displayMode.toggle()

@@ -18,6 +18,8 @@ final class TicketToggleButton: UIView {
     //MARK: - UI Components
     
     lazy var toggleButton = BaseButton()
+    lazy var ticketToggleButton = UIButton()
+    lazy var cardToggleButton = UIButton()
     let ticketLabel = UILabel()
     let cardLabel = UILabel()
     
@@ -60,13 +62,25 @@ final class TicketToggleButton: UIView {
     }
     
     private func hierarchy() {
-        self.addSubviews(toggleButton, ticketLabel, cardLabel)
+        self.addSubviews(ticketToggleButton, cardToggleButton, toggleButton, ticketLabel, cardLabel)
     }
     
     private func layout() {
         ticketLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(68)
+        }
+        
+        ticketToggleButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.top.leading.bottom.equalToSuperview().inset(3)
+            $0.width.equalTo(155)
+        }
+        
+        cardToggleButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.top.trailing.bottom.equalToSuperview().inset(3)
+            $0.width.equalTo(155)
         }
         
         cardLabel.snp.makeConstraints {
