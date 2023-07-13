@@ -11,6 +11,7 @@ import SnapKit
 import Then
 
 final class HomeArticleTableView: UITableView {
+    
     // MARK: - Properties
     
     // MARK: - UI Components
@@ -21,9 +22,9 @@ final class HomeArticleTableView: UITableView {
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: .zero, style: .grouped)
         
-        tableStyle()
-        
         register()
+        
+        tableStyle()
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +33,18 @@ final class HomeArticleTableView: UITableView {
     
     // MARK: - Custom Method
     
+    private func register() {
+        
+        self.register(HomeArticleHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeArticleHeaderView.cellIdentifier)
+        
+        self.register(HomeArticleFooterView.self, forHeaderFooterViewReuseIdentifier: HomeArticleFooterView.cellIdentifier)
+        
+        self.register(HomeArticleTableViewCell.self, forCellReuseIdentifier: HomeArticleTableViewCell.cellIdentifier)
+        
+    }
+    
     private func tableStyle() {
+        
         self.do {
             $0.backgroundColor = .pppWhite
             $0.showsVerticalScrollIndicator = true
@@ -41,15 +53,6 @@ final class HomeArticleTableView: UITableView {
         }
         
     }
-    
-    private func register() {
-        self.register(HomeArticleHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeArticleHeaderView.cellIdentifier)
-        
-        self.register(HomeArticleFooterView.self, forHeaderFooterViewReuseIdentifier: HomeArticleFooterView.cellIdentifier)
-        
-        self.register(HomeArticleTableViewCell.self, forCellReuseIdentifier: HomeArticleTableViewCell.cellIdentifier)
-    }
-    
 }
 
 

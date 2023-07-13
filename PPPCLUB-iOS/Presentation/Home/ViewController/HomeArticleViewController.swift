@@ -15,8 +15,6 @@ class HomeArticleViewController: UIViewController {
     
     // MARK: - Properties
     
-//    private var scrollRowHeight = HomeArticleHeaderView().headerHeight ?? 0
-    
     // MARK: - UI Components
     
     private let rootView = HomeArticleView()
@@ -67,7 +65,10 @@ class HomeArticleViewController: UIViewController {
     
 }
 
+//MARK: - UITableViewDelegate
+
 extension HomeArticleViewController: UITableViewDelegate {
+    
     private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> Int {
         return 475
     }
@@ -87,7 +88,10 @@ extension HomeArticleViewController: UITableViewDelegate {
     }
 }
 
+//MARK: - UITableViewDataSource
+
 extension HomeArticleViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeArticleTableViewCell.cellIdentifier, for: indexPath) as? HomeArticleTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none

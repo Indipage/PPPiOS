@@ -15,6 +15,7 @@ class HomeArticleView: UIView {
     // MARK: - Properties
     
     // MARK: - UI Components
+    
     public lazy var navigationView = HomeArticleNavigationView()
     public lazy var articleTableView = HomeArticleTableView()
     
@@ -26,6 +27,7 @@ class HomeArticleView: UIView {
         style()
         hierarchy()
         layout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -35,6 +37,7 @@ class HomeArticleView: UIView {
     // MARK: - Custom Method
     
     private func style() {
+        
         self.backgroundColor = .pppWhite
         
         navigationView.do {
@@ -47,16 +50,20 @@ class HomeArticleView: UIView {
     }
     
     private func hierarchy() {
+        
         self.addSubviews(navigationView,
                                   articleTableView)
+        
     }
     
     private func layout() {
+        
         navigationView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
             $0.height.equalTo(66)
             $0.width.equalToSuperview()
         }
+        
         articleTableView.snp.makeConstraints {
             $0.top.equalTo(navigationView.snp.bottom)
             $0.width.equalToSuperview()

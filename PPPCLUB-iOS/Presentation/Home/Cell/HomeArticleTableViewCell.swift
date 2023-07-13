@@ -32,6 +32,7 @@ class HomeArticleTableViewCell: UITableViewCell {
     // MARK: - Custom Method
     
     private func cellstyle() {
+        
         selectionStyle = .none
         
         exampleLabel.do {
@@ -39,17 +40,21 @@ class HomeArticleTableViewCell: UITableViewCell {
             $0.font = .systemFont(ofSize: 10)
             $0.textColor = .black
         }
+        
     }
     
     private func hierarchy() {
+        
         contentView.addSubviews(exampleLabel)
+        
     }
     
     private func layout() {
+        
         exampleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
         }
+        
     }
-    
 }

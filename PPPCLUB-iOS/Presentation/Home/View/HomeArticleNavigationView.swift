@@ -15,6 +15,7 @@ class HomeArticleNavigationView: UIView {
     // MARK: - Properties
     
     // MARK: - UI Components
+    
     private let backButton = UIButton()
     private let storeLabel = UILabel()
     private let saveButton = UIButton()
@@ -25,9 +26,12 @@ class HomeArticleNavigationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        target()
+        
         style()
         hierarchy()
         layout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -36,28 +40,35 @@ class HomeArticleNavigationView: UIView {
     
     // MARK: - Custom Method
     
+    private func target() {
+        
+        saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
+        
+    }
+    
     private func style() {
+        
         self.backgroundColor = .pppWhite
         
         backButton.do {
             $0.setImage(Image.arrowDown, for: .normal)
         }
+        
         storeLabel.do {
             $0.text = "문학살롱 초고"
             $0.font = .pppEnSubHead1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
         }
+        
         saveButton.do {
             $0.setImage(Image.bookmark, for: .normal)
             $0.setImage(Image.bookmarkFill, for: .selected)
-            
-            $0.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
-            
         }
     }
     
     private func hierarchy() {
+        
         self.addSubviews(storeLabel,
                          backButton,
                          saveButton
@@ -65,6 +76,7 @@ class HomeArticleNavigationView: UIView {
     }
     
     private func layout() {
+        
         backButton.snp.makeConstraints {
             $0.centerY.equalTo(storeLabel.snp.centerY)
             $0.leading.equalToSuperview().inset(17)
@@ -81,6 +93,8 @@ class HomeArticleNavigationView: UIView {
             $0.trailing.equalToSuperview().inset(28)
         }
     }
+    
+    //MARK: - Action Method
     
     @objc
     func saveButtonTap() {

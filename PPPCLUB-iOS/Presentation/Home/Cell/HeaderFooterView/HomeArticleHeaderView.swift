@@ -11,6 +11,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     
     // MARK: - UI Components
+    
     private var articleImage = UILabel()
     //UIImageView 로 구현해야 함
     
@@ -37,17 +38,21 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     // MARK: - Custom Method
     
     private func style() {
+        
         self.backgroundColor = .pppWhite
+        
         articleImage.do {
             $0.backgroundColor = .black
 //            imgView.contentMode = .scaleAspectFill
         }
+        
         editorLabel.do {
             $0.text = "책방지기 키위"
             $0.font = .pppCaption1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
         }
+        
         articleTitleLabel.do {
             $0.text = "반복되는 일상 속 나만의\n아지트가 되어주는 공간"
             $0.font = .pppSubHead1
@@ -56,15 +61,18 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.numberOfLines = 0
             $0.setLineSpacing(spacing: 7)
         }
+        
         dateLabel.do {
             $0.text = "2023-06-08"
             $0.font = .pppCaption2
             $0.textColor = .pppBlack
             $0.textAlignment = .center
         }
+        
         enterStoreButton.do {
             $0.setImage( Image.mockEnterBookStore, for: .normal)
         }
+        
         divideBarView.do {
             $0.backgroundColor = .pppGrey2
         }
@@ -72,16 +80,18 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     }
     
     private func hierarchy() {
+        
         self.addSubviews(articleImage,
                          editorLabel,
                          articleTitleLabel,
                          dateLabel,
                          enterStoreButton,
-                         divideBarView
-        )
+                         divideBarView)
+        
     }
     
     private func layout() {
+        
         articleImage.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.height.equalTo(228)
@@ -115,6 +125,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(1)
         }
+        
     }
 }
 
