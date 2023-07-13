@@ -15,7 +15,7 @@ final class TicketCardView: UIView {
     // MARK: - Properties
     
     let noTicketCardView = TicketCardEmptyView()
-    private let cardImageView = UIView()
+    let cardImageView = UIView()
     let ticketCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     // MARK: - UI Components

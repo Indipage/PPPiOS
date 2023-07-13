@@ -39,17 +39,17 @@ final class TicketCardEmptyView: UIView {
     
     private func style() {
         noCardImageView.do {
-            $0.image = Image.noTicket
+            $0.image = Image.noCard
         }
         
         titleLabel.do {
-            $0.text = "발급받은 티켓이 없어요!"
+            $0.text = "발급받은 카드가 없어요!"
             $0.textColor = .pppGrey5
             $0.font = .pppSubHead1
         }
         
         subTitleLabel.do {
-            $0.text = "아티클을 읽고 티켓을 받아보세요"
+            $0.text = "장소를 방문하고 카드를 받아보세요"
             $0.textColor = .pppGrey4
             $0.font = .pppBody4
         }
@@ -66,10 +66,12 @@ final class TicketCardEmptyView: UIView {
             $0.width.equalTo(103)
             $0.height.equalTo(92)
         }
+        
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.noCardImageView.snp.bottom).offset(23)
             $0.centerX.equalToSuperview()
         }
+        
         subTitleLabel.snp.makeConstraints {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(6)
             $0.centerX.equalToSuperview()

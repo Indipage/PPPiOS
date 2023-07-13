@@ -17,7 +17,7 @@ final class TicketSuccessView: UIView {
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
     private let cardImageView = UIImageView()
-    private lazy var cardViewButton = UIButton()
+    lazy var cardViewButton = UIButton()
     
     
     // MARK: - UI Components
