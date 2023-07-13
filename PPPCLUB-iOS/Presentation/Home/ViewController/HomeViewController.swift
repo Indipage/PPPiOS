@@ -7,43 +7,9 @@
 
 import UIKit
 
-import SnapKit
-import Then
-
 final class HomeViewController: BaseViewController {
-    
-    // MARK: - Properties
-    
-    // MARK: - UI Components
-    
-    // MARK: - Life Cycles
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-    
-        target()
-        register()
-        
-        style()
-        hierarchy()
-        layout()
+        self.view.backgroundColor = .orange
     }
-    
-    // MARK: - Custom Method
-
-    private func target() {}
-
-    private func register() {}
-
-    private func delegate() {}
-
-    private func style() {}
-
-    private func hierarchy() {}
-
-    private func layout() {}
-        
-    
-    //MARK: - Action Method
-    
 }
+
