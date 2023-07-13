@@ -14,9 +14,11 @@ import Then
 class HomeArticleViewController: UIViewController {
     
     // MARK: - Properties
+    
 //    private var scrollRowHeight = HomeArticleHeaderView().headerHeight ?? 0
     
     // MARK: - UI Components
+    
     private let rootView = HomeArticleView()
     
     // MARK: - Life Cycles
@@ -76,16 +78,8 @@ extension HomeArticleViewController: UITableViewDelegate {
     }
     
     private func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> Int {
-        if (section == 500) {
-            return 692
-        }
-        else {
-            return 0
-        }
+        return 692
     }
-//    private func tableView(_ tableView: UITableView, willDisplayFooterView view: HomeArticleFooterView, forSection section: Int) {
-//        view.tintColor = UIColor.clear
-//    }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
@@ -99,7 +93,6 @@ extension HomeArticleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 0
     }
-    
 }

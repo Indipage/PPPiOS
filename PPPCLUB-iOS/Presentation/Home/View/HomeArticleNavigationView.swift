@@ -15,9 +15,9 @@ class HomeArticleNavigationView: UIView {
     // MARK: - Properties
     
     // MARK: - UI Components
-    private var backButton = UIButton()
-    private var storeLabel = UILabel()
-    private var saveButton = UIButton()
+    private let backButton = UIButton()
+    private let storeLabel = UILabel()
+    private let saveButton = UIButton()
     
     
     // MARK: - Life Cycle

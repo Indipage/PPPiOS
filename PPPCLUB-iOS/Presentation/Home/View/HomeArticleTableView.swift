@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class HomeArticleTableView: UITableView {
+final class HomeArticleTableView: UITableView {
     // MARK: - Properties
     
     // MARK: - UI Components
@@ -19,7 +19,7 @@ class HomeArticleTableView: UITableView {
     // MARK: - Life Cycle
     
     override init(frame: CGRect, style: UITableView.Style) {
-        super.init(frame: frame, style: style)
+        super.init(frame: .zero, style: .grouped)
         
         tableStyle()
         
@@ -37,6 +37,7 @@ class HomeArticleTableView: UITableView {
             $0.backgroundColor = .pppWhite
             $0.showsVerticalScrollIndicator = true
             $0.separatorStyle = .none
+            $0.isScrollEnabled = true
         }
         
     }

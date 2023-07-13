@@ -40,6 +40,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         self.backgroundColor = .pppWhite
         articleImage.do {
             $0.backgroundColor = .black
+//            imgView.contentMode = .scaleAspectFill
         }
         editorLabel.do {
             $0.text = "책방지기 키위"

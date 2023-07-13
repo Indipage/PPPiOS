@@ -15,8 +15,8 @@ class HomeArticleView: UIView {
     // MARK: - Properties
     
     // MARK: - UI Components
-    public let navigationView = HomeArticleNavigationView()
-    public let articleTableView = HomeArticleTableView()
+    public lazy var navigationView = HomeArticleNavigationView()
+    public lazy var articleTableView = HomeArticleTableView()
     
     // MARK: - Life Cycle
     
@@ -60,8 +60,7 @@ class HomeArticleView: UIView {
         articleTableView.snp.makeConstraints {
             $0.top.equalTo(navigationView.snp.bottom)
             $0.width.equalToSuperview()
-            //$0.bottom.equalToSuperview()
-            $0.height.equalTo(2000)
+            $0.bottom.equalToSuperview()
         }
     }
 }

@@ -22,6 +22,8 @@
 		2CED4DB22A5EB2ED002F07B4 /* HomeArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DB12A5EB2ED002F07B4 /* HomeArticleHeaderView.swift */; };
 		2CED4DB42A5EB2FC002F07B4 /* HomeArticleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DB32A5EB2FC002F07B4 /* HomeArticleFooterView.swift */; };
 		2CED4DBA2A5EC8A5002F07B4 /* HomeArticleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DB92A5EC8A5002F07B4 /* HomeArticleTableView.swift */; };
+		2CED4DBC2A5F179E002F07B4 /* HomeArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DBB2A5F179E002F07B4 /* HomeArticleTableViewCell.swift */; };
+		2CED4DBE2A5F17B5002F07B4 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED4DBD2A5F17B5002F07B4 /* Dummy.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
@@ -111,6 +113,8 @@
 		2CED4DB12A5EB2ED002F07B4 /* HomeArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleHeaderView.swift; sourceTree = "<group>"; };
 		2CED4DB32A5EB2FC002F07B4 /* HomeArticleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleFooterView.swift; sourceTree = "<group>"; };
 		2CED4DB92A5EC8A5002F07B4 /* HomeArticleTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleTableView.swift; sourceTree = "<group>"; };
+		2CED4DBB2A5F179E002F07B4 /* HomeArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleTableViewCell.swift; sourceTree = "<group>"; };
+		2CED4DBD2A5F17B5002F07B4 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 			children = (
 				2CED4DB02A5EB217002F07B4 /* HeaderFooterView */,
 				2CED4DAF2A5EB213002F07B4 /* Cell */,
+				2CED4DBB2A5F179E002F07B4 /* HomeArticleTableViewCell.swift */,
+				2CED4DBD2A5F17B5002F07B4 /* Dummy.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -765,6 +771,7 @@
 				D265940C2A5C88A80089E56A /* TicketCollectionViewCell.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
 				058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */,
+				2CED4DBE2A5F17B5002F07B4 /* Dummy.swift in Sources */,
 				D224D4A92A5DB66800B014ED /* MyInfoModel.swift in Sources */,
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
@@ -791,6 +798,7 @@
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D26594152A5CF4B90089E56A /* TicketView.swift in Sources */,
+				2CED4DBC2A5F179E002F07B4 /* HomeArticleTableViewCell.swift in Sources */,
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
