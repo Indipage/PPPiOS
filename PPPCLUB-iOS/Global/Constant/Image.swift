@@ -37,8 +37,6 @@ public enum Image {
     static let mockArticleCardPacked = UIImage(named: "mockArticleCardPacked")!
     static let mockBook = UIImage(named: "mockBook")!
     static let mockBookStore = UIImage(named: "mockBookStore")!
-    static let mockEnterBookStore = UIImage(named: "enterBookStore")!
-    static let mockArticleTicket = UIImage(named: "articleTicket")!
     static let mockTicket = UIImage(named: "mockTicket")!
     
     //MARK: - Ticket
