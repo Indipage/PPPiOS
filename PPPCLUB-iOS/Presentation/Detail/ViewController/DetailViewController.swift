@@ -74,6 +74,8 @@ final class DetailViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegate
 
+extension DetailViewController: UICollectionViewDelegate {}
+
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -92,6 +94,7 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailTagCollectionViewCell.cellIdentifier,
                                                                    for: indexPath) as? DetailTagCollectionViewCell else { return UICollectionViewCell() }
             tagCell.configureCell(text: dummy.tagList[indexPath.row])
+            tagCell.tagView.tagLabel.asColor(targetString: "#", color: .pppMainLightGreen)
             return tagCell
             
         case detailView.ownerView.bookCollectionView:
@@ -110,7 +113,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
-            return 3
+            return 8
         case detailView.ownerView.bookCollectionView:
             return 32
         default:
@@ -123,7 +126,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         case detailView.detailTopView.tagCollectionView:
             let label: UILabel = UILabel()
             label.text = dummy.tagList[indexPath.row]
-            return CGSize(width: Int(label.intrinsicContentSize.width) , height: 18)
+            return CGSize(width: Int(label.intrinsicContentSize.width) + 24 , height: 34)
             
         case detailView.ownerView.bookCollectionView:
             let bookWidth = (collectionView.frame.width - 64) / 3

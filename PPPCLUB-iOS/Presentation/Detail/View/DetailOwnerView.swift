@@ -46,14 +46,15 @@ final class DetailOwnerView: UIView {
     private func style() {
         ownerIntroLabel.do {
             $0.text = "책방지기 \(ownerName)의 한마디"
-            $0.font = .pppTitle1
+            $0.font = .pppSubHead1
             $0.textColor = .black
         }
         
         introduceLabel.do {
             $0.text = "독립서점 소개글 작성란"
-            $0.font = .pppBody2
+            $0.font = .pppBody5
             $0.textColor = .black
+            $0.backgroundColor = .pppGrey2
             $0.sizeToFit()
         }
         

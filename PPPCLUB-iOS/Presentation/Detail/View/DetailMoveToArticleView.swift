@@ -20,7 +20,6 @@ final class DetailMoveToArticleView: UIView {
     private lazy var shopImageButton = UIButton()
     private lazy var goReadButton = UIButton()
 
-    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
