@@ -40,7 +40,7 @@ final class MyProfileView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        profileImageVIew.makeCornerRound(ratio: 2)
+        profileImageVIew.makeCornerRound()
     }
     
     // MARK: - Custom Method
@@ -48,7 +48,6 @@ final class MyProfileView: UIView {
     private func style() {
         profileImageVIew.do {
             $0.backgroundColor = .pppGrey2
-            $0.makeCornerRound(ratio: 2)
         }
         
         profileNameLabel.do {

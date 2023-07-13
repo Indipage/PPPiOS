@@ -14,7 +14,7 @@ final class TicketView: UIView {
     
     // MARK: - Properties
     
-    lazy var displayModeButton = UIButton()
+    lazy var ticketToggleButton = TicketToggleButton()
     let cardView = TicketCardView()
     let ticketView = TicketTicketView()
     
@@ -37,18 +37,14 @@ final class TicketView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-        displayModeButton.do {
-            $0.backgroundColor = .green
-            $0.makeCornerRadius(ratio: 20)
-        }
     }
     
     private func hieararchy() {
-        self.addSubviews(displayModeButton, ticketView, cardView)
+        self.addSubviews(ticketToggleButton, ticketView, cardView)
     }
     
     private func layout() {
-        displayModeButton.snp.makeConstraints {
+        ticketToggleButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(50)
             $0.centerX.equalToSuperview()
             $0.leading.equalTo(28)
@@ -56,13 +52,13 @@ final class TicketView: UIView {
         }
         
         cardView.snp.makeConstraints {
-            $0.top.equalTo(self.displayModeButton.snp.bottom).offset(26)
+            $0.top.equalTo(self.ticketToggleButton.snp.bottom).offset(26)
             $0.width.equalToSuperview()
             $0.height.equalToSuperview()
         }
         
         ticketView.snp.makeConstraints {
-            $0.top.equalTo(self.displayModeButton.snp.bottom).offset(26)
+            $0.top.equalTo(self.ticketToggleButton.snp.bottom).offset(26)
             $0.width.equalToSuperview()
             $0.height.equalToSuperview()
         }

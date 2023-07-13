@@ -48,7 +48,7 @@ final class TicketViewController: BaseViewController {
     //MARK: - Custom Method
     
     private func target() {
-        rootView.displayModeButton.addTarget(self, action: #selector(displayModeButtonDidTap), for: .touchUpInside)
+        rootView.ticketToggleButton.toggleButton.addTarget(self, action: #selector(toggleButtonDidTap), for: .touchUpInside)
     }
     
     private func delegate() {
@@ -178,5 +178,41 @@ extension TicketViewController {
             rootView.cardView.ticketCardCollectionView.isHidden = true
             rootView.cardView.cardImageView.isHidden = true
         }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        self.displayMode = !self.displayMode
+    }
+    
+    @objc func toggleButtonDidTap() {
+        
+        if self.displayMode {
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.rootView.ticketToggleButton.toggleButton.transform = CGAffineTransform(translationX: 175, y: 0)
+                    self.rootView.ticketToggleButton.cardLabel.textColor = .pppWhite
+                    self.rootView.ticketToggleButton.ticketLabel.textColor = .pppGrey4
+                }
+            )
+        } else {
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.rootView.ticketToggleButton.toggleButton.transform = CGAffineTransform.identity
+                    self.rootView.ticketToggleButton.ticketLabel.textColor = .pppWhite
+                    self.rootView.ticketToggleButton.cardLabel.textColor = .pppGrey4
+                }
+            )
+        }
+        rootView.ticketView.isHidden = displayMode
+        rootView.cardView.isHidden = !displayMode
+        displayMode.toggle()
     }
 }
