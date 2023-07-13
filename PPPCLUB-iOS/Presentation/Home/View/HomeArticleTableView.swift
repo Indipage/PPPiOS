@@ -46,6 +46,8 @@ final class HomeArticleTableView: UITableView {
         self.register(HomeArticleHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeArticleHeaderView.cellIdentifier)
         
         self.register(HomeArticleFooterView.self, forHeaderFooterViewReuseIdentifier: HomeArticleFooterView.cellIdentifier)
+        
+        self.register(HomeArticleTableViewCell.self, forCellReuseIdentifier: HomeArticleTableViewCell.cellIdentifier)
     }
     
 }

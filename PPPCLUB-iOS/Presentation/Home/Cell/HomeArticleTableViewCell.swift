@@ -9,8 +9,10 @@ import UIKit
 
 class HomeArticleTableViewCell: UITableViewCell {
     
-    static let identifier = "HomeArticleTableViewCell"
+    // MARK: - UI Components
     
+    static let identifier = "HomeArticleTableViewCell"
+    private let exampleLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -18,6 +20,7 @@ class HomeArticleTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         cellstyle()
+        hierarchy()
         layout()
     }
     
@@ -28,12 +31,25 @@ class HomeArticleTableViewCell: UITableViewCell {
     
     // MARK: - Custom Method
     
-    func cellstyle() {
+    private func cellstyle() {
         selectionStyle = .none
+        
+        exampleLabel.do {
+            $0.text = "서버를 받아올까요?"
+            $0.font = .systemFont(ofSize: 10)
+            $0.textColor = .black
+        }
     }
     
-    func layout() {
-        
+    private func hierarchy() {
+        contentView.addSubviews(exampleLabel)
+    }
+    
+    private func layout() {
+        exampleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+        }
     }
     
 }
