@@ -20,8 +20,8 @@ final class MyProfileView: UIView {
     private let profileNameLabel = UILabel()
     private let profileNickNameLabel = UILabel()
     private let savedView = UIView()
-    private let savedArticleButton = MySavedView()
-    private let savedBookStoreButton = MySavedView()
+    private let savedArticleButton = MySavedView(frame: .init(), savedViewType: .article)
+    private let savedBookStoreButton = MySavedView(frame: .init(), savedViewType: .store)
     
     // MARK: - Life Cycle
     
@@ -47,22 +47,24 @@ final class MyProfileView: UIView {
     
     private func style() {
         profileImageVIew.do {
-            $0.backgroundColor = .gray
+            $0.backgroundColor = .pppGrey2
             $0.makeCornerRound(ratio: 2)
         }
         
         profileNameLabel.do {
             $0.text = "김지안"
-            $0.textColor = .black
+            $0.font = .pppBody3
+            $0.textColor = .pppBlack
         }
         
         profileNickNameLabel.do {
             $0.text = "bright98"
-            $0.textColor = .black
+            $0.font = .pppEnCaption
+            $0.textColor = .pppGrey5
         }
         
         savedView.do {
-            $0.backgroundColor = .gray
+            $0.backgroundColor = .pppGrey1
         }
     }
     

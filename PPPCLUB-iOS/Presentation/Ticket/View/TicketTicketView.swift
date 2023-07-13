@@ -14,9 +14,10 @@ final class TicketTicketView: UIView {
     
     // MARK: - Properties
     
-    let ticketCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
     // MARK: - UI Components
+    
+    let noTicketView = TicketEmptyView()
+    let ticketCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     // MARK: - Life Cycle
     
@@ -41,26 +42,33 @@ final class TicketTicketView: UIView {
     }
     
     private func style() {
+        noTicketView.do {
+            $0.isHidden = true
+        }
         ticketCollectionView.do {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
             
             $0.collectionViewLayout = layout
             $0.showsVerticalScrollIndicator = false
-            $0.backgroundColor = .systemPink
+            $0.backgroundColor = .pppWhite
         }
     }
     
     private func hieararchy() {
-        self.addSubview(ticketCollectionView)
+        self.addSubviews(noTicketView, ticketCollectionView)
     }
     
     private func layout() {
+        noTicketView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         ticketCollectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(320/Size.width)
-            $0.bottom.equalToSuperview().inset(100)
+            $0.bottom.equalToSuperview().inset(230)
         }
     }
 }

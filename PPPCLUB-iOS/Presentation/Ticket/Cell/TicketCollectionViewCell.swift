@@ -69,5 +69,11 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     }
 }
 
+extension TicketCollectionViewCell {
+    func configureCell(ticket: TicketModel) {
+        ticketImageView.setImage(ticket.image, for: .normal)
+    }
+}
+
 
 

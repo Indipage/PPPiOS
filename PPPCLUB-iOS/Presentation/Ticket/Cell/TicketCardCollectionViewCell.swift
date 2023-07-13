@@ -70,6 +70,12 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
     }
 }
 
+extension TicketCardCollectionViewCell {
+    func configureCell(card: TicketCardModel) {
+        cardImageButton.setImage(card.image, for: .normal)
+    }
+}
+
 
 
 

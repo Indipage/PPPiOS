@@ -14,7 +14,10 @@ final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private var displayMode: Bool = true
+    var displayMode: Bool = true
+    private var isEmpty: Bool = true
+    private var ticketMockData = TicketModel.mockDummy()
+    private var cardMockData = TicketCardModel.mockDummy()
     
     //MARK: - UI Components
     
@@ -35,10 +38,16 @@ final class TicketViewController: BaseViewController {
         style()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+        isEmptyView()
+    }
+    
     //MARK: - Custom Method
     
     private func target() {
-        print(#function)
         rootView.displayModeButton.addTarget(self, action: #selector(displayModeButtonDidTap), for: .touchUpInside)
     }
     
@@ -106,9 +115,9 @@ extension TicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return 10
+            return ticketMockData.count
         case rootView.cardView.ticketCardCollectionView:
-            return 10
+            return cardMockData.count
         default:
             return 0
         }
@@ -120,6 +129,7 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.configureCell(ticket: ticketMockData[indexPath.item])
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
@@ -127,6 +137,7 @@ extension TicketViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.delegate = self
+            cell.configureCell(card: cardMockData[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -152,7 +163,20 @@ extension TicketViewController: TicketDelegate {
 
 extension TicketViewController {
     func pushToQRChecktView() {
-        let qrcheckViewController = TicketCheckQRCodeViewController()
+        let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
+    }
+    
+    func isEmptyView() {
+        if ticketMockData.isEmpty {
+            rootView.ticketView.noTicketView.isHidden = false
+            rootView.ticketView.ticketCollectionView.isHidden = true
+        }
+        
+        if cardMockData.isEmpty {
+            rootView.cardView.noTicketCardView.isHidden = false
+            rootView.cardView.ticketCardCollectionView.isHidden = true
+            rootView.cardView.cardImageView.isHidden = true
+        }
     }
 }

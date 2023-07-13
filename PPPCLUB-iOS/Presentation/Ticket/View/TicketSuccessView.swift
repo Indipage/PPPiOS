@@ -10,14 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
-final class TicketSuccessViewd: UIView {
+final class TicketSuccessView: UIView {
     
     // MARK: - Properties
     
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
     private let cardImageView = UIImageView()
-    private lazy var cardViewButton = UIButton()
+    lazy var cardViewButton = UIButton()
     
     
     // MARK: - UI Components
@@ -41,10 +41,16 @@ final class TicketSuccessViewd: UIView {
     private func style() {
         titleLabel.do {
             $0.text = "인증 성공!"
+            $0.font = .pppSubHead1
+            $0.textAlignment = .center
+            $0.textColor = .pppBlack
         }
         
         subTitleLabel.do {
             $0.text = "카드를 획득했어요!"
+            $0.font = .pppBody2
+            $0.textAlignment = .center
+            $0.textColor = .pppBlack
         }
         
         cardImageView.do {
@@ -55,9 +61,10 @@ final class TicketSuccessViewd: UIView {
         }
         
         cardViewButton.do {
-            $0.backgroundColor = .purple
+            $0.backgroundColor = .pppMainPurple
             $0.setTitle("카드 보러가기", for: .normal)
-            $0.setTitleColor(.white, for: .normal)
+            $0.setTitleColor(.pppWhite, for: .normal)
+            $0.titleLabel?.font = .pppBody1
             $0.makeCornerRadius(ratio: 6)
         }
     }
@@ -68,27 +75,27 @@ final class TicketSuccessViewd: UIView {
     
     private func layout() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).offset(80)
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(80.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         subTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(8.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         cardImageView.snp.makeConstraints {
-            $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(39)
+            $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(39.adjusted)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(243/Size.width)
-            $0.height.equalToSuperview().multipliedBy(384/Size.height)
+            $0.width.equalTo(243)
+            $0.height.equalTo(384.adjusted)
         }
         
         cardViewButton.snp.makeConstraints {
-            $0.top.equalTo(self.cardImageView.snp.bottom).offset(69)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(16.adjusted)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(299/Size.width)
-            $0.height.equalToSuperview().multipliedBy(40/Size.height)
+            $0.width.equalTo(319)
+            $0.height.equalTo(60.adjusted)
         }
         
     }

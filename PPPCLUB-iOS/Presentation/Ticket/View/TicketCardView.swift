@@ -14,7 +14,8 @@ final class TicketCardView: UIView {
     
     // MARK: - Properties
     
-    private let cardImageView = UIView()
+    let noTicketCardView = TicketCardEmptyView()
+    let cardImageView = UIView()
     let ticketCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     // MARK: - UI Components
@@ -42,6 +43,9 @@ final class TicketCardView: UIView {
     }
     
     private func style() {
+        noTicketCardView.do {
+            $0.isHidden = true
+        }
         cardImageView.do {
             $0.backgroundColor = .gray
             $0.makeCornerRadius(ratio: 17.4)
@@ -59,10 +63,14 @@ final class TicketCardView: UIView {
     }
     
     private func hieararchy() {
-        self.addSubviews(cardImageView,ticketCardCollectionView)
+        self.addSubviews(noTicketCardView,cardImageView,ticketCardCollectionView)
     }
     
     private func layout() {
+        noTicketCardView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         cardImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()

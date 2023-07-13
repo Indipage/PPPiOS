@@ -39,12 +39,13 @@ final class MyInfoTableViewCell: UITableViewCell {
     }
     
     private func cellStyle() {
-        contentView.do {
-            $0.backgroundColor = .yellow
+        infoTitleLabel.do {
+            $0.font = .pppBody4
+            $0.textColor = .pppBlack
         }
         
         arrowImageView.do {
-            $0.backgroundColor = .green
+            $0.image = Image.right
         }
     }
     
