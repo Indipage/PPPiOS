@@ -92,8 +92,8 @@ final class TicketViewController: BaseViewController {
                 options: .curveEaseInOut,
                 animations: {
                     self.rootView.ticketToggleView.toggleButton.transform = CGAffineTransform(translationX: -158.adjusted, y: 0)
-                    self.rootView.ticketToggleView.cardLabel.textColor = .pppWhite
-                    self.rootView.ticketToggleView.ticketLabel.textColor = .pppGrey4
+                    self.rootView.ticketToggleView.cardLabel.textColor = .pppGrey4
+                    self.rootView.ticketToggleView.ticketLabel.textColor = .pppWhite
                 }
             )
         }
@@ -226,6 +226,7 @@ extension TicketViewController: TicketDelegate {
 extension TicketViewController {
     private func pushToQRChecktView() {
         let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
+        displayMode.toggle()
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     

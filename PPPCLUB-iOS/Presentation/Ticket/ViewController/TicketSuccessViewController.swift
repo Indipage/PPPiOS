@@ -46,8 +46,6 @@ final class TicketSuccessViewController: BaseViewController {
     
     @objc func cardButtonDidTap() {
         let ticketViewController = TicketViewController()
-        ticketViewController.rootView.ticketView.isHidden = true
-        ticketViewController.rootView.cardView.isHidden = false
         ticketViewController.displayMode = true
         ticketViewController.toggleMode = false
         
