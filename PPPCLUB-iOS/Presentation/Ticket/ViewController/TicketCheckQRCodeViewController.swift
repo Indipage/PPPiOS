@@ -142,7 +142,7 @@ extension TicketCheckQRCodeViewController {
     }
     
     private func pushTicketResultView(result: String) {
-        if result == "http://en.m.wikipedia.org" {
+        if result == "http://3.37.34.144/user/space/1/visit" {
             let ticketSuccessView = TicketSuccessViewController()
             self.navigationController?.pushViewController(ticketSuccessView, animated: true)
         } else {
