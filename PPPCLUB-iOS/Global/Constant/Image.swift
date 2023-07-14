@@ -19,6 +19,7 @@ public enum Image {
     static let bookmarkFill = UIImage(named: "bookMark.fill")!
     static let right = UIImage(named: "right")!
     static let ticketIcon = UIImage(named: "ticketIcon")!
+    static let xmark = UIImage(named: "xmark")!
     
     //MARK: - TabBar
     
@@ -58,4 +59,11 @@ public enum Image {
     
     static let ticketReceivedImage = UIImage(named: "ticketReceivedImage")!
     static let ticketNotReceivedImage = UIImage(named: "ticketNotReceivedImage")!
+    
+    //MARK: - Graphics
+    
+    static let blankArticle = UIImage(named: "blankArticle")!
+    static let blankCard = UIImage(named: "blankCard")!
+    static let blankPlace = UIImage(named: "blankPlace")!
+    static let blankTicket = UIImage(named: "blankTicket")!
 }
