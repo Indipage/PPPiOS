@@ -46,8 +46,8 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     //MARK: - Custom Method
     
     private func delegate() {
-        self.qrManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        self.qrManager.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
+        QRManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        QRManager.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
     }
     
     private func layout() {
@@ -119,11 +119,26 @@ extension TicketCheckQRCodeViewController {
             $0.textColor = .pppWhite
             $0.font = .pppSubHead1
         }
-        self.view.addSubview(describeLabel)
+        
+        lazy var button = UIButton()
+        button.do {
+            $0.backgroundColor = .blue
+            $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        }
+        
+        self.view.addSubviews(describeLabel, button)
         describeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(173)
             $0.centerX.equalToSuperview()
         }
+        
+        button.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(250)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(200)
+            $0.height.equalTo(50)
+        }
+        
     }
     
     private func pushTicketResultView(result: String) {
@@ -136,6 +151,11 @@ extension TicketCheckQRCodeViewController {
             self.modalPresentationStyle = .fullScreen
             self.present(ticketFailView, animated: true)
         }
+    }
+    
+    @objc func backButtonDidTap() {
+        QRManager.stop()
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

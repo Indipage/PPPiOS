@@ -211,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				058326862A5BF893004A295F /* PPPTagView.swift */,
-				D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -587,6 +586,7 @@
 			children = (
 				D2B096152A529963007BC756 /* TicketTicketView.swift */,
 				D26594082A5C6FE70089E56A /* TicketCardView.swift */,
+				D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */,
 				D26594142A5CF4B90089E56A /* TicketView.swift */,
 				D224D4952A5D1D0600B014ED /* TicketResultView.swift */,
 				D224D4972A5D1D6300B014ED /* TicketSuccessView.swift */,
@@ -975,7 +975,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -1004,7 +1004,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";

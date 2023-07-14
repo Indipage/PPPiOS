@@ -90,13 +90,13 @@ final class TicketToggleView: UIView {
         ticketToggleButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.top.leading.bottom.equalToSuperview().inset(3)
-            $0.width.equalTo(155)
+            $0.width.equalTo(155.adjusted)
         }
         
         cardToggleButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.top.trailing.bottom.equalToSuperview().inset(3)
-            $0.width.equalTo(155)
+            $0.width.equalTo(155.adjusted)
         }
         
         cardLabel.snp.makeConstraints {
@@ -107,7 +107,7 @@ final class TicketToggleView: UIView {
         toggleButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.top.leading.bottom.equalToSuperview().inset(3)
-            $0.width.equalTo(155)
+            $0.width.equalTo(155.adjusted)
         }
         
         separator.snp.makeConstraints {
