@@ -17,6 +17,7 @@ final class HomeView: UIView {
     // MARK: - UI Components
     
     public lazy var homeNavigationView = HomeNavigationView()
+    public lazy var homeWeeklyView = HomeWeeklyView()
     
     // MARK: - Life Cycle
     
@@ -39,11 +40,15 @@ final class HomeView: UIView {
         homeNavigationView.do {
             $0.backgroundColor = .pppWhite
         }
+        
+        homeWeeklyView.do {
+            $0.backgroundColor = .pppWhite
+        }
     }
     
     private func hierarchy() {
         
-        self.addSubviews(homeNavigationView)
+        self.addSubviews(homeNavigationView, homeWeeklyView)
 
     }
     
@@ -54,5 +59,13 @@ final class HomeView: UIView {
             $0.width.equalToSuperview()
             $0.height.equalTo(77)
         }
+        
+        homeWeeklyView.snp.makeConstraints {
+            $0.top.equalTo(homeNavigationView.snp.bottom)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
     }
+    
 }
