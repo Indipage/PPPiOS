@@ -14,10 +14,18 @@ struct TicketCardModel {
 extension TicketCardModel {
     static func mockDummy() -> [TicketCardModel] {
         return [
-            TicketCardModel(image: nil),
-            TicketCardModel(image: nil),
-            TicketCardModel(image: nil),
-            TicketCardModel(image: nil)
+            TicketCardModel(image: Image.ticket),
+            TicketCardModel(image: Image.search),
+            TicketCardModel(image: Image.article),
+            TicketCardModel(image: Image.mockArticleCard),
+            TicketCardModel(image: Image.ticket),
+            TicketCardModel(image: Image.search),
+            TicketCardModel(image: Image.article),
+            TicketCardModel(image: Image.mockArticleCard),
+            TicketCardModel(image: Image.ticket),
+            TicketCardModel(image: Image.search),
+            TicketCardModel(image: Image.article),
+            TicketCardModel(image: Image.mockArticleCard)
         ]
     }
 }

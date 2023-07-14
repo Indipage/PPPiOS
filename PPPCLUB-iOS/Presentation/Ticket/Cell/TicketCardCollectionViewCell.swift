@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 protocol TicketCardDelegate: AnyObject {
-    func cardImageButtonDidTap()
+    func cardImageButtonDidTap(image: UIImage?)
 }
 
 final class TicketCardCollectionViewCell: UICollectionViewCell {
@@ -66,7 +66,7 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func cardImageButtonDidTap() {
-        delegate?.cardImageButtonDidTap()
+        delegate?.cardImageButtonDidTap(image: cardImageButton.currentImage)
     }
 }
 

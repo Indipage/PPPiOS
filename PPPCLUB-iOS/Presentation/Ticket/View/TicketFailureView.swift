@@ -15,13 +15,12 @@ final class TicketFailureView: UIView {
     // MARK: - Properties
     
     // MARK: - UI Components
-    
-    private let contentView = UIView()
+
     private let failView = UIView()
     private let failImage = UIImageView()
     private let failLabel = UILabel()
-    private lazy var exitButton = UIButton()
-    private lazy var tryButton = UIButton()
+    lazy var exitButton = UIButton()
+    lazy var tryButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -40,8 +39,8 @@ final class TicketFailureView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-        contentView.do {
-            $0.backgroundColor = .pppDimmed
+        self.do {
+            $0.backgroundColor = .clear
         }
         
         failView.do {
@@ -78,15 +77,15 @@ final class TicketFailureView: UIView {
     }
     
     private func hieararchy() {
-        self.addSubview(contentView)
-        contentView.addSubview(failView)
+        self.addSubview(failView)
+        //contentView.addSubview(failView)
         failView.addSubviews(failImage, failLabel, exitButton, tryButton)
     }
     
     private func layout() {
-        contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+//        contentView.snp.makeConstraints {
+//            $0.edges.equalToSuperview()
+//        }
         
         failView.snp.makeConstraints {
             $0.centerY.equalToSuperview()

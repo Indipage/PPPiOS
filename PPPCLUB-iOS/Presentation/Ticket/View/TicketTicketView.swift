@@ -51,7 +51,7 @@ final class TicketTicketView: UIView {
             
             $0.collectionViewLayout = layout
             $0.showsVerticalScrollIndicator = false
-            $0.backgroundColor = .systemPink
+            $0.backgroundColor = .pppWhite
         }
     }
     
@@ -66,8 +66,7 @@ final class TicketTicketView: UIView {
         
         ticketCollectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(320/Size.width)
+            $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(230)
         }
     }

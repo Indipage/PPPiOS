@@ -22,6 +22,12 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Life Cycles
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -54,7 +60,6 @@ final class DetailViewController: BaseViewController {
 
     private func style() {
         view.backgroundColor = .white
-        
         detailView.do {
             $0.contentInsetAdjustmentBehavior = .never
         }

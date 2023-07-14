@@ -20,8 +20,8 @@ final class MyProfileView: UIView {
     private let profileNameLabel = UILabel()
     private let profileNickNameLabel = UILabel()
     private let savedView = UIView()
-    private let savedArticleButton = MySavedView(frame: .init(), savedViewType: .article)
-    private let savedBookStoreButton = MySavedView(frame: .init(), savedViewType: .store)
+    lazy var savedArticleButton = MySavedView(frame: .init(), savedViewType: .article)
+    lazy var savedBookStoreButton = MySavedView(frame: .init(), savedViewType: .store)
     
     // MARK: - Life Cycle
     
@@ -40,7 +40,7 @@ final class MyProfileView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        profileImageVIew.makeCornerRound(ratio: 2)
+        profileImageVIew.makeCornerRound()
     }
     
     // MARK: - Custom Method
@@ -48,7 +48,6 @@ final class MyProfileView: UIView {
     private func style() {
         profileImageVIew.do {
             $0.backgroundColor = .pppGrey2
-            $0.makeCornerRound(ratio: 2)
         }
         
         profileNameLabel.do {

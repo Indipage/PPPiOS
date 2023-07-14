@@ -15,7 +15,7 @@ final class TicketCardView: UIView {
     // MARK: - Properties
     
     let noTicketCardView = TicketCardEmptyView()
-    private let cardImageView = UIView()
+    var cardImageView = UIImageView()
     let ticketCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     // MARK: - UI Components
@@ -74,15 +74,15 @@ final class TicketCardView: UIView {
         cardImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(284/Size.width)
-            $0.height.equalToSuperview().multipliedBy(449/Size.height)
+            $0.width.equalTo(284.adjusted)
+            $0.height.equalTo(449.adjusted)
         }
         
         ticketCardCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.cardImageView.snp.bottom).offset(25)
+            $0.top.equalTo(self.cardImageView.snp.bottom).offset(20.adjusted)
             $0.leading.equalToSuperview().offset(28)
             $0.width.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(108/Size.height)
+            $0.height.equalTo(108.adjusted)
         }
     }
 }
