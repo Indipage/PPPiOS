@@ -51,4 +51,5 @@ public enum Image {
     static let backWhite = UIImage(named: "back.white")!
     static let storeMark = UIImage(named: "storeMark")!
     static let storeMarkFill = UIImage(named: "storeMark.fill")!
+    static let uniqueCard = UIImage(named: "uniqueCard")!
 }

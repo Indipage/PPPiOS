@@ -100,7 +100,7 @@ extension DetailViewController: UICollectionViewDataSource {
         case detailView.ownerView.bookCollectionView:
             guard let bookCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBookCollectionViewCell.cellIdentifier,
                                                                     for: indexPath) as? DetailBookCollectionViewCell else { return UICollectionViewCell() }
-            bookCell.configureCell(image: UIImage(systemName: "books.vertical.fill")!)
+            bookCell.configureCell(image: Image.mockBook)
             return bookCell
             
         default:
@@ -129,9 +129,8 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: Int(label.intrinsicContentSize.width) + 24 , height: 34)
             
         case detailView.ownerView.bookCollectionView:
-            let bookWidth = (collectionView.frame.width - 64) / 3
-            return CGSize(width: bookWidth ,
-                          height: bookWidth * 1.5 )
+            return CGSize(width: 116 ,
+                          height: 156 )
             
         default:
             return CGSize()
