@@ -46,7 +46,15 @@ final class TicketSuccessViewController: BaseViewController {
     
     @objc func cardButtonDidTap() {
         let ticketViewController = TicketViewController()
-        ticketViewController.displayMode = false
+        ticketViewController.displayMode = true
+        ticketViewController.toggleMode = false
+        
+        ticketViewController.rootView.ticketToggleView.toggleButton.snp.remakeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.top.trailing.bottom.equalToSuperview().inset(3)
+                $0.width.equalTo(155.adjusted)
+        }
+        
         self.navigationController?.pushViewController(ticketViewController, animated: true)
     }
 }

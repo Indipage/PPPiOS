@@ -1,5 +1,5 @@
 //
-//  BookmarkViewController.swift
+//  TicketViewController.swift
 //  PPPCLUB-iOS
 //
 //  Created by 류희재 on 2023/07/03.
@@ -10,11 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+
 final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var displayMode: Bool = true
+    var displayMode: Bool = false
+    var toggleMode: Bool = true
     private var isEmpty: Bool = true
     private var ticketMockData = TicketModel.mockDummy()
     private var cardMockData = TicketCardModel.mockDummy()
@@ -34,8 +36,6 @@ final class TicketViewController: BaseViewController {
         
         delegate()
         target()
-        
-        style()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,12 +43,16 @@ final class TicketViewController: BaseViewController {
         
         tabBarController?.tabBar.isHidden = false
         isEmptyView()
+        showSelectedView()
+        rootView.cardView.cardImageView.image = cardMockData[0].image
+        
     }
     
     //MARK: - Custom Method
     
     private func target() {
-        rootView.displayModeButton.addTarget(self, action: #selector(displayModeButtonDidTap), for: .touchUpInside)
+        rootView.ticketToggleView.ticketToggleButton.addTarget(self, action: #selector(ticketToggleButtonDidTap), for: .touchUpInside)
+        rootView.ticketToggleView.cardToggleButton.addTarget(self, action: #selector(cardToggleButtonDidTap), for: .touchUpInside)
     }
     
     private func delegate() {
@@ -59,16 +63,70 @@ final class TicketViewController: BaseViewController {
         rootView.cardView.ticketCardCollectionView.dataSource = self
     }
     
-    private func style() {
-        rootView.cardView.isHidden = displayMode
-        rootView.ticketView.isHidden = !displayMode
-    }
-    
     //MARK: - Action Method
     
-    @objc func displayModeButtonDidTap() {
-        rootView.cardView.isHidden.toggle()
-        rootView.ticketView.isHidden.toggle()
+    @objc func ticketToggleButtonDidTap() {
+        if toggleMode {
+            print("✏️✏️✏️✏️✏️✏️✏️✏️✏️✏️")
+            print("1")
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.rootView.ticketToggleView.toggleButton.transform = .identity
+                    self.rootView.ticketToggleView.cardLabel.textColor = .pppGrey4
+                    self.rootView.ticketToggleView.ticketLabel.textColor = .pppWhite
+                }
+            )
+        } else {
+            print("✏️✏️✏️✏️✏️✏️✏️✏️✏️✏️")
+            print("2")
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.rootView.ticketToggleView.toggleButton.transform = CGAffineTransform(translationX: -158.adjusted, y: 0)
+                    self.rootView.ticketToggleView.cardLabel.textColor = .pppGrey4
+                    self.rootView.ticketToggleView.ticketLabel.textColor = .pppWhite
+                }
+            )
+        }
+        
+        showSelectedView()
+    }
+    
+    @objc func cardToggleButtonDidTap() {
+        if toggleMode {
+            print("✏️✏️✏️✏️✏️✏️✏️✏️✏️✏️")
+            print("3")
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.rootView.ticketToggleView.toggleButton.transform = CGAffineTransform(translationX: 158.adjusted, y: 0)
+                    self.rootView.ticketToggleView.cardLabel.textColor = .pppWhite
+                    self.rootView.ticketToggleView.ticketLabel.textColor = .pppGrey4
+                }
+            )
+        } else {
+            print("✏️✏️✏️✏️✏️✏️✏️✏️✏️✏️")
+            print("4")
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.rootView.ticketToggleView.toggleButton.transform = .identity
+                    self.rootView.ticketToggleView.cardLabel.textColor = .pppWhite
+                    self.rootView.ticketToggleView.ticketLabel.textColor = .pppGrey4
+                }
+            )
+        }
+        
+        showSelectedView()
     }
 }
 
@@ -78,7 +136,7 @@ extension TicketViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return CGSize(width: 320, height: 247)
+            return CGSize(width: Size.width, height: 247)
         case rootView.cardView.ticketCardCollectionView:
             return CGSize(width: 68, height: 108)
         default:
@@ -129,7 +187,7 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(ticket: ticketMockData[indexPath.item])
+            cell.configureCell(ticket: ticketMockData[indexPath.item], point: cell.center)
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
@@ -148,8 +206,8 @@ extension TicketViewController: UICollectionViewDataSource {
 //MARK: - TicketCardDelegate
 
 extension TicketViewController: TicketCardDelegate {
-    func cardImageButtonDidTap() {
-        print("버튼이 눌렷습니다!")
+    func cardImageButtonDidTap(image: UIImage?) {
+        rootView.cardView.cardImageView.image = image
     }
 }
 
@@ -162,12 +220,13 @@ extension TicketViewController: TicketDelegate {
 }
 
 extension TicketViewController {
-    func pushToQRChecktView() {
+    private func pushToQRChecktView() {
         let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
+        displayMode.toggle()
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     
-    func isEmptyView() {
+    private func isEmptyView() {
         if ticketMockData.isEmpty {
             rootView.ticketView.noTicketView.isHidden = false
             rootView.ticketView.ticketCollectionView.isHidden = true
@@ -178,5 +237,15 @@ extension TicketViewController {
             rootView.cardView.ticketCardCollectionView.isHidden = true
             rootView.cardView.cardImageView.isHidden = true
         }
+    }
+    
+    private func showSelectedView() {
+        rootView.ticketView.isHidden = displayMode
+        rootView.cardView.isHidden = !displayMode
+        
+        print("🔫🔫🔫🔫🔫🔫🔫🔫🔫")
+        print("ticketView는 \(rootView.ticketView.isHidden)")
+        print("cardView는 \(rootView.cardView.isHidden)")
+        displayMode.toggle()
     }
 }

@@ -103,6 +103,8 @@
 		D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */; };
 		D2E8C3DD2A5EF810002004A5 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */; };
 		D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DE2A5F3934002004A5 /* TicketFailureViewController.swift */; };
+		D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */; };
+		D2E8C3E32A600163002004A5 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3E22A600163002004A5 /* BaseButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,6 +201,8 @@
 		D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		D2E8C3DE2A5F3934002004A5 /* TicketFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFailureViewController.swift; sourceTree = "<group>"; };
+		D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketToggleView.swift; sourceTree = "<group>"; };
+		D2E8C3E22A600163002004A5 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,6 +569,7 @@
 			children = (
 				D2B096092A529893007BC756 /* BaseViewController.swift */,
 				D2B096252A529AC4007BC756 /* PPPTabBarController.swift */,
+				D2E8C3E22A600163002004A5 /* BaseButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 			children = (
 				D2B096152A529963007BC756 /* TicketTicketView.swift */,
 				D26594082A5C6FE70089E56A /* TicketCardView.swift */,
+				D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */,
 				D26594142A5CF4B90089E56A /* TicketView.swift */,
 				D224D4952A5D1D0600B014ED /* TicketResultView.swift */,
 				D224D4972A5D1D6300B014ED /* TicketSuccessView.swift */,
@@ -803,6 +809,7 @@
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
+				D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */,
 				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
@@ -824,6 +831,7 @@
 				05CD07E22A5EA072003EEE84 /* SearchListModel.swift in Sources */,
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
+				D2E8C3E32A600163002004A5 /* BaseButton.swift in Sources */,
 				05CD07D92A5D2505003EEE84 /* DetailArticleRequestView.swift in Sources */,
 				D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */,
 				2C0C72A22A6069FD00EC2117 /* HomeArticleTableViewCell.swift in Sources */,
@@ -1011,7 +1019,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -1040,7 +1048,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
