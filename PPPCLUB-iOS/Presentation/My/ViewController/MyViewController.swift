@@ -21,21 +21,54 @@ final class MyViewController: BaseViewController {
     
     let rootView = MyView()
     
+    //MARK: - Life Cycle
+    
     override func loadView() {
         self.view = rootView
     }
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .white
+        super.viewDidLoad()
         
+        gesture()
         delegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    //MARK: - Custom Method
+    
+    private func gesture() {
+        lazy var savedArticletapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedArticleViewGestureHandler))
+        lazy var savedBookStoretapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedBookStoreViewGestureHandler))
+        
+        rootView.profileView.savedArticleButton.addGestureRecognizer(savedArticletapGesture)
+        rootView.profileView.savedBookStoreButton.addGestureRecognizer(savedBookStoretapGesture)
     }
     
     private func delegate() {
         rootView.infoTableView.delegate = self
         rootView.infoTableView.dataSource = self
     }
+    
+    //MARK: - Action Method
+    
+    @objc func savedArticleViewGestureHandler() {
+        let savedArticleViewController = MySavedArticleViewController()
+        self.navigationController?.pushViewController(savedArticleViewController, animated: true)
+    }
+    
+    @objc func savedBookStoreViewGestureHandler() {
+        let savedBookViewController = MySavedBookStoreViewController()
+        self.navigationController?.pushViewController(savedBookViewController, animated: true)
+    }
 }
+
+//MARK: - UITableViewDelegate
 
 extension MyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -46,6 +79,8 @@ extension MyViewController: UITableViewDelegate {
         return 23
     }
 }
+
+//MARK: - UITableViewDataSource
 
 extension MyViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

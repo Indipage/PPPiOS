@@ -40,6 +40,15 @@ enum SavedViewType {
             return "저장한 서점"
         }
     }
+    
+    var nextVC: UIViewController {
+        switch self {
+        case .article:
+            return MySavedArticleViewController()
+        case .store:
+            return MySavedBookStoreViewController()
+        }
+    }
 }
 
 final class MySavedView: UIView {
