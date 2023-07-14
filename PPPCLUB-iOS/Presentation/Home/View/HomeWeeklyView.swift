@@ -1,22 +1,17 @@
 //
-//  ArticleView.swift
+//  HomeWeeklyView.swift
 //  PPPCLUB-iOS
 //
-//  Created by 류희재 on 2023/07/03.
+//  Created by 신지원 on 2023/07/14.
 //
 
 import UIKit
 
-import SnapKit
-import Then
+class HomeWeeklyView: UIView {
 
-final class HomeView: UIView {
-    
     // MARK: - Properties
     
     // MARK: - UI Components
-    
-    public lazy var homeNavigationView = HomeNavigationView()
     
     // MARK: - Life Cycle
     
@@ -35,24 +30,15 @@ final class HomeView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-    
-        homeNavigationView.do {
-            $0.backgroundColor = .pppWhite
-        }
+
     }
     
     private func hierarchy() {
-        
-        self.addSubviews(homeNavigationView)
 
     }
     
     private func layout() {
 
-        homeNavigationView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
-            $0.width.equalToSuperview()
-            $0.height.equalTo(77)
-        }
     }
+
 }

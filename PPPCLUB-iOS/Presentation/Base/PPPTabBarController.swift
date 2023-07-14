@@ -15,7 +15,7 @@ class PPPTabBarController: UITabBarController {
     
     //MARK: - UI Components
     
-    let homeViewController = HomeArticleViewController()
+    let homeViewController = HomeViewController()
     let searchViewController = SearchViewController()
     let myViewController = MyViewController()
     let ticketViewController = TicketViewController()

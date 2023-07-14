@@ -26,6 +26,8 @@
 		2C0C72A22A6069FD00EC2117 /* HomeArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A12A6069FD00EC2117 /* HomeArticleTableViewCell.swift */; };
 		2C0C72A62A606A3900EC2117 /* HomeArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A52A606A3900EC2117 /* HomeArticleHeaderView.swift */; };
 		2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */; };
+		2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */; };
+		2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
@@ -125,6 +127,8 @@
 		2C0C72A12A6069FD00EC2117 /* HomeArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleTableViewCell.swift; sourceTree = "<group>"; };
 		2C0C72A52A606A3900EC2117 /* HomeArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleHeaderView.swift; sourceTree = "<group>"; };
 		2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleFooterView.swift; sourceTree = "<group>"; };
+		2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklyView.swift; sourceTree = "<group>"; };
+		2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				D221886C2A5924C600F097C7 /* DetailViewController.swift */,
+				D2B096082A52982E007BC756 /* Ticket */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -551,7 +556,6 @@
 			children = (
 				058326832A5BF08C004A295F /* Component */,
 				D22188692A5924A600F097C7 /* Detail */,
-				D2B096082A52982E007BC756 /* Ticket */,
 				D2B096072A5297DD007BC756 /* Search */,
 				D2B096062A5297D7007BC756 /* My */,
 				D2B096052A5297A4007BC756 /* Home */,
@@ -676,6 +680,8 @@
 			isa = PBXGroup;
 			children = (
 				D2B096212A5299CC007BC756 /* HomeView.swift */,
+				2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */,
+				2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */,
 				2C0C72982A60696100EC2117 /* HomeArticleView.swift */,
 				2C0C729A2A60697600EC2117 /* HomeArticleNavigationView.swift */,
 				2C0C729C2A60699600EC2117 /* HomeArticleTableView.swift */,
@@ -846,6 +852,7 @@
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				05CD07DB2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
+				2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D26594152A5CF4B90089E56A /* TicketView.swift in Sources */,
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
@@ -854,6 +861,7 @@
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
 				D224D4AB2A5DCB7800B014ED /* MySeparatorFooterView.swift in Sources */,
 				0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */,
+				2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */,
 				D224D4962A5D1D0600B014ED /* TicketResultView.swift in Sources */,
 				05CD07DD2A5E9C37003EEE84 /* SearchTableViewCell.swift in Sources */,
 				2C0C729D2A60699600EC2117 /* HomeArticleTableView.swift in Sources */,
