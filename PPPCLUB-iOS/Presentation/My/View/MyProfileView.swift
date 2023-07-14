@@ -20,8 +20,8 @@ final class MyProfileView: UIView {
     private let profileNameLabel = UILabel()
     private let profileNickNameLabel = UILabel()
     private let savedView = UIView()
-    private let savedArticleButton = MySavedView(frame: .init(), savedViewType: .article)
-    private let savedBookStoreButton = MySavedView(frame: .init(), savedViewType: .store)
+    lazy var savedArticleButton = MySavedView(frame: .init(), savedViewType: .article)
+    lazy var savedBookStoreButton = MySavedView(frame: .init(), savedViewType: .store)
     
     // MARK: - Life Cycle
     

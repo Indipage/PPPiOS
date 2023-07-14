@@ -26,14 +26,35 @@ final class MyViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .white
+        super.viewDidLoad()
         
+        gesture()
         delegate()
+    }
+    
+    private func gesture() {
+        lazy var savedArticletapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedArticleViewGestureHandler))
+        lazy var savedBookStoretapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedArticleViewGestureHandler))
+        
+        rootView.profileView.savedArticleButton.addGestureRecognizer(savedArticletapGesture)
+        rootView.profileView.savedBookStoreButton.addGestureRecognizer(savedBookStoretapGesture)
     }
     
     private func delegate() {
         rootView.infoTableView.delegate = self
         rootView.infoTableView.dataSource = self
+    }
+    
+    //MARK: - Action Method
+    
+    @objc func savedArticleViewGestureHandler() {
+        let saveddArticleViewController = rootView.profileView.savedArticleButton.savedViewType?.nextVC
+        self.navigationController?.pushViewController(saveddArticleViewController!, animated: true)
+    }
+    
+    @objc func savedBookStoreViewGestureHandler() {
+        let savedBookStoreViewController = rootView.profileView.savedBookStoreButton.savedViewType?.nextVC
+        self.navigationController?.pushViewController(savedBookStoreViewController!, animated: true)
     }
 }
 
