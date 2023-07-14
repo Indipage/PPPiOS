@@ -1,8 +1,8 @@
 //
-//  MySavedArticleView.swift
+//  MySavedBookStoreView.swift
 //  PPPCLUB-iOS
 //
-//  Created by 류희재 on 2023/07/14.
+//  Created by 류희재 on 2023/07/15.
 //
 
 import UIKit
@@ -10,14 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
-final class MySavedArticleView: UIView {
+final class MySavedBookStoreView: UIView {
     
     // MARK: - UI Components
     
-    private let savedArticleNavigationBar = UIView()
+    private let savedBookStoreNavigationBar = UIView()
     lazy var backButton = UIButton()
     private let titleLabel = UILabel()
-    let savedArticleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    let savedBookStoreTableView = UITableView(frame: .zero, style: .plain)
     
     // MARK: - Life Cycle
     
@@ -38,17 +38,14 @@ final class MySavedArticleView: UIView {
     // MARK: - Custom Method
     
     private func register() {
-        savedArticleCollectionView.register(MySavedArticleCollectionViewCell.self, forCellWithReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier)
+        savedBookStoreTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
     }
     
     private func style() {
-        savedArticleCollectionView.do {
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .vertical
-            
-            $0.collectionViewLayout = layout
-            $0.showsVerticalScrollIndicator = true
-            $0.isScrollEnabled = true
+        savedBookStoreTableView.do {
+            $0.showsVerticalScrollIndicator = false
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.separatorStyle = .none
         }
         
         backButton.do {
@@ -56,27 +53,29 @@ final class MySavedArticleView: UIView {
         }
         
         titleLabel.do {
-            $0.text = "저장한 아티클"
+            $0.text = "저장한 서점"
             $0.font = .pppSubHead1
             $0.textColor = .pppBlack
         }
     }
     
     private func hieararchy() {
-        self.addSubviews(savedArticleNavigationBar, savedArticleCollectionView)
-        savedArticleNavigationBar.addSubviews(backButton, titleLabel)
+        self.addSubviews(savedBookStoreNavigationBar, savedBookStoreTableView)
+        savedBookStoreNavigationBar.addSubviews(backButton, titleLabel)
     }
     
     private func layout() {
-        savedArticleNavigationBar.snp.makeConstraints {
+        savedBookStoreNavigationBar.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
             $0.width.equalToSuperview()
             $0.height.equalTo(62.adjusted)
         }
         
-        savedArticleCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.savedArticleNavigationBar.snp.bottom)
-            $0.width.bottom.equalToSuperview()
+        savedBookStoreTableView.snp.makeConstraints {
+            $0.top.equalTo(self.savedBookStoreNavigationBar.snp.bottom)
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(28)
+            $0.bottom.equalToSuperview()
         }
         
         backButton.snp.makeConstraints {
@@ -91,3 +90,4 @@ final class MySavedArticleView: UIView {
         }
     }
 }
+

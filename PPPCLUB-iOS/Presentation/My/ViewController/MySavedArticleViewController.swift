@@ -25,7 +25,13 @@ final class MySavedArticleViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        target()
         delegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -34,6 +40,16 @@ final class MySavedArticleViewController: BaseViewController {
     private func delegate() {
         rootView.savedArticleCollectionView.delegate = self
         rootView.savedArticleCollectionView.dataSource = self
+    }
+    
+    private func target() {
+        rootView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+    }
+    
+    //MARK: - Action Method
+    
+    @objc func backButtonDidTap() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

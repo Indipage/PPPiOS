@@ -92,6 +92,7 @@
 		D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */; };
 		D2B0319D2A6139F100DE8896 /* MySavedBookStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319C2A6139F100DE8896 /* MySavedBookStoreViewController.swift */; };
 		D2B0319F2A614FD500DE8896 /* MySavedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */; };
+		D2B031A12A61B89A00DE8896 /* MySavedBookStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031A02A61B89A00DE8896 /* MySavedBookStoreView.swift */; };
 		D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096092A529893007BC756 /* BaseViewController.swift */; };
 		D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* TicketTicketView.swift */; };
 		D2B096182A529984007BC756 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096172A529984007BC756 /* SearchViewController.swift */; };
@@ -195,6 +196,7 @@
 		D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleViewController.swift; sourceTree = "<group>"; };
 		D2B0319C2A6139F100DE8896 /* MySavedBookStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreViewController.swift; sourceTree = "<group>"; };
 		D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleView.swift; sourceTree = "<group>"; };
+		D2B031A02A61B89A00DE8896 /* MySavedBookStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreView.swift; sourceTree = "<group>"; };
 		D2B096092A529893007BC756 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2B096152A529963007BC756 /* TicketTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTicketView.swift; sourceTree = "<group>"; };
 		D2B096172A529984007BC756 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 				D224D4A02A5DA95600B014ED /* MyInfoView.swift */,
 				D224D4A22A5DA97D00B014ED /* MyProfileView.swift */,
 				D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */,
+				D2B031A02A61B89A00DE8896 /* MySavedBookStoreView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,
 				D2614A5E2A528C2A00869710 /* Image.swift in Sources */,
 				D224D49A2A5D1D7400B014ED /* TicketFailureView.swift in Sources */,
+				D2B031A12A61B89A00DE8896 /* MySavedBookStoreView.swift in Sources */,
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,

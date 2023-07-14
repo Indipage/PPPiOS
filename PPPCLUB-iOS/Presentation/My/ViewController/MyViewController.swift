@@ -34,11 +34,17 @@ final class MyViewController: BaseViewController {
         delegate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     //MARK: - Custom Method
     
     private func gesture() {
         lazy var savedArticletapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedArticleViewGestureHandler))
-        lazy var savedBookStoretapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedArticleViewGestureHandler))
+        lazy var savedBookStoretapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedBookStoreViewGestureHandler))
         
         rootView.profileView.savedArticleButton.addGestureRecognizer(savedArticletapGesture)
         rootView.profileView.savedBookStoreButton.addGestureRecognizer(savedBookStoretapGesture)
@@ -52,13 +58,13 @@ final class MyViewController: BaseViewController {
     //MARK: - Action Method
     
     @objc func savedArticleViewGestureHandler() {
-        let saveddArticleViewController = rootView.profileView.savedArticleButton.savedViewType?.nextVC
-        self.navigationController?.pushViewController(saveddArticleViewController!, animated: true)
+        let savedArticleViewController = MySavedArticleViewController()
+        self.navigationController?.pushViewController(savedArticleViewController, animated: true)
     }
     
     @objc func savedBookStoreViewGestureHandler() {
-        let savedBookStoreViewController = rootView.profileView.savedBookStoreButton.savedViewType?.nextVC
-        self.navigationController?.pushViewController(savedBookStoreViewController!, animated: true)
+        let savedBookViewController = MySavedBookStoreViewController()
+        self.navigationController?.pushViewController(savedBookViewController, animated: true)
     }
 }
 
