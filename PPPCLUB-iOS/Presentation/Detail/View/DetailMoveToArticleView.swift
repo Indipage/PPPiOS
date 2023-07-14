@@ -11,16 +11,13 @@ import SnapKit
 import Then
 
 final class DetailMoveToArticleView: UIView {
-    
-    // MARK: - Properties
-    
+
     // MARK: - UI Components
     
     private let placeLabel = UILabel()
     private lazy var shopImageButton = UIButton()
     private lazy var goReadButton = UIButton()
 
-    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
@@ -38,12 +35,12 @@ final class DetailMoveToArticleView: UIView {
     private func style() {
         placeLabel.do {
             $0.text = "공간 이야기"
-            $0.font = .pppTitle1
+            $0.font = .pppSubHead1
             $0.textColor = .black
         }
         
         shopImageButton.do {
-            $0.setImage(UIImage(systemName: "pencil"), for: .normal)
+            $0.setImage(Image.mockArticle, for: .normal)
             $0.layer.cornerRadius = 10
         }
         
@@ -52,7 +49,7 @@ final class DetailMoveToArticleView: UIView {
             $0.setTitleColor(.white, for: .normal)
             $0.backgroundColor = .black
             $0.layer.cornerRadius = 12
-            $0.titleLabel?.font = .pppCaption2
+            $0.titleLabel?.font = .pppCaption1
         }
     }
     

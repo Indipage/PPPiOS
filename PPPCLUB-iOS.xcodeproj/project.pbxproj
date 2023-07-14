@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BA2A603FCC001BD991 /* UITextView+.swift */; };
+		055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BE2A61C4D2001BD991 /* DetailModel.swift */; };
 		058326872A5BF893004A295F /* PPPTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326862A5BF893004A295F /* PPPTagView.swift */; };
 		058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */; };
 		0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583268D2A5C0158004A295F /* DetailTagModel.swift */; };
@@ -114,6 +116,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		055E51BA2A603FCC001BD991 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
+		055E51BE2A61C4D2001BD991 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		058326862A5BF893004A295F /* PPPTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTagView.swift; sourceTree = "<group>"; };
 		058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		0583268D2A5C0158004A295F /* DetailTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagModel.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				0583268D2A5C0158004A295F /* DetailTagModel.swift */,
+				055E51BE2A61C4D2001BD991 /* DetailModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				D22188872A5BF8BA00F097C7 /* CGPoint+.swift */,
 				D2E8C3D22A5E811E002004A5 /* CALayer+.swift */,
 				D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */,
+				055E51BA2A603FCC001BD991 /* UITextView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -819,6 +825,7 @@
 				D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
 				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
+				055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */,
 				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
@@ -875,6 +882,7 @@
 				05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				05CD07DB2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift in Sources */,
+				055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D26594152A5CF4B90089E56A /* TicketView.swift in Sources */,
