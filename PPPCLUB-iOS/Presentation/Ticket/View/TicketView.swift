@@ -54,13 +54,13 @@ final class TicketView: UIView {
         }
         
         cardView.snp.makeConstraints {
-            $0.top.equalTo(self.ticketToggleView.snp.bottom).offset(26)
+            $0.top.equalTo(self.ticketToggleView.snp.bottom).offset(15.adjusted)
             $0.width.equalToSuperview()
             $0.height.equalToSuperview()
         }
         
         ticketView.snp.makeConstraints {
-            $0.top.equalTo(self.ticketToggleView.snp.bottom).offset(26)
+            $0.top.equalTo(self.ticketToggleView.snp.bottom).offset(15.adjusted)
             $0.width.equalToSuperview()
             $0.height.equalToSuperview()
         }

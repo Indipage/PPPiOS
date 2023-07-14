@@ -44,13 +44,9 @@ final class TicketViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = false
         isEmptyView()
         showSelectedView()
+        rootView.cardView.cardImageView.image = cardMockData[0].image
+        
     }
-    
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//             super.touchesEnded(touches, with: event)
-//
-//             self.displayMode = !self.displayMode
-//         }
     
     //MARK: - Custom Method
     
@@ -210,8 +206,8 @@ extension TicketViewController: UICollectionViewDataSource {
 //MARK: - TicketCardDelegate
 
 extension TicketViewController: TicketCardDelegate {
-    func cardImageButtonDidTap() {
-        print("버튼이 눌렷습니다!")
+    func cardImageButtonDidTap(image: UIImage?) {
+        rootView.cardView.cardImageView.image = image
     }
 }
 
