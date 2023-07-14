@@ -45,7 +45,12 @@ final class TicketViewController: BaseViewController {
         isEmptyView()
         showSelectedView()
         rootView.cardView.cardImageView.image = cardMockData[0].image
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
+        displayMode.toggle()
     }
     
     //MARK: - Custom Method
@@ -222,7 +227,6 @@ extension TicketViewController: TicketDelegate {
 extension TicketViewController {
     private func pushToQRChecktView() {
         let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
-        displayMode.toggle()
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     

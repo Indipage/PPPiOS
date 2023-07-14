@@ -120,9 +120,12 @@ extension TicketCheckQRCodeViewController {
             $0.font = .pppSubHead1
         }
         
-        lazy var button = UIButton()
+        lazy var button = BaseButton()
         button.do {
-            $0.backgroundColor = .blue
+            $0.setTitle("돌아가기", for: .normal)
+            $0.setTitleColor(.pppWhite, for: .normal)
+            $0.titleLabel?.font = .pppBody6
+            $0.setUnderline()
             $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
         
@@ -133,10 +136,11 @@ extension TicketCheckQRCodeViewController {
         }
         
         button.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(250)
+            $0.top.equalToSuperview().offset(540)
+            $0.leading.equalToSuperview().offset(163)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(200)
-            $0.height.equalTo(50)
+            $0.width.equalTo(50)
+            $0.height.equalTo(20)
         }
         
     }
