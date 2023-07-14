@@ -12,7 +12,7 @@ public enum URLs{
     //MARK: - HOME
     
     static let weeklyArticle = "/article/weekly"
-    static let patchSlideArticle = "/user/weekly/slide"
+    static let patchSlideArticle = "/user/weekly/slide"
     static let totalArticle = "/article"
     static let detailArticle = "/article/{articleId}"
     
