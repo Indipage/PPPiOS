@@ -21,6 +21,8 @@ final class MyViewController: BaseViewController {
     
     let rootView = MyView()
     
+    //MARK: - Life Cycle
+    
     override func loadView() {
         self.view = rootView
     }
@@ -31,6 +33,8 @@ final class MyViewController: BaseViewController {
         gesture()
         delegate()
     }
+    
+    //MARK: - Custom Method
     
     private func gesture() {
         lazy var savedArticletapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedArticleViewGestureHandler))
@@ -58,6 +62,8 @@ final class MyViewController: BaseViewController {
     }
 }
 
+//MARK: - UITableViewDelegate
+
 extension MyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
@@ -67,6 +73,8 @@ extension MyViewController: UITableViewDelegate {
         return 23
     }
 }
+
+//MARK: - UITableViewDataSource
 
 extension MyViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

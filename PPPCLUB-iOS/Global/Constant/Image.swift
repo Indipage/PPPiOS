@@ -21,6 +21,7 @@ public enum Image {
     static let ticketIcon = UIImage(named: "ticketIcon")!
     
     //MARK: - TabBar
+    
     static let article = UIImage(named: "article")!
     static let articleFill = UIImage(named: "article.fill")!
     static let search = UIImage(named: "search")!
@@ -43,4 +44,9 @@ public enum Image {
     
     static let noTicket = UIImage(named: "noTicket")!
     static let noCard = UIImage(named: "noCard")!
+    
+    //MARK: - My
+    
+    static let ticketReceivedImage = UIImage(named: "ticketReceivedImage")!
+    static let ticketNotReceivedImage = UIImage(named: "ticketNotReceivedImage")!
 }
