@@ -16,7 +16,7 @@ class HomeArticleView: UIView {
     
     // MARK: - UI Components
     
-    public lazy var navigationView = HomeArticleNavigationView()
+    public lazy var articleNavigationView = HomeArticleNavigationView()
     public lazy var articleTableView = HomeArticleTableView()
     
     // MARK: - Life Cycle
@@ -40,7 +40,7 @@ class HomeArticleView: UIView {
         
         self.backgroundColor = .pppWhite
         
-        navigationView.do {
+        articleNavigationView.do {
             $0.backgroundColor = .white
         }
         articleTableView.do {
@@ -51,21 +51,21 @@ class HomeArticleView: UIView {
     
     private func hierarchy() {
         
-        self.addSubviews(navigationView,
+        self.addSubviews(articleNavigationView,
                                   articleTableView)
         
     }
     
     private func layout() {
         
-        navigationView.snp.makeConstraints {
+        articleNavigationView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
             $0.height.equalTo(66)
             $0.width.equalToSuperview()
         }
         
         articleTableView.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom)
+            $0.top.equalTo(articleNavigationView.snp.bottom)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview()
         }

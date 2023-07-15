@@ -40,7 +40,7 @@ class HomeArticleViewController: UIViewController {
     // MARK: - Custom Method
     
     private func target() {
-        
+        rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
     }
     
     private func register() {
@@ -62,6 +62,11 @@ class HomeArticleViewController: UIViewController {
     }
     
     //MARK: - Action Method
+    
+    @objc
+    func backButtonTap() {
+        self.dismiss(animated: true)
+    }
     
 }
 
