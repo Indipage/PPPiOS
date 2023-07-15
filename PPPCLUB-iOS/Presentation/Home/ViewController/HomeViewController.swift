@@ -19,6 +19,12 @@ final class HomeViewController: BaseViewController {
     
     private var gesture : UIPanGestureRecognizer!
     
+    private var savedArticleData: [MySavedArticleResult] = [] {
+        didSet {
+            rootView.homeAllView.savedArticleCollectionView.reloadData()
+        }
+    }
+    
     // MARK: - UI Components
     
     private let rootView = HomeView()
@@ -42,6 +48,12 @@ final class HomeViewController: BaseViewController {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        requestSavedArticleAPI()
+    }
+    
     // MARK: - Custom Method
     
     private func target() {
@@ -56,7 +68,10 @@ final class HomeViewController: BaseViewController {
     
     private func register() {}
     
-    private func delegate() {}
+    private func delegate() {
+        rootView.homeAllView.savedArticleCollectionView.delegate = self
+        rootView.homeAllView.savedArticleCollectionView.dataSource = self
+    }
     
     private func style() {
         
@@ -98,18 +113,17 @@ final class HomeViewController: BaseViewController {
         rootView.homeAllView.isHidden = false
     }
     
-    func presentToArticleViewController() {
+    func pushToArticleViewController() {
         
-        let ariticleView = HomeArticleViewController()
-        ariticleView.modalPresentationStyle = .fullScreen
-        self.present(ariticleView, animated: true)
+        let homeArticleVC = HomeArticleViewController()
+        self.navigationController?.pushViewController(homeArticleVC, animated: true)
         
     }
     
     @objc
     public func ticketDragAnimation() {
         
-        presentToArticleViewController()
+        pushToArticleViewController()
     }
     
     @objc
@@ -126,10 +140,6 @@ final class HomeViewController: BaseViewController {
                 if viewTranslation.y >= 152 {
                     UIView.animate(withDuration: 0.4, animations: {
                         self.rootView.homeWeeklyView.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
-                    }, completion: {_ in
-                        UIView.animate(withDuration: 1.0, delay: 3.0) {
-                            self.ticketDragAnimation()
-                        }
                     })
                 }
                 
@@ -147,14 +157,9 @@ final class HomeViewController: BaseViewController {
                 })
             }
             else {
-                UIView.animate(withDuration: 0.4, animations: {
-                    self.rootView.homeWeeklyView.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
-                }, completion: {_ in
-                    UIView.animate(withDuration: 1.0, delay: 3.0) {
+                UIView.animate(withDuration: 0.04, delay: 0.0) {
                         self.ticketDragAnimation()
                     }
-                })
-                
             }
             
         default:
@@ -163,3 +168,47 @@ final class HomeViewController: BaseViewController {
         }
     }
 }
+
+//MARK: - UICollectionViewDelegate
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 319, height: 180)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+}
+
+//MARK: - UICollectionViewDataSource
+
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return savedArticleData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
+        cell.delegate = self
+        cell.dataBind(articleData: savedArticleData[indexPath.item])
+        return cell
+    }
+}
+
+//MARK: - SavedArticleCellDelegate
+
+extension HomeViewController: SavedArticleCellDelegate {
+    func articleDidTap() {
+        let articleViewController = HomeArticleViewController()
+        self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+
+    private func requestSavedArticleAPI() {
+        MyAPI.shared.getSavedArticle() { result in
+            guard let result = self.validateResult(result) as? [MySavedArticleResult] else { return }
+            self.savedArticleData = result
+        }
+    }
+}
+

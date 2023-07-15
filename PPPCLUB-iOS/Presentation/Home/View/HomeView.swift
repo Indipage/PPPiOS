@@ -28,6 +28,9 @@ final class HomeView: UIView {
         style()
         hierarchy()
         layout()
+        
+        homeWeeklyView.isHidden = false
+        homeAllView.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -53,7 +56,7 @@ final class HomeView: UIView {
     
     private func hierarchy() {
         
-        self.addSubviews(homeNavigationView, homeWeeklyView)
+        self.addSubviews(homeNavigationView, homeWeeklyView, homeAllView)
 
     }
     
@@ -63,6 +66,12 @@ final class HomeView: UIView {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.width.equalToSuperview()
             $0.height.equalTo(77)
+        }
+        
+        homeWeeklyView.snp.makeConstraints {
+            $0.top.equalTo(homeNavigationView.snp.bottom)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         homeWeeklyView.snp.makeConstraints {

@@ -67,7 +67,7 @@ class HomeArticleViewController: UIViewController {
     
     @objc
     func backButtonTap() {
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
