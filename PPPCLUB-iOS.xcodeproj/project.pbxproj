@@ -99,6 +99,7 @@
 		D2B031A62A62B32300DE8896 /* MyUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031A52A62B32300DE8896 /* MyUserInfo.swift */; };
 		D2B031A92A62B46100DE8896 /* MyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031A82A62B46000DE8896 /* MyAPI.swift */; };
 		D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AA2A62B46E00DE8896 /* MyService.swift */; };
+		D2B031AD2A62C63000DE8896 /* MySavedSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AC2A62C63000DE8896 /* MySavedSpace.swift */; };
 		D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096092A529893007BC756 /* BaseViewController.swift */; };
 		D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* TicketTicketView.swift */; };
 		D2B096182A529984007BC756 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096172A529984007BC756 /* SearchViewController.swift */; };
@@ -209,6 +210,7 @@
 		D2B031A52A62B32300DE8896 /* MyUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserInfo.swift; sourceTree = "<group>"; };
 		D2B031A82A62B46000DE8896 /* MyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAPI.swift; sourceTree = "<group>"; };
 		D2B031AA2A62B46E00DE8896 /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
+		D2B031AC2A62C63000DE8896 /* MySavedSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedSpace.swift; sourceTree = "<group>"; };
 		D2B096092A529893007BC756 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2B096152A529963007BC756 /* TicketTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTicketView.swift; sourceTree = "<group>"; };
 		D2B096172A529984007BC756 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				D2B031A52A62B32300DE8896 /* MyUserInfo.swift */,
+				D2B031AC2A62C63000DE8896 /* MySavedSpace.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -891,6 +894,7 @@
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
 				05CD07E22A5EA072003EEE84 /* SearchListModel.swift in Sources */,
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
+				D2B031AD2A62C63000DE8896 /* MySavedSpace.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
 				D2E8C3E32A600163002004A5 /* BaseButton.swift in Sources */,
 				05CD07D92A5D2505003EEE84 /* DetailArticleRequestView.swift in Sources */,

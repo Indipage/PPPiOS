@@ -17,8 +17,8 @@ final class MyProfileView: UIView {
     // MARK: - UI Components
     
     private let profileImageVIew = UIImageView()
-    private let profileNameLabel = UILabel()
-    private let profileNickNameLabel = UILabel()
+    let profileNameLabel = UILabel()
+    let profileEmailLabel = UILabel()
     private let savedView = UIView()
     lazy var savedArticleButton = MySavedView(frame: .init(), savedViewType: .article)
     lazy var savedBookStoreButton = MySavedView(frame: .init(), savedViewType: .store)
@@ -51,13 +51,11 @@ final class MyProfileView: UIView {
         }
         
         profileNameLabel.do {
-            $0.text = "김지안"
             $0.font = .pppBody3
             $0.textColor = .pppBlack
         }
         
-        profileNickNameLabel.do {
-            $0.text = "bright98"
+        profileEmailLabel.do {
             $0.font = .pppEnCaption
             $0.textColor = .pppGrey5
         }
@@ -71,7 +69,7 @@ final class MyProfileView: UIView {
         self.addSubviews(
             profileImageVIew,
             profileNameLabel,
-            profileNickNameLabel,
+            profileEmailLabel,
             savedView
         )
         
@@ -90,13 +88,13 @@ final class MyProfileView: UIView {
             $0.centerX.equalToSuperview()
         }
         
-        profileNickNameLabel.snp.makeConstraints {
+        profileEmailLabel.snp.makeConstraints {
             $0.top.equalTo(self.profileNameLabel.snp.bottom).offset(3)
             $0.centerX.equalToSuperview()
         }
         
         savedView.snp.makeConstraints {
-            $0.top.equalTo(self.profileNickNameLabel.snp.bottom).offset(20)
+            $0.top.equalTo(self.profileEmailLabel.snp.bottom).offset(20)
             $0.width.equalToSuperview()
             $0.height.equalTo(188)
         }

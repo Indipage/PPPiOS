@@ -37,6 +37,7 @@ final class MySavedBookStoreViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        requestSavedSpaceAPI()
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -89,5 +90,12 @@ extension MySavedBookStoreViewController: SavedArticleCellDelegate {
     func articleDidTap() {
         let detailViewController = DetailViewController()
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    func requestSavedSpaceAPI() {
+        MyAPI.shared.getSavedSpace() { result in
+            guard let result = self.validateResult(result) as? [MySavedSpaceResult] else { return }
+//            self.userInfo = result
+        }
     }
 }

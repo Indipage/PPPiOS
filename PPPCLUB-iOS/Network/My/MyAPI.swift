@@ -25,4 +25,14 @@ extension MyAPI{
             )
         }
     }
+    
+    public func getSavedSpace(completion: @escaping (NetworkResult<Any>) -> Void) {
+        myProvider.request(.getMySavedSpace) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: [MySavedSpaceResult].self,
+                completion: completion
+            )
+        }
+    }
 }
