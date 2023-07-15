@@ -12,6 +12,14 @@ import Then
 
 final class MySavedArticleViewController: BaseViewController {
     
+    //MARK: - Properties
+    
+    private var savedArticleData: [MySavedArticleResult] = [] {
+        didSet {
+            rootView.savedArticleCollectionView.reloadData()
+        }
+    }
+    
     //MARK: - UI Components
     
     let rootView = MySavedArticleView()
@@ -32,6 +40,7 @@ final class MySavedArticleViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        requestSavedArticleAPI() 
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -69,12 +78,13 @@ extension MySavedArticleViewController: UICollectionViewDelegateFlowLayout {
 
 extension MySavedArticleViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return savedArticleData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
         cell.delegate = self
+        cell.dataBind(articleData: savedArticleData[indexPath.item])
         return cell
     }
 }
@@ -83,7 +93,14 @@ extension MySavedArticleViewController: UICollectionViewDataSource {
 
 extension MySavedArticleViewController: SavedArticleCellDelegate {
     func articleDidTap() {
-        let detailViewController = DetailViewController()
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        let articleViewController = HomeArticleViewController()
+        self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+    
+    private func requestSavedArticleAPI() {
+        MyAPI.shared.getSavedArticle() { result in
+            guard let result = self.validateResult(result) as? [MySavedArticleResult] else { return }
+            self.savedArticleData = result
+        }
     }
 }

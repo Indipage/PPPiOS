@@ -12,6 +12,7 @@ import Moya
 enum MyService {
     case getMyInfo
     case getMySavedSpace
+    case getMySavedArticle
 }
 
 extension MyService: BaseTargetType {
@@ -21,12 +22,16 @@ extension MyService: BaseTargetType {
             return URLs.getMyInfo
         case .getMySavedSpace:
             return URLs.getTotalSavedSpace
+        case .getMySavedArticle:
+            return URLs.getTotalSavedArticle
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .getMyInfo:
+            return .get
+        case .getMySavedArticle:
             return .get
         case .getMySavedSpace:
             return .get
@@ -35,6 +40,8 @@ extension MyService: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
+        case .getMySavedArticle:
+            return .requestPlain
         case .getMyInfo:
             return .requestPlain
         case .getMySavedSpace:
@@ -44,6 +51,8 @@ extension MyService: BaseTargetType {
     
     var headers: [String : String]? {
         switch self {
+        case .getMySavedArticle:
+            return APIConstants.noTokenHeader
         case .getMyInfo:
             return APIConstants.noTokenHeader
         case .getMySavedSpace:

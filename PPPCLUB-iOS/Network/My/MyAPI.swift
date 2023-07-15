@@ -35,4 +35,14 @@ extension MyAPI{
             )
         }
     }
+    
+    public func getSavedArticle(completion: @escaping (NetworkResult<Any>) -> Void) {
+        myProvider.request(.getMySavedArticle) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: [MySavedArticleResult].self,
+                completion: completion
+            )
+        }
+    }
 }
