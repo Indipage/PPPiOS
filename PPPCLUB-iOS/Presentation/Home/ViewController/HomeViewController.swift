@@ -22,6 +22,8 @@ final class HomeViewController: BaseViewController {
     // MARK: - UI Components
     
     private let rootView = HomeView()
+//    private let weeklyButton = rootView.homeNavigationView.weeklyButton
+//    private let allButton = self.rootView.homeNavigationView.allButton
     
     // MARK: - Life Cycles
     
@@ -47,6 +49,9 @@ final class HomeViewController: BaseViewController {
         gesture = UIPanGestureRecognizer(target: self,
                                          action: #selector(ticketCaseMoved(_:)))
         
+        rootView.homeNavigationView.weeklyButton.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
+        rootView.homeNavigationView.allButton.addTarget(self, action: #selector(allButtonTap), for: .touchUpInside)
+        
     }
     
     private func register() {}
@@ -69,6 +74,29 @@ final class HomeViewController: BaseViewController {
     
     
     //MARK: - Action Method
+    
+    @objc
+    func weeklyButtonTap() {
+        
+        rootView.homeNavigationView.weeklyButton.isSelected = true
+        rootView.homeNavigationView.allButton.isSelected = false
+        rootView.homeNavigationView.weeklyButton.backgroundColor = .pppMainPurple
+        rootView.homeNavigationView.allButton.backgroundColor = .pppGrey2
+        
+        rootView.homeWeeklyView.isHidden = false
+        rootView.homeAllView.isHidden = true
+    }
+    
+    @objc
+    func allButtonTap() {
+        rootView.homeNavigationView.weeklyButton.isSelected = false
+        rootView.homeNavigationView.allButton.isSelected = true
+        rootView.homeNavigationView.weeklyButton.backgroundColor = .pppGrey2
+        rootView.homeNavigationView.allButton.backgroundColor = .pppMainPurple
+        
+        rootView.homeWeeklyView.isHidden = true
+        rootView.homeAllView.isHidden = false
+    }
     
     func presentToArticleViewController() {
         

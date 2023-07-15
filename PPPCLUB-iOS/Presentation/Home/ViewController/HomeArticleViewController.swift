@@ -40,6 +40,7 @@ class HomeArticleViewController: UIViewController {
     // MARK: - Custom Method
     
     private func target() {
+        
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
     }
     
@@ -48,6 +49,7 @@ class HomeArticleViewController: UIViewController {
     }
     
     private func delegate() {
+        
         rootView.articleTableView.delegate = self
         rootView.articleTableView.dataSource = self
     }

@@ -8,13 +8,38 @@
 import UIKit
 
 class HomeAllView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    // MARK: - Properties
+    
+    // MARK: - UI Components
+    
+    
+    // MARK: - Life Cycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        style()
+        hierarchy()
+        layout()
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Custom Method
+    
+    private func style() {
+        
+    }
+    
+    private func hierarchy() {
+        
+    }
+    
+    private func layout() {
+        
+    }
+    
 }

@@ -18,6 +18,7 @@ final class HomeView: UIView {
     
     public lazy var homeNavigationView = HomeNavigationView()
     public lazy var homeWeeklyView = HomeWeeklyView()
+    public lazy var homeAllView = HomeAllView()
     
     // MARK: - Life Cycle
     
@@ -42,6 +43,10 @@ final class HomeView: UIView {
         }
         
         homeWeeklyView.do {
+            $0.backgroundColor = .pppWhite
+        }
+        
+        homeAllView.do {
             $0.backgroundColor = .pppWhite
         }
     }
