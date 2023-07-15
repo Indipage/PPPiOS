@@ -19,8 +19,10 @@ public enum Image {
     static let bookmarkFill = UIImage(named: "bookMark.fill")!
     static let right = UIImage(named: "right")!
     static let ticketIcon = UIImage(named: "ticketIcon")!
+    static let xmark = UIImage(named: "xmark")!
     
     //MARK: - TabBar
+    
     static let article = UIImage(named: "article")!
     static let articleFill = UIImage(named: "article.fill")!
     static let search = UIImage(named: "search")!
@@ -42,9 +44,30 @@ public enum Image {
     static let mockBook = UIImage(named: "mockBook")!
     static let mockBookStore = UIImage(named: "mockBookStore")!
     static let mockTicket = UIImage(named: "mockTicket")!
+    static let mockDetailCard = UIImage(named: "mockDetailCard")!
     
     //MARK: - Ticket
     
     static let noTicket = UIImage(named: "noTicket")!
     static let noCard = UIImage(named: "noCard")!
+    
+    // MARK: - Detail
+    
+    static let gradient = UIImage(named: "gradient")!
+    static let backWhite = UIImage(named: "back.white")!
+    static let storeMark = UIImage(named: "storeMark")!
+    static let storeMarkFill = UIImage(named: "storeMark.fill")!
+    static let uniqueCard = UIImage(named: "uniqueCard")!
+
+    //MARK: - My
+    
+    static let ticketReceivedImage = UIImage(named: "ticketReceivedImage")!
+    static let ticketNotReceivedImage = UIImage(named: "ticketNotReceivedImage")!
+    
+    //MARK: - Graphics
+    
+    static let blankArticle = UIImage(named: "blankArticle")!
+    static let blankCard = UIImage(named: "blankCard")!
+    static let blankPlace = UIImage(named: "blankPlace")!
+    static let blankTicket = UIImage(named: "blankTicket")!
 }

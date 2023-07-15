@@ -66,8 +66,7 @@ final class TicketTicketView: UIView {
         
         ticketCollectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(320/Size.width)
+            $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(230)
         }
     }

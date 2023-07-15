@@ -46,8 +46,8 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     //MARK: - Custom Method
     
     private func delegate() {
-        self.qrManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        self.qrManager.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
+        QRManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        QRManager.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
     }
     
     private func layout() {
@@ -119,15 +119,34 @@ extension TicketCheckQRCodeViewController {
             $0.textColor = .pppWhite
             $0.font = .pppSubHead1
         }
-        self.view.addSubview(describeLabel)
+        
+        lazy var button = BaseButton()
+        button.do {
+            $0.setTitle("돌아가기", for: .normal)
+            $0.setTitleColor(.pppWhite, for: .normal)
+            $0.titleLabel?.font = .pppBody6
+            $0.setUnderline()
+            $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        }
+        
+        self.view.addSubviews(describeLabel, button)
         describeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(173)
             $0.centerX.equalToSuperview()
         }
+        
+        button.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(540)
+            $0.leading.equalToSuperview().offset(163)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(50)
+            $0.height.equalTo(20)
+        }
+        
     }
     
     private func pushTicketResultView(result: String) {
-        if result == "http://en.m.wikipedia.org" {
+        if result == "http://3.37.34.144/user/space/1/visit" {
             let ticketSuccessView = TicketSuccessViewController()
             self.navigationController?.pushViewController(ticketSuccessView, animated: true)
         } else {
@@ -136,6 +155,11 @@ extension TicketCheckQRCodeViewController {
             self.modalPresentationStyle = .fullScreen
             self.present(ticketFailView, animated: true)
         }
+    }
+    
+    @objc func backButtonDidTap() {
+        QRManager.stop()
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

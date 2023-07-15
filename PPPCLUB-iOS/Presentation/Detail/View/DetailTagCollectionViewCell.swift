@@ -39,7 +39,7 @@ final class DetailTagCollectionViewCell: UICollectionViewCell {
     private func layout() {
         tagView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
-            $0.height.equalTo(18)
+            $0.height.equalTo(34)
         }
     }
     

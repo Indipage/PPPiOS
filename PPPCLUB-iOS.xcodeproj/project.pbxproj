@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BA2A603FCC001BD991 /* UITextView+.swift */; };
+		055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BE2A61C4D2001BD991 /* DetailModel.swift */; };
 		058326872A5BF893004A295F /* PPPTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326862A5BF893004A295F /* PPPTagView.swift */; };
 		058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */; };
 		0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583268D2A5C0158004A295F /* DetailTagModel.swift */; };
@@ -90,6 +92,18 @@
 		D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D265940D2A5CF2360089E56A /* TicketCardCollectionViewCell.swift */; };
 		D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594122A5CF4580089E56A /* TicketCardModel.swift */; };
 		D26594152A5CF4B90089E56A /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594142A5CF4B90089E56A /* TicketView.swift */; };
+		D2B031972A61397E00DE8896 /* MySavedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */; };
+		D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */; };
+		D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */; };
+		D2B0319D2A6139F100DE8896 /* MySavedBookStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319C2A6139F100DE8896 /* MySavedBookStoreViewController.swift */; };
+		D2B0319F2A614FD500DE8896 /* MySavedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */; };
+		D2B031A12A61B89A00DE8896 /* MySavedBookStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031A02A61B89A00DE8896 /* MySavedBookStoreView.swift */; };
+		D2B031A32A6205F400DE8896 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031A22A6205F400DE8896 /* Config.swift */; };
+		D2B031A62A62B32300DE8896 /* MyUserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031A52A62B32300DE8896 /* MyUserInfoModel.swift */; };
+		D2B031A92A62B46100DE8896 /* MyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031A82A62B46000DE8896 /* MyAPI.swift */; };
+		D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AA2A62B46E00DE8896 /* MyService.swift */; };
+		D2B031AD2A62C63000DE8896 /* MySavedSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AC2A62C63000DE8896 /* MySavedSpaceModel.swift */; };
+		D2B031AF2A62E1D100DE8896 /* MySavedArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AE2A62E1D100DE8896 /* MySavedArticleModel.swift */; };
 		D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096092A529893007BC756 /* BaseViewController.swift */; };
 		D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* TicketTicketView.swift */; };
 		D2B096182A529984007BC756 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096172A529984007BC756 /* SearchViewController.swift */; };
@@ -106,9 +120,13 @@
 		D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */; };
 		D2E8C3DD2A5EF810002004A5 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */; };
 		D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3DE2A5F3934002004A5 /* TicketFailureViewController.swift */; };
+		D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */; };
+		D2E8C3E32A600163002004A5 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3E22A600163002004A5 /* BaseButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		055E51BA2A603FCC001BD991 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
+		055E51BE2A61C4D2001BD991 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		058326862A5BF893004A295F /* PPPTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTagView.swift; sourceTree = "<group>"; };
 		058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		0583268D2A5C0158004A295F /* DetailTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagModel.swift; sourceTree = "<group>"; };
@@ -189,6 +207,18 @@
 		D265940D2A5CF2360089E56A /* TicketCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		D26594122A5CF4580089E56A /* TicketCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardModel.swift; sourceTree = "<group>"; };
 		D26594142A5CF4B90089E56A /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleTableViewCell.swift; sourceTree = "<group>"; };
+		D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreTableViewCell.swift; sourceTree = "<group>"; };
+		D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleViewController.swift; sourceTree = "<group>"; };
+		D2B0319C2A6139F100DE8896 /* MySavedBookStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreViewController.swift; sourceTree = "<group>"; };
+		D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleView.swift; sourceTree = "<group>"; };
+		D2B031A02A61B89A00DE8896 /* MySavedBookStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreView.swift; sourceTree = "<group>"; };
+		D2B031A22A6205F400DE8896 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		D2B031A52A62B32300DE8896 /* MyUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserInfoModel.swift; sourceTree = "<group>"; };
+		D2B031A82A62B46000DE8896 /* MyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAPI.swift; sourceTree = "<group>"; };
+		D2B031AA2A62B46E00DE8896 /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
+		D2B031AC2A62C63000DE8896 /* MySavedSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedSpaceModel.swift; sourceTree = "<group>"; };
+		D2B031AE2A62E1D100DE8896 /* MySavedArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleModel.swift; sourceTree = "<group>"; };
 		D2B096092A529893007BC756 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2B096152A529963007BC756 /* TicketTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTicketView.swift; sourceTree = "<group>"; };
 		D2B096172A529984007BC756 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +235,8 @@
 		D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		D2E8C3DE2A5F3934002004A5 /* TicketFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFailureViewController.swift; sourceTree = "<group>"; };
+		D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketToggleView.swift; sourceTree = "<group>"; };
+		D2E8C3E22A600163002004A5 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				0583268D2A5C0158004A295F /* DetailTagModel.swift */,
+				055E51BE2A61C4D2001BD991 /* DetailModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -341,6 +374,8 @@
 			children = (
 				D224D4AE2A5DF25600B014ED /* HeaderFooterView */,
 				D224D49E2A5DA6B900B014ED /* MyInfoTableViewCell.swift */,
+				D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */,
+				D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -348,6 +383,7 @@
 		D224D4A42A5DB5F900B014ED /* My */ = {
 			isa = PBXGroup;
 			children = (
+				D2B031A42A62B2A200DE8896 /* APIModel */,
 				D224D4A72A5DB65E00B014ED /* Model */,
 			);
 			path = My;
@@ -415,6 +451,7 @@
 				D2614A5B2A528C2300869710 /* URLs.swift */,
 				D2614A5D2A528C2A00869710 /* Image.swift */,
 				D22188832A5BDC1A00F097C7 /* Size.swift */,
+				D2B031A22A6205F400DE8896 /* Config.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -448,6 +485,7 @@
 				D22188872A5BF8BA00F097C7 /* CGPoint+.swift */,
 				D2E8C3D22A5E811E002004A5 /* CALayer+.swift */,
 				D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */,
+				055E51BA2A603FCC001BD991 /* UITextView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -455,6 +493,7 @@
 		D2614A8B2A5290CC00869710 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D2B031A72A62B45000DE8896 /* My */,
 				D2614A8C2A5290D100869710 /* Foundation */,
 			);
 			path = Network;
@@ -528,6 +567,25 @@
 			path = APIModel;
 			sourceTree = "<group>";
 		};
+		D2B031A42A62B2A200DE8896 /* APIModel */ = {
+			isa = PBXGroup;
+			children = (
+				D2B031A52A62B32300DE8896 /* MyUserInfoModel.swift */,
+				D2B031AC2A62C63000DE8896 /* MySavedSpaceModel.swift */,
+				D2B031AE2A62E1D100DE8896 /* MySavedArticleModel.swift */,
+			);
+			path = APIModel;
+			sourceTree = "<group>";
+		};
+		D2B031A72A62B45000DE8896 /* My */ = {
+			isa = PBXGroup;
+			children = (
+				D2B031A82A62B46000DE8896 /* MyAPI.swift */,
+				D2B031AA2A62B46E00DE8896 /* MyService.swift */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
 		D2B096012A529730007BC756 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +629,7 @@
 			children = (
 				D2B096092A529893007BC756 /* BaseViewController.swift */,
 				D2B096252A529AC4007BC756 /* PPPTabBarController.swift */,
+				D2E8C3E22A600163002004A5 /* BaseButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -620,6 +679,7 @@
 			children = (
 				D2B096152A529963007BC756 /* TicketTicketView.swift */,
 				D26594082A5C6FE70089E56A /* TicketCardView.swift */,
+				D2E8C3E02A5FF2D0002004A5 /* TicketToggleView.swift */,
 				D26594142A5CF4B90089E56A /* TicketView.swift */,
 				D224D4952A5D1D0600B014ED /* TicketResultView.swift */,
 				D224D4972A5D1D6300B014ED /* TicketSuccessView.swift */,
@@ -666,6 +726,8 @@
 				D224D49B2A5D9A9700B014ED /* MySavedView.swift */,
 				D224D4A02A5DA95600B014ED /* MyInfoView.swift */,
 				D224D4A22A5DA97D00B014ED /* MyProfileView.swift */,
+				D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */,
+				D2B031A02A61B89A00DE8896 /* MySavedBookStoreView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -674,6 +736,8 @@
 			isa = PBXGroup;
 			children = (
 				D2B0961B2A5299A0007BC756 /* MyViewController.swift */,
+				D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */,
+				D2B0319C2A6139F100DE8896 /* MySavedBookStoreViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -794,29 +858,38 @@
 			files = (
 				2C0C72A62A606A3900EC2117 /* HomeArticleHeaderView.swift in Sources */,
 				D224D4A12A5DA95600B014ED /* MyInfoView.swift in Sources */,
+				D2B031A32A6205F400DE8896 /* Config.swift in Sources */,
 				D224D4982A5D1D6300B014ED /* TicketSuccessView.swift in Sources */,
+				D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */,
 				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
+				D2B0319D2A6139F100DE8896 /* MySavedBookStoreViewController.swift in Sources */,
+				D2B031A92A62B46100DE8896 /* MyAPI.swift in Sources */,
 				D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
 				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
+				055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */,
 				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
 				2C0C72992A60696100EC2117 /* HomeArticleView.swift in Sources */,
+				D2B031A62A62B32300DE8896 /* MyUserInfoModel.swift in Sources */,
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,
 				D2614A5E2A528C2A00869710 /* Image.swift in Sources */,
 				D224D49A2A5D1D7400B014ED /* TicketFailureView.swift in Sources */,
+				D2B031A12A61B89A00DE8896 /* MySavedBookStoreView.swift in Sources */,
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
+				D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */,
 				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
 				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
+				D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */,
@@ -829,16 +902,20 @@
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
 				05CD07E52A5ED7D8003EEE84 /* SearchHeaderView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
+				D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */,
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
 				05CD07E22A5EA072003EEE84 /* SearchListModel.swift in Sources */,
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
+				D2B031AD2A62C63000DE8896 /* MySavedSpaceModel.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
+				D2E8C3E32A600163002004A5 /* BaseButton.swift in Sources */,
 				05CD07D92A5D2505003EEE84 /* DetailArticleRequestView.swift in Sources */,
 				2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */,
 				D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */,
 				2C0C72A22A6069FD00EC2117 /* HomeArticleTableViewCell.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
 				D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */,
+				D2B031AF2A62E1D100DE8896 /* MySavedArticleModel.swift in Sources */,
 				D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */,
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
 				D224D49C2A5D9A9700B014ED /* MySavedView.swift in Sources */,
@@ -855,6 +932,7 @@
 				05CD07D12A5C6FEE003EEE84 /* DetailOwnerView.swift in Sources */,
 				D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */,
 				05CD07DB2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift in Sources */,
+				055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
@@ -870,6 +948,7 @@
 				05CD07DD2A5E9C37003EEE84 /* SearchTableViewCell.swift in Sources */,
 				2C0C729D2A60699600EC2117 /* HomeArticleTableView.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */,
+				D2B031972A61397E00DE8896 /* MySavedArticleTableViewCell.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
 				D2614A682A528C9100869710 /* UITextField+.swift in Sources */,
 				D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */,
@@ -877,6 +956,7 @@
 				D2614A6A2A528CA300869710 /* UIColor+.swift in Sources */,
 				D2614A982A52918A00869710 /* BaseTargetType.swift in Sources */,
 				D2B096182A529984007BC756 /* SearchViewController.swift in Sources */,
+				D2B0319F2A614FD500DE8896 /* MySavedArticleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,9 +1101,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -1050,9 +1131,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";

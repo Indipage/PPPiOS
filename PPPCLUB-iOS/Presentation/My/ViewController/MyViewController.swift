@@ -14,28 +14,68 @@ final class MyViewController: BaseViewController {
     
     //MARK: - Properties
     
-    let infoData = MyInfoModel.mockDummy()
-    let accountData = MyAccountModel.mockDummy()
+    private let infoData = MyInfoModel.mockDummy()
+    private let accountData = MyAccountModel.mockDummy()
+    
+    private var userInfo: MyUserInfoResult? {
+        didSet {
+            dataBind()
+        }
+    }
     
     //MARK: - UI Components
     
     let rootView = MyView()
+    
+    //MARK: - Life Cycle
     
     override func loadView() {
         self.view = rootView
     }
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .white
+        super.viewDidLoad()
         
+        gesture()
         delegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+        requestMyAPI()
+    }
+    
+    //MARK: - Custom Method
+    
+    private func gesture() {
+        lazy var savedArticletapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedArticleViewGestureHandler))
+        lazy var savedBookStoretapGesture = UITapGestureRecognizer.init(target: self, action: #selector(savedBookStoreViewGestureHandler))
+        
+        rootView.profileView.savedArticleButton.addGestureRecognizer(savedArticletapGesture)
+        rootView.profileView.savedBookStoreButton.addGestureRecognizer(savedBookStoretapGesture)
     }
     
     private func delegate() {
         rootView.infoTableView.delegate = self
         rootView.infoTableView.dataSource = self
     }
+    
+    //MARK: - Action Method
+    
+    @objc func savedArticleViewGestureHandler() {
+        let savedArticleViewController = MySavedArticleViewController()
+        self.navigationController?.pushViewController(savedArticleViewController, animated: true)
+    }
+    
+    @objc func savedBookStoreViewGestureHandler() {
+        let savedBookViewController = MySavedBookStoreViewController()
+        self.navigationController?.pushViewController(savedBookViewController, animated: true)
+    }
 }
+
+//MARK: - UITableViewDelegate
 
 extension MyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -46,6 +86,8 @@ extension MyViewController: UITableViewDelegate {
         return 23
     }
 }
+
+//MARK: - UITableViewDataSource
 
 extension MyViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,5 +123,22 @@ extension MyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: MySeparatorFooterView.cellIdentifier) as? MySeparatorFooterView else { return UIView() }
         return footer
+    }
+}
+
+extension MyViewController {
+    private func requestMyAPI() {
+        MyAPI.shared.getMyInfo() { result in
+            guard let result = self.validateResult(result) as? MyUserInfoResult else {
+                return
+            }
+            print("🍠👆 \(result)")
+            self.userInfo = result
+        }
+    }
+    
+    private func dataBind() {
+        rootView.profileView.profileNameLabel.text = self.userInfo?.name
+        rootView.profileView.profileEmailLabel.text = self.userInfo?.email
     }
 }

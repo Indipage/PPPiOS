@@ -70,7 +70,3 @@ final class MyInfoTableViewCell: UITableViewCell {
         infoTitleLabel.text = title
     }
 }
-
-
-
-

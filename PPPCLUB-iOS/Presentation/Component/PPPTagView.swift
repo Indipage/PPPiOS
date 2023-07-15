@@ -42,12 +42,12 @@ final class PPPTagView: UIView {
             $0.axis = .horizontal
             $0.alignment = .center
             $0.distribution = .fill
-            $0.layer.cornerRadius = 7
-            $0.layer.backgroundColor = UIColor.pppGrey1.cgColor
+            $0.layer.cornerRadius = 17
+            $0.layer.backgroundColor = UIColor.pppBlack.cgColor
         }
         
         tagLabel.do {
-            $0.font = .pppCaption2
+            $0.font = .pppBody6
             $0.textColor = .white
             $0.textAlignment = .center
             $0.frame.size = $0.intrinsicContentSize
@@ -60,17 +60,15 @@ final class PPPTagView: UIView {
     
     private func layout() {
         tagStackView.snp.makeConstraints {
-            $0.top.bottom.trailing.leading.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         emptyLabel1.snp.makeConstraints {
-            $0.width.equalTo(5)
-            $0.height.equalTo(18)
+            $0.width.equalTo(16)
         }
         
         emptyLabel2.snp.makeConstraints {
-            $0.width.equalTo(5)
-            $0.height.equalTo(18)
+            $0.width.equalTo(16)
         }
     }
 }

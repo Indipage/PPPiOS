@@ -35,13 +35,13 @@ final class DetailUniqueView: UIView {
     
     private func style() {
         uniqueLabel.do {
-            $0.text = "🍹 특색 요소"
-            $0.font = .pppTitle1
+            $0.text = "특색 요소"
+            $0.font = .pppSubHead1
             $0.textColor = .black
         }
         
         uniqueImageView.do {
-            $0.image = UIImage(systemName: "oar.2.crossed")
+            $0.image = Image.uniqueCard
             $0.backgroundColor = .systemPink
         }
     }
@@ -54,15 +54,15 @@ final class DetailUniqueView: UIView {
     
     private func layout() {
         uniqueLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(25)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(24)
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().inset(28)
+            $0.height.equalTo(28)
         }
         
         uniqueImageView.snp.makeConstraints {
-            $0.top.equalTo(uniqueLabel.snp.bottom).offset(16)
-            $0.height.equalTo(234)
-            $0.center.leading.trailing.equalToSuperview()
+            $0.top.equalTo(uniqueLabel.snp.bottom).offset(10)
+            $0.height.equalTo(234.adjusted)
+            $0.leading.trailing.equalToSuperview()
         }
     }
 }

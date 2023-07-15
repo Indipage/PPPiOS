@@ -18,7 +18,7 @@ final class MyView: UIView {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let profileView = MyProfileView()
+    let profileView = MyProfileView()
     lazy var infoTableView = MyInfoView()
     private let appInformationLabel = UILabel()
     
