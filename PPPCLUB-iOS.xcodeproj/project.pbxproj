@@ -309,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				D221886C2A5924C600F097C7 /* DetailViewController.swift */,
-				D2B096082A52982E007BC756 /* Ticket */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -556,6 +555,7 @@
 		D2B096032A529794007BC756 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D2B096082A52982E007BC756 /* Ticket */,
 				058326832A5BF08C004A295F /* Component */,
 				D22188692A5924A600F097C7 /* Detail */,
 				D2B096072A5297DD007BC756 /* Search */,
