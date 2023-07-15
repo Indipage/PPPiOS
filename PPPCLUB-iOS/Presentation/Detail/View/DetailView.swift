@@ -89,12 +89,10 @@ final class DetailView: UIScrollView {
             width: Size.width - 128.adjusted
         )
         
-        // FIXME: - 왜 477????????????????
-        
         ownerView.snp.makeConstraints {
             $0.top.equalTo(detailTopView.snp.bottom).offset(38)
             $0.width.leading.equalToSuperview()
-            $0.height.equalTo(introduceHeigth + curationHeight + 477)
+            $0.height.equalTo(introduceHeigth + curationHeight + 463)
         }
         
         uniqueView.snp.makeConstraints {
@@ -145,7 +143,6 @@ final class DetailView: UIScrollView {
         return textView.contentSize.height
     }
     
-    /// 위의 두 개를 합치면?
     private func calculateTextViewHeight(text: String, width: CGFloat) -> CGFloat {
         let textView = UITextView(
             frame: CGRect(

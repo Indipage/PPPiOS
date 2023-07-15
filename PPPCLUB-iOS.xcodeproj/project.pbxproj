@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BA2A603FCC001BD991 /* UITextView+.swift */; };
 		055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BE2A61C4D2001BD991 /* DetailModel.swift */; };
+		055E51C12A6325BC001BD991 /* DetailBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51C02A6325BC001BD991 /* DetailBookModel.swift */; };
+		055E51C32A6329F5001BD991 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51C22A6329F5001BD991 /* UIImage+.swift */; };
 		058326872A5BF893004A295F /* PPPTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326862A5BF893004A295F /* PPPTagView.swift */; };
 		058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */; };
 		0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583268D2A5C0158004A295F /* DetailTagModel.swift */; };
@@ -119,6 +121,8 @@
 /* Begin PBXFileReference section */
 		055E51BA2A603FCC001BD991 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		055E51BE2A61C4D2001BD991 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		055E51C02A6325BC001BD991 /* DetailBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookModel.swift; sourceTree = "<group>"; };
+		055E51C22A6329F5001BD991 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		058326862A5BF893004A295F /* PPPTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTagView.swift; sourceTree = "<group>"; };
 		058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		0583268D2A5C0158004A295F /* DetailTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagModel.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			children = (
 				0583268D2A5C0158004A295F /* DetailTagModel.swift */,
 				055E51BE2A61C4D2001BD991 /* DetailModel.swift */,
+				055E51C02A6325BC001BD991 /* DetailBookModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 				D2E8C3D22A5E811E002004A5 /* CALayer+.swift */,
 				D2E8C3DC2A5EF810002004A5 /* CGFloat+.swift */,
 				055E51BA2A603FCC001BD991 /* UITextView+.swift */,
+				055E51C22A6329F5001BD991 /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -847,11 +853,13 @@
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
 				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
+				055E51C12A6325BC001BD991 /* DetailBookModel.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */,
 				D26594092A5C6FE70089E56A /* TicketCardView.swift in Sources */,
 				D265940C2A5C88A80089E56A /* TicketCollectionViewCell.swift in Sources */,
+				055E51C32A6329F5001BD991 /* UIImage+.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
 				058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */,
 				D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */,
@@ -1056,7 +1064,7 @@
 				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 27VUFHH5W2;
+				DEVELOPMENT_TEAM = 3DGF5D388H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";

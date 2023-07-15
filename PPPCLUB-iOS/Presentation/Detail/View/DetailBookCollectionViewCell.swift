@@ -25,6 +25,12 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
         layout()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        bookImageView.image?.alpha(1)
+    }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -50,8 +56,19 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureCell(image: UIImage) {
+    func configureCell(image: UIImage, isCenter: Bool) {
         bookImageView.image = image
+        if isCenter {
+            bookImageView.image = bookImageView.image?.alpha(1)
+            bookImageView.layer.borderWidth = 6
+            bookImageView.layer.borderColor = UIColor.pppMainPurple.cgColor
+        } else {
+            bookImageView.image = bookImageView.image?.alpha(0.5)
+            bookImageView.layer.borderWidth = 0
+        }
+    }
+
+    private func prepare() {
+        bookImageView.image = bookImageView.image?.alpha(1)
     }
 }
-

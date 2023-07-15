@@ -15,6 +15,8 @@ final class DetailViewController: BaseViewController {
     // MARK: - Properties
     
     private lazy var dummy = Tag.dummy()
+    private lazy var bookDummy = DetailBoolModel.dummy()
+    private var currentIndex: Int? = 1
     
     // MARK: - UI Components
     
@@ -110,13 +112,14 @@ extension DetailViewController: UICollectionViewDataSource {
         case detailView.detailTopView.tagCollectionView:
             return dummy.tagList.count
         case detailView.ownerView.bookCollectionView:
-            return 3
+            return self.bookDummy.image.count
         default:
             return 0
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
             guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailTagCollectionViewCell.cellIdentifier,
@@ -128,7 +131,7 @@ extension DetailViewController: UICollectionViewDataSource {
         case detailView.ownerView.bookCollectionView:
             guard let bookCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBookCollectionViewCell.cellIdentifier,
                                                                     for: indexPath) as? DetailBookCollectionViewCell else { return UICollectionViewCell() }
-            bookCell.configureCell(image: Image.mockBook)
+            bookCell.configureCell(image: bookDummy.image[indexPath.row], isCenter: indexPath.row == currentIndex)
             return bookCell
             
         default:
@@ -138,7 +141,9 @@ extension DetailViewController: UICollectionViewDataSource {
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
             return 8
@@ -149,7 +154,9 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
             let label: UILabel = UILabel()
@@ -157,11 +164,29 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: Int(label.intrinsicContentSize.width) + 24 , height: 34)
             
         case detailView.ownerView.bookCollectionView:
-            return CGSize(width: 116 ,
+            return CGSize(width: 116,
                           height: 156 )
             
         default:
             return CGSize()
         }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
+        let cellWidth = Const.itemSize.width + Const.itemSpacing
+        let index = round(scrolledOffsetX / cellWidth)
+        targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left,
+                                              y: scrollView.contentInset.top)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrolledOffset = scrollView.contentOffset.x + scrollView.contentInset.left
+        let cellWidth = Const.itemSize.width + Const.itemSpacing
+        let index = Int(round(scrolledOffset / cellWidth))
+        currentIndex = index
+        detailView.ownerView.bookCollectionView.reloadData()
     }
 }
