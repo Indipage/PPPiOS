@@ -8,7 +8,6 @@
 import AVFoundation
 import UIKit
 
-
 final class TicketCheckQRCodeViewController: BaseViewController {
     
     //MARK: - Properties
@@ -58,8 +57,9 @@ final class TicketCheckQRCodeViewController: BaseViewController {
         self.view.layer.addSublayer(self.videoPreviewLayer!)
         setPreviewLayer()
     }
-    
 }
+
+//MARK: - AVCaptureMetadataOutputObjectsDelegate
 
 extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

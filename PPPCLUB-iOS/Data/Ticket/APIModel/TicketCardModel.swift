@@ -7,28 +7,17 @@
 
 import UIKit
 
-struct TicketCardModel {
-    var image: UIImage?
-}
-
-extension TicketCardModel {
-    static func mockDummy() -> [TicketCardModel] {
-        return [
-            TicketCardModel(image: Image.ticket),
-            TicketCardModel(image: Image.search),
-            TicketCardModel(image: Image.article),
-            TicketCardModel(image: Image.mockArticleCard),
-            TicketCardModel(image: Image.ticket),
-            TicketCardModel(image: Image.search),
-            TicketCardModel(image: Image.article),
-            TicketCardModel(image: Image.mockArticleCard),
-            TicketCardModel(image: Image.ticket),
-            TicketCardModel(image: Image.search),
-            TicketCardModel(image: Image.article),
-            TicketCardModel(image: Image.mockArticleCard)
-        ]
+struct TicketCardResult: Codable {
+    let cardID: Int
+    let imageURL, visitedAt: String
+    let spaceID: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case cardID = "cardId"
+        case imageURL = "imageUrl"
+        case visitedAt
+        case spaceID = "spaceId"
     }
 }
-
 
 

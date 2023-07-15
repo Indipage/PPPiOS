@@ -101,6 +101,8 @@
 		D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AA2A62B46E00DE8896 /* MyService.swift */; };
 		D2B031AD2A62C63000DE8896 /* MySavedSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AC2A62C63000DE8896 /* MySavedSpaceModel.swift */; };
 		D2B031AF2A62E1D100DE8896 /* MySavedArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031AE2A62E1D100DE8896 /* MySavedArticleModel.swift */; };
+		D2B031B22A631A2600DE8896 /* TicketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031B12A631A2600DE8896 /* TicketAPI.swift */; };
+		D2B031B42A631A3D00DE8896 /* TicketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031B32A631A3D00DE8896 /* TicketService.swift */; };
 		D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096092A529893007BC756 /* BaseViewController.swift */; };
 		D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096152A529963007BC756 /* TicketTicketView.swift */; };
 		D2B096182A529984007BC756 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096172A529984007BC756 /* SearchViewController.swift */; };
@@ -213,6 +215,8 @@
 		D2B031AA2A62B46E00DE8896 /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
 		D2B031AC2A62C63000DE8896 /* MySavedSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedSpaceModel.swift; sourceTree = "<group>"; };
 		D2B031AE2A62E1D100DE8896 /* MySavedArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleModel.swift; sourceTree = "<group>"; };
+		D2B031B12A631A2600DE8896 /* TicketAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketAPI.swift; sourceTree = "<group>"; };
+		D2B031B32A631A3D00DE8896 /* TicketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketService.swift; sourceTree = "<group>"; };
 		D2B096092A529893007BC756 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2B096152A529963007BC756 /* TicketTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTicketView.swift; sourceTree = "<group>"; };
 		D2B096172A529984007BC756 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -487,6 +491,7 @@
 		D2614A8B2A5290CC00869710 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D2B031B02A631A1800DE8896 /* Ticket */,
 				D2B031A72A62B45000DE8896 /* My */,
 				D2614A8C2A5290D100869710 /* Foundation */,
 			);
@@ -578,6 +583,15 @@
 				D2B031AA2A62B46E00DE8896 /* MyService.swift */,
 			);
 			path = My;
+			sourceTree = "<group>";
+		};
+		D2B031B02A631A1800DE8896 /* Ticket */ = {
+			isa = PBXGroup;
+			children = (
+				D2B031B12A631A2600DE8896 /* TicketAPI.swift */,
+				D2B031B32A631A3D00DE8896 /* TicketService.swift */,
+			);
+			path = Ticket;
 			sourceTree = "<group>";
 		};
 		D2B096012A529730007BC756 /* Resource */ = {
@@ -853,6 +867,7 @@
 				D224D4982A5D1D6300B014ED /* TicketSuccessView.swift in Sources */,
 				D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */,
 				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
+				D2B031B22A631A2600DE8896 /* TicketAPI.swift in Sources */,
 				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
@@ -925,6 +940,7 @@
 				055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
+				D2B031B42A631A3D00DE8896 /* TicketService.swift in Sources */,
 				D26594152A5CF4B90089E56A /* TicketView.swift in Sources */,
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
