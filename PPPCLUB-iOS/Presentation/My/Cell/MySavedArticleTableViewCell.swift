@@ -64,7 +64,6 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         }
         
         spaceTypeLabel.do {
-            $0.setTitle("독립서점", for: .normal)
             $0.setTitleColor(.pppWhite, for: .normal)
             $0.titleLabel?.font = .pppCaption2
             $0.backgroundColor = .pppMainPurple
@@ -72,20 +71,17 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         }
         
         titleLabel.do {
-            $0.text = "문학살롱 초고"
             $0.font = .pppSubHead1
             $0.textColor = .pppWhite
         }
         
         subTitleLabel.do {
-            $0.text = "반복되는 일상 속 나만의 아지트가 되어주는 공간"
             $0.font = .pppBody6
             $0.textColor = .pppWhite
         }
         
         ticketReceivedImage.do {
             $0.image = Image.ticketReceivedImage
-            
         }
         
         ticketNotReceivedImage.do {
@@ -148,8 +144,12 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         delegate?.articleDidTap()
     }
     
-    func configureCell() {
-        
+    func dataBind(articleData: MySavedArticleResult) {
+        spaceTypeLabel.setTitle(articleData.spaceType, for: .normal)
+        titleLabel.text = articleData.spaceName
+        subTitleLabel.text = articleData.title
+        ticketReceivedImage.isHidden = !articleData.ticketReceived
+        ticketNotReceivedImage.isHidden = articleData.ticketReceived
     }
 }
 

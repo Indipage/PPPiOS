@@ -15,6 +15,11 @@ final class MySavedBookStoreViewController: BaseViewController {
     //MARK: - Properties
     
     private let dummy = SearchListModel.dummy()
+    private var savedSpaceData: [MySavedSpaceResult] = [] {
+        didSet {
+            rootView.savedBookStoreTableView.reloadData()
+        }
+    }
     
     //MARK: - UI Components
     
@@ -37,6 +42,7 @@ final class MySavedBookStoreViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        requestSavedSpaceAPI()
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -64,21 +70,26 @@ extension MySavedBookStoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 108
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 //MARK: - UICollectionViewDataSource
 
 extension MySavedBookStoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummy.count
+        return savedSpaceData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.dataBind(image: dummy[indexPath.row].image,
-                          name: dummy[indexPath.row].name,
-                          location: dummy[indexPath.row].location)
+        cell.dataBind2(image: savedSpaceData[indexPath.row].imageURL,
+                          name: savedSpaceData[indexPath.row].name,
+                          location: savedSpaceData[indexPath.row].roadAddress)
         return cell
     }
 }
@@ -89,5 +100,12 @@ extension MySavedBookStoreViewController: SavedArticleCellDelegate {
     func articleDidTap() {
         let detailViewController = DetailViewController()
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    func requestSavedSpaceAPI() {
+        MyAPI.shared.getSavedSpace() { result in
+            guard let result = self.validateResult(result) as? [MySavedSpaceResult] else { return }
+            self.savedSpaceData = result
+        }
     }
 }

@@ -89,4 +89,10 @@ extension SearchTableViewCell {
         placeNameLabel.text = name
         locationLabel.text = location
     }
+    
+    func dataBind2(image: String, name: String, location: String) {
+        placeImageView.kfSetImage(url: image)
+        placeNameLabel.text = name
+        locationLabel.text = location
+    }
 }

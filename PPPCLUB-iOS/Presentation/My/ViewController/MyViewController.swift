@@ -14,8 +14,14 @@ final class MyViewController: BaseViewController {
     
     //MARK: - Properties
     
-    let infoData = MyInfoModel.mockDummy()
-    let accountData = MyAccountModel.mockDummy()
+    private let infoData = MyInfoModel.mockDummy()
+    private let accountData = MyAccountModel.mockDummy()
+    
+    private var userInfo: MyUserInfoResult? {
+        didSet {
+            dataBind()
+        }
+    }
     
     //MARK: - UI Components
     
@@ -38,6 +44,7 @@ final class MyViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        requestMyAPI()
     }
     
     //MARK: - Custom Method
@@ -116,5 +123,22 @@ extension MyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: MySeparatorFooterView.cellIdentifier) as? MySeparatorFooterView else { return UIView() }
         return footer
+    }
+}
+
+extension MyViewController {
+    private func requestMyAPI() {
+        MyAPI.shared.getMyInfo() { result in
+            guard let result = self.validateResult(result) as? MyUserInfoResult else {
+                return
+            }
+            print("🍠👆 \(result)")
+            self.userInfo = result
+        }
+    }
+    
+    private func dataBind() {
+        rootView.profileView.profileNameLabel.text = self.userInfo?.name
+        rootView.profileView.profileEmailLabel.text = self.userInfo?.email
     }
 }
