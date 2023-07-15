@@ -16,7 +16,7 @@ final class DetailArticleRequestView: UIView {
     
     private let placeLabel = UILabel()
     private let noticeLabel = UILabel()
-    private lazy var requestButton = UIButton()
+    lazy var requestButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -49,11 +49,11 @@ final class DetailArticleRequestView: UIView {
         }
         
         requestButton.do {
-            $0.setTitle("조르기", for: .normal)
+            $0.setTitle("아티클 조르기", for: .normal)
             $0.setTitle("조르기 완료!", for: .selected)
             $0.setTitleColor(.white, for: .normal)
             $0.setTitleColor(.white, for: .selected)
-            $0.backgroundColor = .pppMainPurple
+            $0.backgroundColor = .pppBlack
             $0.titleLabel?.font = .pppBody3
             $0.layer.cornerRadius = 6
         }

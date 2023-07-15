@@ -42,7 +42,11 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Custom Method
 
-    private func target() {}
+    private func target() {
+        detailView.detailTopView.saveButton.addTarget(self, action: #selector(didTouchedSaveButton), for: .touchUpInside)
+        detailView.detailTopView.backButton.addTarget(self, action: #selector(didTouchedBackButton), for: .touchUpInside)
+        detailView.articleRequestView.requestButton.addTarget(self, action: #selector(didTouchedRequestButton), for: .touchUpInside)
+    }
 
     private func register() {
         detailView.detailTopView.tagCollectionView.register(DetailTagCollectionViewCell.self,
@@ -74,6 +78,25 @@ final class DetailViewController: BaseViewController {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalToSuperview().offset(-1)
         }
+    }
+    
+    @objc
+    private func didTouchedSaveButton() {
+        detailView.detailTopView.saveButton.isSelected.toggle()
+    }
+    
+    @objc func didTouchedRequestButton() {
+        detailView.articleRequestView.requestButton.isSelected.toggle()
+        if detailView.articleRequestView.requestButton.isSelected {
+            detailView.articleRequestView.requestButton.backgroundColor = .pppMainPurple
+        } else {
+            detailView.articleRequestView.requestButton.backgroundColor = .pppBlack
+        }
+    }
+    
+    @objc
+    func didTouchedBackButton() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -23,8 +23,8 @@ final class DetailView: UIScrollView {
     let detailTopView = DetailTopView()
     let ownerView = DetailOwnerView()
     private let uniqueView = DetailUniqueView()
-    private let articleRequestView = DetailArticleRequestView()
-    private let moveToArticleView = DetailMoveToArticleView()
+    let articleRequestView = DetailArticleRequestView()
+    let moveToArticleView = DetailMoveToArticleView()
     private let contentView = UIView()
     
     // MARK: - Life Cycle

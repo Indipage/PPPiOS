@@ -16,8 +16,8 @@ final class DetailTopView: UIView {
     
     private let shopImageView = UIImageView()
     private let gradientImageView = UIImageView()
-    private lazy var saveButton = UIButton()
-    private lazy var backButton = UIButton()
+    lazy var saveButton = UIButton()
+    lazy var backButton = UIButton()
     private lazy var shopNameLabel = UILabel()
     private let addressLabel = UILabel()
     private lazy var detailAddressLabel = UILabel()
