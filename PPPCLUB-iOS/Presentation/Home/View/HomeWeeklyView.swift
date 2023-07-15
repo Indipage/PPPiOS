@@ -11,15 +11,10 @@ class HomeWeeklyView: UIView {
     
     // MARK: - Properties
     
-    var viewTranslation = CGPoint(x: 0, y: 0)
-    var viewVelocity = CGPoint(x: 0, y: 0)
-    
-    private var gesture : UIPanGestureRecognizer!
-    
     // MARK: - UI Components
     
     private let ticketImageView = UIImageView()
-    private var ticketCoverImageView = UIImageView()
+    public var ticketCoverImageView = UIImageView()
     private let clearView = UIView()
     private let clearView2 = UIView()
     
@@ -27,8 +22,6 @@ class HomeWeeklyView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        target()
         
         style()
         hierarchy()
@@ -43,13 +36,6 @@ class HomeWeeklyView: UIView {
     
     // MARK: - Custom Method
     
-    private func target() {
-        
-        gesture = UIPanGestureRecognizer(target: self,
-                                         action: #selector(ticketCaseMoved(_:)))
-        
-    }
-    
     private func style() {
         
         ticketImageView.do {
@@ -58,7 +44,6 @@ class HomeWeeklyView: UIView {
         
         ticketCoverImageView.do {
             $0.image = Image.mockArticleCardPacked
-            $0.addGestureRecognizer(gesture)
             $0.isUserInteractionEnabled = true
         }
         
@@ -109,42 +94,4 @@ class HomeWeeklyView: UIView {
     
     //MARK: - Action Method
     
-    @objc
-    private func ticketCaseMoved(_ sender: UIPanGestureRecognizer) {
-        
-        viewTranslation = sender.translation(in: ticketCoverImageView)
-        viewVelocity = sender.velocity(in: ticketCoverImageView)
-        
-        switch sender.state {
-            
-        case .changed:
-            if abs(viewVelocity.y) > abs(viewVelocity.x) {
-                if viewVelocity.y > 0 {
-                    UIView.animate(withDuration: 0.1, animations: {
-                        self.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
-                    })
-                }
-                
-                else if viewTranslation.y >= 152 {
-                    self.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
-                }
-            }
-            
-        case .ended:
-            if viewTranslation.y < 152 {
-                UIView.animate(withDuration: 0.04, animations: {
-                    self.ticketCoverImageView.transform = .identity
-                })
-            }
-            else {
-                UIView.animate(withDuration: 0.04, animations: {
-                    self.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
-                })
-            }
-            
-        default:
-            break
-            
-        }
-    }
 }
