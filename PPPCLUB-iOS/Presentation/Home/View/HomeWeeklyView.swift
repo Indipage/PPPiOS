@@ -8,8 +8,13 @@
 import UIKit
 
 class HomeWeeklyView: UIView {
-
+    
     // MARK: - Properties
+    
+    var viewTranslation = CGPoint(x: 0, y: 0)
+    var viewVelocity = CGPoint(x: 0, y: 0)
+    
+    private var gesture : UIPanGestureRecognizer!
     
     // MARK: - UI Components
     
@@ -18,21 +23,17 @@ class HomeWeeklyView: UIView {
     private let clearView = UIView()
     private let clearView2 = UIView()
     
-    private var gesture : UIPanGestureRecognizer!
-    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         target()
         
         style()
         hierarchy()
         layout()
         
-        print("\(ticketCoverImageView.center.y)\n")
-        print("\((ticketCoverImageView.center.y)*87/100)\n")
         
     }
     
@@ -43,14 +44,14 @@ class HomeWeeklyView: UIView {
     // MARK: - Custom Method
     
     private func target() {
-    
+        
         gesture = UIPanGestureRecognizer(target: self,
-                                             action: #selector(ticketCaseMoved(_:)))
+                                         action: #selector(ticketCaseMoved(_:)))
         
     }
     
     private func style() {
-
+        
         ticketImageView.do {
             $0.image = Image.mockArticleCard
         }
@@ -108,46 +109,42 @@ class HomeWeeklyView: UIView {
     
     //MARK: - Action Method
     
-    @objc private func ticketCaseMoved(_ sender: UIPanGestureRecognizer) {
-        let transition = sender.translation(in: ticketCoverImageView)
-        let changedY = ticketCoverImageView.center.y + transition.y
+    @objc
+    private func ticketCaseMoved(_ sender: UIPanGestureRecognizer) {
         
-        self.ticketCoverImageView.center = .init(x: ticketCoverImageView.center.x, y: changedY)
-        sender.setTranslation(.zero, in: ticketCoverImageView)
+        viewTranslation = sender.translation(in: ticketCoverImageView)
+        viewVelocity = sender.velocity(in: ticketCoverImageView)
         
-        checkTicketCasePosition()
-    }
-    
-    private func checkTicketCasePosition() {
-        //384 334
-         
-        if ticketCoverImageView.frame.minY < clearView.frame.maxY  {
-            ticketCoverImageView.frame.origin.y = clearView.frame.maxY
+        switch sender.state {
+            
+        case .changed:
+            if abs(viewVelocity.y) > abs(viewVelocity.x) {
+                if viewVelocity.y > 0 {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
+                    })
+                }
+                
+                else if viewTranslation.y >= 152 {
+                    self.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
+                }
+            }
+            
+        case .ended:
+            if viewTranslation.y < 152 {
+                UIView.animate(withDuration: 0.04, animations: {
+                    self.ticketCoverImageView.transform = .identity
+                })
+            }
+            else {
+                UIView.animate(withDuration: 0.04, animations: {
+                    self.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
+                })
+            }
+            
+        default:
+            break
+            
         }
-        
-//        else if (ticketCoverImageView.frame.minY < clearView2.frame.maxY) && (ticketCoverImageView.frame.minY < clearView.frame.maxY) {
-//            springAnimation()
-//        }
-        
-        else if ticketCoverImageView.frame.minY > clearView2.frame.maxY {
-            ticketCoverImageView.frame.origin.y = clearView2.frame.maxY
-            ticketDownAnimation()
-            // + 해당 아티클로 넘어가기
-        }
-    }
-    
-    private func ticketDownAnimation() {
-        UIView.animateKeyframes(withDuration: 0.2, delay: 0, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1.0, animations: {
-                self.ticketCoverImageView.frame.origin.y = self.ticketCoverImageView.frame.maxY
-            })
-        })
-    }
-    
-    private func springAnimation() {
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: .allowUserInteraction, animations: {
-                // CGAffineTransform.identity : 변형을 적용하기 전의 상태로 돌려주는 것
-                self.ticketCoverImageView.transform = CGAffineTransform.identity
-            }, completion: nil)
     }
 }
