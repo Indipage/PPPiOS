@@ -28,8 +28,6 @@ final class HomeViewController: BaseViewController {
     // MARK: - UI Components
     
     private let rootView = HomeView()
-//    private let weeklyButton = rootView.homeNavigationView.weeklyButton
-//    private let allButton = self.rootView.homeNavigationView.allButton
     
     // MARK: - Life Cycles
     
@@ -41,11 +39,9 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         
         target()
-        register()
+        delegate()
         
         style()
-        hierarchy()
-        layout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,8 +62,6 @@ final class HomeViewController: BaseViewController {
         
     }
     
-    private func register() {}
-    
     private func delegate() {
         rootView.homeAllView.savedArticleCollectionView.delegate = self
         rootView.homeAllView.savedArticleCollectionView.dataSource = self
@@ -80,13 +74,6 @@ final class HomeViewController: BaseViewController {
         }
         
     }
-    
-    private func hierarchy() {}
-    
-    private func layout() {
-        
-    }
-    
     
     //MARK: - Action Method
     
@@ -133,7 +120,6 @@ final class HomeViewController: BaseViewController {
         viewVelocity = sender.velocity(in: rootView.homeWeeklyView.ticketCoverImageView)
         
         switch sender.state {
-            
         case .changed:
             if abs(viewVelocity.y) > abs(viewVelocity.x) {
                 
@@ -157,9 +143,7 @@ final class HomeViewController: BaseViewController {
                 })
             }
             else {
-                UIView.animate(withDuration: 0.04, delay: 0.0) {
-                        self.ticketDragAnimation()
-                    }
+                self.ticketDragAnimation()
             }
             
         default:
@@ -211,4 +195,3 @@ extension HomeViewController: SavedArticleCellDelegate {
         }
     }
 }
-

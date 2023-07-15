@@ -51,7 +51,7 @@ class HomeAllView: UIView {
     }
         
         private func hierarchy() {
-            self.addSubviews(savedArticleCollectionView)
+            self.addSubview(savedArticleCollectionView)
         }
         
         private func layout() {

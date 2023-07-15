@@ -74,7 +74,7 @@ final class HomeView: UIView {
             $0.bottom.equalToSuperview()
         }
         
-        homeWeeklyView.snp.makeConstraints {
+        homeAllView.snp.makeConstraints {
             $0.top.equalTo(homeNavigationView.snp.bottom)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview()
