@@ -31,7 +31,7 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         target()
         register()
         
@@ -41,18 +41,18 @@ final class HomeViewController: BaseViewController {
     }
     
     // MARK: - Custom Method
-
+    
     private func target() {
         
         gesture = UIPanGestureRecognizer(target: self,
                                          action: #selector(ticketCaseMoved(_:)))
         
     }
-
+    
     private func register() {}
-
+    
     private func delegate() {}
-
+    
     private func style() {
         
         rootView.homeWeeklyView.ticketCoverImageView.do {
@@ -60,13 +60,13 @@ final class HomeViewController: BaseViewController {
         }
         
     }
-
+    
     private func hierarchy() {}
-
+    
     private func layout() {
         
     }
-        
+    
     
     //MARK: - Action Method
     
@@ -99,7 +99,9 @@ final class HomeViewController: BaseViewController {
                     UIView.animate(withDuration: 0.4, animations: {
                         self.rootView.homeWeeklyView.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
                     }, completion: {_ in
-                        self.ticketDragAnimation()
+                        UIView.animate(withDuration: 1.0, delay: 3.0) {
+                            self.ticketDragAnimation()
+                        }
                     })
                 }
                 
@@ -120,7 +122,9 @@ final class HomeViewController: BaseViewController {
                 UIView.animate(withDuration: 0.4, animations: {
                     self.rootView.homeWeeklyView.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
                 }, completion: {_ in
-                    self.ticketDragAnimation()
+                    UIView.animate(withDuration: 1.0, delay: 3.0) {
+                        self.ticketDragAnimation()
+                    }
                 })
                 
             }
