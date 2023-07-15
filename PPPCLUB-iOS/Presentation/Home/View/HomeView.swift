@@ -18,6 +18,7 @@ final class HomeView: UIView {
     
     public lazy var homeNavigationView = HomeNavigationView()
     public lazy var homeWeeklyView = HomeWeeklyView()
+    public lazy var homeAllView = HomeAllView()
     
     // MARK: - Life Cycle
     
@@ -27,6 +28,9 @@ final class HomeView: UIView {
         style()
         hierarchy()
         layout()
+        
+        homeWeeklyView.isHidden = false
+        homeAllView.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -44,11 +48,15 @@ final class HomeView: UIView {
         homeWeeklyView.do {
             $0.backgroundColor = .pppWhite
         }
+        
+        homeAllView.do {
+            $0.backgroundColor = .pppWhite
+        }
     }
     
     private func hierarchy() {
         
-        self.addSubviews(homeNavigationView, homeWeeklyView)
+        self.addSubviews(homeNavigationView, homeWeeklyView, homeAllView)
 
     }
     
@@ -61,6 +69,12 @@ final class HomeView: UIView {
         }
         
         homeWeeklyView.snp.makeConstraints {
+            $0.top.equalTo(homeNavigationView.snp.bottom)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        homeAllView.snp.makeConstraints {
             $0.top.equalTo(homeNavigationView.snp.bottom)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview()

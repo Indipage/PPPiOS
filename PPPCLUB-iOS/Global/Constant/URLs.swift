@@ -39,14 +39,14 @@ public enum URLs{
     //MARK: - MY
     
     static let getMyInfo = "/user"
-    static let getTotalSavedArticle = "/user/bookmark/article"
-    static let getSavedArticle = "/user/bookmark/article/{articleId}"
-    static let postSavedArticle = "/user/bookmark/article/{articleId}"
-    static let deleteSavedArticle = "/user/bookmark/article/{articleId}"
-    static let getTotalSavedSpace = "/user/bookmark/space"
-    static let getSavedSpace = "/user/bookmark/space/{spaceId}"
-    static let postSavedSpace = "/user/bookmark/space/{spaceId}"
-    static let deleteSavedSpace = "/user/bookmark/space/{spaceId}"
+    static let getTotalSavedArticle = "/bookmark/article"
+    static let getSavedArticle = "/bookmark/article/{articleId}"
+    static let postSavedArticle = "/bookmark/article/{articleId}"
+    static let deleteSavedArticle = "/bookmark/article/{articleId}"
+    static let getTotalSavedSpace = "/bookmark/space"
+    static let getSavedSpace = "/bookmark/space/{spaceId}"
+    static let postSavedSpace = "/bookmark/space/{spaceId}"
+    static let deleteSavedSpace = "/bookmark/space/{spaceId}"
     
     
     

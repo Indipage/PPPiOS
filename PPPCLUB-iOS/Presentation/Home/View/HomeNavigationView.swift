@@ -17,8 +17,8 @@ class HomeNavigationView: UIView {
     
     // MARK: - UI Components
     
-    private var weeklyButton = UIButton()
-    private var allButton = UIButton()
+    public var weeklyButton = UIButton()
+    public var allButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -39,9 +39,6 @@ class HomeNavigationView: UIView {
     // MARK: - Custom Method
     
     private func target() {
-        
-        weeklyButton.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
-        allButton.addTarget(self, action: #selector(allButtonTap), for: .touchUpInside)
         
     }
     
@@ -94,20 +91,4 @@ class HomeNavigationView: UIView {
     }
     
     //MARK: - Action Method
-    
-    @objc
-    func weeklyButtonTap() {
-        weeklyButton.isSelected = true
-        allButton.isSelected = false
-        weeklyButton.backgroundColor = .pppMainPurple
-        allButton.backgroundColor = .pppGrey2
-    }
-    
-    @objc
-    func allButtonTap() {
-        weeklyButton.isSelected = false
-        allButton.isSelected = true
-        weeklyButton.backgroundColor = .pppGrey2
-        allButton.backgroundColor = .pppMainPurple
-    }
 }

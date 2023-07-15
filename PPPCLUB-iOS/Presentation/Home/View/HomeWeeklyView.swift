@@ -9,8 +9,6 @@ import UIKit
 
 class HomeWeeklyView: UIView {
     
-    // MARK: - Properties
-    
     // MARK: - UI Components
     
     private let ticketImageView = UIImageView()
@@ -26,7 +24,6 @@ class HomeWeeklyView: UIView {
         style()
         hierarchy()
         layout()
-        
         
     }
     
@@ -91,7 +88,4 @@ class HomeWeeklyView: UIView {
         }
         
     }
-    
-    //MARK: - Action Method
-    
 }
