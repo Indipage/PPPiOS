@@ -10,8 +10,10 @@ import UIKit
 import SnapKit
 import Then
 
+//MARK: - TicketDelegate
+
 protocol TicketDelegate: AnyObject {
-    func ticketImageDidSwapped()
+    func ticketImageDidSwapped(spaceID: Int)
 }
 
 final class TicketCollectionViewCell: UICollectionViewCell {
@@ -20,6 +22,8 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: TicketDelegate?
     lazy var point: CGPoint = CGPoint(x: 0, y: 0)
+    private var ticketID: Int?
+    private var spaceID: Int?
     
     //MARK: - UI Components
     
@@ -62,7 +66,6 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     //MARK: - Action Method
     
     @objc func ticketGestureHandler(recognizer: UIPanGestureRecognizer) {
-        
         let translation = recognizer.translation(in: ticketImageView)
         ticketImageView.center = CGPoint(
             x: ticketImageView.center.x + translation.x,
@@ -70,7 +73,7 @@ final class TicketCollectionViewCell: UICollectionViewCell {
         )
         
         recognizer.setTranslation(CGPoint.zero, in: ticketImageView)
-        var velocity = recognizer.velocity(in: ticketImageView)
+        let velocity = recognizer.velocity(in: ticketImageView)
         switch recognizer.state {
         case .began:
             if velocity.x > 0 {
@@ -86,7 +89,7 @@ final class TicketCollectionViewCell: UICollectionViewCell {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.ticketImageView.center.x = self.point.x-55
                 }) { _ in
-                    self.delegate?.ticketImageDidSwapped()
+                    self.delegate?.ticketImageDidSwapped(spaceID: self.spaceID!)
                 }
                 
             } else {
@@ -101,11 +104,13 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     }
 }
 
+//MARK: - TicketCollectionViewCell
+
 extension TicketCollectionViewCell {
-    func configureCell(ticket: TicketModel, point: CGPoint) {
-        //ticketImageView.image = ticket.image
-        ticketImageView.setImage(ticket.image, for: .normal)
+    func configureCell(ticket: TicketResult, point: CGPoint) {
         self.point = point
-        print(point)
+        self.ticketID = ticket.ticketID
+        self.spaceID = ticket.spaceID
+        ticketImageView.kfSetButtonImage(url: ticket.imageURL)
     }
 }

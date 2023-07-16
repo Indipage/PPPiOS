@@ -8,8 +8,9 @@
 import Foundation
 
 struct SimpleResponse: Codable {
-    var status: Int
-    var success: Bool
+    var code: Int?
     var message: String?
+    var data: Data?
+    var status: Int?
+    var success: Bool?
 }
-

@@ -8,6 +8,6 @@
 import Foundation
 
 struct VoidResult: Codable {
-    
 }
+
 
