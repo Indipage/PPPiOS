@@ -13,7 +13,7 @@ import Then
 //MARK: - TicketDelegate
 
 protocol TicketDelegate: AnyObject {
-    func ticketImageDidSwapped()
+    func ticketImageDidSwapped(spaceID: Int)
 }
 
 final class TicketCollectionViewCell: UICollectionViewCell {
@@ -66,7 +66,6 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     //MARK: - Action Method
     
     @objc func ticketGestureHandler(recognizer: UIPanGestureRecognizer) {
-        
         let translation = recognizer.translation(in: ticketImageView)
         ticketImageView.center = CGPoint(
             x: ticketImageView.center.x + translation.x,
@@ -90,7 +89,7 @@ final class TicketCollectionViewCell: UICollectionViewCell {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.ticketImageView.center.x = self.point.x-55
                 }) { _ in
-                    self.delegate?.ticketImageDidSwapped()
+                    self.delegate?.ticketImageDidSwapped(spaceID: self.spaceID!)
                 }
                 
             } else {

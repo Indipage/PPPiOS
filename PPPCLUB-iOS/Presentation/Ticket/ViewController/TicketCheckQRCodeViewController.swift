@@ -12,12 +12,14 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var qrManager: QRManager
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    private var qrManager: QRManager
+    private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    private var spaceID: Int
     
     //MARK: - Life Cycle
     
-    init(qrManager: QRManager) {
+    init(qrManager: QRManager, spaceID: Int) {
+        self.spaceID = spaceID
         self.qrManager = qrManager
         self.qrManager.setCamera()
         super.init(nibName: nil, bundle: nil)
@@ -57,6 +59,13 @@ final class TicketCheckQRCodeViewController: BaseViewController {
         self.view.layer.addSublayer(self.videoPreviewLayer!)
         setPreviewLayer()
     }
+    
+    //MARK: - Action Method
+    
+    @objc func backButtonDidTap() {
+        QRManager.stop()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 //MARK: - AVCaptureMetadataOutputObjectsDelegate
@@ -75,7 +84,7 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
             print("🔫\(qrCodeStringData)🔫")
             QRManager.stop()
             
-            pushTicketResultView(result: qrCodeStringData)
+            requestQRCodeAPI(qrResult: qrCodeStringData)
         }
     }
 }
@@ -145,21 +154,26 @@ extension TicketCheckQRCodeViewController {
         
     }
     
-    private func pushTicketResultView(result: String) {
-        if result == "http://3.37.34.144/user/space/1/visit" {
-            let ticketSuccessView = TicketSuccessViewController()
-            self.navigationController?.pushViewController(ticketSuccessView, animated: true)
-        } else {
-            let ticketFailView = TicketFailureViewController()
-            ticketFailView.delagate = self
-            self.modalPresentationStyle = .fullScreen
-            self.present(ticketFailView, animated: true)
+    private func requestQRCodeAPI(qrResult: String) {
+        TicketAPI.shared.putQRCodeCheck(qrResult: qrResult) { result in
+            guard self.validateResult(result) is SimpleResponse else {
+                self.presentToFailView()
+                return
+            }
+            self.pushToSuccessView()
         }
     }
     
-    @objc func backButtonDidTap() {
-        QRManager.stop()
-        self.navigationController?.popViewController(animated: true)
+    private func pushToSuccessView() {
+        let ticketSuccessView = TicketSuccessViewController()
+        self.navigationController?.pushViewController(ticketSuccessView, animated: true)
+    }
+    
+    private func presentToFailView() {
+        let ticketFailView = TicketFailureViewController()
+        ticketFailView.delagate = self
+        self.modalPresentationStyle = .fullScreen
+        self.present(ticketFailView, animated: true)
     }
 }
 

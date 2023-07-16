@@ -51,9 +51,12 @@ final class TicketViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print(#function)
+        
         tabBarController?.tabBar.isHidden = false
         showSelectedView()
         requestTicketAPI()
+        requestTicketCardAPI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -228,16 +231,16 @@ extension TicketViewController: TicketCardDelegate {
 //MARK: - TicketDelegate
 
 extension TicketViewController: TicketDelegate {
-    func ticketImageDidSwapped() {
-        pushToQRChecktView()
+    func ticketImageDidSwapped(spaceID: Int) {
+        pushToQRChecktView(spaceID: spaceID)
     }
 }
 
 //MARK: - TicketViewController
 
 extension TicketViewController {
-    private func pushToQRChecktView() {
-        let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
+    private func pushToQRChecktView(spaceID: Int) {
+        let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager(), spaceID: spaceID)
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     
