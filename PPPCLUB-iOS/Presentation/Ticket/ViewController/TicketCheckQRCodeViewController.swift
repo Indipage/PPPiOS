@@ -86,9 +86,12 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
             guard let qrCodeStringData = metaDataObj.stringValue else { return }
             print("🔫qr이 맞습니다!🔫")
             print("🔫\(qrCodeStringData)🔫")
-            QRManager.shared.stop()
-            
-            requestQRCodeAPI(qrResult: qrCodeStringData)
+            if qrCodeStringData == "\(spaceID)" {
+                QRManager.shared.stop()
+                requestQRCodeAPI(spaceID: qrCodeStringData)
+            } else {
+                presentToFailView()
+            }
         }
     }
 }
@@ -158,8 +161,8 @@ extension TicketCheckQRCodeViewController {
         
     }
     
-    private func requestQRCodeAPI(qrResult: String) {
-        TicketAPI.shared.putQRCodeCheck(qrResult: qrResult) { result in
+    private func requestQRCodeAPI(spaceID: String) {
+        TicketAPI.shared.putQRCodeCheck(spaceID: spaceID) { result in
             guard self.validateResult(result) is SimpleResponse else {
                 self.presentToFailView()
                 return
