@@ -28,6 +28,7 @@ final class DetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = true
+        requestSavedBookMarkAPI()
     }
     
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ final class DetailViewController: BaseViewController {
         hieararchy()
         layout()
     }
+    
     
     // MARK: - Custom Method
 
@@ -82,6 +84,8 @@ final class DetailViewController: BaseViewController {
         }
     }
     
+    // MARK: - Action Method
+    
     @objc
     private func didTouchedSaveButton() {
         detailView.detailTopView.saveButton.isSelected.toggle()
@@ -105,6 +109,8 @@ final class DetailViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension DetailViewController: UICollectionViewDelegate {}
+
+// MARK: - UICollectionViewDataSource
 
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -139,6 +145,8 @@ extension DetailViewController: UICollectionViewDataSource {
         }
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
@@ -188,5 +196,16 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         let index = Int(round(scrolledOffset / cellWidth))
         currentIndex = index
         detailView.ownerView.bookCollectionView.reloadData()
+    }
+}
+
+// MARK: - DetailViewController
+
+extension DetailViewController {
+    private func requestSavedBookMarkAPI() {
+        DetailAPI.shared.getSavedSpace(spaceID: "1") { result in
+            guard let result = self.validateResult(result) as? DetailSavedBookMarkResult else { return }
+            self.detailView.detailTopView.saveButton.isSelected = result.bookmarked!
+        }
     }
 }
