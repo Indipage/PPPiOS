@@ -25,6 +25,8 @@ class HomeWeeklyView: UIView {
         hierarchy()
         layout()
         
+//        HomeArticleParsing()
+        
     }
     
     required init?(coder: NSCoder) {
