@@ -15,7 +15,9 @@ class HomeArticleTableViewCell: UITableViewCell {
     // MARK: - UI Components
     
     static let identifier = "HomeArticleTableViewCell"
-    private let exampleLabel = UILabel()
+    private var cellTitleLabel = UILabel()
+    private var cellImageView = UIImageView()
+    private var cellBodyLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -38,26 +40,75 @@ class HomeArticleTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        exampleLabel.do {
-            $0.text = "서버를 받아올까요?"
-            $0.font = .systemFont(ofSize: 10)
-            $0.textColor = .black
+        cellTitleLabel.do {
+            $0.font = .pppSubHead1
+            $0.textColor = .pppBlack
+            $0.textAlignment = .justified
+            $0.numberOfLines = 0
+        }
+        
+        cellBodyLabel.do {
+            $0.font = .pppBody5
+            $0.textColor = .pppBlack
+            $0.textAlignment = .left
+            $0.numberOfLines = 0
         }
         
     }
     
     private func hierarchy() {
         
-        contentView.addSubviews(exampleLabel)
+        contentView.addSubview(cellTitleLabel ?? UIView())
+        contentView.addSubview(cellImageView ?? UIView())
+        contentView.addSubview(cellBodyLabel ?? UIView())
         
     }
     
     private func layout() {
         
-        exampleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
+        cellTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(30)
             $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(33)
+            
         }
         
+        cellImageView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(33)
+        }
+        
+        cellBodyLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(33)
+        }
+        
+        
+    }
+}
+
+extension HomeArticleTableViewCell {
+    func configureCell(article: [String?]) {
+        if var articleType = article[0] {
+            if var articleContent = article[1]{
+                switch articleType {
+                case "title":
+                    cellTitleLabel.text = articleContent
+                case "img":
+                    cellImageView.kfSetImage(url: articleContent)
+                    break
+                case "body":
+                    cellBodyLabel.text = articleContent
+                default:
+                    break
+                }
+            }
+        }
     }
 }
