@@ -27,13 +27,12 @@ class BaseViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.navigationItem.hidesBackButton = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        self.tabBarController?.hidesBottomBarWhenPushed = true
     }
     
     //MARK: - Custom Method

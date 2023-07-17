@@ -39,7 +39,7 @@ final class TicketFailureViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.tabBarController?.hidesBottomBarWhenPushed = false
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -64,7 +64,7 @@ final class TicketFailureViewController: UIViewController {
     
     @objc func tryButtonDidTap() {
         self.dismiss(animated: true)
-        QRManager.start()
+        QRManager.shared.start()
     }
 }
 

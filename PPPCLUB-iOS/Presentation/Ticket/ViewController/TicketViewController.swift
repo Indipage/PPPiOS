@@ -56,6 +56,8 @@ final class TicketViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        self.tabBarController?.hidesBottomBarWhenPushed = true
+        
         displayMode.toggle()
     }
     
@@ -98,7 +100,7 @@ final class TicketViewController: BaseViewController {
     
     @objc func cardToggleButtonDidTap() {
         let toggleView = rootView.ticketToggleView
-        requestTicketAPI()
+        requestCardAPI()
         if toggleMode {
             ticketToggleButtonAnimate(
                 targetView: toggleView.toggleButton,
@@ -210,7 +212,7 @@ extension TicketViewController: TicketDelegate {
 
 extension TicketViewController {
     private func pushToQRChecktView(spaceID: Int) {
-        let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager(), spaceID: spaceID)
+        let qrcheckViewController = TicketCheckQRCodeViewController(spaceID: spaceID)
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     
@@ -242,16 +244,20 @@ extension TicketViewController {
                 return
             }
             self.ticketData = result
+            self.isEmptyView()
         }
-        
+    }
+    
+    private func requestCardAPI() {
         TicketAPI.shared.getTotalCard() { result in
             guard let result = self.validateResult(result) as? [TicketCardResult] else {
                 return
             }
             self.cardData = result
-            self.rootView.cardView.cardImageView.kfSetImage(url: self.cardData[0].imageURL)
+            self.isEmptyView()
         }
     }
+    
     
     private func ticketToggleButtonAnimate(
         targetView: UIView,
@@ -278,3 +284,4 @@ extension TicketViewController {
             )
         }
 }
+
