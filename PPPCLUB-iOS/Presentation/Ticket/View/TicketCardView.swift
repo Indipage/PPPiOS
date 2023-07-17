@@ -12,13 +12,11 @@ import Then
 
 final class TicketCardView: UIView {
     
-    // MARK: - Properties
+    // MARK: - UI Components
     
     let noTicketCardView = TicketCardEmptyView()
-    var cardImageView = UIImageView()
+    let cardImageView = UIImageView()
     let ticketCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
-    // MARK: - UI Components
     
     // MARK: - Life Cycle
     
@@ -46,6 +44,7 @@ final class TicketCardView: UIView {
         noTicketCardView.do {
             $0.isHidden = true
         }
+        
         cardImageView.do {
             $0.backgroundColor = .gray
             $0.makeCornerRadius(ratio: 17.4)
@@ -58,7 +57,6 @@ final class TicketCardView: UIView {
             
             $0.collectionViewLayout = layout
             $0.showsHorizontalScrollIndicator = false
-            $0.backgroundColor = .systemPink
         }
     }
     

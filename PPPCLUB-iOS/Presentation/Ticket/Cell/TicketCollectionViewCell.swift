@@ -21,7 +21,7 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
     
     weak var delegate: TicketDelegate?
-    lazy var point: CGPoint = CGPoint(x: 0, y: 0)
+    private var point: CGPoint = CGPoint(x: 0, y: 0)
     private var ticketID: Int?
     private var spaceID: Int?
     
@@ -73,19 +73,14 @@ final class TicketCollectionViewCell: UICollectionViewCell {
         )
         
         recognizer.setTranslation(CGPoint.zero, in: ticketImageView)
-        let velocity = recognizer.velocity(in: ticketImageView)
+        var velocity = recognizer.velocity(in: ticketImageView)
         switch recognizer.state {
         case .began:
-            if velocity.x > 0 {
-                print("삐빅")
-                recognizer.state = .cancelled
-            }
+            if velocity.x > 0 { recognizer.state = .cancelled }
         case .changed:
-            print(ticketImageView.center.x + translation.x)
+            if velocity.x > 0 { self.ticketImageView.center.x = self.point.x-55 }
         case .ended:
-            print("🍠👆\(ticketImageView.center.x+translation.x)")
             if ticketImageView.center.x + translation.x < 35 {
-                print("qr가야지!")
                 UIView.animate(withDuration: 0.3, animations: {
                     self.ticketImageView.center.x = self.point.x-55
                 }) { _ in
@@ -96,7 +91,6 @@ final class TicketCollectionViewCell: UICollectionViewCell {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.ticketImageView.center.x = self.point.x-55
                 })
-                print("아직 가면 안되지")
             }
         @unknown default:
             break

@@ -40,9 +40,13 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = true
         QRManager.start()
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//    }
+    
     
     //MARK: - Custom Method
     

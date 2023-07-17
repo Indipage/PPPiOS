@@ -12,15 +12,12 @@ import Then
 
 final class TicketSuccessView: UIView {
     
-    // MARK: - Properties
+    // MARK: - UI Components
     
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
     private let cardImageView = UIImageView()
     lazy var cardViewButton = UIButton()
-    
-    
-    // MARK: - UI Components
     
     // MARK: - Life Cycle
     

@@ -11,10 +11,7 @@ import SnapKit
 import Then
 
 final class TicketEmptyView: UIView {
-    
-    // MARK: - Properties
-    
-    
+
     // MARK: - UI Components
     
     private let noTicketImageView = UIImageView()
