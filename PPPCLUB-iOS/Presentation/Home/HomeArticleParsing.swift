@@ -11,36 +11,52 @@ extension UIView {
     
     func HomeArticleParsing() {
         
+        struct Article {
+            var title = [String]()
+            var image = [String]()
+        }
+        
+        struct Body {
+            var bold = [String]()
+            var color = [String]()
+            var click = [String]()
+            var body = [String]()
+        }
+        
         var articleDummy = article
+        
+        var titleCnt : Int = 0
+        var imgCnt : Int = 0
+        var bodyCnt : Int = 0
         
         while articleDummy.count > 0 {
             
-            struct Article {
-                var title = [String]()
-                var image = [String]()
-            }
+            var blockType : String?
+            var blockContent : String?
             
-            struct Body {
-                var bold = [String]()
-                var color = [String]()
-                var click = [String]()
-                var body = [String]()
-            }
-            
-            var bodyType : String?
-            var bodyContent : String?
-            
-            while bodyType != "body" {
+            while blockType != "body" {
                 
                 var ArticleHead : Article = Article()
                 var ArticleBody : Body = Body()
+            
+                blockType = bodyCheck(text: articleDummy)
+                blockContent = bodyContentCheck(text: articleDummy, type: blockType ?? "")
                 
-                bodyType = bodyCheck(text: articleDummy)
-                bodyContent = bodyContentCheck(text: articleDummy, type: bodyType ?? "")
+                switch blockType {
+                case "title":
+                    titleCnt += 1
+                case "img":
+                    imgCnt += 1
+                case "body":
+                    bodyCnt += 1
+                    
+                default:
+                    blockType = ""
+                }
                 
-                if bodyType != "body" {
-                    if var bodyString = bodyContent {
-                        switch bodyType {
+                if blockType != "body" {
+                    if var bodyString = blockContent {
+                        switch blockType {
                         case "title":
                             ArticleHead.title.append(bodyString)
                         case "img":
@@ -51,8 +67,8 @@ extension UIView {
                     }
                 }
                 
-                else if bodyType == "body" {
-                    if var bodyString = bodyContent {
+                else if blockType == "body" {
+                    if var bodyString = blockContent {
                         let bodyList = ["click","bold","color","body"]
                         var bodySplitType : String
                         var _ : Int
@@ -79,16 +95,16 @@ extension UIView {
                         
                         ArticleBody.body.append(bodyString)
                         
-                        print(ArticleBody.body)
-                        print(ArticleBody.click)
-                        print(ArticleBody.bold)
-                        print(ArticleBody.color)
+                        print("body : \(ArticleBody.body)")
+                        print("click : \(ArticleBody.click)")
+                        print("bold : \(ArticleBody.bold)")
+                        print("color : \(ArticleBody.color)")
                     }
                     
                 }
                 
-                print(ArticleHead.title)
-                print(ArticleHead.image)
+                print("title : \(ArticleHead.title)")
+                print("image : \(ArticleHead.image)")
             }
             
             func bodyCheck(text: String) -> String? {
@@ -174,5 +190,9 @@ extension UIView {
                 else { return nil }
             }
         }
+        
+        print("titleCnt : \(titleCnt)")
+        print("imgCnt : \(imgCnt)")
+        print("bodyCnt : \(bodyCnt)")
     }
 }
