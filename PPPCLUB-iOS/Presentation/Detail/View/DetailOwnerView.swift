@@ -10,6 +10,17 @@ import UIKit
 import SnapKit
 import Then
 
+enum Const {
+    static let itemSize = CGSize(width: 116, height: 156)
+    static let itemSpacing = 32.0
+    static var insetX: CGFloat {
+        (Size.width - Self.itemSize.width) / 2
+    }
+    static var collectionViewContentInset: UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: Self.insetX, bottom: 0, right: Self.insetX)
+    }
+}
+
 final class DetailOwnerView: UIView {
 
     // MARK: - Properties
@@ -22,6 +33,7 @@ final class DetailOwnerView: UIView {
             updateLayout()
         }
     }
+    
     // MARK: - UI Components
 
     private lazy var ownerIntroLabel = UILabel()
@@ -94,11 +106,19 @@ final class DetailOwnerView: UIView {
 
         flowLayout.do {
             $0.scrollDirection = .horizontal
-            $0.minimumLineSpacing = 32
+            $0.minimumLineSpacing = Const.itemSpacing
+            $0.itemSize = Const.itemSize
+            $0.minimumInteritemSpacing = 0
         }
 
         bookCollectionView.do {
             $0.backgroundColor = .clear
+            $0.clipsToBounds = true
+            $0.isPagingEnabled = false
+            $0.contentInsetAdjustmentBehavior = .never
+            $0.contentInset = Const.collectionViewContentInset
+            $0.decelerationRate = .fast
+            $0.showsHorizontalScrollIndicator = false
         }
 
         bookNameLabel.do {
