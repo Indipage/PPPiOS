@@ -7,24 +7,14 @@
 
 import UIKit
 
-struct TicketModel {
-    var image: UIImage
-}
+struct TicketResult: Codable {
+    let ticketID: Int
+    let imageURL: String
+    let spaceID: Int
 
-extension TicketModel {
-    static func mockDummy() -> [TicketModel] {
-        return [
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket),
-            TicketModel(image: Image.mockTicket)
-        ]
+    enum CodingKeys: String, CodingKey {
+        case ticketID = "ticketId"
+        case imageURL = "imageUrl"
+        case spaceID = "spaceId"
     }
 }
-

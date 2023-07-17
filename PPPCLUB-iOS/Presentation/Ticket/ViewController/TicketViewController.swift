@@ -17,9 +17,19 @@ final class TicketViewController: BaseViewController {
     
     var displayMode: Bool = false
     var toggleMode: Bool = true
-    private var isEmpty: Bool = true
-    private var ticketMockData = TicketModel.mockDummy()
-    private var cardMockData = TicketCardModel.mockDummy()
+    private var isEmpty: Bool = false
+    
+    private var ticketData: [TicketResult] = [] {
+        didSet {
+            rootView.ticketView.ticketCollectionView.reloadData()
+        }
+    }
+    
+    private var cardData: [TicketCardResult] = [] {
+        didSet {
+            rootView.cardView.ticketCardCollectionView.reloadData()
+        }
+    }
     
     //MARK: - UI Components
     
@@ -41,10 +51,12 @@ final class TicketViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print(#function)
+        
         tabBarController?.tabBar.isHidden = false
-        isEmptyView()
         showSelectedView()
-        rootView.cardView.cardImageView.image = cardMockData[0].image
+        requestTicketAPI()
+        requestTicketCardAPI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,6 +83,7 @@ final class TicketViewController: BaseViewController {
     //MARK: - Action Method
     
     @objc func ticketToggleButtonDidTap() {
+        requestTicketAPI()
         if toggleMode {
             print("✏️✏️✏️✏️✏️✏️✏️✏️✏️✏️")
             print("1")
@@ -98,11 +111,11 @@ final class TicketViewController: BaseViewController {
                 }
             )
         }
-        
         showSelectedView()
     }
     
     @objc func cardToggleButtonDidTap() {
+        requestTicketCardAPI()
         if toggleMode {
             print("✏️✏️✏️✏️✏️✏️✏️✏️✏️✏️")
             print("3")
@@ -130,7 +143,6 @@ final class TicketViewController: BaseViewController {
                 }
             )
         }
-        
         showSelectedView()
     }
 }
@@ -178,9 +190,9 @@ extension TicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return ticketMockData.count
+            return ticketData.count
         case rootView.cardView.ticketCardCollectionView:
-            return cardMockData.count
+            return cardData.count
         default:
             return 0
         }
@@ -192,7 +204,7 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(ticket: ticketMockData[indexPath.item], point: cell.center)
+            cell.configureCell(ticket: ticketData[indexPath.item], point: cell.center)
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
@@ -200,7 +212,7 @@ extension TicketViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.delegate = self
-            cell.configureCell(card: cardMockData[indexPath.item])
+            cell.configureCell(card: cardData[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -219,24 +231,26 @@ extension TicketViewController: TicketCardDelegate {
 //MARK: - TicketDelegate
 
 extension TicketViewController: TicketDelegate {
-    func ticketImageDidSwapped() {
-        pushToQRChecktView()
+    func ticketImageDidSwapped(spaceID: Int) {
+        pushToQRChecktView(spaceID: spaceID)
     }
 }
 
+//MARK: - TicketViewController
+
 extension TicketViewController {
-    private func pushToQRChecktView() {
-        let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager())
+    private func pushToQRChecktView(spaceID: Int) {
+        let qrcheckViewController = TicketCheckQRCodeViewController(qrManager: QRManager(), spaceID: spaceID)
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     
     private func isEmptyView() {
-        if ticketMockData.isEmpty {
+        if ticketData.count == 0 {
             rootView.ticketView.noTicketView.isHidden = false
             rootView.ticketView.ticketCollectionView.isHidden = true
         }
         
-        if cardMockData.isEmpty {
+        if cardData.count == 0 {
             rootView.cardView.noTicketCardView.isHidden = false
             rootView.cardView.ticketCardCollectionView.isHidden = true
             rootView.cardView.cardImageView.isHidden = true
@@ -251,5 +265,25 @@ extension TicketViewController {
         print("ticketView는 \(rootView.ticketView.isHidden)")
         print("cardView는 \(rootView.cardView.isHidden)")
         displayMode.toggle()
+    }
+    
+    private func requestTicketAPI() {
+        TicketAPI.shared.getTotalTicket() { result in
+            guard let result = self.validateResult(result) as? [TicketResult] else {
+                return
+            }
+            self.ticketData = result
+        }
+    }
+    
+    private func requestTicketCardAPI() {
+        TicketAPI.shared.getTotalCard() { result in
+            guard let result = self.validateResult(result) as? [TicketCardResult] else {
+                return
+            }
+            self.cardData = result
+            self.rootView.cardView.cardImageView.kfSetImage(url: self.cardData[0].imageURL)
+        }
+        
     }
 }

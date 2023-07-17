@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+//MARK: - TicketCardDelegate
+
 protocol TicketCardDelegate: AnyObject {
     func cardImageButtonDidTap(image: UIImage?)
 }
@@ -19,6 +21,8 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
     
     weak var delegate: TicketCardDelegate?
+    private var cardID: Int?
+    private var spaceID: Int?
     
     //MARK: - UI Components
     
@@ -39,7 +43,6 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
     //MARK: - Custom Method
     
@@ -65,14 +68,20 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    //MARK: - Action Method
+    
     @objc func cardImageButtonDidTap() {
         delegate?.cardImageButtonDidTap(image: cardImageButton.currentImage)
     }
 }
 
+//MARK: - TicketCardCollectionViewCell
+
 extension TicketCardCollectionViewCell {
-    func configureCell(card: TicketCardModel) {
-        cardImageButton.setImage(card.image, for: .normal)
+    func configureCell(card: TicketCardResult) {
+        self.cardID = card.cardID
+        self.spaceID = card.spaceID
+        cardImageButton.kfSetButtonImage(url: card.imageURL)
     }
 }
 

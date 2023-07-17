@@ -16,7 +16,7 @@ class HomeArticleNavigationView: UIView {
     
     // MARK: - UI Components
     
-    private let backButton = UIButton()
+    public let articleBackButton = UIButton()
     private let storeLabel = UILabel()
     private let saveButton = UIButton()
     
@@ -50,7 +50,7 @@ class HomeArticleNavigationView: UIView {
         
         self.backgroundColor = .pppWhite
         
-        backButton.do {
+        articleBackButton.do {
             $0.setImage(Image.arrowDown, for: .normal)
         }
         
@@ -70,21 +70,21 @@ class HomeArticleNavigationView: UIView {
     private func hierarchy() {
         
         self.addSubviews(storeLabel,
-                         backButton,
+                         articleBackButton,
                          saveButton
         )
     }
     
     private func layout() {
         
-        backButton.snp.makeConstraints {
+        articleBackButton.snp.makeConstraints {
             $0.centerY.equalTo(storeLabel.snp.centerY)
             $0.leading.equalToSuperview().inset(17)
             $0.size.equalTo(42)
         }
         storeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(15)
-            $0.leading.equalTo(backButton.snp.trailing)
+            $0.leading.equalTo(articleBackButton.snp.trailing)
         }
         saveButton.snp.makeConstraints {
             $0.centerY.equalTo(storeLabel.snp.centerY)

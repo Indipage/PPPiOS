@@ -41,6 +41,7 @@ class HomeArticleViewController: UIViewController {
     
     private func target() {
         
+        rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
     }
     
     private func register() {
@@ -48,6 +49,7 @@ class HomeArticleViewController: UIViewController {
     }
     
     private func delegate() {
+        
         rootView.articleTableView.delegate = self
         rootView.articleTableView.dataSource = self
     }
@@ -62,6 +64,11 @@ class HomeArticleViewController: UIViewController {
     }
     
     //MARK: - Action Method
+    
+    @objc
+    func backButtonTap() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
 }
 
