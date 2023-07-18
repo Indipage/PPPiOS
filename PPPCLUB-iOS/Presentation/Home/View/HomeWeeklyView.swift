@@ -9,12 +9,18 @@ import UIKit
 
 class HomeWeeklyView: UIView {
     
+    var cardId = Int()
+    var slideCheck = Bool()
+    
     // MARK: - UI Components
     
-    private let ticketImageView = UIImageView()
-    public var ticketCoverImageView = UIImageView()
-    private let clearView = UIView()
-    private let clearView2 = UIView()
+    var thisWeekCardImage = UIImageView()
+    var nextWeekCardImage = UIImageView()
+    var cardTitleLabel = UILabel()
+    var cardStoreNameLabel = UILabel()
+    var cardStoreOwnerLabel = UILabel()
+    var cardRemainingDayLabel = UILabel()
+    var ticketCoverImageView = UIImageView()
     
     // MARK: - Life Cycle
     
@@ -25,8 +31,6 @@ class HomeWeeklyView: UIView {
         hierarchy()
         layout()
         
-//        HomeArticleParsing()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -36,58 +40,69 @@ class HomeWeeklyView: UIView {
     // MARK: - Custom Method
     
     private func style() {
+            
+        cardTitleLabel.do {
+            $0.text = "바보"
+            $0.font = .pppTitle1
+            $0.textColor = .pppWhite
+            $0.textAlignment = .left
+        }
         
-        ticketImageView.do {
-            $0.image = Image.mockArticleCard
+        cardStoreOwnerLabel.do {
+            $0.text = "바보"
+            $0.font = .pppBody5
+            $0.textColor = .pppMainLightGreen
+            $0.textAlignment = .right
+        }
+        cardStoreNameLabel.do {
+            $0.text = "바보"
+            $0.font = .pppTitle2
+            $0.textColor = .pppMainLightGreen
+            $0.textAlignment = .right
         }
         
         ticketCoverImageView.do {
             $0.image = Image.mockArticleCardPacked
             $0.isUserInteractionEnabled = true
+            $0.isHidden = slideCheck
         }
-        
-        clearView.do {
-            $0.backgroundColor = .clear
-        }
-        
-        clearView2.do {
-            $0.backgroundColor = .clear
-        }
-        
     }
     
     private func hierarchy() {
         
-        self.addSubviews(ticketImageView, clearView, clearView2,
-                         ticketCoverImageView)
+        self.addSubviews(thisWeekCardImage, nextWeekCardImage, ticketCoverImageView)
+        thisWeekCardImage.addSubviews(cardTitleLabel, cardStoreNameLabel, cardStoreOwnerLabel)
+        nextWeekCardImage.addSubviews(cardRemainingDayLabel)
         
     }
     
     private func layout() {
         
-        ticketImageView.snp.makeConstraints {
+        thisWeekCardImage.snp.makeConstraints {
             $0.top.equalToSuperview().inset(27)
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().inset(40)
+            $0.height.equalTo(472)
+        }
+        
+        cardTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        cardStoreOwnerLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(36)
+            $0.trailing.equalToSuperview().inset(24)
+        }
+        cardStoreNameLabel.snp.makeConstraints {
+            $0.bottom.equalTo(cardStoreOwnerLabel.snp.top).offset(-6)
+            $0.trailing.equalTo(cardStoreOwnerLabel.snp.trailing)
         }
         
         ticketCoverImageView.snp.makeConstraints {
-            $0.top.equalTo(ticketImageView.snp.top).offset(44)
+            $0.top.equalTo(thisWeekCardImage.snp.top).offset(44)
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().inset(28)
         }
-        
-        clearView.snp.makeConstraints {
-            $0.top.equalTo(ticketImageView.snp.top)
-            $0.bottom.equalTo(ticketCoverImageView.snp.top)
-            $0.width.equalTo(ticketImageView.snp.width)
-        }
-        
-        clearView2.snp.makeConstraints {
-            $0.top.equalTo(ticketImageView.snp.top)
-            $0.bottom.equalTo(ticketImageView.snp.top).offset(186)
-            $0.width.equalTo(ticketImageView.snp.width)
-        }
-        
     }
 }

@@ -35,6 +35,11 @@
 		2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */; };
 		2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */; };
 		2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */; };
+		2C1796532A670F110020B9A5 /* HomeArticleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */; };
+		2C1796582A670FC30020B9A5 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796572A670FC30020B9A5 /* HomeAPI.swift */; };
+		2C17965A2A6710980020B9A5 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796592A6710980020B9A5 /* HomeService.swift */; };
+		2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */; };
+		2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */; };
 		2C1F440F2A6492F3006CEF71 /* HomeArticleDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F440E2A6492F3006CEF71 /* HomeArticleDummy.swift */; };
 		2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */; };
 		2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A96382A6304BC009B2919 /* HomeAllView.swift */; };
@@ -161,6 +166,11 @@
 		2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleFooterView.swift; sourceTree = "<group>"; };
 		2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklyView.swift; sourceTree = "<group>"; };
 		2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
+		2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleListModel.swift; sourceTree = "<group>"; };
+		2C1796572A670FC30020B9A5 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
+		2C1796592A6710980020B9A5 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCardModel.swift; sourceTree = "<group>"; };
+		2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCheckModel.swift; sourceTree = "<group>"; };
 		2C1F440E2A6492F3006CEF71 /* HomeArticleDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleDummy.swift; sourceTree = "<group>"; };
 		2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleParsing.swift; sourceTree = "<group>"; };
 		2C8A96382A6304BC009B2919 /* HomeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAllView.swift; sourceTree = "<group>"; };
@@ -356,6 +366,41 @@
 			path = HomeHeaderFooterView;
 			sourceTree = "<group>";
 		};
+		2C1796512A670EBB0020B9A5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2C1796542A670F270020B9A5 /* APIModel */,
+				2C1796552A670F3E0020B9A5 /* Model */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		2C1796542A670F270020B9A5 /* APIModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */,
+				2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */,
+				2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */,
+			);
+			path = APIModel;
+			sourceTree = "<group>";
+		};
+		2C1796552A670F3E0020B9A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C1796562A670FB30020B9A5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2C1796572A670FC30020B9A5 /* HomeAPI.swift */,
+				2C1796592A6710980020B9A5 /* HomeService.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		D22188692A5924A600F097C7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +566,7 @@
 		D2614A8B2A5290CC00869710 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				2C1796562A670FB30020B9A5 /* Home */,
 				0557DDD92A65F6FA00650F75 /* Detail */,
 				D2B031B02A631A1800DE8896 /* Ticket */,
 				D2B031A72A62B45000DE8896 /* My */,
@@ -546,6 +592,7 @@
 		D2614A9B2A5291E300869710 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2C1796512A670EBB0020B9A5 /* Home */,
 				05CD07DE2A5EA024003EEE84 /* Search */,
 				D224D4A42A5DB5F900B014ED /* My */,
 				D265940F2A5CF43B0089E56A /* Ticket */,
@@ -914,6 +961,7 @@
 				055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */,
 				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
+				2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
 				2C0C72992A60696100EC2117 /* HomeArticleView.swift in Sources */,
 				D2B031A62A62B32300DE8896 /* MyUserInfoModel.swift in Sources */,
@@ -928,11 +976,14 @@
 				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
+				2C1796532A670F110020B9A5 /* HomeArticleListModel.swift in Sources */,
 				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
+				2C17965A2A6710980020B9A5 /* HomeService.swift in Sources */,
 				055E51C12A6325BC001BD991 /* DetailBookModel.swift in Sources */,
 				D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
+				2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */,
 				D26594092A5C6FE70089E56A /* TicketCardView.swift in Sources */,
@@ -986,6 +1037,7 @@
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
+				2C1796582A670FC30020B9A5 /* HomeAPI.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
 				D224D4AB2A5DCB7800B014ED /* MySeparatorFooterView.swift in Sources */,
 				0583268E2A5C0158004A295F /* DetailTagModel.swift in Sources */,

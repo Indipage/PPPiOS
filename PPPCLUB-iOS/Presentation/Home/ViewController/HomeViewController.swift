@@ -19,9 +19,21 @@ final class HomeViewController: BaseViewController {
     
     private var gesture : UIPanGestureRecognizer!
     
-    private var savedArticleData: [MySavedArticleResult] = [] {
+    private var articleCardData: HomeArticleCardResult?  {
         didSet {
-            rootView.homeAllView.savedArticleCollectionView.reloadData()
+            self.dataBindArticleCard(articleData: self.articleCardData)
+        }
+    }
+    
+    private var articleCheckData: HomeArticleCheckResult? {
+        didSet {
+            self.dataBindArticleCheck(articleData: articleCheckData)
+        }
+    }
+    
+    private var articleAllData: [HomeArticleListResult] = [] {
+        didSet {
+            rootView.homeAllView.allArticleCollectionView.reloadData()
         }
     }
     
@@ -47,7 +59,9 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        requestSavedArticleAPI()
+        requestArticleCardAPI()
+        requestSlideCheckAPI()
+        requestAllArticleAPI()
     }
     
     // MARK: - Custom Method
@@ -63,8 +77,9 @@ final class HomeViewController: BaseViewController {
     }
     
     private func delegate() {
-        rootView.homeAllView.savedArticleCollectionView.delegate = self
-        rootView.homeAllView.savedArticleCollectionView.dataSource = self
+        
+        rootView.homeAllView.allArticleCollectionView.delegate = self
+        rootView.homeAllView.allArticleCollectionView.dataSource = self
     }
     
     private func style() {
@@ -91,6 +106,7 @@ final class HomeViewController: BaseViewController {
     
     @objc
     func allButtonTap() {
+        
         rootView.homeNavigationView.weeklyButton.isSelected = false
         rootView.homeNavigationView.allButton.isSelected = true
         rootView.homeNavigationView.weeklyButton.backgroundColor = .pppGrey2
@@ -109,7 +125,7 @@ final class HomeViewController: BaseViewController {
     
     @objc
     public func ticketDragAnimation() {
-        
+        requestPutSlideCheckAPI()
         pushToArticleViewController()
     }
     
@@ -169,13 +185,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return savedArticleData.count
+        return articleAllData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
         cell.delegate = self
-        cell.dataBind(articleData: savedArticleData[indexPath.item])
+        cell.dataBindHome(articleData: articleAllData[indexPath.item])
         return cell
     }
 }
@@ -183,15 +199,55 @@ extension HomeViewController: UICollectionViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension HomeViewController: SavedArticleCellDelegate {
+    
+    func dataBindArticleCard(articleData: HomeArticleCardResult?) {
+        guard let articleData = articleData else { return }
+        rootView.homeWeeklyView.cardId = articleData.id
+        rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
+        rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
+        rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
+        rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
+        rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
+        rootView.homeWeeklyView.cardRemainingDayLabel.text = String(articleData.remainingDays)
+    }
+    
+    func dataBindArticleCheck(articleData: HomeArticleCheckResult?) {
+        guard let hasSlide = articleData?.hasSlide else { return }
+        rootView.homeWeeklyView.slideCheck = hasSlide
+        print("🅿️ \(rootView.homeWeeklyView.slideCheck)")
+    }
+    
     func articleDidTap() {
         let articleViewController = HomeArticleViewController()
         self.navigationController?.pushViewController(articleViewController, animated: true)
     }
+    
+    func requestArticleCardAPI() {
+        HomeAPI.shared.getArticleCard() { result in
+            guard let result = self.validateResult(result) as? HomeArticleCardResult else { return }
+            self.articleCardData = result
+        }
+    }
+    
+    func requestSlideCheckAPI() {
+        HomeAPI.shared.getArticleCheck() { result in
+            guard let result = self.validateResult(result) as? HomeArticleCheckResult else { return }
+            self.articleCheckData = result
+        }
+    }
+    
+    func requestPutSlideCheckAPI() {
+        HomeAPI.shared.putArticleCheck() { result in
+            guard let result = self.validateResult(result) else { return }
+            print("💗💗💗💗💗💗💗💗💗💗💗")
+            print("슬라이드 완료")
+        }
+    }
 
-    private func requestSavedArticleAPI() {
-        MyAPI.shared.getSavedArticle() { result in
-            guard let result = self.validateResult(result) as? [MySavedArticleResult] else { return }
-            self.savedArticleData = result
+    func requestAllArticleAPI() {
+        HomeAPI.shared.getAllArticle() { result in
+            guard let result = self.validateResult(result) as? [HomeArticleListResult] else { return }
+            self.articleAllData = result
         }
     }
 }
