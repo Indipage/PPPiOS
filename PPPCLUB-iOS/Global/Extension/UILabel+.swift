@@ -28,7 +28,7 @@ extension UILabel {
         attributedText = attributeString
     }
     
-    func setAttributeLabel(targetString: [String], color: UIColor?, spacing: CGFloat) {
+    func setAttributeLabel(targetString: [String], color: UIColor?, font: UIFont?, spacing: CGFloat) {
         let fullText = text ?? ""
         let style = NSMutableParagraphStyle()
         let attributedString = NSMutableAttributedString(string: fullText)

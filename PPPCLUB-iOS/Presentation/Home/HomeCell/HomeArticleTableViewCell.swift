@@ -19,7 +19,6 @@ class HomeArticleTableViewCell: UITableViewCell {
     // MARK: - UI Components
     
     weak var delegate: TableViewCellDelegate?
-    static let identifier = "HomeArticleTableViewCell"
     private var cellTitleLabel = UILabel()
     private var cellImageView = UIImageView()
     private var cellBodyLabel = UILabel()
@@ -56,8 +55,13 @@ class HomeArticleTableViewCell: UITableViewCell {
         cellTitleLabel.do {
             $0.font = .pppSubHead1
             $0.textColor = .pppBlack
-            $0.textAlignment = .justified
+            $0.textAlignment = .left
             $0.numberOfLines = 0
+//            $0.setLineSpacing(spacing: 28)
+        }
+        
+        cellImageView.do {
+            $0.backgroundColor = .blue
         }
         
         cellBodyLabel.do {
@@ -65,6 +69,7 @@ class HomeArticleTableViewCell: UITableViewCell {
             $0.textColor = .pppBlack
             $0.textAlignment = .left
             $0.numberOfLines = 0
+//            $0.setLineSpacing(spacing: 24)
         }
         
     }
@@ -76,11 +81,14 @@ class HomeArticleTableViewCell: UITableViewCell {
     private func layout() {
         
         cellTitleLabel.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(30)
-//            $0.centerX.equalToSuperview()
-//            $0.leading.equalToSuperview().inset(20)
-//            $0.bottom.equalToSuperview().inset(33)
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(28)
+////            $0.top.equalToSuperview().inset(30)
+////            $0.centerX.equalToSuperview()
+////            $0.leading.equalToSuperview().inset(20)
+////            $0.bottom.equalToSuperview().inset(33)
+//            $0.edges.equalToSuperview()
             
         }
         
@@ -92,7 +100,9 @@ class HomeArticleTableViewCell: UITableViewCell {
         }
         
         cellBodyLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(28)
 //            $0.top.equalToSuperview()
 //            $0.centerX.equalToSuperview()
 //            $0.leading.equalToSuperview().inset(20)
@@ -106,16 +116,18 @@ class HomeArticleTableViewCell: UITableViewCell {
 extension HomeArticleTableViewCell {
     
     internal func configureCell(article: [String?]) {
-        if var articleType = article[0] {
-            if var articleContent = article[1]{
+        if let articleType = article[0] {
+            if let articleContent = article[1]{
                 switch articleType {
                 case "title":
                     cellTitleLabel.isHidden = false
                     cellImageView.isHidden = true
                     cellBodyLabel.isHidden = true
                     cellTitleLabel.text = articleContent
+                    cellTitleLabel.setLineSpacing(spacing: 500)
                     
                 case "img":
+                    print("이미지 왔당께요 \(articleContent)")
                     cellImageView.isHidden = false
                     cellTitleLabel.isHidden = true
                     cellBodyLabel.isHidden = true
@@ -126,6 +138,7 @@ extension HomeArticleTableViewCell {
                     cellBodyLabel.isHidden = false
                     cellTitleLabel.isHidden = true
                     cellImageView.isHidden = true
+                    cellTitleLabel.setLineSpacing(spacing: 100)
                     bodyCompleteString = findBody(bodyFull: articleContent)
                     cellBodyLabel.text = bodyCompleteString
                     bodyInsideCheck(bodyArticle: articleContent)
@@ -168,7 +181,12 @@ extension HomeArticleTableViewCell {
             cellBodyLabel.asFont(targetString: bodyContent, font: .pppBodyBold5)
             
         case "color" :
-            cellBodyLabel.asFontColor(targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
+            cellBodyLabel.setAttributeLabel(
+                targetString: [bodyContent],
+                color: .pppMainPurple,
+                font:  .pppBodyBold5,
+                spacing: 24
+            )
             
         default:
             break
