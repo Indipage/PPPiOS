@@ -13,7 +13,7 @@ class HomeAllView: UIView {
         
         // MARK: - UI Components
         
-    let savedArticleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    let allArticleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         
         // MARK: - Life Cycle
         
@@ -36,12 +36,12 @@ class HomeAllView: UIView {
         
     private func register() {
         
-        savedArticleCollectionView.register(MySavedArticleCollectionViewCell.self, forCellWithReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier)
+        allArticleCollectionView.register(MySavedArticleCollectionViewCell.self, forCellWithReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier)
     }
     
     private func style() {
         
-        savedArticleCollectionView.do {
+        allArticleCollectionView.do {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
             
@@ -52,11 +52,11 @@ class HomeAllView: UIView {
     }
         
         private func hierarchy() {
-            self.addSubview(savedArticleCollectionView)
+            self.addSubview(allArticleCollectionView)
         }
         
         private func layout() {
-            savedArticleCollectionView.snp.makeConstraints {
+            allArticleCollectionView.snp.makeConstraints {
                 $0.top.equalToSuperview()
                 $0.width.bottom.equalToSuperview()
             }

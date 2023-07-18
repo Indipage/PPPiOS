@@ -19,9 +19,9 @@ final class HomeViewController: BaseViewController {
     
     private var gesture : UIPanGestureRecognizer!
     
-    private var savedArticleData: [MySavedArticleResult] = [] {
+    private var allArticleData: [HomeArticleListResult] = [] {
         didSet {
-            rootView.homeAllView.savedArticleCollectionView.reloadData()
+            rootView.homeAllView.allArticleCollectionView.reloadData()
         }
     }
     
@@ -47,7 +47,7 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        requestSavedArticleAPI()
+        requestAllArticleAPI()
     }
     
     // MARK: - Custom Method
@@ -63,8 +63,8 @@ final class HomeViewController: BaseViewController {
     }
     
     private func delegate() {
-        rootView.homeAllView.savedArticleCollectionView.delegate = self
-        rootView.homeAllView.savedArticleCollectionView.dataSource = self
+        rootView.homeAllView.allArticleCollectionView.delegate = self
+        rootView.homeAllView.allArticleCollectionView.dataSource = self
     }
     
     private func style() {
@@ -169,13 +169,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return savedArticleData.count
+        return allArticleData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
         cell.delegate = self
-        cell.dataBind(articleData: savedArticleData[indexPath.item])
+        cell.dataBindHome(articleData: allArticleData[indexPath.item])
         return cell
     }
 }
@@ -188,10 +188,10 @@ extension HomeViewController: SavedArticleCellDelegate {
         self.navigationController?.pushViewController(articleViewController, animated: true)
     }
 
-    private func requestSavedArticleAPI() {
-        MyAPI.shared.getSavedArticle() { result in
-            guard let result = self.validateResult(result) as? [MySavedArticleResult] else { return }
-            self.savedArticleData = result
+    private func requestAllArticleAPI() {
+        HomeAPI.shared.getAllArticle() { result in
+            guard let result = self.validateResult(result) as? [HomeArticleListResult] else { return }
+            self.allArticleData = result
         }
     }
 }

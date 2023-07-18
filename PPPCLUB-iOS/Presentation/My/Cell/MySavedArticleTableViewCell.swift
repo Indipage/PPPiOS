@@ -151,6 +151,14 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         ticketReceivedImage.isHidden = !articleData.ticketReceived
         ticketNotReceivedImage.isHidden = articleData.ticketReceived
     }
+    
+    func dataBindHome(articleData: HomeArticleListResult) {
+        spaceTypeLabel.setTitle(articleData.spaceType, for: .normal)
+        titleLabel.text = articleData.spaceName
+        subTitleLabel.text = articleData.title
+        ticketReceivedImage.isHidden = !articleData.ticketReceived
+        ticketNotReceivedImage.isHidden = articleData.ticketReceived
+    }
 }
 
 
