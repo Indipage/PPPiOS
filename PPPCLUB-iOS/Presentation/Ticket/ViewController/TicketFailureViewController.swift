@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+//MARK: - ExitButtomDelegate
+
 protocol ExitButtonDelegate: AnyObject {
     func exitButtonDidTap()
 }
@@ -32,8 +34,12 @@ final class TicketFailureViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -58,7 +64,7 @@ final class TicketFailureViewController: UIViewController {
     
     @objc func tryButtonDidTap() {
         self.dismiss(animated: true)
-        QRManager.start()
+        QRManager.shared.start()
     }
 }
 

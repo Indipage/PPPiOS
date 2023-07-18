@@ -12,8 +12,6 @@ import Then
 
 final class TicketSuccessViewController: BaseViewController {
     
-    //MARK: - Properties
-    
     //MARK: - UI Components
     
     let rootView = TicketSuccessView()
@@ -24,10 +22,10 @@ final class TicketSuccessViewController: BaseViewController {
         self.view = rootView
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidLoad() {

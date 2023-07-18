@@ -12,13 +12,11 @@ import Then
 
 final class TicketView: UIView {
     
-    // MARK: - Properties
+    // MARK: - UI Components
     
     lazy var ticketToggleView = TicketToggleView()
     let cardView = TicketCardView()
     let ticketView = TicketTicketView()
-    
-    // MARK: - UI Components
     
     // MARK: - Life Cycle
     

@@ -36,8 +36,8 @@ extension TicketAPI {
         }
     }
     
-    public func putQRCodeCheck(qrResult: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        ticketProvider.request(.putQRCodeCheck(qrResult: qrResult)) { (result) in
+    public func putQRCodeCheck(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        ticketProvider.request(.putQRCodeCheck(spaceID: spaceID)) { (result) in
             self.disposeNetwork(
                 result,
                 dataModel: VoidResult.self,

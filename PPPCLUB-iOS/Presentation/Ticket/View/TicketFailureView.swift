@@ -83,10 +83,6 @@ final class TicketFailureView: UIView {
     }
     
     private func layout() {
-//        contentView.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
-//        }
-        
         failView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.centerX.equalToSuperview()

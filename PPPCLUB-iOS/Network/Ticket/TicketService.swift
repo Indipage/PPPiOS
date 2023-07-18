@@ -12,7 +12,7 @@ import Moya
 enum TicketService {
     case getTotalTicket
     case getTotalCard
-    case putQRCodeCheck(qrResult: String)
+    case putQRCodeCheck(spaceID: String)
 }
 
 extension TicketService: BaseTargetType {
@@ -22,8 +22,8 @@ extension TicketService: BaseTargetType {
             return URLs.getTotalTicket
         case .getTotalCard:
             return URLs.getTotalCard
-        case .putQRCodeCheck(let qrResult):
-            return qrResult
+        case .putQRCodeCheck(let spaceID):
+            return URLs.visitSpace.replacingOccurrences(of: "{spaceId}", with: spaceID)
         }
     }
     
