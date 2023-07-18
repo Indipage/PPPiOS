@@ -25,7 +25,6 @@ final class DetailOwnerView: UIView {
 
     // MARK: - Properties
 
-    private var ownerName = "바균빈"
     var model: Detail? {
         didSet {
             guard let model = model else { return }
@@ -63,7 +62,6 @@ final class DetailOwnerView: UIView {
     private func style() {
         guard let model = model else { return }
         ownerIntroLabel.do {
-            $0.text = "공간지기 \(ownerName)"
             $0.font = .pppSubHead1
             $0.textColor = .black
         }
@@ -202,5 +200,10 @@ final class DetailOwnerView: UIView {
             spacing: 10
         )
         return textView.contentSize.height + 28
+    }
+    
+    func introDataBind(owner: String, introduce: String) {
+        ownerIntroLabel.text = "공간지기 \(owner)"
+        introduceTextView.text = introduce
     }
 }

@@ -85,11 +85,9 @@ final class DetailMoveToArticleView: UIView {
         }
         
         goReadButton.do {
-            $0.setTitle("읽으러 가기 >", for: .normal)
-            $0.setTitleColor(.white, for: .normal)
             $0.backgroundColor = .black
             $0.layer.cornerRadius = 12
-            $0.titleLabel?.font = .pppCaption1
+            $0.setImage(Image.ticketNotReceivedImage, for: .normal)
         }
     }
     
@@ -107,17 +105,17 @@ final class DetailMoveToArticleView: UIView {
         placeLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(28)
-            $0.height.equalTo(28)
+            $0.height.equalTo(28.adjusted)
         }
         
         shopImageView.snp.makeConstraints {
             $0.top.equalTo(placeLabel.snp.bottom).offset(8)
-            $0.height.equalTo(180)
+            $0.height.equalTo(180.adjusted)
             $0.leading.trailing.equalToSuperview().inset(28)
         }
         
         spaceTypeLabel.snp.makeConstraints {
-            $0.height.equalTo(22)
+            $0.height.equalTo(22.adjusted)
         }
         
         frontEmptyLabel.snp.makeConstraints {
@@ -129,29 +127,29 @@ final class DetailMoveToArticleView: UIView {
         }
         
         spaceTypeStackView.snp.makeConstraints {
-            $0.top.equalTo(shopImageView).offset(22)
+            $0.top.equalTo(shopImageView).offset(22.adjusted)
             $0.leading.equalTo(shopImageView).inset(16)
-            $0.height.equalTo(22)
+            $0.height.equalTo(22.adjusted)
         }
         
         spaceNameLabel.snp.makeConstraints {
-            $0.top.equalTo(spaceTypeStackView.snp.bottom).offset(8)
+            $0.top.equalTo(spaceTypeStackView.snp.bottom).offset(8.adjusted)
             $0.leading.equalTo(spaceTypeStackView)
-            $0.height.equalTo(28)
+            $0.height.equalTo(28.adjusted)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(spaceNameLabel.snp.bottom).offset(2)
+            $0.top.equalTo(spaceNameLabel.snp.bottom).offset(2.adjusted)
             $0.leading.equalTo(spaceTypeStackView)
             $0.trailing.equalTo(spaceNameLabel).inset(16)
-            $0.height.equalTo(18)
+            $0.height.equalTo(18.adjusted)
         }
         
         goReadButton.snp.makeConstraints {
-            $0.height.equalTo(33)
+            $0.height.equalTo(33.adjusted)
             $0.width.equalTo(95)
             $0.trailing.equalTo(shopImageView).inset(16)
-            $0.bottom.equalTo(shopImageView).inset(12)
+            $0.bottom.equalTo(shopImageView).inset(12.adjusted)
         }
     }
     

@@ -14,10 +14,11 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private lazy var dummy = Tag.dummy()
+    private var hashTagList: [String] = [String]()
     private lazy var bookDummy = DetailBoolModel.dummy()
+    private var isFollowed: Bool = false
     private var currentIndex: Int? = 1
-    private var spaceID = 1
+    private var spaceID = 4
     
     // MARK: - UI Components
     
@@ -29,13 +30,15 @@ final class DetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = true
+        requestGetSpace()
+        requestGetFollow()
         requestSavedBookMarkAPI()
         requestGetCheckedArticle()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         target()
         register()
         delegate()
@@ -47,43 +50,54 @@ final class DetailViewController: BaseViewController {
     
     
     // MARK: - Custom Method
-
+    
     private func target() {
         detailView.detailTopView.saveButton.addTarget(self, action: #selector(didTouchedSaveButton), for: .touchUpInside)
         detailView.detailTopView.backButton.addTarget(self, action: #selector(didTouchedBackButton), for: .touchUpInside)
         detailView.articleRequestView.requestButton.addTarget(self, action: #selector(didTouchedRequestButton), for: .touchUpInside)
     }
-
+    
     private func register() {
         detailView.detailTopView.tagCollectionView.register(DetailTagCollectionViewCell.self,
                                                             forCellWithReuseIdentifier: DetailTagCollectionViewCell.cellIdentifier)
         detailView.ownerView.bookCollectionView.register(DetailBookCollectionViewCell.self,
                                                          forCellWithReuseIdentifier: DetailBookCollectionViewCell.cellIdentifier)
     }
-
+    
     private func delegate() {
         detailView.detailTopView.tagCollectionView.dataSource = self
         detailView.detailTopView.tagCollectionView.delegate = self
         detailView.ownerView.bookCollectionView.dataSource = self
         detailView.ownerView.bookCollectionView.delegate = self
     }
-
+    
     private func style() {
         view.backgroundColor = .white
         detailView.do {
             $0.contentInsetAdjustmentBehavior = .never
         }
     }
-
+    
     private func hieararchy() {
         view.addSubview(detailView)
     }
-
+    
     private func layout() {
         detailView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalToSuperview().offset(-1)
         }
+    }
+    
+    private func addHashTag(list: [TagList]) {
+        for index in 0..<list.count {
+            hashTagList.append("# \(list[index].name)")
+        }
+    }
+    
+    private func isFollowAction() {
+        detailView.articleRequestView.requestButton.isSelected = true
+        detailView.articleRequestView.requestButton.backgroundColor = .pppMainPurple
     }
     
     // MARK: - Action Method
@@ -101,11 +115,9 @@ final class DetailViewController: BaseViewController {
     }
     
     @objc func didTouchedRequestButton() {
-        detailView.articleRequestView.requestButton.isSelected.toggle()
-        if detailView.articleRequestView.requestButton.isSelected {
-            detailView.articleRequestView.requestButton.backgroundColor = .pppMainPurple
-        } else {
-            detailView.articleRequestView.requestButton.backgroundColor = .pppBlack
+        if !isFollowed {
+            isFollowAction()
+            requestPostFollow()
         }
     }
     
@@ -125,7 +137,7 @@ extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
-            return dummy.tagList.count
+            return hashTagList.count
         case detailView.ownerView.bookCollectionView:
             return self.bookDummy.image.count
         default:
@@ -139,7 +151,7 @@ extension DetailViewController: UICollectionViewDataSource {
         case detailView.detailTopView.tagCollectionView:
             guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailTagCollectionViewCell.cellIdentifier,
                                                                    for: indexPath) as? DetailTagCollectionViewCell else { return UICollectionViewCell() }
-            tagCell.configureCell(text: dummy.tagList[indexPath.row])
+            tagCell.configureCell(text: hashTagList[indexPath.row])
             tagCell.tagView.tagLabel.asColor(targetString: "#", color: .pppMainLightGreen)
             return tagCell
             
@@ -158,9 +170,20 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    //    func collectionView(_ collectionView: UICollectionView,
+    //                        layout collectionViewLayout: UICollectionViewLayout,
+    //                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    //        switch collectionView {
+    //        case detailView.detailTopView.tagCollectionView:
+    //            return 8
+    //        case detailView.ownerView.bookCollectionView:
+    //            return 32
+    //        default:
+    //            return 0
+    //        }
+    //    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
             return 8
@@ -175,9 +198,10 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
+            
         case detailView.detailTopView.tagCollectionView:
             let label: UILabel = UILabel()
-            label.text = dummy.tagList[indexPath.row]
+            label.text = hashTagList[indexPath.row]
             return CGSize(width: Int(label.intrinsicContentSize.width) + 24 , height: 34)
             
         case detailView.ownerView.bookCollectionView:
@@ -233,13 +257,51 @@ extension DetailViewController {
     }
     
     private func requestGetCheckedArticle() {
-        DetailAPI.shared.getCheckArticle(spaceID: "\(spaceID)") {result in
+        DetailAPI.shared.getCheckArticle(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? DetailCheckArticleResult else {
                 self.detailView.isArticleExist = false
                 return
             }
             self.detailView.isArticleExist = true
             self.detailView.moveToArticleView.dataBind(result: result)
+        }
+    }
+    
+    private func requestGetSpace() {
+        DetailAPI.shared.getSpace(spaceID: "\(spaceID)") { result in
+            guard let result = self.validateResult(result) as? DetailGetSpaceResult else { return }
+            
+            self.detailView.detailTopView.dataBind(name: result.name,
+                                                   address: result.roadAddress,
+                                                   runtime: result.operatingTime,
+                                                   rest: result.closedDays,
+                                                   imageURL: result.imageURL ?? String())
+            self.addHashTag(list: result.tagList)
+            self.detailView.ownerView.introDataBind(owner: result.owner,
+                                                    introduce: result.introduction)
+            self.detailView.detailTopView.tagCollectionView.reloadData()
+        }
+    }
+    
+    private func requestGetFollow() {
+        DetailAPI.shared.getFollow(spaceID: "\(spaceID)") { result in
+            guard let result = self.validateResult(result) as? DetailGetFollowResult else {
+                print("😀😀😀😀")
+                return
+            }
+            print(result)
+            self.isFollowed = result.isFollowed ?? false
+            print(self.isFollowed)
+            if self.isFollowed {
+                self.isFollowAction()
+            }
+        }
+    }
+    
+    private func requestPostFollow() {
+        DetailAPI.shared.postFollow(spaceID: "\(spaceID)") { result in
+            guard let result = self.validateResult(result) as? VoidResult else { return }
+            self.isFollowed = true
         }
     }
 }
