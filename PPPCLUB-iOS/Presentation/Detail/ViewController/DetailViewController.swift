@@ -15,10 +15,21 @@ final class DetailViewController: BaseViewController {
     // MARK: - Properties
     
     private var hashTagList: [String] = [String]()
-    private lazy var bookDummy = DetailBoolModel.dummy()
+    private var recommandBookData: [DetailRecommendBookResult] = [] {
+        didSet {
+            detailView.ownerView.bookCollectionView.reloadData()
+        }
+    }
     private var isFollowed: Bool = false
-    private var currentIndex: Int? = 1
-    private var spaceID = 4
+    private var currentIndex: Int = 0 {
+        didSet {
+            if !recommandBookData.isEmpty {
+                detailView.ownerView.curationTextView.text = recommandBookData[self.currentIndex].comment
+                detailView.ownerView.bookNameLabel.text = recommandBookData[self.currentIndex].book.title
+            }
+        }
+    }
+    private var spaceID = 1
     
     // MARK: - UI Components
     
@@ -31,6 +42,7 @@ final class DetailViewController: BaseViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         requestGetSpace()
+        requestGetRecommendBool()
         requestGetFollow()
         requestSavedBookMarkAPI()
         requestGetCheckedArticle()
@@ -139,7 +151,7 @@ extension DetailViewController: UICollectionViewDataSource {
         case detailView.detailTopView.tagCollectionView:
             return hashTagList.count
         case detailView.ownerView.bookCollectionView:
-            return self.bookDummy.image.count
+            return recommandBookData.count
         default:
             return 0
         }
@@ -158,7 +170,7 @@ extension DetailViewController: UICollectionViewDataSource {
         case detailView.ownerView.bookCollectionView:
             guard let bookCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBookCollectionViewCell.cellIdentifier,
                                                                     for: indexPath) as? DetailBookCollectionViewCell else { return UICollectionViewCell() }
-            bookCell.configureCell(image: bookDummy.image[indexPath.row], isCenter: indexPath.row == currentIndex)
+            bookCell.configureCell(recommendBookResult: recommandBookData[indexPath.row], isCenter: indexPath.row == currentIndex)
             return bookCell
             
         default:
@@ -302,6 +314,15 @@ extension DetailViewController {
         DetailAPI.shared.postFollow(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? VoidResult else { return }
             self.isFollowed = true
+        }
+    }
+    
+    private func requestGetRecommendBool() {
+        DetailAPI.shared.getRecommendBool(spaceID: "\(spaceID)") { result in
+            guard let result = self.validateResult(result) as? [DetailRecommendBookResult] else { return }
+            self.recommandBookData = result
+            print("🎈🎈🎈🎈🎈🎈")
+            print(result)
         }
     }
 }

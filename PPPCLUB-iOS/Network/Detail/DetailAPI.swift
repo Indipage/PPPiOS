@@ -52,7 +52,7 @@ extension DetailAPI {
         }
     }
     
-    public func getSpace(spaceID:String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    public func getSpace(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         detailProvider.request(.getSpace(spaceID: spaceID)) { (result) in
             self.disposeNetwork(result,
                                 dataModel: DetailGetSpaceResult.self,
@@ -61,7 +61,7 @@ extension DetailAPI {
         }
     }
     
-    public func getFollow(spaceID:String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    public func getFollow(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         detailProvider.request(.getFollow(spaceID: spaceID)) { (result) in
             self.disposeNetwork(result,
                                 dataModel: DetailGetFollowResult.self,
@@ -70,10 +70,19 @@ extension DetailAPI {
         }
     }
     
-    public func postFollow(spaceID:String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    public func postFollow(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         detailProvider.request(.postFollow(spaceID: spaceID)) { (result) in
             self.disposeNetwork(result,
                                 dataModel: VoidResult.self,
+                                completion: completion
+            )
+        }
+    }
+    
+    public func getRecommendBool(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        detailProvider.request(.getRecommendBook(spaceID: spaceID)) { (result) in
+            self.disposeNetwork(result,
+                                dataModel: [DetailRecommendBookResult].self,
                                 completion: completion
             )
         }

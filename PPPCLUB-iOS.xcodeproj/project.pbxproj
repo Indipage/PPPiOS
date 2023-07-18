@@ -10,12 +10,12 @@
 		0525C7362A66A8DC00699B2C /* DetailCheckArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7352A66A8DC00699B2C /* DetailCheckArticleModel.swift */; };
 		0525C7382A66EA7900699B2C /* DetailGetSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7372A66EA7900699B2C /* DetailGetSpaceModel.swift */; };
 		0525C73A2A67261E00699B2C /* DetailGetFollowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7392A67261E00699B2C /* DetailGetFollowModel.swift */; };
+		0525C73C2A67533A00699B2C /* DetailRecommendBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C73B2A67533A00699B2C /* DetailRecommendBookModel.swift */; };
+		0525C73E2A675DD000699B2C /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C73D2A675DD000699B2C /* Detail.swift */; };
 		0557DDDB2A65F71100650F75 /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDA2A65F71100650F75 /* DetailService.swift */; };
 		0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDC2A65F92900650F75 /* DetailAPI.swift */; };
 		0557DDDF2A65FD7200650F75 /* DetailSavedBookMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */; };
 		055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BA2A603FCC001BD991 /* UITextView+.swift */; };
-		055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BE2A61C4D2001BD991 /* DetailModel.swift */; };
-		055E51C12A6325BC001BD991 /* DetailBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51C02A6325BC001BD991 /* DetailBookModel.swift */; };
 		055E51C32A6329F5001BD991 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51C22A6329F5001BD991 /* UIImage+.swift */; };
 		058326872A5BF893004A295F /* PPPTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326862A5BF893004A295F /* PPPTagView.swift */; };
 		058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */; };
@@ -137,12 +137,12 @@
 		0525C7352A66A8DC00699B2C /* DetailCheckArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCheckArticleModel.swift; sourceTree = "<group>"; };
 		0525C7372A66EA7900699B2C /* DetailGetSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGetSpaceModel.swift; sourceTree = "<group>"; };
 		0525C7392A67261E00699B2C /* DetailGetFollowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGetFollowModel.swift; sourceTree = "<group>"; };
+		0525C73B2A67533A00699B2C /* DetailRecommendBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecommendBookModel.swift; sourceTree = "<group>"; };
+		0525C73D2A675DD000699B2C /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		0557DDDA2A65F71100650F75 /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
 		0557DDDC2A65F92900650F75 /* DetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPI.swift; sourceTree = "<group>"; };
 		0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSavedBookMarkModel.swift; sourceTree = "<group>"; };
 		055E51BA2A603FCC001BD991 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
-		055E51BE2A61C4D2001BD991 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
-		055E51C02A6325BC001BD991 /* DetailBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookModel.swift; sourceTree = "<group>"; };
 		055E51C22A6329F5001BD991 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		058326862A5BF893004A295F /* PPPTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTagView.swift; sourceTree = "<group>"; };
 		058326882A5C00C7004A295F /* DetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -309,12 +309,12 @@
 		0583268C2A5C013B004A295F /* APIModel */ = {
 			isa = PBXGroup;
 			children = (
-				055E51BE2A61C4D2001BD991 /* DetailModel.swift */,
-				055E51C02A6325BC001BD991 /* DetailBookModel.swift */,
 				0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */,
 				0525C7352A66A8DC00699B2C /* DetailCheckArticleModel.swift */,
 				0525C7372A66EA7900699B2C /* DetailGetSpaceModel.swift */,
 				0525C7392A67261E00699B2C /* DetailGetFollowModel.swift */,
+				0525C73B2A67533A00699B2C /* DetailRecommendBookModel.swift */,
+				0525C73D2A675DD000699B2C /* Detail.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -906,6 +906,7 @@
 				D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */,
 				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2B031B22A631A2600DE8896 /* TicketAPI.swift in Sources */,
+				0525C73C2A67533A00699B2C /* DetailRecommendBookModel.swift in Sources */,
 				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
@@ -914,7 +915,6 @@
 				D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
 				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
-				055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */,
 				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
 				0525C7382A66EA7900699B2C /* DetailGetSpaceModel.swift in Sources */,
@@ -935,7 +935,6 @@
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
 				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
-				055E51C12A6325BC001BD991 /* DetailBookModel.swift in Sources */,
 				D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
@@ -986,6 +985,7 @@
 				2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D2B031B42A631A3D00DE8896 /* TicketService.swift in Sources */,
+				0525C73E2A675DD000699B2C /* Detail.swift in Sources */,
 				D26594152A5CF4B90089E56A /* TicketView.swift in Sources */,
 				0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */,
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,

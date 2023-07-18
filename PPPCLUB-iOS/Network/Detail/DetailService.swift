@@ -17,6 +17,7 @@ enum DetailService {
     case getSpace(spaceID: String)
     case getFollow(spaceID: String)
     case postFollow(spaceID: String)
+    case getRecommendBook(spaceID: String)
 }
 
 extension DetailService: BaseTargetType {
@@ -36,6 +37,8 @@ extension DetailService: BaseTargetType {
             return URLs.getFollow.replacingOccurrences(of: "{spaceId}", with: spaceID)
         case .postFollow(spaceID: let spaceID):
             return URLs.postFollow.replacingOccurrences(of: "{spaceId}", with: spaceID)
+        case .getRecommendBook(spaceID: let spaceID):
+            return URLs.getRecommendBook.replacingOccurrences(of: "{spaceId}", with: spaceID)
         }
     }
     
@@ -55,6 +58,8 @@ extension DetailService: BaseTargetType {
             return .get
         case .postFollow:
             return .post
+        case .getRecommendBook:
+            return .get
         }
     }
     
@@ -73,6 +78,8 @@ extension DetailService: BaseTargetType {
         case .getFollow:
             return .requestPlain
         case .postFollow:
+            return .requestPlain
+        case .getRecommendBook:
             return .requestPlain
         }
     }

@@ -56,8 +56,8 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureCell(image: UIImage, isCenter: Bool) {
-        bookImageView.image = image
+    func configureCell(recommendBookResult: DetailRecommendBookResult, isCenter: Bool) {
+        bookImageView.kfSetImage(url: recommendBookResult.book.imageURL)
         if isCenter {
             bookImageView.image = bookImageView.image?.alpha(1)
             bookImageView.layer.borderWidth = 6
