@@ -10,10 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+protocol TableViewCellDelegate: AnyObject {
+    func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event)
+}
+
 class HomeArticleTableViewCell: UITableViewCell {
     
     // MARK: - UI Components
     
+    weak var delegate: TableViewCellDelegate?
     static let identifier = "HomeArticleTableViewCell"
     private var cellTitleLabel = UILabel()
     private var cellImageView = UIImageView()
@@ -29,10 +34,18 @@ class HomeArticleTableViewCell: UITableViewCell {
         layout()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 33, left: 0, bottom: 16, right: 16))
+        //contentView.layoutIfNeeded()
+    }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
     
     // MARK: - Custom Method
     
@@ -57,32 +70,33 @@ class HomeArticleTableViewCell: UITableViewCell {
     }
     
     private func hierarchy() {
-        contentView.addSubviews(cellTitleLabel, cellImageView, cellBodyLabel)
+        contentView.addSubviews(cellImageView, cellBodyLabel,cellTitleLabel)
     }
     
     private func layout() {
         
         cellTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(30)
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(20)
-            $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(33)
+//            $0.top.equalToSuperview().inset(30)
+//            $0.centerX.equalToSuperview()
+//            $0.leading.equalToSuperview().inset(20)
+//            $0.bottom.equalToSuperview().inset(33)
+            $0.edges.equalToSuperview()
             
         }
         
         cellImageView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalToSuperview().inset(20)
+            $0.edges.equalToSuperview()
+//            $0.top.equalToSuperview()
+//            $0.width.equalToSuperview()
+//            $0.height.equalToSuperview().inset(20)
         }
         
         cellBodyLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(20)
-            $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(33)
+            $0.edges.equalToSuperview()
+//            $0.top.equalToSuperview()
+//            $0.centerX.equalToSuperview()
+//            $0.leading.equalToSuperview().inset(20)
+//            $0.bottom.equalToSuperview().inset(33)
         }
         
         
@@ -96,25 +110,25 @@ extension HomeArticleTableViewCell {
             if var articleContent = article[1]{
                 switch articleType {
                 case "title":
-                    cellTitleLabel.text = articleContent
                     cellTitleLabel.isHidden = false
                     cellImageView.isHidden = true
                     cellBodyLabel.isHidden = true
+                    cellTitleLabel.text = articleContent
                     
                 case "img":
-                    cellImageView.kfSetImage(url: articleContent)
-                    cellTitleLabel.isHidden = true
                     cellImageView.isHidden = false
+                    cellTitleLabel.isHidden = true
                     cellBodyLabel.isHidden = true
+                    cellImageView.kfSetImage(url: articleContent)
                     
                 case "body":
                     var bodyCompleteString = String()
+                    cellBodyLabel.isHidden = false
+                    cellTitleLabel.isHidden = true
+                    cellImageView.isHidden = true
                     bodyCompleteString = findBody(bodyFull: articleContent)
                     cellBodyLabel.text = bodyCompleteString
                     bodyInsideCheck(bodyArticle: articleContent)
-                    cellTitleLabel.isHidden = true
-                    cellImageView.isHidden = true
-                    cellBodyLabel.isHidden = false
                     
                 default:
                     break
@@ -127,7 +141,7 @@ extension HomeArticleTableViewCell {
 extension HomeArticleTableViewCell {
     
     func findBody(bodyFull: String) -> String {
-        let bodyList = ["click","bold","color"]
+        let bodyList = ["bold","color","click"]
         var compeletBody : String = bodyFull
         var _ : Int
 
@@ -148,8 +162,7 @@ extension HomeArticleTableViewCell {
         
         switch bodyType {
         case "click":
-//            cellBodyLabel.asUnder(targetString: bodyContent)
-            cellBodyLabel.asColor(targetString: bodyContent, color: .pppMainPurple)
+            cellBodyLabel.asUnder(targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
             
         case "bold" :
             cellBodyLabel.asFont(targetString: bodyContent, font: .pppBodyBold5)
@@ -165,7 +178,7 @@ extension HomeArticleTableViewCell {
     private func bodyInsideCheck(bodyArticle: String){
         
         var bodyString = bodyArticle
-        let bodyList = ["click","bold","color","body"]
+        let bodyList = ["color","bold","click"]
         var bodySplitType : String
         var _ : Int
 
