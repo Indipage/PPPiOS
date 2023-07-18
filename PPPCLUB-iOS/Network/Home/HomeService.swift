@@ -10,12 +10,15 @@ import UIKit
 import Moya
 
 enum HomeService {
+    case getArticleCard
     case getAllArticle
 }
 
 extension HomeService: BaseTargetType {
     var path: String {
         switch self {
+        case .getArticleCard:
+            return URLs.weeklyArticle
         case .getAllArticle:
             return URLs.totalArticle
         }
@@ -23,6 +26,8 @@ extension HomeService: BaseTargetType {
     
     var method: Moya.Method {
         switch self {
+        case .getArticleCard:
+            return .get
         case .getAllArticle:
             return .get
         }
@@ -30,6 +35,8 @@ extension HomeService: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
+        case .getArticleCard:
+            return .requestPlain
         case .getAllArticle:
             return .requestPlain
         }
@@ -37,6 +44,8 @@ extension HomeService: BaseTargetType {
     
     var headers: [String : String]? {
         switch self {
+        case .getArticleCard:
+            return APIConstants.noTokenHeader
         case .getAllArticle:
             return APIConstants.noTokenHeader
         }

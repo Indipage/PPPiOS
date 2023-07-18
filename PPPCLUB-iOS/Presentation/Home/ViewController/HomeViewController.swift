@@ -19,6 +19,12 @@ final class HomeViewController: BaseViewController {
     
     private var gesture : UIPanGestureRecognizer!
     
+    private var articleCardData: HomeArticleCardResult?  {
+        didSet {
+            self.dataBind(articleData: self.articleCardData)
+        }
+    }
+    
     private var allArticleData: [HomeArticleListResult] = [] {
         didSet {
             rootView.homeAllView.allArticleCollectionView.reloadData()
@@ -47,6 +53,7 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        requestArticleCardAPI()
         requestAllArticleAPI()
     }
     
@@ -63,6 +70,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func delegate() {
+        
         rootView.homeAllView.allArticleCollectionView.delegate = self
         rootView.homeAllView.allArticleCollectionView.dataSource = self
     }
@@ -91,6 +99,7 @@ final class HomeViewController: BaseViewController {
     
     @objc
     func allButtonTap() {
+        
         rootView.homeNavigationView.weeklyButton.isSelected = false
         rootView.homeNavigationView.allButton.isSelected = true
         rootView.homeNavigationView.weeklyButton.backgroundColor = .pppGrey2
@@ -183,9 +192,27 @@ extension HomeViewController: UICollectionViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension HomeViewController: SavedArticleCellDelegate {
+    func dataBind(articleData: HomeArticleCardResult?) {
+        guard let articleData = articleData else { return }
+        rootView.homeWeeklyView.cardId = articleData.id
+        rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
+        rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
+        rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
+        rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
+        rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
+        rootView.homeWeeklyView.cardRemainingDayLabel.text = String(articleData.remainingDays)
+    }
+    
     func articleDidTap() {
         let articleViewController = HomeArticleViewController()
         self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+    
+    func requestArticleCardAPI() {
+        HomeAPI.shared.getArticleCard() { result in
+            guard let result = self.validateResult(result) as? HomeArticleCardResult else { return }
+            self.articleCardData = result
+        }
     }
 
     private func requestAllArticleAPI() {

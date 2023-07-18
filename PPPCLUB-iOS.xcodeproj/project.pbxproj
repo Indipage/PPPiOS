@@ -38,6 +38,8 @@
 		2C1796532A670F110020B9A5 /* HomeArticleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */; };
 		2C1796582A670FC30020B9A5 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796572A670FC30020B9A5 /* HomeAPI.swift */; };
 		2C17965A2A6710980020B9A5 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796592A6710980020B9A5 /* HomeService.swift */; };
+		2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */; };
+		2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */; };
 		2C1F440F2A6492F3006CEF71 /* HomeArticleDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F440E2A6492F3006CEF71 /* HomeArticleDummy.swift */; };
 		2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */; };
 		2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A96382A6304BC009B2919 /* HomeAllView.swift */; };
@@ -168,6 +170,8 @@
 		2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleListModel.swift; sourceTree = "<group>"; };
 		2C1796572A670FC30020B9A5 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
 		2C1796592A6710980020B9A5 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCardModel.swift; sourceTree = "<group>"; };
+		2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCheckModel.swift; sourceTree = "<group>"; };
 		2C1F440E2A6492F3006CEF71 /* HomeArticleDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleDummy.swift; sourceTree = "<group>"; };
 		2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleParsing.swift; sourceTree = "<group>"; };
 		2C8A96382A6304BC009B2919 /* HomeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAllView.swift; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */,
+				2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */,
+				2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -958,6 +964,7 @@
 				055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */,
 				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
+				2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
 				2C0C72992A60696100EC2117 /* HomeArticleView.swift in Sources */,
 				D2B031A62A62B32300DE8896 /* MyUserInfoModel.swift in Sources */,
@@ -979,6 +986,7 @@
 				055E51C12A6325BC001BD991 /* DetailBookModel.swift in Sources */,
 				D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
+				2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */,
 				D26594092A5C6FE70089E56A /* TicketCardView.swift in Sources */,
