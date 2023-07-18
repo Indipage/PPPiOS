@@ -24,4 +24,22 @@ extension DetailAPI {
             )
         }
     }
+    
+    public func postSavedSpace(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        detailProvider.request(.postSavedSpace(spaceID: spaceID)) { (result) in
+            self.disposeNetwork(result,
+                                dataModel: VoidResult.self,
+                                completion: completion
+            )
+        }
+    }
+    
+    public func deleteSavedSpace(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        detailProvider.request(.deleteSavedSpace(spaceID: spaceID)) { (result) in
+            self.disposeNetwork(result,
+                                dataModel: VoidResult.self,
+                                completion: completion
+            )
+        }
+    }
 }

@@ -89,6 +89,13 @@ final class DetailViewController: BaseViewController {
     @objc
     private func didTouchedSaveButton() {
         detailView.detailTopView.saveButton.isSelected.toggle()
+        if detailView.detailTopView.saveButton.isSelected {
+            print("🥰🥰")
+            requestPostSavedBookMarkAPI()
+        } else {
+            print("🥲🥲")
+            requestDeleteSavedBookMarkAPI()
+        }
     }
     
     @objc func didTouchedRequestButton() {
@@ -206,6 +213,20 @@ extension DetailViewController {
         DetailAPI.shared.getSavedSpace(spaceID: "1") { result in
             guard let result = self.validateResult(result) as? DetailSavedBookMarkResult else { return }
             self.detailView.detailTopView.saveButton.isSelected = result.bookmarked!
+        }
+    }
+    
+    private func requestPostSavedBookMarkAPI() {
+        DetailAPI.shared.postSavedSpace(spaceID: "1") { result in
+            guard let result = self.validateResult(result) as? VoidResult else { return }
+            print(result)
+        }
+    }
+    
+    private func requestDeleteSavedBookMarkAPI() {
+        DetailAPI.shared.deleteSavedSpace(spaceID: "1") { result in
+            guard let result = self.validateResult(result) as? VoidResult else { return }
+            print(result)
         }
     }
 }
