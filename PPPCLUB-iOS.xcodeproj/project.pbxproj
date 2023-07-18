@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0557DDDB2A65F71100650F75 /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDA2A65F71100650F75 /* DetailService.swift */; };
+		0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDC2A65F92900650F75 /* DetailAPI.swift */; };
+		0557DDDF2A65FD7200650F75 /* DetailSavedBookMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */; };
 		055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BA2A603FCC001BD991 /* UITextView+.swift */; };
 		055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51BE2A61C4D2001BD991 /* DetailModel.swift */; };
 		055E51C12A6325BC001BD991 /* DetailBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E51C02A6325BC001BD991 /* DetailBookModel.swift */; };
@@ -129,6 +132,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0557DDDA2A65F71100650F75 /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
+		0557DDDC2A65F92900650F75 /* DetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPI.swift; sourceTree = "<group>"; };
+		0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSavedBookMarkModel.swift; sourceTree = "<group>"; };
 		055E51BA2A603FCC001BD991 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		055E51BE2A61C4D2001BD991 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		055E51C02A6325BC001BD991 /* DetailBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookModel.swift; sourceTree = "<group>"; };
@@ -263,6 +269,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0557DDD92A65F6FA00650F75 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0557DDDA2A65F71100650F75 /* DetailService.swift */,
+				0557DDDC2A65F92900650F75 /* DetailAPI.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		058326832A5BF08C004A295F /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +308,7 @@
 				0583268D2A5C0158004A295F /* DetailTagModel.swift */,
 				055E51BE2A61C4D2001BD991 /* DetailModel.swift */,
 				055E51C02A6325BC001BD991 /* DetailBookModel.swift */,
+				0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -503,6 +519,7 @@
 		D2614A8B2A5290CC00869710 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0557DDD92A65F6FA00650F75 /* Detail */,
 				D2B031B02A631A1800DE8896 /* Ticket */,
 				D2B031A72A62B45000DE8896 /* My */,
 				D2614A8C2A5290D100869710 /* Foundation */,
@@ -961,6 +978,7 @@
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D2B031B42A631A3D00DE8896 /* TicketService.swift in Sources */,
 				D26594152A5CF4B90089E56A /* TicketView.swift in Sources */,
+				0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */,
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
@@ -978,8 +996,10 @@
 				D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */,
 				058326872A5BF893004A295F /* PPPTagView.swift in Sources */,
 				D2614A6A2A528CA300869710 /* UIColor+.swift in Sources */,
+				0557DDDB2A65F71100650F75 /* DetailService.swift in Sources */,
 				D2614A982A52918A00869710 /* BaseTargetType.swift in Sources */,
 				D2B096182A529984007BC756 /* SearchViewController.swift in Sources */,
+				0557DDDF2A65FD7200650F75 /* DetailSavedBookMarkModel.swift in Sources */,
 				D2B0319F2A614FD500DE8896 /* MySavedArticleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
