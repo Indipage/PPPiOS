@@ -42,4 +42,13 @@ extension DetailAPI {
             )
         }
     }
+    
+    public func getCheckArticle(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        detailProvider.request(.getCheckArticle(spaceID: spaceID)) { (result) in
+            self.disposeNetwork(result,
+                                dataModel: DetailCheckArticleResult.self,
+                                completion: completion
+            )
+        }
+    }
 }

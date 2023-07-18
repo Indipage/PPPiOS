@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0525C7362A66A8DC00699B2C /* DetailCheckArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7352A66A8DC00699B2C /* DetailCheckArticleModel.swift */; };
 		0557DDDB2A65F71100650F75 /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDA2A65F71100650F75 /* DetailService.swift */; };
 		0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDC2A65F92900650F75 /* DetailAPI.swift */; };
 		0557DDDF2A65FD7200650F75 /* DetailSavedBookMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */; };
@@ -132,6 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0525C7352A66A8DC00699B2C /* DetailCheckArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCheckArticleModel.swift; sourceTree = "<group>"; };
 		0557DDDA2A65F71100650F75 /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
 		0557DDDC2A65F92900650F75 /* DetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPI.swift; sourceTree = "<group>"; };
 		0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSavedBookMarkModel.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				055E51BE2A61C4D2001BD991 /* DetailModel.swift */,
 				055E51C02A6325BC001BD991 /* DetailBookModel.swift */,
 				0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */,
+				0525C7352A66A8DC00699B2C /* DetailCheckArticleModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
 				D224D49C2A5D9A9700B014ED /* MySavedView.swift in Sources */,
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
+				0525C7362A66A8DC00699B2C /* DetailCheckArticleModel.swift in Sources */,
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
 				D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */,
 				D224D4AD2A5DF15600B014ED /* MyAccountModel.swift in Sources */,

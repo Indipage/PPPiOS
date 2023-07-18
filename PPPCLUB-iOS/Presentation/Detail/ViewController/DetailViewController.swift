@@ -17,6 +17,7 @@ final class DetailViewController: BaseViewController {
     private lazy var dummy = Tag.dummy()
     private lazy var bookDummy = DetailBoolModel.dummy()
     private var currentIndex: Int? = 1
+    private var spaceID = 1
     
     // MARK: - UI Components
     
@@ -29,6 +30,7 @@ final class DetailViewController: BaseViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         requestSavedBookMarkAPI()
+        requestGetCheckedArticle()
     }
     
     override func viewDidLoad() {
@@ -210,23 +212,34 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension DetailViewController {
     private func requestSavedBookMarkAPI() {
-        DetailAPI.shared.getSavedSpace(spaceID: "1") { result in
+        DetailAPI.shared.getSavedSpace(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? DetailSavedBookMarkResult else { return }
             self.detailView.detailTopView.saveButton.isSelected = result.bookmarked!
         }
     }
     
     private func requestPostSavedBookMarkAPI() {
-        DetailAPI.shared.postSavedSpace(spaceID: "1") { result in
+        DetailAPI.shared.postSavedSpace(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? VoidResult else { return }
             print(result)
         }
     }
     
     private func requestDeleteSavedBookMarkAPI() {
-        DetailAPI.shared.deleteSavedSpace(spaceID: "1") { result in
+        DetailAPI.shared.deleteSavedSpace(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? VoidResult else { return }
             print(result)
+        }
+    }
+    
+    private func requestGetCheckedArticle() {
+        DetailAPI.shared.getCheckArticle(spaceID: "\(spaceID)") {result in
+            guard let result = self.validateResult(result) as? DetailCheckArticleResult else {
+                self.detailView.isArticleExist = false
+                return
+            }
+            self.detailView.isArticleExist = true
+            self.detailView.moveToArticleView.dataBind(result: result)
         }
     }
 }

@@ -13,6 +13,7 @@ enum DetailService {
     case getSavedSpace(spaceID: String)
     case postSavedSpace(spaceID: String)
     case deleteSavedSpace(spaceID: String)
+    case getCheckArticle(spaceID: String)
 }
 
 extension DetailService: BaseTargetType {
@@ -24,6 +25,8 @@ extension DetailService: BaseTargetType {
             return URLs.getSavedSpace.replacingOccurrences(of: "{spaceId}", with: spaceID)
         case .deleteSavedSpace(let spaceID):
             return URLs.getSavedSpace.replacingOccurrences(of: "{spaceId}", with: spaceID)
+        case .getCheckArticle(let spaceID):
+            return URLs.getCheckArticle.replacingOccurrences(of: "{spaceId}", with: spaceID)
         }
     }
     
@@ -35,6 +38,8 @@ extension DetailService: BaseTargetType {
             return .post
         case .deleteSavedSpace:
             return .delete
+        case .getCheckArticle:
+            return .get
         }
     }
     
@@ -45,6 +50,8 @@ extension DetailService: BaseTargetType {
         case .postSavedSpace:
             return .requestPlain
         case .deleteSavedSpace:
+            return .requestPlain
+        case .getCheckArticle:
             return .requestPlain
         }
     }
