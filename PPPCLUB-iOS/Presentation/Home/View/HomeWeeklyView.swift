@@ -10,6 +10,7 @@ import UIKit
 class HomeWeeklyView: UIView {
     
     var cardId = Int()
+    var slideCheck = Bool()
     
     // MARK: - UI Components
     
@@ -39,7 +40,7 @@ class HomeWeeklyView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-        
+            
         cardTitleLabel.do {
             $0.text = "바보"
             $0.font = .pppTitle1
@@ -63,6 +64,7 @@ class HomeWeeklyView: UIView {
         ticketCoverImageView.do {
             $0.image = Image.mockArticleCardPacked
             $0.isUserInteractionEnabled = true
+            $0.isHidden = slideCheck
         }
     }
     

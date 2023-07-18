@@ -21,11 +21,17 @@ final class HomeViewController: BaseViewController {
     
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
-            self.dataBind(articleData: self.articleCardData)
+            self.dataBindArticleCard(articleData: self.articleCardData)
         }
     }
     
-    private var allArticleData: [HomeArticleListResult] = [] {
+    private var articleCheckData: HomeArticleCheckResult? {
+        didSet {
+            self.dataBindArticleCheck(articleData: articleCheckData)
+        }
+    }
+    
+    private var articleAllData: [HomeArticleListResult] = [] {
         didSet {
             rootView.homeAllView.allArticleCollectionView.reloadData()
         }
@@ -54,6 +60,7 @@ final class HomeViewController: BaseViewController {
         super.viewWillAppear(true)
         
         requestArticleCardAPI()
+        requestSlideCheckAPI()
         requestAllArticleAPI()
     }
     
@@ -118,7 +125,7 @@ final class HomeViewController: BaseViewController {
     
     @objc
     public func ticketDragAnimation() {
-        
+        requestPutSlideCheckAPI()
         pushToArticleViewController()
     }
     
@@ -178,13 +185,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allArticleData.count
+        return articleAllData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
         cell.delegate = self
-        cell.dataBindHome(articleData: allArticleData[indexPath.item])
+        cell.dataBindHome(articleData: articleAllData[indexPath.item])
         return cell
     }
 }
@@ -192,7 +199,8 @@ extension HomeViewController: UICollectionViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension HomeViewController: SavedArticleCellDelegate {
-    func dataBind(articleData: HomeArticleCardResult?) {
+    
+    func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
         rootView.homeWeeklyView.cardId = articleData.id
         rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
@@ -201,6 +209,12 @@ extension HomeViewController: SavedArticleCellDelegate {
         rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
         rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
         rootView.homeWeeklyView.cardRemainingDayLabel.text = String(articleData.remainingDays)
+    }
+    
+    func dataBindArticleCheck(articleData: HomeArticleCheckResult?) {
+        guard let hasSlide = articleData?.hasSlide else { return }
+        rootView.homeWeeklyView.slideCheck = hasSlide
+        print("🅿️ \(rootView.homeWeeklyView.slideCheck)")
     }
     
     func articleDidTap() {
@@ -214,11 +228,26 @@ extension HomeViewController: SavedArticleCellDelegate {
             self.articleCardData = result
         }
     }
+    
+    func requestSlideCheckAPI() {
+        HomeAPI.shared.getArticleCheck() { result in
+            guard let result = self.validateResult(result) as? HomeArticleCheckResult else { return }
+            self.articleCheckData = result
+        }
+    }
+    
+    func requestPutSlideCheckAPI() {
+        HomeAPI.shared.putArticleCheck() { result in
+            guard let result = self.validateResult(result) else { return }
+            print("💗💗💗💗💗💗💗💗💗💗💗")
+            print("슬라이드 완료")
+        }
+    }
 
-    private func requestAllArticleAPI() {
+    func requestAllArticleAPI() {
         HomeAPI.shared.getAllArticle() { result in
             guard let result = self.validateResult(result) as? [HomeArticleListResult] else { return }
-            self.allArticleData = result
+            self.articleAllData = result
         }
     }
 }

@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct HomeArticleCheckResult: Codable {
+    let hasSlide : Bool
+}
+
