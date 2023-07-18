@@ -35,6 +35,8 @@ public enum Image {
     static let allFill = UIImage(named: "all.fill")!
     static let weekly = UIImage(named: "weekly")!
     static let weeklyFill = UIImage(named: "weekly.fill")!
+    static let articleGo = UIImage(named: "articleClickGO")!
+    static let articleTicket = UIImage(named: "articleTicket")!
     
     //MARK: - Mock
     

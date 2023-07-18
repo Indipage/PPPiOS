@@ -35,6 +35,8 @@
 		2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */; };
 		2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */; };
 		2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */; };
+		2C1F440F2A6492F3006CEF71 /* HomeArticleDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F440E2A6492F3006CEF71 /* HomeArticleDummy.swift */; };
+		2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */; };
 		2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A96382A6304BC009B2919 /* HomeAllView.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
@@ -160,6 +162,8 @@
 		2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleFooterView.swift; sourceTree = "<group>"; };
 		2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklyView.swift; sourceTree = "<group>"; };
 		2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
+		2C1F440E2A6492F3006CEF71 /* HomeArticleDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleDummy.swift; sourceTree = "<group>"; };
+		2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleParsing.swift; sourceTree = "<group>"; };
 		2C8A96382A6304BC009B2919 /* HomeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAllView.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
@@ -678,6 +682,8 @@
 				2C0C72A02A6069CF00EC2117 /* HomeCell */,
 				D2B096122A529921007BC756 /* ViewController */,
 				D2B096112A52991A007BC756 /* View */,
+				2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */,
+				2C1F440E2A6492F3006CEF71 /* HomeArticleDummy.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -958,6 +964,7 @@
 				D2B031AF2A62E1D100DE8896 /* MySavedArticleModel.swift in Sources */,
 				D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */,
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
+				2C1F440F2A6492F3006CEF71 /* HomeArticleDummy.swift in Sources */,
 				D224D49C2A5D9A9700B014ED /* MySavedView.swift in Sources */,
 				D2614A902A52912200869710 /* SimpleResponse.swift in Sources */,
 				D2614A962A52917B00869710 /* NetworkResult.swift in Sources */,
@@ -989,6 +996,7 @@
 				D224D4962A5D1D0600B014ED /* TicketResultView.swift in Sources */,
 				05CD07DD2A5E9C37003EEE84 /* SearchTableViewCell.swift in Sources */,
 				2C0C729D2A60699600EC2117 /* HomeArticleTableView.swift in Sources */,
+				2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */,
 				D2B031972A61397E00DE8896 /* MySavedArticleTableViewCell.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,

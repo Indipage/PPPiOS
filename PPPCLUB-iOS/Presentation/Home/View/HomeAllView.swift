@@ -25,6 +25,7 @@ class HomeAllView: UIView {
             style()
             hierarchy()
             layout()
+
         }
         
         required init?(coder: NSCoder) {
