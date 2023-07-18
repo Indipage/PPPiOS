@@ -85,8 +85,7 @@ class HomeArticleViewController: UIViewController {
 //MARK: - UITableViewDelegate
 
 extension HomeArticleViewController: UITableViewDelegate {
-    
-    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 475
     }
     
@@ -121,7 +120,7 @@ extension HomeArticleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return parsingCnt
+        return parsingData.count
     }
 }
 
@@ -140,11 +139,6 @@ extension HomeArticleViewController {
         
         var articleDummy = article
         
-        var titleCnt : Int = 0
-        var imgCnt : Int = 0
-        var bodyCnt : Int = 0
-        var totalCnt : Int = 0
-        
         while articleDummy.count > 0 {
             
             var blockType : String?
@@ -160,14 +154,10 @@ extension HomeArticleViewController {
                 switch blockType {
                 case "title":
                     parsingStored.append(["title", blockContent])
-                    titleCnt += 1
                 case "img":
                     parsingStored.append(["img", blockContent])
-                    imgCnt += 1
                 case "body":
                     parsingStored.append(["body", blockContent])
-                    bodyCnt += 1
-                    
                 default:
                     blockType = ""
                 }
@@ -227,3 +217,4 @@ extension HomeArticleViewController {
         return parsingStored
     }
 }
+

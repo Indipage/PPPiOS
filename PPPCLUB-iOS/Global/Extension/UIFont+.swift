@@ -47,7 +47,7 @@ extension UIFont{
     }
     
     class var pppBodyBold5: UIFont {
-        return UIFont(name: "Pretendard-Regular", size: 15)!
+        return UIFont(name: "Pretendard-Bold", size: 15)!
     }
     
     class var pppBody6: UIFont {

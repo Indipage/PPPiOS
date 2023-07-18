@@ -1,10 +1,10 @@
 //
-//  HomeArticleParsing.swift
-//  PPPCLUB-iOS
+////  HomeArticleParsing.swift
+////  PPPCLUB-iOS
+////
+////  Created by 신지원 on 2023/07/17.
 //
-//  Created by 신지원 on 2023/07/17.
 //
-
 //import UIKit
 //
 //extension UIView {
@@ -176,7 +176,7 @@
 //        
 //        totalCnt = titleCnt + imgCnt + bodyCnt
 ////        print("totalCnt : \(totalCnt)")
-////        
+////
 ////        for i in 0..<totalCnt {
 ////            for j in 0...1 {
 ////                print(parsingStored[i][j])
