@@ -122,30 +122,6 @@ final class DetailView: UIScrollView {
         }
     }
     
-    private func calculateCurationTextViewHeight(text: String) -> CGFloat {
-        let textView = UITextView(
-            frame: CGRect(
-                x: 0,
-                y: 0,
-                width: Size.width - 128,
-                height: 1)
-        )
-        textView.setAttribute(text, font: .pppBody5, color: .pppBlack)
-        return textView.contentSize.height
-    }
-    
-    private func calculateIntroduceTextViewHeight(text: String) -> CGFloat {
-        let textView = UITextView(
-            frame: CGRect(
-                x: 0,
-                y: 0,
-                width: Size.width - 56,
-                height: 1)
-        )
-        textView.setAttribute(text, font: .pppBody5, color: .pppBlack)
-        return textView.contentSize.height
-    }
-    
     private func calculateTextViewHeight(text: String, width: CGFloat) -> CGFloat {
         let textView = UITextView(
             frame: CGRect(

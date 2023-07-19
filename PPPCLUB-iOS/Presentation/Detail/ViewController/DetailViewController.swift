@@ -20,6 +20,7 @@ final class DetailViewController: BaseViewController {
     private var recommandBookData: [DetailRecommendBookResult] = [] {
         didSet {
             detailView.ownerView.bookCollectionView.reloadData()
+            self.moveCellToMiddle()
         }
     }
     private var currentIndex: Int = 0 {
@@ -337,7 +338,6 @@ extension DetailViewController {
         DetailAPI.shared.getRecommendBool(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? [DetailRecommendBookResult] else { return }
             self.recommandBookData = result
-            self.moveCellToMiddle()
         }
     }
 }
