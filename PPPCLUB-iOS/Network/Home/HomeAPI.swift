@@ -57,4 +57,35 @@ extension HomeAPI{
         }
     }
     
+    public func getBookmarkCheck(articleID: String,completion: @escaping (NetworkResult<Any>) -> Void) {
+        homeProvider.request(.getBookmarkCheck(articleID: articleID)) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: HomeBookmarkCheckResult.self,
+                completion: completion
+            )
+        }
+    }
+    
+    public func postBookmarkCheck(articleID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        homeProvider.request(.postBookmarkCheck(articleID: articleID)) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: VoidResult.self,
+                completion: completion
+            )
+        }
+    }
+    
+    public func deleteBookmarkCheck(articleID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        homeProvider.request(.deleteBookmarkCheck(articleID: articleID)) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: VoidResult.self,
+                completion: completion
+            )
+        }
+    }
+    
+    
 }

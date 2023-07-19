@@ -14,6 +14,7 @@ public enum URLs{
     static let weeklyArticle = "/article/weekly"
     static let patchSlideArticle = "/user/weekly/slide"
     static let totalArticle = "/article"
+    static let bookMarkArticle = "/bookmark/article/{articleId}"
     static let detailArticle = "/article/{articleId}"
     
     //MARK: - Search

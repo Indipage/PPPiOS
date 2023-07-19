@@ -11,16 +11,23 @@ import SnapKit
 import Then
 
 
-class HomeArticleViewController: UIViewController {
+class HomeArticleViewController: BaseViewController {
     
     // MARK: - Properties
     
     private var parsingData = [[String?]]()
     private var parsingCnt = Int()
     
+    private var bookmarkCheckData: HomeBookmarkCheckResult? {
+        didSet {
+            self.dataBindBookmarkCheck(articleData: bookmarkCheckData)
+        }
+    }
+    
     // MARK: - UI Components
     
     private let rootView = HomeArticleView()
+    
     
     // MARK: - Life Cycles
     
@@ -34,6 +41,8 @@ class HomeArticleViewController: UIViewController {
         target()
         register()
         delegate()
+        
+        requestBookmarkCheckAPI()
         
         style()
         hierarchy()
@@ -52,6 +61,8 @@ class HomeArticleViewController: UIViewController {
     private func target() {
         
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
+        rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
+        
     }
     
     private func register() {
@@ -85,6 +96,18 @@ class HomeArticleViewController: UIViewController {
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
+    @objc
+    func saveButtonTap() {
+        rootView.articleNavigationView.saveButton.isSelected.toggle()
+        
+        if rootView.articleNavigationView.saveButton.isSelected {
+            requestBookmarkRegisterAPI()
+        }
+        else {
+            requestBookmarkDeleteAPI()
+        }
+    }
+    
 }
 
 //MARK: - UITableViewDelegate
@@ -110,6 +133,30 @@ extension HomeArticleViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, shouldScrollHorizontallyToItemAt section: Bool) -> Bool {
         return false
+    }
+    
+    func dataBindBookmarkCheck(articleData: HomeBookmarkCheckResult?) {
+        guard let bookMarked = articleData?.bookMarked else { return }
+        rootView.articleNavigationView.bookMarked = bookMarked
+    }
+    
+    func requestBookmarkCheckAPI() {
+        HomeAPI.shared.getBookmarkCheck(articleID: "1") { result in
+            guard let result = self.validateResult(result) as? HomeBookmarkCheckResult else { return }
+            self.bookmarkCheckData = result
+        }
+    }
+    
+    public func requestBookmarkRegisterAPI() {
+        HomeAPI.shared.postBookmarkCheck(articleID: "1") { result in
+            guard let result = self.validateResult(result) else { return }
+        }
+    }
+    
+    public func requestBookmarkDeleteAPI() {
+        HomeAPI.shared.deleteBookmarkCheck(articleID: "1") { result in
+            guard let result = self.validateResult(result) else { return }
+        }
     }
 }
 

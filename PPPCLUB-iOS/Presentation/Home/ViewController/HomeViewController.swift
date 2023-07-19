@@ -125,7 +125,7 @@ final class HomeViewController: BaseViewController {
     
     @objc
     public func ticketDragAnimation() {
-        requestPutSlideCheckAPI()
+        requestPutSlideAPI()
         pushToArticleViewController()
     }
     
@@ -214,7 +214,6 @@ extension HomeViewController: SavedArticleCellDelegate {
     func dataBindArticleCheck(articleData: HomeArticleCheckResult?) {
         guard let hasSlide = articleData?.hasSlide else { return }
         rootView.homeWeeklyView.slideCheck = hasSlide
-        print("🅿️ \(rootView.homeWeeklyView.slideCheck)")
     }
     
     func articleDidTap() {
@@ -236,11 +235,9 @@ extension HomeViewController: SavedArticleCellDelegate {
         }
     }
     
-    func requestPutSlideCheckAPI() {
+    func requestPutSlideAPI() {
         HomeAPI.shared.putArticleCheck() { result in
             guard let result = self.validateResult(result) else { return }
-            print("💗💗💗💗💗💗💗💗💗💗💗")
-            print("슬라이드 완료")
         }
     }
 
