@@ -18,6 +18,9 @@ enum HomeService {
     case getBookmarkCheck(articleID: String)
     case postBookmarkCheck(articleID: String)
     case deleteBookmarkCheck(articleID: String)
+    
+    case getTicketCheck(spaceID: String)
+    case postTicketGet(spaceID: String)
 }
 
 extension HomeService: BaseTargetType {
@@ -38,6 +41,11 @@ extension HomeService: BaseTargetType {
             return URLs.postSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
         case .deleteBookmarkCheck(let articleID):
             return URLs.deleteSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
+            
+        case .getTicketCheck(let spaceID):
+            return URLs.getTicket.replacingOccurrences(of: "{spaceId}", with: spaceID)
+        case .postTicketGet(let spaceID):
+            return URLs.postTicket.replacingOccurrences(of: "{spaceId}", with: spaceID)
         }
     }
     
@@ -58,6 +66,11 @@ extension HomeService: BaseTargetType {
             return .post
         case .deleteBookmarkCheck:
             return .delete
+            
+        case .getTicketCheck:
+            return .get
+        case .postTicketGet:
+            return .post
         }
     }
     
@@ -77,6 +90,11 @@ extension HomeService: BaseTargetType {
         case .postBookmarkCheck:
             return .requestPlain
         case .deleteBookmarkCheck:
+            return .requestPlain
+            
+        case .getTicketCheck:
+            return .requestPlain
+        case .postTicketGet:
             return .requestPlain
         }
     }
@@ -99,6 +117,10 @@ extension HomeService: BaseTargetType {
         case .deleteBookmarkCheck:
             return APIConstants.noTokenHeader
             
+        case .getTicketCheck:
+            return APIConstants.noTokenHeader
+        case .postTicketGet:
+            return APIConstants.noTokenHeader
         }
     }
 }

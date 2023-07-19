@@ -24,6 +24,19 @@ class HomeArticleViewController: BaseViewController {
         }
     }
     
+    private var ticketCheckData: HomeTicketCheckResult? {
+        didSet {
+
+            rootView.articleTableView.reloadData()
+        }
+    }
+    
+    private var ticketGetData: HomeTicketGetResult? {
+        didSet {
+            self.dataBindTicketGet(articleData: ticketGetData)
+        }
+    }
+    
     // MARK: - UI Components
     
     private let rootView = HomeArticleView()
@@ -42,7 +55,6 @@ class HomeArticleViewController: BaseViewController {
         register()
         delegate()
         
-        requestBookmarkCheckAPI()
         
         style()
         hierarchy()
@@ -54,6 +66,9 @@ class HomeArticleViewController: BaseViewController {
         
         parsingData = HomeArticleParsing()
         parsingCnt = parsingData.count/2
+        
+        requestBookmarkCheckAPI()
+        requestTicketCheckAPI()
     }
     
     // MARK: - Custom Method
@@ -113,9 +128,9 @@ class HomeArticleViewController: BaseViewController {
 //MARK: - UITableViewDelegate
 
 extension HomeArticleViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
+    //    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        return UITableView.automaticDimension
+    //    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleHeaderView.cellIdentifier) as? HomeArticleHeaderView else { return UIView()}
@@ -126,18 +141,26 @@ extension HomeArticleViewController: UITableViewDelegate {
         return 692
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
-        return footer
-    }
+    
     
     func tableView(_ tableView: UITableView, shouldScrollHorizontallyToItemAt section: Bool) -> Bool {
         return false
     }
-    
+}
+
+extension HomeArticleViewController {
     func dataBindBookmarkCheck(articleData: HomeBookmarkCheckResult?) {
-        guard let bookMarked = articleData?.bookMarked else { return }
-        rootView.articleNavigationView.bookMarked = bookMarked
+        guard let bookMarked = articleData?.bookmarked else { return }
+        if bookMarked {
+            rootView.articleNavigationView.saveButton.isSelected = true
+        }
+        else {
+            rootView.articleNavigationView.saveButton.isSelected = false
+        }
+    }
+    
+    func dataBindTicketGet(articleData: HomeTicketGetResult?) {
+        guard let message = articleData?.message else { return }
     }
     
     func requestBookmarkCheckAPI() {
@@ -158,6 +181,21 @@ extension HomeArticleViewController: UITableViewDelegate {
             guard let result = self.validateResult(result) else { return }
         }
     }
+    
+    public func requestTicketCheckAPI() {
+        HomeAPI.shared.getTicketCheck(spaceID: "1") { result in
+            guard let result = self.validateResult(result) as? HomeTicketCheckResult else { return }
+            self.ticketCheckData = result
+            
+        }
+    }
+    
+    public func requestTicketGetAPI() {
+        HomeAPI.shared.postTicketGet(spaceID: "1") { result in
+            guard let result = self.validateResult(result) as? HomeTicketGetResult else { return }
+            self.ticketGetData = result
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -173,6 +211,12 @@ extension HomeArticleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parsingData.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
+        footer.dataBindTicketCheck(articleData: ticketCheckData)
+        return footer
     }
 }
 

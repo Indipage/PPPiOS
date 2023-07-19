@@ -57,7 +57,7 @@ extension HomeAPI{
         }
     }
     
-    public func getBookmarkCheck(articleID: String,completion: @escaping (NetworkResult<Any>) -> Void) {
+    public func getBookmarkCheck(articleID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         homeProvider.request(.getBookmarkCheck(articleID: articleID)) { (result) in
             self.disposeNetwork(
                 result,
@@ -79,6 +79,26 @@ extension HomeAPI{
     
     public func deleteBookmarkCheck(articleID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         homeProvider.request(.deleteBookmarkCheck(articleID: articleID)) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: VoidResult.self,
+                completion: completion
+            )
+        }
+    }
+    
+    public func getTicketCheck(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        homeProvider.request(.getTicketCheck(spaceID: "1")) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: HomeTicketCheckResult.self,
+                completion: completion
+            )
+        }
+    }
+    
+    public func postTicketGet(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        homeProvider.request(.postTicketGet(spaceID: "1")) { (result) in
             self.disposeNetwork(
                 result,
                 dataModel: VoidResult.self,

@@ -42,6 +42,7 @@ class HomeArticleNavigationView: UIView {
     // MARK: - Custom Method
     
     private func target() {
+        
     }
     
     private func style() {
@@ -60,9 +61,6 @@ class HomeArticleNavigationView: UIView {
         }
         
         saveButton.do {
-            if bookMarked {
-                saveButton.isSelected = true
-            }
             $0.setImage(Image.bookmark, for: .normal)
             $0.setImage(Image.bookmarkFill, for: .selected)
         }

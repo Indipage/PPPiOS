@@ -8,5 +8,5 @@
 import Foundation
 
 struct HomeBookmarkCheckResult: Codable {
-    let bookMarked : Bool
+    let bookmarked : Bool
 }

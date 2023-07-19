@@ -44,6 +44,8 @@
 		2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */; };
 		2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A96382A6304BC009B2919 /* HomeAllView.swift */; };
 		2CC8E6352A68353B00C117D7 /* HomeBookmarkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E6342A68353B00C117D7 /* HomeBookmarkCheckModel.swift */; };
+		2CC8E63A2A6854C100C117D7 /* HomeTicketGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E6392A6854C100C117D7 /* HomeTicketGetModel.swift */; };
+		2CC8E63C2A68735300C117D7 /* HomeTicketCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E63B2A68735300C117D7 /* HomeTicketCheckModel.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
 		D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */; };
@@ -176,6 +178,8 @@
 		2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleParsing.swift; sourceTree = "<group>"; };
 		2C8A96382A6304BC009B2919 /* HomeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAllView.swift; sourceTree = "<group>"; };
 		2CC8E6342A68353B00C117D7 /* HomeBookmarkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookmarkCheckModel.swift; sourceTree = "<group>"; };
+		2CC8E6392A6854C100C117D7 /* HomeTicketGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTicketGetModel.swift; sourceTree = "<group>"; };
+		2CC8E63B2A68735300C117D7 /* HomeTicketCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTicketCheckModel.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 				2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */,
 				2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */,
 				2CC8E6342A68353B00C117D7 /* HomeBookmarkCheckModel.swift */,
+				2CC8E6392A6854C100C117D7 /* HomeTicketGetModel.swift */,
+				2CC8E63B2A68735300C117D7 /* HomeTicketCheckModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -950,6 +956,7 @@
 				D224D4A12A5DA95600B014ED /* MyInfoView.swift in Sources */,
 				D2B031A32A6205F400DE8896 /* Config.swift in Sources */,
 				D224D4982A5D1D6300B014ED /* TicketSuccessView.swift in Sources */,
+				2CC8E63C2A68735300C117D7 /* HomeTicketCheckModel.swift in Sources */,
 				D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */,
 				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2B031B22A631A2600DE8896 /* TicketAPI.swift in Sources */,
@@ -960,6 +967,7 @@
 				D2B031A92A62B46100DE8896 /* MyAPI.swift in Sources */,
 				D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
+				2CC8E63A2A6854C100C117D7 /* HomeTicketGetModel.swift in Sources */,
 				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
 				055E51BF2A61C4D2001BD991 /* DetailModel.swift in Sources */,
 				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
