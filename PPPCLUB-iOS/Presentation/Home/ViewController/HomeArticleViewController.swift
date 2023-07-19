@@ -18,6 +18,8 @@ class HomeArticleViewController: UIViewController {
     private var parsingData = [[String?]]()
     private var parsingCnt = Int()
     
+    var articleDummy = article
+    
     // MARK: - UI Components
     
     private let rootView = HomeArticleView()
@@ -183,9 +185,57 @@ enum ArticleType: String {
         }
     }
 }
+
 extension HomeArticleViewController {
+    func bodyCheck(text: String) -> String? {
+        guard let bodyStart = text.range(of: "<") else { return nil }
+        guard let bodyEnd = text.range(of: ">") else { return nil}
+        
+        let startStart = text[bodyStart].startIndex
+        let startEnd = text[bodyStart].endIndex
+        let endStart = text[bodyEnd].startIndex
+        let endEnd = text[bodyEnd].endIndex
+        
+        let articleDummyEnd = text.endIndex
+        let bodyChecked = text[startEnd ... endStart]
+        
+        var bodyTypeCheck = String(bodyChecked)
+        bodyTypeCheck = bodyTypeCheck.trimmingCharacters(in: ["<", ">"])
+        
+        articleDummy = String(text[endEnd ..< articleDummyEnd])
+        
+        return (bodyTypeCheck)
+        
+    }
+    
+    func bodyContentCheck(text:String, type:String) -> (String)? {
+        guard let bodyStart = text.range(of: type) else { return nil}
+        let bodyEndRange = "<" + "/" + type + ">"
+        guard let bodyEnd = text.range(of: bodyEndRange) else { return nil }
+        
+        
+        let startStart = text[bodyStart].startIndex
+        let startEnd = text[bodyStart].endIndex
+        let endStart = text[bodyEnd].startIndex
+        let endEnd = text[bodyEnd].endIndex
+        let articleDummyEnd = text.endIndex
+        
+        let bodyChecked = text[text.startIndex ..< endStart]
+        let bodyContentChecked =  String(bodyChecked)
+        
+        articleDummy = String(text[endEnd ..< articleDummyEnd])
+        
+        return (bodyContentChecked)
+        
+    }
+    
+    
+    
     
     func HomeArticleParsing() -> [[String?]] {
+        
+        typealias ArticleBlockType = Dictionary<ArticleType,String>
+        //        var parsingStored: [ArticleBlockType] = []
         
         var parsingStored = [[String?]]()
         
@@ -196,21 +246,21 @@ extension HomeArticleViewController {
             var body = [String]()
         }
         
-        var articleDummy = article
+        
         
         while articleDummy.count > 0 {
             
-            var blockType : ArticleType?
+            var blockType : String?
             var blockContent : String?
             
-            while blockType != blockType {
+            while blockType != "body" {
                 
                 var ArticleBody : Body = Body()
                 
                 blockType = bodyCheck(text: articleDummy)
-                blockContent = bodyContentCheck(text: articleDummy, type: blockType)
+                blockContent = bodyContentCheck(text: articleDummy, type: blockType ?? "")
                 
-                switch blockType?.rawValue {
+                switch blockType {
                 case "title":
                     parsingStored.append(["title", blockContent])
                 case "img":
@@ -218,60 +268,16 @@ extension HomeArticleViewController {
                 case "body":
                     parsingStored.append(["body", blockContent])
                 default:
-                    break
+                    blockType = ""
                 }
                 
-                func bodyCheck(text: String) -> ArticleType? {
-                    var articleType: ArticleType?
-                    guard let bodyStart = text.range(of: "<") else { return nil}
-                    guard let bodyEnd = text.range(of: ">") else { return nil}
-                    
-                    let startStart = text[bodyStart].startIndex
-                    let startEnd = text[bodyStart].endIndex
-                    let endStart = text[bodyEnd].startIndex
-                    let endEnd = text[bodyEnd].endIndex
-                    
-                    let articleDummyEnd = text.endIndex
-                    let bodyChecked = text[startEnd ... endStart]
-                    
-                    var bodyTypeCheck = String(bodyChecked)
-                    bodyTypeCheck = bodyTypeCheck.trimmingCharacters(in: ["<", ">"])
-                    
-                    articleDummy = String(text[endEnd ..< articleDummyEnd])
-                    
-                    switch bodyTypeCheck {
-                    case ArticleType.title.rawValue: articleType = .title
-                    case ArticleType.body.rawValue: articleType = .body
-                    case ArticleType.img.rawValue: articleType = .img
-                    default:
-                        break
-                    }
-                    return articleType
-                }
                 
-                func bodyContentCheck(text:String, type: ArticleType?) -> (String)? {
-                    guard let bodyStart = text.range(of: type!.rawValue) else { return nil }
-                    let bodyEndRange = "<" + "/" + type!.rawValue + ">"
-                    guard let bodyEnd = text.range(of: bodyEndRange) else { return nil }
-                    
-                    let startStart = text[bodyStart].startIndex
-                    let startEnd = text[bodyStart].endIndex
-                    let endStart = text[bodyEnd].startIndex
-                    let endEnd = text[bodyEnd].endIndex
-                    let articleDummyEnd = text.endIndex
-                    
-                    let bodyChecked = text[text.startIndex ..< endStart]
-                    let bodyContentChecked =  String(bodyChecked)
-                    
-                    articleDummy = String(text[endEnd ..< articleDummyEnd])
-                    
-                    return (bodyContentChecked)
-                    
-                }
+                
+                
             }
         }
         
         return parsingStored
     }
+    
 }
-
