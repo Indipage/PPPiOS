@@ -15,6 +15,8 @@ final class DetailUniqueView: UIView {
     // MARK: - UI Components
     
     private let uniqueLabel = UILabel()
+    private let peculiarityTitleLabel = UILabel()
+    private let peculiarityContentLabel = UILabel()
     private lazy var uniqueImageView = UIImageView()
     
     // MARK: - Life Cycle
@@ -40,6 +42,21 @@ final class DetailUniqueView: UIView {
             $0.textColor = .black
         }
         
+        peculiarityTitleLabel.do {
+            $0.text = "문학 칵테일"
+            $0.font = .pppSubHead1
+            $0.textColor = .pppWhite
+            $0.textAlignment = .right
+        }
+        
+        peculiarityContentLabel.do {
+            $0.text = "문학 작품과 즐기는 칵테일,\n이런 고급스러운 취미는 어때요?"
+            $0.numberOfLines = 0
+            $0.font = .pppBody4
+            $0.textColor = .pppWhite
+            $0.textAlignment = .right
+        }
+        
         uniqueImageView.do {
             $0.image = Image.uniqueCard
             $0.backgroundColor = .systemPink
@@ -48,7 +65,9 @@ final class DetailUniqueView: UIView {
     
     private func hieararchy() {
         self.addSubviews(uniqueLabel,
-                         uniqueImageView
+                         uniqueImageView,
+                         peculiarityTitleLabel,
+                         peculiarityContentLabel
         )
     }
     
@@ -61,8 +80,19 @@ final class DetailUniqueView: UIView {
         
         uniqueImageView.snp.makeConstraints {
             $0.top.equalTo(uniqueLabel.snp.bottom).offset(10)
-            $0.height.equalTo(234.adjusted)
+            $0.height.equalTo(234)
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        peculiarityContentLabel.snp.makeConstraints {
+            $0.bottom.equalTo(uniqueImageView).inset(24)
+            $0.leading.trailing.equalTo(uniqueImageView).inset(28)
+        }
+        
+        peculiarityTitleLabel.snp.makeConstraints {
+            $0.bottom.equalTo(peculiarityContentLabel.snp.top).offset(-8)
+            $0.trailing.equalTo(uniqueImageView).inset(28)
+            $0.height.equalTo(28)
         }
     }
 }

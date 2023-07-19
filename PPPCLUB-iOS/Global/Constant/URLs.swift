@@ -27,6 +27,7 @@ public enum URLs{
     static let getRecommendBook = "/space/{spaceId}/book"
     static let getFollow = "/space/{spaceId}/follow"
     static let postFollow = "/space/{spaceId}/follow"
+    static let getCheckArticle = "/space/{spaceId}/article"
     
     //MARK: - Ticket
     

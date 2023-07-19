@@ -14,7 +14,13 @@ final class DetailView: UIScrollView {
     
     // MARK: - Properties
     
-    private let isArticleExist = false
+    var isArticleExist = true {
+        didSet {
+            moveToArticleView.isHidden = !isArticleExist
+            articleRequestView.isHidden = isArticleExist
+        }
+    }
+    
     private final let introduce = "대전 성심당 부근 여행자에게 영감을 주는 여행 서점 겸 카페다. 서점은 2층에 있으며, 1층은 '도시여행자' 카페로 운영한다. 전시와 북토크, 심야책방을 정기적으로 연다. 책방지기는 이 공간에서 삶의 다양한 방향성을 제시하고자 한다. 도시문화 콘텐츠 기획을 겸하고 있다."
     private final let curation = "대전 성심당 부근 여행자에게 영감을 주는 여행 서점 겸 카페다. 서점은 2층에 있으며, 1층은 '도시여행자' 카페로 운영한다. 전시와 북토크, 심야책방을 정기적으로 연다. 책방지기는 이 공간에서 삶의 다양한 방향성을 제시하고자 한다. 도시문화 콘텐츠 기획을 겸하고 있다."
     
@@ -23,8 +29,8 @@ final class DetailView: UIScrollView {
     let detailTopView = DetailTopView()
     let ownerView = DetailOwnerView()
     private let uniqueView = DetailUniqueView()
-    let articleRequestView = DetailArticleRequestView()
-    let moveToArticleView = DetailMoveToArticleView()
+    lazy var articleRequestView = DetailArticleRequestView()
+    lazy var moveToArticleView = DetailMoveToArticleView()
     private let contentView = UIView()
     
     // MARK: - Life Cycle
@@ -47,31 +53,32 @@ final class DetailView: UIScrollView {
         ownerView.do {
             $0.model = Detail(introduce: introduce, curation: curation)
         }
+        
+        moveToArticleView.do {
+            $0.isHidden = !isArticleExist
+        }
+        
+        articleRequestView.do {
+            $0.isHidden = isArticleExist
+        }
     }
     
     private func hieararchy() {
-        
         self.addSubview(contentView)
         
-        if isArticleExist {
-            contentView.addSubviews(detailTopView,
-                             ownerView,
-                             uniqueView,
-                             moveToArticleView
-            )
-        } else {
-            contentView.addSubviews(detailTopView,
-                             ownerView,
-                             uniqueView,
-                             articleRequestView
-            )
-        }
+        contentView.addSubviews(detailTopView,
+                                ownerView,
+                                uniqueView,
+                                moveToArticleView,
+                                articleRequestView
+        )
     }
     
     private func layout() {
         contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.width.equalToSuperview()
+            $0.edges.equalTo(self.contentLayoutGuide)
+            $0.height.equalTo(self.frameLayoutGuide).priority(.low)
+            $0.width.equalTo(self.frameLayoutGuide)
         }
         
         detailTopView.snp.makeConstraints {
@@ -90,32 +97,28 @@ final class DetailView: UIScrollView {
         )
         
         ownerView.snp.makeConstraints {
-            $0.top.equalTo(detailTopView.snp.bottom).offset(38)
+            $0.top.equalTo(detailTopView.snp.bottom).offset(38.adjusted)
             $0.width.leading.equalToSuperview()
             $0.height.equalTo(introduceHeigth + curationHeight + 463)
         }
         
         uniqueView.snp.makeConstraints {
-            $0.top.equalTo(ownerView.snp.bottom).offset(78)
+            $0.top.equalTo(ownerView.snp.bottom).offset(78.adjusted)
             $0.width.equalToSuperview()
             $0.leading.equalToSuperview()
-            $0.height.equalTo(300)
+            $0.height.equalTo(300.adjusted)
         }
-
-        if isArticleExist {
-            moveToArticleView.snp.makeConstraints {
-                $0.top.equalTo(uniqueView.snp.bottom).offset(78)
-                $0.width.leading.equalToSuperview()
-                $0.bottom.equalToSuperview()
-                $0.height.equalTo(150)
-            }
-        } else {
-            articleRequestView.snp.makeConstraints {
-                $0.top.equalTo(uniqueView.snp.bottom).offset(78)
-                $0.width.leading.equalToSuperview()
-                $0.bottom.equalToSuperview()
-                $0.height.equalTo(216)
-            }
+        
+        moveToArticleView.snp.makeConstraints {
+            $0.top.equalTo(uniqueView.snp.bottom).offset(78.adjusted)
+            $0.bottom.equalToSuperview().inset(250.adjusted)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        articleRequestView.snp.makeConstraints {
+            $0.top.equalTo(uniqueView.snp.bottom).offset(78)
+            $0.width.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     
