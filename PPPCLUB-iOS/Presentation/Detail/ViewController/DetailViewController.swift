@@ -115,7 +115,17 @@ final class DetailViewController: BaseViewController {
     private func moveCellToMiddle() {
         self.detailView.ownerView.bookCollectionView.isPagingEnabled = false
         self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
-        self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
+//        self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
+    }
+    
+    private func checkCellIndex(index: Int) -> Int {
+        if index < 0 {
+            return 0
+        } else if index > 2 {
+            return 2
+        }
+        
+        return index
     }
     
     // MARK: - Action Method
@@ -243,7 +253,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         let scrolledOffset = scrollView.contentOffset.x + scrollView.contentInset.left
         let cellWidth = Const.itemSize.width + Const.itemSpacing
         let index = Int(round(scrolledOffset / cellWidth))
-        currentIndex = index
+        currentIndex = checkCellIndex(index: index)
         detailView.ownerView.bookCollectionView.reloadData()
     }
 }
