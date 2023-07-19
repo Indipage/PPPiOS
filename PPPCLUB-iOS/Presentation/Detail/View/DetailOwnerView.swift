@@ -32,6 +32,7 @@ final class DetailOwnerView: UIView {
             updateLayout()
         }
     }
+    var introText: String = String()
     
     // MARK: - UI Components
 
@@ -203,6 +204,11 @@ final class DetailOwnerView: UIView {
     
     func introDataBind(owner: String, introduce: String) {
         ownerIntroLabel.text = "공간지기 \(owner)"
-        introduceTextView.text = introduce
+        model = Detail(introduce: introduce, curation: "")
+        introText = introduce
+    }
+    
+    func curationDataBind(curation: String) {
+        model = Detail(introduce: introText, curation: curation)
     }
 }

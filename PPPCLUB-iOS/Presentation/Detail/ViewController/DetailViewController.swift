@@ -14,22 +14,23 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
     
+    private var spaceID = 1
+    private var isFollowed: Bool = false
     private var hashTagList: [String] = [String]()
     private var recommandBookData: [DetailRecommendBookResult] = [] {
         didSet {
             detailView.ownerView.bookCollectionView.reloadData()
         }
     }
-    private var isFollowed: Bool = false
     private var currentIndex: Int = 0 {
         didSet {
             if !recommandBookData.isEmpty {
+                self.detailView.ownerView.curationDataBind(curation:recommandBookData[self.currentIndex].comment)
                 detailView.ownerView.curationTextView.text = recommandBookData[self.currentIndex].comment
                 detailView.ownerView.bookNameLabel.text = recommandBookData[self.currentIndex].book.title
             }
         }
     }
-    private var spaceID = 1
     
     // MARK: - UI Components
     
@@ -42,7 +43,7 @@ final class DetailViewController: BaseViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         requestGetSpace()
-        requestGetRecommendBool()
+        requestGetRecommendBook()
         requestGetFollow()
         requestSavedBookMarkAPI()
         requestGetCheckedArticle()
@@ -185,6 +186,7 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let bookCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBookCollectionViewCell.cellIdentifier,
                                                                     for: indexPath) as? DetailBookCollectionViewCell else { return UICollectionViewCell() }
             bookCell.configureCell(recommendBookResult: recommandBookData[indexPath.row], isCenter: indexPath.row == currentIndex)
+
             return bookCell
             
         default:
@@ -331,7 +333,7 @@ extension DetailViewController {
         }
     }
     
-    private func requestGetRecommendBool() {
+    private func requestGetRecommendBook() {
         DetailAPI.shared.getRecommendBool(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? [DetailRecommendBookResult] else { return }
             self.recommandBookData = result
