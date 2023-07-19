@@ -33,11 +33,11 @@ extension HomeService: BaseTargetType {
             return URLs.totalArticle
             
         case .getBookmarkCheck(let articleID):
-            return URLs.bookMarkArticle.replacingOccurrences(of: "{articleId}", with: articleID)
+            return URLs.getSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
         case .postBookmarkCheck(let articleID):
-            return URLs.bookMarkArticle.replacingOccurrences(of: "{articleId}", with: articleID)
+            return URLs.postSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
         case .deleteBookmarkCheck(let articleID):
-            return URLs.bookMarkArticle.replacingOccurrences(of: "{articleId}", with: articleID)
+            return URLs.deleteSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
         }
     }
     
