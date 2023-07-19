@@ -74,7 +74,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         
         enterStoreButton.do {
             $0.backgroundColor = .white
-//            $0.setImage( Image.mockEnterBookStore, for: .normal)
+            $0.setImage( Image.articleGo, for: .normal)
         }
         
         divideBarView.do {

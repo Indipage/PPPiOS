@@ -12,9 +12,6 @@ import Then
 
 final class TicketCardEmptyView: UIView {
     
-    // MARK: - Properties
-    
-    
     // MARK: - UI Components
     
     private let noCardImageView = UIImageView()

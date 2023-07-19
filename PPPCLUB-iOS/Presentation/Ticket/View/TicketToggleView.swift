@@ -13,7 +13,7 @@ final class TicketToggleView: UIView {
     
     //MARK: - UI Components
     
-    let contentView = UIView()
+    private let contentView = UIView()
     lazy var toggleButton = UIView()
     lazy var ticketToggleButton = UIButton()
     lazy var cardToggleButton = UIButton()

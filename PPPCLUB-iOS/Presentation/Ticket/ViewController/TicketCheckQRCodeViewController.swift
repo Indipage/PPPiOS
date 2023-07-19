@@ -12,16 +12,14 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private var qrManager: QRManager
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var spaceID: Int
     
     //MARK: - Life Cycle
     
-    init(qrManager: QRManager, spaceID: Int) {
+    init(spaceID: Int) {
+        QRManager.shared.setCamera()
         self.spaceID = spaceID
-        self.qrManager = qrManager
-        self.qrManager.setCamera()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,19 +38,24 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = true
-        QRManager.start()
+        QRManager.shared.start()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+    }
+    
     
     //MARK: - Custom Method
     
     private func delegate() {
-        QRManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        QRManager.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
+        QRManager.shared.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        QRManager.shared.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
     }
     
     private func layout() {
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: QRManager.captureSession)
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: QRManager.shared.captureSession)
         videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         self.videoPreviewLayer?.frame = self.view.layer.bounds
@@ -63,7 +66,8 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     //MARK: - Action Method
     
     @objc func backButtonDidTap() {
-        QRManager.stop()
+        QRManager.shared.stop()
+        
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -82,16 +86,19 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
             guard let qrCodeStringData = metaDataObj.stringValue else { return }
             print("🔫qr이 맞습니다!🔫")
             print("🔫\(qrCodeStringData)🔫")
-            QRManager.stop()
-            
-            requestQRCodeAPI(qrResult: qrCodeStringData)
+            if qrCodeStringData == "\(spaceID)" {
+                QRManager.shared.stop()
+                requestQRCodeAPI(spaceID: qrCodeStringData)
+            } else {
+                presentToFailView()
+            }
         }
     }
 }
 
 extension TicketCheckQRCodeViewController {
     private func setVideoLayer(rectOfInterest: CGRect) -> CGRect {
-        let videoLayer = AVCaptureVideoPreviewLayer(session: QRManager.captureSession) // 영상을 담을 공간.
+        let videoLayer = AVCaptureVideoPreviewLayer(session: QRManager.shared.captureSession) // 영상을 담을 공간.
         videoLayer.frame = view.layer.bounds //카메라의 크기 지정
         videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill //카메라의 비율지정
         view.layer.addSublayer(videoLayer)
@@ -101,7 +108,7 @@ extension TicketCheckQRCodeViewController {
     
     private func setPreviewLayer() {
         let readingRect = Size.qrFocusZone
-        let previewLayer = AVCaptureVideoPreviewLayer(session: QRManager.captureSession) // AVCaptureVideoPreviewLayer를 구성.
+        let previewLayer = AVCaptureVideoPreviewLayer(session: QRManager.shared.captureSession) // AVCaptureVideoPreviewLayer를 구성.
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         previewLayer.frame = self.view.layer.bounds
         
@@ -154,8 +161,8 @@ extension TicketCheckQRCodeViewController {
         
     }
     
-    private func requestQRCodeAPI(qrResult: String) {
-        TicketAPI.shared.putQRCodeCheck(qrResult: qrResult) { result in
+    private func requestQRCodeAPI(spaceID: String) {
+        TicketAPI.shared.putQRCodeCheck(spaceID: spaceID) { result in
             guard self.validateResult(result) is SimpleResponse else {
                 self.presentToFailView()
                 return

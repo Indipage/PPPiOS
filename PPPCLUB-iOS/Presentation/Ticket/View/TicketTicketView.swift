@@ -12,8 +12,6 @@ import Then
 
 final class TicketTicketView: UIView {
     
-    // MARK: - Properties
-    
     // MARK: - UI Components
     
     let noTicketView = TicketEmptyView()

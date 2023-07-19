@@ -63,7 +63,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         
         ticketImageView.do {
             $0.backgroundColor = .white
-//            $0.image = Image.mockArticleTicket
+            $0.image = Image.articleTicket
         }
         
     }

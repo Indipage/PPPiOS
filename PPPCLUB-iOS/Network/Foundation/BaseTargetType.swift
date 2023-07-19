@@ -13,7 +13,7 @@ protocol BaseTargetType: TargetType{ }
 extension BaseTargetType{
     
     var baseURL: URL {
-        return URL(string: "http://3.37.34.144")! //baseURL 들어갈 장소
+        return URL(string: Config.baseURL)! //baseURL 들어갈 장소
     }
     
     var headers: [String : String]? {
