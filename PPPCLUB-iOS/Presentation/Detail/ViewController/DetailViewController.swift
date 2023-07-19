@@ -112,16 +112,20 @@ final class DetailViewController: BaseViewController {
         detailView.articleRequestView.requestButton.backgroundColor = .pppMainPurple
     }
     
+    private func moveCellToMiddle() {
+        self.detailView.ownerView.bookCollectionView.isPagingEnabled = false
+        self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
+        self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
+    }
+    
     // MARK: - Action Method
     
     @objc
     private func didTouchedSaveButton() {
         detailView.detailTopView.saveButton.isSelected.toggle()
         if detailView.detailTopView.saveButton.isSelected {
-            print("🥰🥰")
             requestPostSavedBookMarkAPI()
         } else {
-            print("🥲🥲")
             requestDeleteSavedBookMarkAPI()
         }
     }
@@ -321,8 +325,7 @@ extension DetailViewController {
         DetailAPI.shared.getRecommendBool(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? [DetailRecommendBookResult] else { return }
             self.recommandBookData = result
-            print("🎈🎈🎈🎈🎈🎈")
-            print(result)
+            self.moveCellToMiddle()
         }
     }
 }
