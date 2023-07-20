@@ -30,7 +30,6 @@
 		05CD07DB2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07DA2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift */; };
 		05CD07DD2A5E9C37003EEE84 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07DC2A5E9C37003EEE84 /* SearchTableViewCell.swift */; };
 		05CD07E22A5EA072003EEE84 /* SearchListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07E12A5EA072003EEE84 /* SearchListModel.swift */; };
-		05CD07E52A5ED7D8003EEE84 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD07E42A5ED7D8003EEE84 /* SearchHeaderView.swift */; };
 		2C0C72992A60696100EC2117 /* HomeArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72982A60696100EC2117 /* HomeArticleView.swift */; };
 		2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C729A2A60697600EC2117 /* HomeArticleNavigationView.swift */; };
 		2C0C729D2A60699600EC2117 /* HomeArticleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C729C2A60699600EC2117 /* HomeArticleCollectionView.swift */; };
@@ -170,7 +169,6 @@
 		05CD07DA2A5D9CA5003EEE84 /* DetailMoveToArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMoveToArticleView.swift; sourceTree = "<group>"; };
 		05CD07DC2A5E9C37003EEE84 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		05CD07E12A5EA072003EEE84 /* SearchListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListModel.swift; sourceTree = "<group>"; };
-		05CD07E42A5ED7D8003EEE84 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		2C0C72982A60696100EC2117 /* HomeArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleView.swift; sourceTree = "<group>"; };
 		2C0C729A2A60697600EC2117 /* HomeArticleNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleNavigationView.swift; sourceTree = "<group>"; };
 		2C0C729C2A60699600EC2117 /* HomeArticleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCollectionView.swift; sourceTree = "<group>"; };
@@ -827,7 +825,6 @@
 			isa = PBXGroup;
 			children = (
 				D2B096192A529994007BC756 /* SearchView.swift */,
-				05CD07E42A5ED7D8003EEE84 /* SearchHeaderView.swift */,
 				05CD07DC2A5E9C37003EEE84 /* SearchTableViewCell.swift */,
 			);
 			path = View;
@@ -1036,7 +1033,6 @@
 				D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */,
 				D224D4A92A5DB66800B014ED /* MyInfoModel.swift in Sources */,
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
-				05CD07E52A5ED7D8003EEE84 /* SearchHeaderView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
 				D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */,
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
