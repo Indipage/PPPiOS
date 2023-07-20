@@ -55,7 +55,7 @@ class HomeArticleNavigationView: UIView {
         
         storeLabel.do {
             $0.text = "문학살롱 초고"
-            $0.font = .pppEnSubHead1
+            $0.font = .pppSubHead1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
         }

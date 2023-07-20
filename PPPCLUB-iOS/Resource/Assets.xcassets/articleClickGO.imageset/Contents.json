@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "aos_articledetail_btn_tobookstoredetail.png",
+      "filename" : "ios_articledetail_btn_tobookstoredetail.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "aos_articledetail_btn_tobookstoredetail-2.png",
+      "filename" : "ios_articledetail_btn_tobookstoredetail-5.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "aos_articledetail_btn_tobookstoredetail-3.png",
+      "filename" : "ios_articledetail_btn_tobookstoredetail-6.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
