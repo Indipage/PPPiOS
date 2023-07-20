@@ -82,6 +82,8 @@ final class HomeViewController: BaseViewController {
         
         rootView.homeAllView.allArticleCollectionView.delegate = self
         rootView.homeAllView.allArticleCollectionView.dataSource = self
+        rootView.homeWeeklyView.weeklyCollectionView.delegate = self
+        rootView.homeWeeklyView.weeklyCollectionView.dataSource = self
     }
     
     private func style() {
@@ -174,11 +176,25 @@ final class HomeViewController: BaseViewController {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 319, height: 180)
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            return CGSize(width: 319, height: 180)
+        case rootView.homeWeeklyView.weeklyCollectionView:
+            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        default:
+            return CGSize.zero
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            return 20
+        case rootView.homeWeeklyView.weeklyCollectionView:
+            return 10
+        default:
+            return 0
+        }
     }
 }
 
@@ -186,14 +202,34 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articleAllData.count
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            return articleAllData.count
+        case rootView.homeWeeklyView.weeklyCollectionView:
+            return 2
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
-        cell.delegate = self
-        cell.dataBindHome(articleData: articleAllData[indexPath.item])
-        return cell
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
+            cell.delegate = self
+            cell.dataBindHome(articleData: articleAllData[indexPath.item])
+            return cell
+        case rootView.homeWeeklyView.weeklyCollectionView:
+            if indexPath.item == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thisWeekCell", for: indexPath) as! thisWeekCell
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nextWeekCell", for: indexPath) as! nextWeekCell
+                return cell
+            }
+        default:
+            return UICollectionViewCell()
+        }
     }
 }
 
@@ -215,7 +251,6 @@ extension HomeViewController {
         rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
         rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
         rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
-        rootView.homeWeeklyView.cardRemainingDayLabel.text = String(articleData.remainingDays)
     }
     
     func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
@@ -242,7 +277,7 @@ extension HomeViewController {
             guard let result = self.validateResult(result) else { return }
         }
     }
-
+    
     func requestAllArticleAPI() {
         HomeAPI.shared.getAllArticle() { result in
             guard let result = self.validateResult(result) as? [HomeArticleListResult] else { return }
@@ -250,5 +285,6 @@ extension HomeViewController {
         }
     }
 }
-    
-    
+
+
+
