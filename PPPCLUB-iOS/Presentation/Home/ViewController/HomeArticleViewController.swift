@@ -10,7 +10,11 @@ class HomeArticleViewController: BaseViewController {
     // MARK: - Properties
     
     typealias ArticleBlockType = Dictionary<ArticleType,String>
-    private var parsingData: [ArticleBlockType] = []
+    private var parsingData: [ArticleBlockType] = [] {
+        didSet {
+            rootView.articleTableView.reloadData()
+        }
+    }
     
     private var bookmarkCheckData: HomeBookmarkCheckResult?
     
@@ -35,17 +39,20 @@ class HomeArticleViewController: BaseViewController {
         }
     }
     
-    
-    var fullText: String? {
+    var fullText = "" {
         didSet {
             articleDummy = fullText
-            print("🤒🤒🤒🤒🤒🤒🤒🤒")
-            print(articleDummy)
-            print("🤒🤒🤒🤒🤒🤒🤒🤒")
             parsingData = HomeArticleParsing()
         }
     }
-    var articleDummy:String?
+    
+    var articleDummy:String = ""
+    
+    // MARK: - UI Components
+    
+    private let rootView = HomeArticleView()
+    
+    // MARK: - Life Cycles
     
     init(articleID: Int?) {
         self.articleID = articleID
@@ -56,24 +63,15 @@ class HomeArticleViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UI Components
-    
-    private let rootView = HomeArticleView()
-    
-    
-    // MARK: - Life Cycles
-    
     override func loadView() {
         self.view = rootView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         target()
         delegate()
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,14 +85,12 @@ class HomeArticleViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func target() {
-        
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
         rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
         
     }
     
     private func delegate() {
-        
         rootView.articleTableView.delegate = self
         rootView.articleTableView.dataSource = self
     }
@@ -150,7 +146,7 @@ extension HomeArticleViewController: UITableViewDelegate {
             return 31
         case .none:
             return 0
-        
+            
         }
     }
     
@@ -223,10 +219,6 @@ extension HomeArticleViewController {
         self.articleID = articleData.id
         self.spaceID = articleData.spaceID
         self.fullText = articleData.content
-        print("🤢🤢🤢🤢🤢🤢🤢🤢")
-        print(self.articleDummy)
-        print("🤢🤢🤢🤢🤢🤢🤢🤢")
-
     }
     
     func requestBookmarkCheckAPI() {
@@ -398,16 +390,16 @@ extension HomeArticleViewController {
         typealias ArticleBlockType = Dictionary<ArticleType,String>
         var parsingStored: [ArticleBlockType] = []
         
-        while articleDummy!.count > 0 {
-            
+        
+        while articleDummy.count > 0 {
             var blockType : ArticleType?
             var blockContent : String?
             
-            while blockType != .body {
+            while (blockType != .body) && articleDummy.count > 0 {
                 
                 
-                blockType = blockCheck(text: articleDummy!)
-                blockContent = blockContentCheck(text: articleDummy!, type: blockType)
+                blockType = blockCheck(text: articleDummy)
+                blockContent = blockContentCheck(text: articleDummy, type: blockType)
                 if let blockType = blockType, let blockContent = blockContent {
                     let articleBlock: ArticleBlockType = [blockType: blockContent]
                     parsingStored.append(articleBlock)
