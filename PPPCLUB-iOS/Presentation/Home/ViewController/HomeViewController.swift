@@ -21,13 +21,13 @@ final class HomeViewController: BaseViewController {
     
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
-            self.dataBindArticleCard(articleData: self.articleCardData)
+            self.dataBindArticleCard(articleData: articleCardData)
         }
     }
     
-    private var articleCheckData: HomeArticleCheckResult? {
+    private var articleSlideCheckData: HomeArticleCheckResult? {
         didSet {
-            self.dataBindArticleCheck(articleData: articleCheckData)
+            self.dataBindArticleSlideCheck(articleData: articleSlideCheckData)
         }
     }
     
@@ -50,10 +50,12 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         target()
         delegate()
         
         style()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +127,7 @@ final class HomeViewController: BaseViewController {
     
     @objc
     public func ticketDragAnimation() {
-        requestPutSlideCheckAPI()
+        requestPutSlideAPI()
         pushToArticleViewController()
     }
     
@@ -211,10 +213,9 @@ extension HomeViewController: SavedArticleCellDelegate {
         rootView.homeWeeklyView.cardRemainingDayLabel.text = String(articleData.remainingDays)
     }
     
-    func dataBindArticleCheck(articleData: HomeArticleCheckResult?) {
+    func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
         guard let hasSlide = articleData?.hasSlide else { return }
         rootView.homeWeeklyView.slideCheck = hasSlide
-        print("🅿️ \(rootView.homeWeeklyView.slideCheck)")
     }
     
     func articleDidTap() {
@@ -232,15 +233,13 @@ extension HomeViewController: SavedArticleCellDelegate {
     func requestSlideCheckAPI() {
         HomeAPI.shared.getArticleCheck() { result in
             guard let result = self.validateResult(result) as? HomeArticleCheckResult else { return }
-            self.articleCheckData = result
+            self.articleSlideCheckData = result
         }
     }
     
-    func requestPutSlideCheckAPI() {
+    func requestPutSlideAPI() {
         HomeAPI.shared.putArticleCheck() { result in
             guard let result = self.validateResult(result) else { return }
-            print("💗💗💗💗💗💗💗💗💗💗💗")
-            print("슬라이드 완료")
         }
     }
 

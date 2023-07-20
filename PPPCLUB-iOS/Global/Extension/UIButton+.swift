@@ -19,10 +19,10 @@ extension UIButton {
         setAttributedTitle(attributedString, for: .normal)
     }
     
-    func kfSetButtonImage(url : String) {
+    func kfSetButtonImage(url : String, state: UIControl.State) {
         if let url = URL(string: url) {
             kf.setImage(with: url,
-                        for: .normal, placeholder: nil,
+                        for: state, placeholder: nil,
                         options: [.transition(.fade(1.0))], progressBlock: nil)
         }
     }

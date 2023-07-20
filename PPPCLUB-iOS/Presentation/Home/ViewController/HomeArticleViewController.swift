@@ -4,18 +4,37 @@ import SnapKit
 import Then
 
 
-class HomeArticleViewController: UIViewController {
+class HomeArticleViewController: BaseViewController {
     
     // MARK: - Properties
     
     typealias ArticleBlockType = Dictionary<ArticleType,String>
     private var parsingData: [ArticleBlockType] = []
     
+    private var bookmarkCheckData: HomeBookmarkCheckResult? {
+        didSet {
+            self.dataBindBookmarkCheck(articleData: bookmarkCheckData)
+        }
+    }
+    
+    private var ticketCheckData: HomeTicketCheckResult? {
+        didSet {
+            rootView.articleTableView.reloadData()
+        }
+    }
+    
+    private var ticketGetData: HomeTicketGetResult? {
+        didSet {
+            self.dataBindTicketGet(articleData: ticketGetData)
+        }
+    }
+    
     var articleDummy = article
     
     // MARK: - UI Components
     
     private let rootView = HomeArticleView()
+    
     
     // MARK: - Life Cycles
     
@@ -30,6 +49,7 @@ class HomeArticleViewController: UIViewController {
         register()
         delegate()
         
+        
         style()
         hierarchy()
         layout()
@@ -39,6 +59,8 @@ class HomeArticleViewController: UIViewController {
         super.viewWillAppear(animated)
         
         parsingData = HomeArticleParsing()
+        requestBookmarkCheckAPI()
+        requestTicketCheckAPI()
         for i in 0..<parsingData.count-1 {
             print("🤩🤩🤩🤩🤩🤩🤩🤩🤩")
             print(parsingData[i])
@@ -50,6 +72,9 @@ class HomeArticleViewController: UIViewController {
     private func target() {
         
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
+        rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
+        rootView.articleTableView.footerView.ticketButton.addTarget(self, action: #selector(ticketReceivedTap), for: .touchUpInside)
+        
     }
     
     private func register() {
@@ -81,6 +106,24 @@ class HomeArticleViewController: UIViewController {
     func articleDidTap() {
         let detailViewController = DetailViewController()
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    @objc
+    func saveButtonTap() {
+        rootView.articleNavigationView.saveButton.isSelected.toggle()
+        
+        if rootView.articleNavigationView.saveButton.isSelected {
+            requestBookmarkRegisterAPI()
+        }
+        else {
+            requestBookmarkDeleteAPI()
+        }
+    }
+    
+    @objc
+    func ticketReceivedTap() {
+        rootView.articleTableView.footerView.ticketButton.kfSetButtonImage(url: rootView.articleTableView.footerView.ticketURL, state: .selected)
+        rootView.articleTableView.footerView.ticketButton.isEnabled = false
     }
     
 }
@@ -121,17 +164,63 @@ extension HomeArticleViewController: UITableViewDelegate {
         return header
     }
     
-    private func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 692
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
-        return footer
-    }
+    
     
     func tableView(_ tableView: UITableView, shouldScrollHorizontallyToItemAt section: Bool) -> Bool {
         return false
+    }
+}
+
+extension HomeArticleViewController {
+    func dataBindBookmarkCheck(articleData: HomeBookmarkCheckResult?) {
+        guard let bookMarked = articleData?.bookmarked else { return }
+        if bookMarked {
+            rootView.articleNavigationView.saveButton.isSelected = true
+        }
+        else {
+            rootView.articleNavigationView.saveButton.isSelected = false
+        }
+    }
+    
+    func dataBindTicketGet(articleData: HomeTicketGetResult?) {
+        guard let message = articleData?.message else { return }
+    }
+    
+    func requestBookmarkCheckAPI() {
+        HomeAPI.shared.getBookmarkCheck(articleID: "1") { result in
+            guard let result = self.validateResult(result) as? HomeBookmarkCheckResult else { return }
+            self.bookmarkCheckData = result
+        }
+    }
+    
+    public func requestBookmarkRegisterAPI() {
+        HomeAPI.shared.postBookmarkCheck(articleID: "1") { result in
+            guard let result = self.validateResult(result) else { return }
+        }
+    }
+    
+    public func requestBookmarkDeleteAPI() {
+        HomeAPI.shared.deleteBookmarkCheck(articleID: "1") { result in
+            guard let result = self.validateResult(result) else { return }
+        }
+    }
+    
+    public func requestTicketCheckAPI() {
+        HomeAPI.shared.getTicketCheck(spaceID: "1") { result in
+            guard let result = self.validateResult(result) as? HomeTicketCheckResult else { return }
+            self.ticketCheckData = result
+        }
+    }
+    
+    public func requestTicketGetAPI() {
+        HomeAPI.shared.postTicketGet(spaceID: "1") { result in
+            guard let result = self.validateResult(result) as? HomeTicketGetResult else { return }
+            self.ticketGetData = result
+        }
     }
 }
 
@@ -148,6 +237,12 @@ extension HomeArticleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parsingData.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
+        footer.dataBindTicketCheck(articleData: ticketCheckData)
+        return footer
     }
 }
 

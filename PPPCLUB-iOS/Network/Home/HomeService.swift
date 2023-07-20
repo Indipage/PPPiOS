@@ -14,6 +14,13 @@ enum HomeService {
     case getArticleCheck
     case putArticleCheck
     case getAllArticle
+    
+    case getBookmarkCheck(articleID: String)
+    case postBookmarkCheck(articleID: String)
+    case deleteBookmarkCheck(articleID: String)
+    
+    case getTicketCheck(spaceID: String)
+    case postTicketGet(spaceID: String)
 }
 
 extension HomeService: BaseTargetType {
@@ -27,6 +34,18 @@ extension HomeService: BaseTargetType {
             return URLs.patchSlideArticle
         case .getAllArticle:
             return URLs.totalArticle
+            
+        case .getBookmarkCheck(let articleID):
+            return URLs.getSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
+        case .postBookmarkCheck(let articleID):
+            return URLs.postSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
+        case .deleteBookmarkCheck(let articleID):
+            return URLs.deleteSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
+            
+        case .getTicketCheck(let spaceID):
+            return URLs.getTicket.replacingOccurrences(of: "{spaceId}", with: spaceID)
+        case .postTicketGet(let spaceID):
+            return URLs.postTicket.replacingOccurrences(of: "{spaceId}", with: spaceID)
         }
     }
     
@@ -40,6 +59,18 @@ extension HomeService: BaseTargetType {
             return .put
         case .getAllArticle:
             return .get
+            
+        case .getBookmarkCheck:
+            return .get
+        case .postBookmarkCheck:
+            return .post
+        case .deleteBookmarkCheck:
+            return .delete
+            
+        case .getTicketCheck:
+            return .get
+        case .postTicketGet:
+            return .post
         }
     }
     
@@ -53,6 +84,18 @@ extension HomeService: BaseTargetType {
             return .requestPlain
         case .getAllArticle:
             return .requestPlain
+            
+        case .getBookmarkCheck:
+            return .requestPlain
+        case .postBookmarkCheck:
+            return .requestPlain
+        case .deleteBookmarkCheck:
+            return .requestPlain
+            
+        case .getTicketCheck:
+            return .requestPlain
+        case .postTicketGet:
+            return .requestPlain
         }
     }
     
@@ -65,6 +108,18 @@ extension HomeService: BaseTargetType {
         case .putArticleCheck:
             return APIConstants.noTokenHeader
         case .getAllArticle:
+            return APIConstants.noTokenHeader
+            
+        case .getBookmarkCheck:
+            return APIConstants.noTokenHeader
+        case .postBookmarkCheck:
+            return APIConstants.noTokenHeader
+        case .deleteBookmarkCheck:
+            return APIConstants.noTokenHeader
+            
+        case .getTicketCheck:
+            return APIConstants.noTokenHeader
+        case .postTicketGet:
             return APIConstants.noTokenHeader
         }
     }

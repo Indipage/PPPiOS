@@ -105,6 +105,6 @@ extension TicketCollectionViewCell {
         self.point = point
         self.ticketID = ticket.ticketID
         self.spaceID = ticket.spaceID
-        ticketImageView.kfSetButtonImage(url: ticket.imageURL)
+        ticketImageView.kfSetButtonImage(url: ticket.imageURL, state: .normal)
     }
 }

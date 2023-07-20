@@ -13,12 +13,13 @@ import Then
 class HomeArticleNavigationView: UIView {
     
     // MARK: - Properties
+    public var bookMarked = Bool()
     
     // MARK: - UI Components
     
     public let articleBackButton = UIButton()
     private let storeLabel = UILabel()
-    private let saveButton = UIButton()
+    public let saveButton = UIButton()
     
     
     // MARK: - Life Cycle
@@ -41,8 +42,6 @@ class HomeArticleNavigationView: UIView {
     // MARK: - Custom Method
     
     private func target() {
-        
-        saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
         
     }
     
@@ -92,13 +91,6 @@ class HomeArticleNavigationView: UIView {
             $0.width.equalTo(30)
             $0.trailing.equalToSuperview().inset(28)
         }
-    }
-    
-    //MARK: - Action Method
-    
-    @objc
-    func saveButtonTap() {
-        saveButton.isSelected.toggle()
     }
 }
 
