@@ -10,14 +10,9 @@ import UIKit
 import SnapKit
 import Then
 
-//protocol HomeArticleFooterDelegate: AnyObject {
-//    func ticketButtonDidTap(image: String)
-//}
 class HomeArticleFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Properties
-    
-    //weak var delegate: HomeArticleFooterDelegate?
     
     var ticketID = Int()
     var ticketURL = String()

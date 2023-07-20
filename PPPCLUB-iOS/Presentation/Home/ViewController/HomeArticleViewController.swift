@@ -73,7 +73,6 @@ class HomeArticleViewController: BaseViewController {
         
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
         rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
-//        rootView.articleTableView.footerView.
         
     }
     
@@ -119,12 +118,6 @@ class HomeArticleViewController: BaseViewController {
             requestBookmarkDeleteAPI()
         }
     }
-    
-//    @objc
-//    func ticketReceivedTap() {
-//        rootView.articleTableView.footerView.ticketButton.set
-//
-//    }
     
 }
 
