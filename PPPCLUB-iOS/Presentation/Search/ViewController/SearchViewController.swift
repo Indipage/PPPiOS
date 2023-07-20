@@ -106,13 +106,13 @@ extension SearchViewController: UITableViewDataSource {
         
         if isFiltering {
             cell.id = filteredSpace[indexPath.row].spaceID
-            cell.dataBind2(image: filteredSpace[indexPath.row].imageURL ?? "",
+            cell.dataBind(image: filteredSpace[indexPath.row].imageURL,
                            name: filteredSpace[indexPath.row].spaceName,
                            location: filteredSpace[indexPath.row].address
             )
         } else {
             cell.id = allSpace[indexPath.row].spaceID
-            cell.dataBind2(image: allSpace[indexPath.row].imageURL ?? String(),
+            cell.dataBind(image: allSpace[indexPath.row].imageURL,
                           name: allSpace[indexPath.row].spaceName,
                           location: allSpace[indexPath.row].address
             )
@@ -131,7 +131,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? SearchTableViewCell else { return }
         let detailViewController = DetailViewController()
-        detailViewController.spaceID = cell.id
+        detailViewController.dataBind(spaceID: cell.id)
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
