@@ -28,7 +28,7 @@ extension UILabel {
         attributedText = attributeString
     }
     
-    func setAttributeLabel(targetString: [String], color: UIColor?, spacing: CGFloat) {
+    func setAttributeLabel(targetString: [String], color: UIColor?, font: UIFont?, spacing: CGFloat) {
         let fullText = text ?? ""
         let style = NSMutableParagraphStyle()
         let attributedString = NSMutableAttributedString(string: fullText)
@@ -46,13 +46,19 @@ extension UILabel {
         
     }
     
-    func asFont(targetString: String, font: UIFont) {
-        let fullText = text ?? ""
-        let attributedString = NSMutableAttributedString(string: fullText)
-        let range = (fullText as NSString).range(of: targetString)
-        attributedString.addAttribute(.font, value: font, range: range)
-        attributedText = attributedString
-    }
+    func asFont(fullText: String?, targetString: String, font: UIFont, spacing: CGFloat, lineHeight: CGFloat) {
+            let fullText = fullText ?? ""
+            let attributedString = NSMutableAttributedString(string: fullText)
+            let range = (fullText as NSString).range(of: targetString)
+            attributedString.addAttribute(.font, value: font, range: range)
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = spacing
+            paragraphStyle.minimumLineHeight = lineHeight
+            attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: fullText.count))
+            
+            attributedText = attributedString
+        }
     
     func asColor(targetString: String, color: UIColor) {
         let fullText = text ?? ""
@@ -70,7 +76,7 @@ extension UILabel {
         attributedText = attributedString
     }
     
-    func asUnder(targetString: String, font: UIFont?, color: UIColor?) {
+    func asUnder(fullText: String?, targetString: String, font: UIFont?, color: UIColor?) {
             let fullText = text ?? ""
             let attributedString = NSMutableAttributedString(string: fullText)
             let range = (fullText as NSString).range(of: targetString)
@@ -79,6 +85,7 @@ extension UILabel {
     }
     
     func setupLabel(
+        fullText: String?,
             text: String,
             color: UIColor,
             font: UIFont,
