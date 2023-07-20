@@ -201,7 +201,13 @@ extension HomeViewController: UICollectionViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension HomeViewController: SavedArticleCellDelegate {
-    
+    func articleDidTap() {
+        let articleViewController = HomeArticleViewController()
+        self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+}
+
+extension HomeViewController {
     func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
         rootView.homeWeeklyView.cardId = articleData.id
@@ -215,12 +221,7 @@ extension HomeViewController: SavedArticleCellDelegate {
     
     func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
         guard let hasSlide = articleData?.hasSlide else { return }
-        rootView.homeWeeklyView.slideCheck = hasSlide
-    }
-    
-    func articleDidTap() {
-        let articleViewController = HomeArticleViewController()
-        self.navigationController?.pushViewController(articleViewController, animated: true)
+        rootView.homeWeeklyView.ticketCoverImageView.isHidden = hasSlide
     }
     
     func requestArticleCardAPI() {
@@ -250,3 +251,5 @@ extension HomeViewController: SavedArticleCellDelegate {
         }
     }
 }
+    
+    
