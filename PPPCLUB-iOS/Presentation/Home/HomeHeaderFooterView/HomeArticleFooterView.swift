@@ -127,7 +127,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         ticketID = articleData.ticket.id
         ticketURL = articleData.ticket.ticketImageURL
         cardURL = articleData.ticket.cardImageURL
-        ticketReceived = false
+        ticketReceived = articleData.hasReceivedTicket
         
         if !ticketReceived {
             ticketButton.setImage(Image.mockNoTicket, for: .normal)
