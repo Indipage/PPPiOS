@@ -26,7 +26,7 @@ final class DetailViewController: BaseViewController {
     private var currentIndex: Int = 0 {
         didSet {
             if !recommandBookData.isEmpty {
-                self.detailView.ownerView.curationDataBind(curation:recommandBookData[self.currentIndex].comment)
+                self.detailView.ownerView.curationDataBind(curation: recommandBookData[self.currentIndex].comment)
                 self.detailView.curationDataBind(curation: recommandBookData[self.currentIndex].comment)
                 detailView.ownerView.curationTextView.text = recommandBookData[self.currentIndex].comment
                 detailView.ownerView.bookNameLabel.text = recommandBookData[self.currentIndex].book.title
@@ -44,8 +44,8 @@ final class DetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = true
-        requestGetSpace()
         requestGetRecommendBook()
+        requestGetSpace()
         requestGetFollow()
         requestSavedBookMarkAPI()
         requestGetCheckedArticle()
@@ -118,7 +118,7 @@ final class DetailViewController: BaseViewController {
     private func moveCellToMiddle() {
         self.detailView.ownerView.bookCollectionView.isPagingEnabled = false
         self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
-//        self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
+        self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
     }
     
     private func checkCellIndex(index: Int) -> Int {
@@ -200,19 +200,6 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
-    //    func collectionView(_ collectionView: UICollectionView,
-    //                        layout collectionViewLayout: UICollectionViewLayout,
-    //                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    //        switch collectionView {
-    //        case detailView.detailTopView.tagCollectionView:
-    //            return 8
-    //        case detailView.ownerView.bookCollectionView:
-    //            return 32
-    //        default:
-    //            return 0
-    //        }
-    //    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
