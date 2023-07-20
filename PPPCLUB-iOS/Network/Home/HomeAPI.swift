@@ -57,6 +57,15 @@ extension HomeAPI{
         }
     }
     
+    public func getDetailArticle(articleID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        homeProvider.request(.getDetailArticle(articleID: articleID)) { (result) in
+            self.disposeNetwork(
+                result,
+                dataModel: HomeDetailArticleModel.self,
+                completion: completion)
+        }
+    }
+    
     public func getBookmarkCheck(articleID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         homeProvider.request(.getBookmarkCheck(articleID: articleID)) { (result) in
             self.disposeNetwork(
