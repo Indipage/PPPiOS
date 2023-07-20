@@ -71,6 +71,8 @@ class BaseViewController : UIViewController {
             print("⭐️⭐️⭐️⭐️⭐️⭐️")
             print(data)
             return data
+        case .notFoundErr(_):
+            presentBottomAlert("")
         case .requestErr(let message):
             presentBottomAlert(message)
         case .pathErr:

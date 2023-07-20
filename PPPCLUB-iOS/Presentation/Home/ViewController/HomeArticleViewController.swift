@@ -1,10 +1,3 @@
-//
-//  HomeArticleViewController.swift
-//  PPPCLUB-iOS
-//
-//  Created by 신지원 on 2023/07/12.
-//
-
 import UIKit
 
 import SnapKit
@@ -15,8 +8,8 @@ class HomeArticleViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private var parsingData = [[String?]]()
-    private var parsingCnt = Int()
+    typealias ArticleBlockType = Dictionary<ArticleType,String>
+    private var parsingData: [ArticleBlockType] = []
     
     private var bookmarkCheckData: HomeBookmarkCheckResult? {
         didSet {
@@ -35,6 +28,8 @@ class HomeArticleViewController: BaseViewController {
             self.dataBindTicketGet(articleData: ticketGetData)
         }
     }
+    
+    var articleDummy = article
     
     // MARK: - UI Components
     
@@ -64,10 +59,12 @@ class HomeArticleViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         parsingData = HomeArticleParsing()
-        parsingCnt = parsingData.count/2
-        
         requestBookmarkCheckAPI()
         requestTicketCheckAPI()
+        for i in 0..<parsingData.count-1 {
+            print("🤩🤩🤩🤩🤩🤩🤩🤩🤩")
+            print(parsingData[i])
+        }
     }
     
     // MARK: - Custom Method
@@ -134,9 +131,33 @@ class HomeArticleViewController: BaseViewController {
 //MARK: - UITableViewDelegate
 
 extension HomeArticleViewController: UITableViewDelegate {
-    //    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return UITableView.automaticDimension
-    //    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let blockType = parsingData[indexPath.row].keys
+        let content = parsingData[indexPath.row].values
+        
+        print("😄Type: \(blockType), 😍Content: \(content)")
+        
+        switch blockType.first {
+        case .title, .body:
+            let tmpLabel = UILabel()
+            tmpLabel.text = content.first
+            tmpLabel.font = blockType.first?.font
+            let cellWidth = 263.0
+            let heightCnt = ceil((tmpLabel.intrinsicContentSize.width) / cellWidth)
+            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+            print("몇 번째: \(indexPath.row)")
+            print("전체 가로 길이: \((ceil(tmpLabel.intrinsicContentSize.width) / cellWidth))")
+            print("줄 개수 \(heightCnt)")
+            print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
+            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+            return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9
+        case .img:
+            return 270
+        case .none:
+            return 0
+        }
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleHeaderView.cellIdentifier) as? HomeArticleHeaderView else { return UIView()}
@@ -225,97 +246,108 @@ extension HomeArticleViewController: UITableViewDataSource {
     }
 }
 
-extension HomeArticleViewController {
+enum ArticleType: String {
+    case title
+    case body
+    case img
     
-    func HomeArticleParsing() -> [[String?]] {
+    var font: UIFont? {
+        switch self {
+        case .title:
+            return .pppSubHead1
+        case .body:
+            return .pppBody5
+        case .img:
+            return nil
+        }
+    }
+}
+
+extension HomeArticleViewController {
+    func blockCheck(text: String) -> ArticleType? {
+        var articleType: ArticleType?
+        guard let bodyStart = text.range(of: "<") else { return nil }
+        guard let bodyEnd = text.range(of: ">") else { return nil}
         
-        var parsingStored = [[String?]]()
+        let startStart = text[bodyStart].startIndex
+        let startEnd = text[bodyStart].endIndex
+        let endStart = text[bodyEnd].startIndex
+        let endEnd = text[bodyEnd].endIndex
         
-        struct Body {
-            var bold = [String]()
-            var color = [String]()
-            var click = [String]()
-            var body = [String]()
+        let articleDummyEnd = text.endIndex
+        let bodyChecked = text[startEnd ... endStart]
+        
+        var bodyTypeCheck = String(bodyChecked)
+        bodyTypeCheck = bodyTypeCheck.trimmingCharacters(in: ["<", ">"])
+        
+        switch bodyTypeCheck {
+        case ArticleType.body.rawValue:
+            articleType = .body
+        case ArticleType.title.rawValue:
+            articleType = .title
+        case ArticleType.img.rawValue:
+            articleType = .img
+        default:
+            break
         }
         
-        var articleDummy = article
+        articleDummy = String(text[endEnd ..< articleDummyEnd])
+        
+        return articleType
+    }
+    
+    func blockContentCheck(text:String, type: ArticleType?) -> (String)? {
+        guard let bodyStart = text.range(of: type?.rawValue ?? "") else { return nil}
+        let bodyEndRange = "<" + "/" + (type?.rawValue)! + ">"
+        guard let bodyEnd = text.range(of: bodyEndRange) else { return nil }
+        
+        
+        let startStart = text[bodyStart].startIndex
+        let startEnd = text[bodyStart].endIndex
+        let endStart = text[bodyEnd].startIndex
+        let endEnd = text[bodyEnd].endIndex
+        let articleDummyEnd = text.endIndex
+        
+        let bodyChecked = text[text.startIndex ..< endStart]
+        let bodyContentChecked =  String(bodyChecked)
+        
+        articleDummy = String(text[endEnd ..< articleDummyEnd])
+        
+        return (bodyContentChecked)
+        
+    }
+    
+    
+    
+    
+    func HomeArticleParsing() -> [ArticleBlockType] {
+        
+        typealias ArticleBlockType = Dictionary<ArticleType,String>
+        var parsingStored: [ArticleBlockType] = []
+        
+        //        var parsingStored = [[String?]]()
         
         while articleDummy.count > 0 {
             
-            var blockType : String?
+            var blockType : ArticleType?
             var blockContent : String?
             
-            while blockType != "body" {
+            while blockType != .body {
                 
-                var ArticleBody : Body = Body()
                 
-                blockType = bodyCheck(text: articleDummy)
-                blockContent = bodyContentCheck(text: articleDummy, type: blockType ?? "")
-                
-                switch blockType {
-                case "title":
-                    parsingStored.append(["title", blockContent])
-                case "img":
-                    parsingStored.append(["img", blockContent])
-                case "body":
-                    parsingStored.append(["body", blockContent])
-                default:
-                    blockType = ""
+                blockType = blockCheck(text: articleDummy)
+                blockContent = blockContentCheck(text: articleDummy, type: blockType)
+                if let blockType = blockType, let blockContent = blockContent {
+                    let articleBlock: ArticleBlockType = [blockType: blockContent]
+                    parsingStored.append(articleBlock)
                 }
                 
-                func bodyCheck(text: String) -> String? {
-                    
-                    if let bodyStart = text.range(of: "<") {
-                        if let bodyEnd = text.range(of: ">") {
-                            
-                            let startStart = text[bodyStart].startIndex
-                            let startEnd = text[bodyStart].endIndex
-                            let endStart = text[bodyEnd].startIndex
-                            let endEnd = text[bodyEnd].endIndex
-                            
-                            let articleDummyEnd = text.endIndex
-                            let bodyChecked = text[startEnd ... endStart]
-                            
-                            var bodyTypeCheck = String(bodyChecked)
-                            bodyTypeCheck = bodyTypeCheck.trimmingCharacters(in: ["<", ">"])
-                            
-                            articleDummy = String(text[endEnd ..< articleDummyEnd])
-                            
-                            return (bodyTypeCheck)
-                            
-                        }
-                        else { return nil }
-                    }
-                    else { return nil }
-                }
                 
-                func bodyContentCheck(text:String, type:String) -> (String)? {
-                    
-                    if let bodyStart = text.range(of: type) {
-                        let bodyEndRange = "<" + "/" + type + ">"
-                        if let bodyEnd = text.range(of: bodyEndRange) {
-                            
-                            let startStart = text[bodyStart].startIndex
-                            let startEnd = text[bodyStart].endIndex
-                            let endStart = text[bodyEnd].startIndex
-                            let endEnd = text[bodyEnd].endIndex
-                            let articleDummyEnd = text.endIndex
-                            
-                            let bodyChecked = text[text.startIndex ..< endStart]
-                            let bodyContentChecked =  String(bodyChecked)
-                            
-                            articleDummy = String(text[endEnd ..< articleDummyEnd])
-                            
-                            return (bodyContentChecked)
-                        }
-                        else { return nil }
-                    }
-                    else { return nil }
-                }
+                
             }
         }
         
         return parsingStored
     }
+    
 }
-

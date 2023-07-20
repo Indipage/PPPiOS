@@ -230,4 +230,12 @@ final class DetailTopView: UIView {
             $0.leading.equalToSuperview().inset(28)
         }
     }
+    
+    func dataBind(name: String, address: String, runtime: String, rest: String, imageURL: String) {
+        shopNameLabel.text = name
+        detailAddressLabel.text = address
+        detailRunTimeLabel.text = runtime
+        detailRestLabel.text = rest
+        shopImageView.kfSetImage(url: imageURL)
+    }
 }

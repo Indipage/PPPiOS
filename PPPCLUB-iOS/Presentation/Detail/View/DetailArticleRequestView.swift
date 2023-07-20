@@ -70,19 +70,19 @@ final class DetailArticleRequestView: UIView {
         placeLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(28)
-            $0.height.equalTo(28)
+            $0.height.equalTo(28.adjusted)
         }
         
         noticeLabel.snp.makeConstraints {
-            $0.top.equalTo(placeLabel.snp.bottom).offset(8)
+            $0.top.equalTo(placeLabel.snp.bottom).offset(8.adjusted)
             $0.leading.trailing.equalToSuperview().inset(28)
-            $0.height.equalTo(36)
+            $0.height.equalTo(36.adjusted)
         }
         
         requestButton.snp.makeConstraints {
-            $0.top.equalTo(noticeLabel.snp.bottom).offset(20)
+            $0.top.equalTo(noticeLabel.snp.bottom).offset(20.adjusted)
             $0.leading.trailing.equalToSuperview().inset(28)
-            $0.height.equalTo(59)
+            $0.height.equalTo(59.adjusted)
         }
     }
 }

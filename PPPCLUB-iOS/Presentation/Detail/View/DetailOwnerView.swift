@@ -25,7 +25,6 @@ final class DetailOwnerView: UIView {
 
     // MARK: - Properties
 
-    private var ownerName = "바균빈"
     var model: Detail? {
         didSet {
             guard let model = model else { return }
@@ -33,16 +32,17 @@ final class DetailOwnerView: UIView {
             updateLayout()
         }
     }
+    var introText: String = String()
     
     // MARK: - UI Components
 
     private lazy var ownerIntroLabel = UILabel()
     private lazy var introduceTextView = UITextView(frame: CGRect(x: 0, y: 0, width: Size.width - 128, height: 40))
-    private let recommendBookLabel = UILabel()
+    let recommendBookLabel = UILabel()
     let flowLayout = UICollectionViewFlowLayout()
     lazy var bookCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: flowLayout)
-    private lazy var bookNameLabel = UILabel()
+    lazy var bookNameLabel = UILabel()
     var curationTextView = UITextView(frame: CGRect(x: 0, y: 0, width: Size.width - 128, height: 40))
 
     // MARK: - Life Cycle
@@ -63,7 +63,6 @@ final class DetailOwnerView: UIView {
     private func style() {
         guard let model = model else { return }
         ownerIntroLabel.do {
-            $0.text = "공간지기 \(ownerName)"
             $0.font = .pppSubHead1
             $0.textColor = .black
         }
@@ -122,7 +121,6 @@ final class DetailOwnerView: UIView {
         }
 
         bookNameLabel.do {
-            $0.text = "파과"
             $0.font = .pppBody1
             $0.textColor = .black
         }
@@ -202,5 +200,15 @@ final class DetailOwnerView: UIView {
             spacing: 10
         )
         return textView.contentSize.height + 28
+    }
+    
+    func introDataBind(owner: String, introduce: String) {
+        ownerIntroLabel.text = "공간지기 \(owner)"
+        model = Detail(introduce: introduce, curation: "")
+        introText = introduce
+    }
+    
+    func curationDataBind(curation: String) {
+        model = Detail(introduce: introText, curation: curation)
     }
 }
