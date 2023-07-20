@@ -10,8 +10,16 @@ import UIKit
 import SnapKit
 import Then
 
+protocol ArticleHeaderViewDelegate: AnyObject {
+    func enterStoreButtonDidTap()
+}
+
 class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
+    
+    //MARK: - Properties
+    
+    weak var delegate: ArticleHeaderViewDelegate?
     
     // MARK: - UI Components
     
@@ -21,13 +29,15 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     private var editorLabel = UILabel()
     private var articleTitleLabel = UILabel()
     private var dateLabel = UILabel()
-    private var enterStoreButton = UIButton()
+    private var enterStoreButton = UIImageView()
     private var divideBarView = UIView()
     
     // MARK: - Life Cycle
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        
+        gesture()
         
         style()
         hierarchy()
@@ -40,13 +50,18 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Custom Method
     
+    private func gesture() {
+        lazy var enterStoreButtonGesture = UITapGestureRecognizer.init(target: self, action: #selector(enterStoreButtonGestureHandler))
+        
+        self.enterStoreButton.addGestureRecognizer(enterStoreButtonGesture)
+    }
+    
     private func style() {
         
         self.backgroundColor = .pppWhite
         
         articleImage.do {
             $0.backgroundColor = .black
-//            imgView.contentMode = .scaleAspectFill
         }
         
         editorLabel.do {
@@ -73,8 +88,8 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         }
         
         enterStoreButton.do {
-            $0.backgroundColor = .white
-            $0.setImage( Image.articleGo, for: .normal)
+            $0.image = Image.articleGo
+            $0.isUserInteractionEnabled = true
         }
         
         divideBarView.do {
@@ -85,7 +100,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     private func hierarchy() {
         
-        self.addSubviews(articleImage,
+        contentView.addSubviews(articleImage,
                          editorLabel,
                          articleTitleLabel,
                          dateLabel,
@@ -120,6 +135,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         enterStoreButton.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(16)
             $0.width.equalToSuperview()
+            $0.height.equalTo(103)
         }
         
         divideBarView.snp.makeConstraints {
@@ -130,6 +146,12 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.height.equalTo(1)
         }
         
+    }
+    
+    //MARK: - Action Method
+    
+    @objc func enterStoreButtonGestureHandler() {
+        delegate?.enterStoreButtonDidTap()
     }
 }
 

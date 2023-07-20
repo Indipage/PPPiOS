@@ -45,6 +45,7 @@ class HomeArticleViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        parsingData = HomeArticleParsing()
         target()
         register()
         delegate()
@@ -58,13 +59,9 @@ class HomeArticleViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        parsingData = HomeArticleParsing()
+        rootView.articleTableView.setContentOffset(CGPoint(x: 0, y: -rootView.articleTableView.contentInset.top), animated: true)
         requestBookmarkCheckAPI()
         requestTicketCheckAPI()
-        for i in 0..<parsingData.count-1 {
-            print("🤩🤩🤩🤩🤩🤩🤩🤩🤩")
-            print(parsingData[i])
-        }
     }
     
     // MARK: - Custom Method
@@ -164,6 +161,7 @@ extension HomeArticleViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleHeaderView.cellIdentifier) as? HomeArticleHeaderView else { return UIView()}
+        header.delegate = self
         return header
     }
     
@@ -225,6 +223,11 @@ extension HomeArticleViewController {
             self.ticketGetData = result
         }
     }
+    
+    public func pushDetailViewController() {
+        let detailViewController = DetailViewController()
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -235,6 +238,7 @@ extension HomeArticleViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeArticleTableViewCell.cellIdentifier, for: indexPath) as? HomeArticleTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         cell.configureCell(article: parsingData[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -358,4 +362,20 @@ extension HomeArticleViewController {
         return parsingStored
     }
     
+}
+
+extension HomeArticleViewController: TableViewCellDelegate {
+    func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event) {
+        
+    }
+    
+    func pushDetailView() {
+        pushDetailViewController()
+    }
+}
+
+extension HomeArticleViewController: ArticleHeaderViewDelegate {
+    func enterStoreButtonDidTap() {
+        pushDetailViewController()
+    }
 }

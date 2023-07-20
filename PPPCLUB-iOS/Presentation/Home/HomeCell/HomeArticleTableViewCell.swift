@@ -14,6 +14,8 @@ typealias ArticleBlockType = Dictionary<ArticleType,String>
 
 protocol TableViewCellDelegate: AnyObject {
     func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event)
+    
+    func pushDetailView()
 }
 
 class HomeArticleTableViewCell: UITableViewCell {
@@ -21,6 +23,8 @@ class HomeArticleTableViewCell: UITableViewCell {
     //MARK: - Properties
     
     var fullText: String?
+    var linkText: String?
+    
     // MARK: - UI Components
     
     weak var delegate: TableViewCellDelegate?
@@ -33,6 +37,8 @@ class HomeArticleTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        gesture()
         
         cellstyle()
         hierarchy()
@@ -54,6 +60,12 @@ class HomeArticleTableViewCell: UITableViewCell {
     
     
     // MARK: - Custom Method
+    
+    private func gesture() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLabelTap(_:)))
+        cellBodyLabel.isUserInteractionEnabled = true
+        cellBodyLabel.addGestureRecognizer(tapGestureRecognizer)
+    }
     
     private func cellstyle() {
         
@@ -111,6 +123,38 @@ class HomeArticleTableViewCell: UITableViewCell {
             $0.leading.equalToSuperview().offset(20)
             $0.height.equalTo(1)
         }
+    }
+    
+    //MARK: - Action Method
+    
+    @objc func handleLabelTap(_ recognizer: UITapGestureRecognizer) {
+        let tapLocation = recognizer.location(in: cellBodyLabel)
+        let textStorage = NSTextStorage(attributedString: cellBodyLabel.attributedText!)
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        
+        // 클릭한 위치의 글자 인덱스를 찾기 위해 textContainer 사용
+        let textContainer = NSTextContainer(size: cellBodyLabel.bounds.size)
+        layoutManager.addTextContainer(textContainer)
+        
+        // 터치한 지점에 해당하는 글자의 인덱스를 가져옴
+        let characterIndex = layoutManager.characterIndex(for: tapLocation, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        print("클릭한 특정 텍스트의 인덱스: \(characterIndex)")
+        
+        let labelText = cellBodyLabel.text
+        let targetText = linkText
+        guard let labelText = labelText else { return }
+        guard let targetText = targetText else { return }
+        if let range = labelText.range(of: targetText) {
+            let startIndex = labelText.distance(from: labelText.startIndex, to: range.lowerBound)
+            let endIndex = labelText.distance(from: labelText.startIndex, to: range.upperBound)
+            
+            print("특정 텍스트가 있는 위치: \(startIndex) ~ \(endIndex)")
+            if startIndex <= characterIndex && characterIndex <= endIndex {
+                delegate?.pushDetailView()
+            }
+        }
+        
     }
 }
 
@@ -191,9 +235,12 @@ extension HomeArticleTableViewCell {
     }
     
     func changeBody(bodyType: String, bodyContent: String) {
-        
         switch bodyType {
         case "link":
+            self.linkText = bodyContent
+            print("💩💩💩💩💩💩💩💩💩")
+            print(self.linkText)
+            print("💩💩💩💩💩💩💩💩💩")
             cellBodyLabel.asUnder(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
             
         case "bold":
