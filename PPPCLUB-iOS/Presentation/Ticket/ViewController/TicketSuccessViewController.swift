@@ -22,10 +22,10 @@ final class TicketSuccessViewController: BaseViewController {
         self.view = rootView
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLoad() {

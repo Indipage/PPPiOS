@@ -30,7 +30,7 @@ final class QRManager {
         if let cameraDevice = self.cameraDevice {
             do {
                 let input = try AVCaptureDeviceInput(device: cameraDevice)
-                if QRManager.shared.captureSession.canAddInput(input) { QRManager.shared.captureSession.addInput(input) }
+                if captureSession.canAddInput(input) { captureSession.addInput(input) }
             } catch {
                 print(error.localizedDescription)
                 return
@@ -39,12 +39,12 @@ final class QRManager {
     }
     
     func initCameraOutputData() {
-        if QRManager.shared.captureSession.canAddOutput(QRManager.shared.captureMetadataOutput) {
-            QRManager.shared.captureSession.addOutput(QRManager.shared.captureMetadataOutput)
+        if captureSession.canAddOutput(captureMetadataOutput) {
+            captureSession.addOutput(captureMetadataOutput)
         }
         //         captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr] // Camera로 들어오는 데이터 타입이 QR코드 임을 명시
-        if QRManager.shared.captureMetadataOutput.availableMetadataObjectTypes.contains(AVMetadataObject.ObjectType.qr) {
-            QRManager.shared.captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+        if captureMetadataOutput.availableMetadataObjectTypes.contains(AVMetadataObject.ObjectType.qr) {
+            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         } else {
             print("QR code metadata is not supported")
             // 다른 조치를 취하거나 오류 처리를 수행해야 할 수 있습니다.
@@ -55,12 +55,12 @@ final class QRManager {
         print("# AVCaptureSession Start Running")
         DispatchQueue.global(qos: .userInitiated).async {
             print("🔫시작했습니다🔫")
-            QRManager.shared.captureSession.startRunning()
+            self.captureSession.startRunning()
         }
     }
     
     func stop() {
-        QRManager.shared.captureSession.stopRunning()
+        captureSession.stopRunning()
     }
     
     
