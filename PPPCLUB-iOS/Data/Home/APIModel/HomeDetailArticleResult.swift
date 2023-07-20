@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HomeDetailArticleModel: Codable {
+struct HomeDetailArticleResult: Codable {
     let id: Int
     let title, content, issueDate, thumbnailURL: String
     let spaceID: Int

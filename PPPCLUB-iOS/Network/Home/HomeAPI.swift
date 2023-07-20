@@ -61,7 +61,7 @@ extension HomeAPI{
         homeProvider.request(.getDetailArticle(articleID: articleID)) { (result) in
             self.disposeNetwork(
                 result,
-                dataModel: HomeDetailArticleModel.self,
+                dataModel: HomeDetailArticleResult.self,
                 completion: completion)
         }
     }

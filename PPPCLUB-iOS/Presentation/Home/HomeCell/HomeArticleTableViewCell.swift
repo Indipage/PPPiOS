@@ -13,8 +13,6 @@ import Then
 typealias ArticleBlockType = Dictionary<ArticleType,String>
 
 protocol TableViewCellDelegate: AnyObject {
-    func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event)
-    
     func pushDetailView()
 }
 

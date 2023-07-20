@@ -29,6 +29,8 @@ class HomeArticleViewController: BaseViewController {
         }
     }
     
+    private var homeDetailArticleData: HomeDetailArticleResult?
+    
     var articleDummy = article
     
     // MARK: - UI Components
@@ -215,6 +217,13 @@ extension HomeArticleViewController {
         }
     }
     
+    public func requestDetailArticleAPI() {
+        HomeAPI.shared.getDetailArticle(articleID: "1") { result in
+            guard let result = self.validateResult(result) as? HomeDetailArticleResult else { return }
+            self.homeDetailArticleData = result
+        }
+    }
+    
     public func pushDetailViewController() {
         let detailViewController = DetailViewController()
         self.navigationController?.pushViewController(detailViewController, animated: true)
@@ -352,10 +361,6 @@ extension HomeArticleViewController {
 
 
 extension HomeArticleViewController: TableViewCellDelegate {
-    func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event) {
-        
-    }
-    
     func pushDetailView() {
         pushDetailViewController()
     }
