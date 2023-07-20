@@ -82,6 +82,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         
         ticketReceivedImage.do {
             $0.image = Image.ticketReceivedImage
+            $0.isHidden = true
         }
         
         ticketNotReceivedImage.do {
@@ -148,16 +149,16 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         spaceTypeLabel.setTitle(articleData.spaceType, for: .normal)
         titleLabel.text = articleData.spaceName
         subTitleLabel.text = articleData.title
-        ticketReceivedImage.isHidden = !articleData.ticketReceived
-        ticketNotReceivedImage.isHidden = articleData.ticketReceived
+        ticketReceivedImage.isHidden = articleData.ticketReceived
+        ticketNotReceivedImage.isHidden = !articleData.ticketReceived
     }
     
     func dataBindHome(articleData: HomeArticleListResult) {
         spaceTypeLabel.setTitle(articleData.spaceType, for: .normal)
         titleLabel.text = articleData.spaceName
         subTitleLabel.text = articleData.title
-        ticketReceivedImage.isHidden = !articleData.ticketReceived
-        ticketNotReceivedImage.isHidden = articleData.ticketReceived
+        ticketReceivedImage.isHidden = articleData.ticketReceived
+        ticketNotReceivedImage.isHidden = !articleData.ticketReceived
     }
 }
 
