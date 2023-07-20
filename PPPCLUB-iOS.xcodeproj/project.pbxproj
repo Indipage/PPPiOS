@@ -12,6 +12,9 @@
 		0525C73A2A67261E00699B2C /* DetailGetFollowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7392A67261E00699B2C /* DetailGetFollowModel.swift */; };
 		0525C73C2A67533A00699B2C /* DetailRecommendBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C73B2A67533A00699B2C /* DetailRecommendBookModel.swift */; };
 		0525C73E2A675DD000699B2C /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C73D2A675DD000699B2C /* Detail.swift */; };
+		0525C7402A6932EA00699B2C /* SearchSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C73F2A6932EA00699B2C /* SearchSpaceModel.swift */; };
+		0525C7432A69338700699B2C /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7422A69338700699B2C /* SearchService.swift */; };
+		0525C7452A69362B00699B2C /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7442A69362B00699B2C /* SearchAPI.swift */; };
 		0557DDDB2A65F71100650F75 /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDA2A65F71100650F75 /* DetailService.swift */; };
 		0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDC2A65F92900650F75 /* DetailAPI.swift */; };
 		0557DDDF2A65FD7200650F75 /* DetailSavedBookMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */; };
@@ -149,6 +152,9 @@
 		0525C7392A67261E00699B2C /* DetailGetFollowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGetFollowModel.swift; sourceTree = "<group>"; };
 		0525C73B2A67533A00699B2C /* DetailRecommendBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecommendBookModel.swift; sourceTree = "<group>"; };
 		0525C73D2A675DD000699B2C /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		0525C73F2A6932EA00699B2C /* SearchSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSpaceModel.swift; sourceTree = "<group>"; };
+		0525C7422A69338700699B2C /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		0525C7442A69362B00699B2C /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 		0557DDDA2A65F71100650F75 /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
 		0557DDDC2A65F92900650F75 /* DetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPI.swift; sourceTree = "<group>"; };
 		0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSavedBookMarkModel.swift; sourceTree = "<group>"; };
@@ -293,6 +299,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0525C7412A69337D00699B2C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0525C7422A69338700699B2C /* SearchService.swift */,
+				0525C7442A69362B00699B2C /* SearchAPI.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		0557DDD92A65F6FA00650F75 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				05CD07E12A5EA072003EEE84 /* SearchListModel.swift */,
+				0525C73F2A6932EA00699B2C /* SearchSpaceModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -584,6 +600,7 @@
 		D2614A8B2A5290CC00869710 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0525C7412A69337D00699B2C /* Search */,
 				2C1796562A670FB30020B9A5 /* Home */,
 				0557DDD92A65F6FA00650F75 /* Detail */,
 				D2B031B02A631A1800DE8896 /* Ticket */,
@@ -810,8 +827,8 @@
 			isa = PBXGroup;
 			children = (
 				D2B096192A529994007BC756 /* SearchView.swift */,
-				05CD07DC2A5E9C37003EEE84 /* SearchTableViewCell.swift */,
 				05CD07E42A5ED7D8003EEE84 /* SearchHeaderView.swift */,
+				05CD07DC2A5E9C37003EEE84 /* SearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -981,10 +998,12 @@
 				D22188882A5BF8BA00F097C7 /* CGPoint+.swift in Sources */,
 				05CD07D52A5C9690003EEE84 /* DetailUniqueView.swift in Sources */,
 				D2614A462A52836E00869710 /* AppDelegate.swift in Sources */,
+				0525C7402A6932EA00699B2C /* SearchSpaceModel.swift in Sources */,
 				0525C7382A66EA7900699B2C /* DetailGetSpaceModel.swift in Sources */,
 				2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
 				2C0C72992A60696100EC2117 /* HomeArticleView.swift in Sources */,
+				0525C7432A69338700699B2C /* SearchService.swift in Sources */,
 				D2B031A62A62B32300DE8896 /* MyUserInfoModel.swift in Sources */,
 				0525C73A2A67261E00699B2C /* DetailGetFollowModel.swift in Sources */,
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,
@@ -1068,6 +1087,7 @@
 				2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */,
 				05CD07DD2A5E9C37003EEE84 /* SearchTableViewCell.swift in Sources */,
 				2C0C729D2A60699600EC2117 /* HomeArticleCollectionView.swift in Sources */,
+				0525C7452A69362B00699B2C /* SearchAPI.swift in Sources */,
 				2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */,
 				D2B031972A61397E00DE8896 /* MySavedArticleTableViewCell.swift in Sources */,

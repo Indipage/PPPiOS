@@ -14,7 +14,7 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private var spaceID = 1
+    var spaceID = 1
     private var isFollowed: Bool = false
     private var hashTagList: [String] = [String]()
     private var recommandBookData: [DetailRecommendBookResult] = [] {
