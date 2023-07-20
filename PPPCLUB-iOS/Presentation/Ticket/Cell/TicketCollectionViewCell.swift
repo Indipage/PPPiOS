@@ -13,7 +13,7 @@ import Then
 //MARK: - TicketDelegate
 
 protocol TicketDelegate: AnyObject {
-    func ticketImageDidSwapped(spaceID: Int)
+    func ticketImageDidSwapped(spaceID: Int?)
 }
 
 final class TicketCollectionViewCell: UICollectionViewCell {
@@ -66,37 +66,16 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     //MARK: - Action Method
     
     @objc func ticketGestureHandler(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: ticketImageView)
-        ticketImageView.center = CGPoint(
-            x: ticketImageView.center.x + translation.x,
-            y: ticketImageView.center.y
-        )
-        
-        recognizer.setTranslation(CGPoint.zero, in: ticketImageView)
-        var velocity = recognizer.velocity(in: ticketImageView)
-        switch recognizer.state {
-        case .began:
-            if velocity.x > 0 { recognizer.state = .cancelled }
-        case .changed:
-            if velocity.x > 0 { self.ticketImageView.center.x = self.point.x-55 }
-        case .ended:
-            if ticketImageView.center.x + translation.x < 35 {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.ticketImageView.center.x = self.point.x-55
-                }) { _ in
-                    self.delegate?.ticketImageDidSwapped(spaceID: self.spaceID!)
-                }
-                
-            } else {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.ticketImageView.center.x = self.point.x-55
-                })
-            }
-        @unknown default:
-            break
+        AnimationManager.shared.ticketAnimate(
+            point: point,
+            targetView: ticketImageView,
+            recoginizer: recognizer
+        ) { _ in
+            self.delegate?.ticketImageDidSwapped(spaceID: self.spaceID)
         }
     }
 }
+
 
 //MARK: - TicketCollectionViewCell
 

@@ -56,3 +56,9 @@ final class TicketSuccessViewController: BaseViewController {
         self.navigationController?.pushViewController(ticketViewController, animated: true)
     }
 }
+
+extension TicketSuccessViewController {
+    func dataBind(imageURL: String) {
+        rootView.cardImageView.kfSetImage(url: imageURL)
+    }
+}

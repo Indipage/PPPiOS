@@ -40,7 +40,7 @@ extension TicketAPI {
         ticketProvider.request(.putQRCodeCheck(spaceID: spaceID)) { (result) in
             self.disposeNetwork(
                 result,
-                dataModel: VoidResult.self,
+                dataModel: TicketQRCodeResult.self,
                 completion: completion
             )
         }

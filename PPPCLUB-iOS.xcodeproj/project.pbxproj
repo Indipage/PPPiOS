@@ -112,6 +112,8 @@
 		D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D265940D2A5CF2360089E56A /* TicketCardCollectionViewCell.swift */; };
 		D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594122A5CF4580089E56A /* TicketCardModel.swift */; };
 		D26594152A5CF4B90089E56A /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594142A5CF4B90089E56A /* TicketView.swift */; };
+		D28ACC1C2A69C55C0093B01E /* TicketQRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */; };
+		D28ACC1E2A69C9DF0093B01E /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */; };
 		D2B031972A61397E00DE8896 /* MySavedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */; };
 		D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */; };
 		D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */; };
@@ -249,6 +251,8 @@
 		D265940D2A5CF2360089E56A /* TicketCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		D26594122A5CF4580089E56A /* TicketCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardModel.swift; sourceTree = "<group>"; };
 		D26594142A5CF4B90089E56A /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketQRCodeModel.swift; sourceTree = "<group>"; };
+		D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleTableViewCell.swift; sourceTree = "<group>"; };
 		D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreTableViewCell.swift; sourceTree = "<group>"; };
 		D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleViewController.swift; sourceTree = "<group>"; };
@@ -472,6 +476,7 @@
 			children = (
 				D26594062A5C56F50089E56A /* QRManager.swift */,
 				D23B6AFE2A6908A700894C38 /* ArticleParsingManager.swift */,
+				D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -676,6 +681,7 @@
 			children = (
 				D26594122A5CF4580089E56A /* TicketCardModel.swift */,
 				D2E8C3D82A5EC2C1002004A5 /* TicketModel.swift */,
+				D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */,
 			);
 			path = APIModel;
 			sourceTree = "<group>";
@@ -1002,6 +1008,7 @@
 				0525C7382A66EA7900699B2C /* DetailGetSpaceModel.swift in Sources */,
 				2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */,
 				D2B096222A5299CC007BC756 /* HomeView.swift in Sources */,
+				D28ACC1E2A69C9DF0093B01E /* AnimationManager.swift in Sources */,
 				2C0C72992A60696100EC2117 /* HomeArticleView.swift in Sources */,
 				0525C7432A69338700699B2C /* SearchService.swift in Sources */,
 				D2B031A62A62B32300DE8896 /* MyUserInfoModel.swift in Sources */,
@@ -1039,6 +1046,7 @@
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
 				05CD07E52A5ED7D8003EEE84 /* SearchHeaderView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
+				D28ACC1C2A69C55C0093B01E /* TicketQRCodeModel.swift in Sources */,
 				D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */,
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
 				05CD07E22A5EA072003EEE84 /* SearchListModel.swift in Sources */,
@@ -1248,7 +1256,7 @@
 				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -1278,7 +1286,7 @@
 				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
