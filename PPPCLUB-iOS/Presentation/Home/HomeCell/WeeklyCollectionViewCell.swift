@@ -10,11 +10,17 @@ import UIKit
 import SnapKit
 import Then
     
-class thisWeekCell: UICollectionViewCell {
+protocol ThisWeekCellDelegate: AnyObject {
+    func thisWeekCardImageDidTap()
+}
+
+final class thisWeekCell: UICollectionViewCell {
+    
+    weak var delegate: ThisWeekCellDelegate?
     
     // MARK: - UI Components
     
-    var thisWeekCardImage = UIImageView()
+    lazy var thisWeekCardImage = UIButton()
     var cardTitleLabel = UILabel()
     var cardStoreNameLabel = UILabel()
     var cardStoreOwnerLabel = UILabel()
@@ -23,6 +29,8 @@ class thisWeekCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        target()
         
         cellStyle()
         hierarchy()
@@ -34,6 +42,10 @@ class thisWeekCell: UICollectionViewCell {
     }
     
     // MARK: - Custom Method
+    
+    private func target() {
+        thisWeekCardImage.addTarget(self, action: #selector(thisWeekCardImageDidTap), for: .touchUpInside)
+    }
     
     private func cellStyle() {
         
@@ -87,10 +99,14 @@ class thisWeekCell: UICollectionViewCell {
     
     func configureCell(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
-        thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
+        thisWeekCardImage.kfSetButtonImage(url: articleData.thumbnailUrlOfThisWeek, state: .normal)
         cardTitleLabel.text = articleData.title
         cardStoreNameLabel.text = articleData.spaceName
         cardStoreOwnerLabel.text = articleData.spaceOwner
+    }
+    
+    @objc func thisWeekCardImageDidTap() {
+        delegate?.thisWeekCardImageDidTap()
     }
 }
 

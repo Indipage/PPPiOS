@@ -73,7 +73,6 @@ final class HomeViewController: BaseViewController{
         
         gesture = UIPanGestureRecognizer(target: self,
                                          action: #selector(ticketCaseMoved(_:)))
-        
         rootView.homeNavigationView.weeklyButton.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
         rootView.homeNavigationView.allButton.addTarget(self, action: #selector(allButtonTap), for: .touchUpInside)
         
@@ -120,6 +119,7 @@ final class HomeViewController: BaseViewController{
         rootView.homeWeeklyView.isHidden = true
         rootView.homeAllView.isHidden = false
     }
+    
     
     func pushToArticleViewController() {
         
@@ -179,9 +179,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView {
         case rootView.homeWeeklyView.weeklyCollectionView:
-            var newtop = Size.height * 0.057
-            var newbottom = Size.height * 0.169
-            var newside = Size.width * 0.106 * 5/4
+            let newtop = Size.height * 0.06
+            let newbottom = Size.height * 0.212
+            let newside = Size.width * 0.053 * 2
             return UIEdgeInsets(top: newtop, left: newside, bottom: newbottom, right: newside)
         default:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -193,8 +193,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case rootView.homeAllView.allArticleCollectionView:
             return CGSize(width: 319, height: 180)
         case rootView.homeWeeklyView.weeklyCollectionView:
-            var cellHeight = Size.height * 0.513
-            var cellwidth = cellHeight * 0.625
+            var cellHeight = Size.height * 0.58
+            var cellwidth = Size.width * 0.786
             return CGSize(width: cellwidth, height: cellHeight)
         default:
             return CGSize.zero
@@ -206,7 +206,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case rootView.homeAllView.allArticleCollectionView:
             return 20
         case rootView.homeWeeklyView.weeklyCollectionView:
-            var spacingCal = Size.height * 0.513 * 0.04
+            var spacingCal = Size.width * 0.026
             return spacingCal
         default:
             return 0
@@ -239,6 +239,7 @@ extension HomeViewController: UICollectionViewDataSource {
             if indexPath.item == 0 {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: thisWeekCell.cellIdentifier, for: indexPath) as? thisWeekCell else { return UICollectionViewCell() }
                 cell.configureCell(articleData: articleCardData)
+                cell.delegate = self
                 return cell
             } else {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nextWeekCell.cellIdentifier, for: indexPath) as? nextWeekCell else { return UICollectionViewCell() }
@@ -257,6 +258,12 @@ extension HomeViewController: SavedArticleCellDelegate {
     func articleDidTap() {
         let articleViewController = HomeArticleViewController()
         self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+}
+
+extension HomeViewController: ThisWeekCellDelegate {
+    func thisWeekCardImageDidTap() {
+        pushToArticleViewController()
     }
 }
 
@@ -280,7 +287,7 @@ extension HomeViewController {
     
     func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
         guard let hasSlide = articleData?.hasSlide else { return }
-        rootView.homeWeeklyView.ticketCoverImageView.isHidden = false
+        rootView.homeWeeklyView.isHidden = !hasSlide
     }
     
     func requestArticleCardAPI() {

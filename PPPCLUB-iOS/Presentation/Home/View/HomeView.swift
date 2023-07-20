@@ -47,6 +47,7 @@ final class HomeView: UIView {
         
         homeWeeklyView.do {
             $0.backgroundColor = .pppWhite
+            $0.isHidden = true
         }
         
         homeAllView.do {
