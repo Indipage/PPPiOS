@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class HomeViewController: BaseViewController {
+final class HomeViewController: BaseViewController{
     
     // MARK: - Properties
     
@@ -22,6 +22,7 @@ final class HomeViewController: BaseViewController {
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
             self.dataBindArticleCard(articleData: articleCardData)
+            self.rootView.homeWeeklyView.weeklyCollectionView.reloadData()
         }
     }
     
@@ -236,10 +237,12 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case rootView.homeWeeklyView.weeklyCollectionView:
             if indexPath.item == 0 {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thisWeekCell", for: indexPath) as! thisWeekCell
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: thisWeekCell.cellIdentifier, for: indexPath) as? thisWeekCell else { return UICollectionViewCell() }
+                cell.configureCell(articleData: articleCardData)
                 return cell
             } else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nextWeekCell", for: indexPath) as! nextWeekCell
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nextWeekCell.cellIdentifier, for: indexPath) as? nextWeekCell else { return UICollectionViewCell() }
+                cell.configureCell(articleData: articleCardData)
                 return cell
             }
         default:
@@ -260,6 +263,13 @@ extension HomeViewController: SavedArticleCellDelegate {
 extension HomeViewController {
     func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
+        rootView.homeWeeklyView.cardId = articleData.id
+        rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
+        rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
+        rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
+        rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
+        rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
+        
         rootView.homeWeeklyView.cardId = articleData.id
         rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
         rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)

@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
-
+    
 class thisWeekCell: UICollectionViewCell {
     
     // MARK: - UI Components
@@ -84,6 +84,14 @@ class thisWeekCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(24)
         }
     }
+    
+    func configureCell(articleData: HomeArticleCardResult?) {
+        guard let articleData = articleData else { return }
+        thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
+        cardTitleLabel.text = articleData.title
+        cardStoreNameLabel.text = articleData.spaceName
+        cardStoreOwnerLabel.text = articleData.spaceOwner
+    }
 }
 
 class nextWeekCell: UICollectionViewCell {
@@ -128,7 +136,6 @@ class nextWeekCell: UICollectionViewCell {
         }
         
         remainingLabel.do {
-            $0.text = "4Days"
             $0.font = .pppEnTitle1
             $0.textColor = .pppMainLightGreen
         }
@@ -158,6 +165,13 @@ class nextWeekCell: UICollectionViewCell {
             $0.bottom.equalToSuperview().inset(36)
             $0.trailing.equalToSuperview().inset(24)
         }
+    }
+    
+    func configureCell(articleData: HomeArticleCardResult?) {
+        guard let articleData = articleData else { return }
+        nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
+        var remainingInt = articleData.remainingDays
+        remainingLabel.text = "\(remainingInt)Days"
     }
     
 }
