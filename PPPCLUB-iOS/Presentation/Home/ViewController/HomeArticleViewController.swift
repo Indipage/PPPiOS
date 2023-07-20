@@ -70,7 +70,6 @@ class HomeArticleViewController: BaseViewController {
         
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
         rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
-        rootView.articleTableView.footerView.ticketButton.addTarget(self, action: #selector(ticketReceivedTap), for: .touchUpInside)
         
     }
     
@@ -115,12 +114,6 @@ class HomeArticleViewController: BaseViewController {
         else {
             requestBookmarkDeleteAPI()
         }
-    }
-    
-    @objc
-    func ticketReceivedTap() {
-        rootView.articleTableView.footerView.ticketButton.kfSetButtonImage(url: rootView.articleTableView.footerView.ticketURL, state: .selected)
-        rootView.articleTableView.footerView.ticketButton.isEnabled = false
     }
     
 }
@@ -168,8 +161,6 @@ extension HomeArticleViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 692
     }
-    
-    
     
     func tableView(_ tableView: UITableView, shouldScrollHorizontallyToItemAt section: Bool) -> Bool {
         return false
@@ -251,6 +242,7 @@ extension HomeArticleViewController: UITableViewDataSource {
         footer.dataBindTicketCheck(articleData: ticketCheckData)
         return footer
     }
+    
 }
 
 enum ArticleType: String {
@@ -313,7 +305,6 @@ extension HomeArticleViewController {
         let bodyEndRange = "<" + "/" + (type?.rawValue)! + ">"
         guard let bodyEnd = text.range(of: bodyEndRange) else { return nil }
         
-        
         let startStart = text[bodyStart].startIndex
         let startEnd = text[bodyStart].endIndex
         let endStart = text[bodyEnd].startIndex
@@ -337,8 +328,6 @@ extension HomeArticleViewController {
         typealias ArticleBlockType = Dictionary<ArticleType,String>
         var parsingStored: [ArticleBlockType] = []
         
-        //        var parsingStored = [[String?]]()
-        
         while articleDummy.count > 0 {
             
             var blockType : ArticleType?
@@ -353,9 +342,6 @@ extension HomeArticleViewController {
                     let articleBlock: ArticleBlockType = [blockType: blockContent]
                     parsingStored.append(articleBlock)
                 }
-                
-                
-                
             }
         }
         
@@ -363,6 +349,7 @@ extension HomeArticleViewController {
     }
     
 }
+
 
 extension HomeArticleViewController: TableViewCellDelegate {
     func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event) {

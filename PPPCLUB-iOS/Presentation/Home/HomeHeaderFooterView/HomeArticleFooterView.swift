@@ -31,6 +31,8 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
+        target()
+        
         style()
         hierarchy()
         layout()
@@ -42,6 +44,11 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Custom Method
     
+    private func target() {
+        ticketButton.addAction(UIAction(handler: { action in
+            self.ticketButtonDidTap(image: self.ticketURL)
+        }), for: .touchUpInside)
+    }
     private func style() {
         
         self.backgroundColor = .pppWhite
@@ -68,16 +75,16 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         
         ticketButton.do {
             $0.setImage(Image.mockNoTicket, for: .normal)
+            ticketButton.imageView?.contentMode = .scaleAspectFill
         }
     }
     
     private func hierarchy() {
         
-        self.addSubviews(divideBarView,
-                         ticketButton,
-                         ticketTitleLabel,
-                         ticketSubLabel
-        )
+        contentView.addSubviews(ticketButton,
+                                divideBarView,
+                                ticketTitleLabel,
+                                ticketSubLabel)
     }
     
     private func layout() {
@@ -102,6 +109,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
             $0.top.equalTo(ticketSubLabel.snp.bottom).offset(27)
             $0.leading.equalToSuperview().inset(89)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(383)
             $0.bottom.equalToSuperview().inset(91)
         }
         
@@ -109,11 +117,8 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     }
     
     //MARK: - Action Method
-    
-    @objc
-    func ticketReceivedTap() {
-        ticketButton.kfSetButtonImage(url: ticketURL, state: .selected)
-        ticketButton.isEnabled = false
+    @objc func ticketButtonDidTap(image: String) {
+        ticketButton.kfSetButtonImage(url: image, state: .normal)
     }
     
     func dataBindTicketCheck(articleData: HomeTicketCheckResult?) {
@@ -125,7 +130,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         ticketReceived = articleData.hasReceivedTicket
         
         if !ticketReceived {
-            ticketButton.isEnabled = true
+            ticketButton.setImage(Image.mockNoTicket, for: .normal)
         }
         else {
             ticketButton.kfSetButtonImage(url: ticketURL, state: .normal)

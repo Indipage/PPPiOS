@@ -64,7 +64,7 @@ class HomeWeeklyView: UIView {
         ticketCoverImageView.do {
             $0.image = Image.mockArticleCardPacked
             $0.isUserInteractionEnabled = true
-            $0.isHidden = slideCheck
+            $0.isHidden = true
         }
     }
     

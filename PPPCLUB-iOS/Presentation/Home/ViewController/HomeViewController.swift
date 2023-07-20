@@ -125,8 +125,7 @@ final class HomeViewController: BaseViewController {
         
     }
     
-    @objc
-    public func ticketDragAnimation() {
+    private func ticketDragAnimation() {
         requestPutSlideAPI()
         pushToArticleViewController()
     }
@@ -142,8 +141,11 @@ final class HomeViewController: BaseViewController {
             if abs(viewVelocity.y) > abs(viewVelocity.x) {
                 
                 if viewTranslation.y >= 152 {
-                    UIView.animate(withDuration: 0.4, animations: {
+                    UIView.animate(withDuration: 0.1, animations: {
                         self.rootView.homeWeeklyView.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
+                        sender.state = .ended
+                    }, completion: { _ in
+                        self.ticketDragAnimation()
                     })
                 }
                 
@@ -159,9 +161,6 @@ final class HomeViewController: BaseViewController {
                 UIView.animate(withDuration: 0.04, animations: {
                     self.rootView.homeWeeklyView.ticketCoverImageView.transform = .identity
                 })
-            }
-            else {
-                self.ticketDragAnimation()
             }
             
         default:
@@ -201,7 +200,13 @@ extension HomeViewController: UICollectionViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension HomeViewController: SavedArticleCellDelegate {
-    
+    func articleDidTap() {
+        let articleViewController = HomeArticleViewController()
+        self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+}
+
+extension HomeViewController {
     func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
         rootView.homeWeeklyView.cardId = articleData.id
@@ -215,12 +220,7 @@ extension HomeViewController: SavedArticleCellDelegate {
     
     func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
         guard let hasSlide = articleData?.hasSlide else { return }
-        rootView.homeWeeklyView.slideCheck = hasSlide
-    }
-    
-    func articleDidTap() {
-        let articleViewController = HomeArticleViewController()
-        self.navigationController?.pushViewController(articleViewController, animated: true)
+        rootView.homeWeeklyView.ticketCoverImageView.isHidden = false
     }
     
     func requestArticleCardAPI() {
@@ -250,3 +250,5 @@ extension HomeViewController: SavedArticleCellDelegate {
         }
     }
 }
+    
+    
