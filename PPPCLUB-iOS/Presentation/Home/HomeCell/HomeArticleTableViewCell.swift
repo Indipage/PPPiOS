@@ -27,6 +27,7 @@ class HomeArticleTableViewCell: UITableViewCell {
     private var cellTitleLabel = UILabel()
     private var cellImageView = UIImageView()
     private var cellBodyLabel = UILabel()
+    private var cellUnderLine = UIView()
     
     // MARK: - Life Cycle
     
@@ -65,10 +66,6 @@ class HomeArticleTableViewCell: UITableViewCell {
             $0.numberOfLines = 0
         }
         
-        cellImageView.do {
-            $0.backgroundColor = .blue
-        }
-        
         cellBodyLabel.do {
             $0.font = .pppBody5
             $0.textColor = .pppBlack
@@ -76,28 +73,43 @@ class HomeArticleTableViewCell: UITableViewCell {
             $0.numberOfLines = 0
         }
         
+        cellUnderLine.do {
+            $0.backgroundColor = .pppGrey2
+        }
+        
     }
     
     private func hierarchy() {
-        contentView.addSubviews(cellImageView, cellBodyLabel,cellTitleLabel)
+        contentView.addSubviews(cellImageView, cellBodyLabel,cellTitleLabel,cellUnderLine)
     }
     
     private func layout() {
-        
-        cellTitleLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+        cellBodyLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().offset(28)
+            $0.bottom.equalToSuperview().inset(30)
+        }
+        
+        cellTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(28)
+            $0.bottom.equalToSuperview().inset(30)
         }
         
         cellImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(30)
         }
         
-        cellBodyLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+        cellUnderLine.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().offset(28)
+            $0.leading.equalToSuperview().offset(20)
+            $0.height.equalTo(1)
         }
     }
 }
@@ -110,9 +122,9 @@ extension HomeArticleTableViewCell {
             cellTitleLabel.isHidden = false
             cellImageView.isHidden = true
             cellBodyLabel.isHidden = true
+            cellUnderLine.isHidden = true
             cellTitleLabel.text = article.values.first
         case .body:
-            var bodyCompleteString = String()
             cellBodyLabel.isHidden = false
             cellTitleLabel.isHidden = true
             cellImageView.isHidden = true
@@ -120,12 +132,18 @@ extension HomeArticleTableViewCell {
             cellBodyLabel.text = fullText
             cellBodyLabel.setLineSpacing(spacing: 9)
             bodyInsideCheck(bodyArticle: article.values.first ?? "")
+            cellUnderLine.isHidden = true
         case .img:
-            print("이미지 왔당께요 \(article.values.first)")
             cellImageView.isHidden = false
             cellTitleLabel.isHidden = true
             cellBodyLabel.isHidden = true
             cellImageView.kfSetImage(url: article.values.first)
+            cellUnderLine.isHidden = true
+        case .hr:
+            cellImageView.isHidden = true
+            cellTitleLabel.isHidden = true
+            cellBodyLabel.isHidden = true
+            cellUnderLine.isHidden = false
         case .none:
             break
         }
@@ -182,7 +200,7 @@ extension HomeArticleTableViewCell {
             cellBodyLabel.asFont(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, spacing: 9, lineHeight: 9)
             
         case "color":
-            cellBodyLabel.asFontColor(targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
+            cellBodyLabel.asFontColor(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple, spacing: 8, lineHeight: 8)
             
         default:
             break
@@ -216,20 +234,17 @@ extension HomeArticleTableViewCell {
             if let bodyEnd = text.range(of: bodyEndRange) {
                 
                 let startStart = text[bodyStart].startIndex
-                let startEnd = text[bodyStart].endIndex
-                let endStart = text[bodyEnd].startIndex
                 let endEnd = text[bodyEnd].endIndex
                 
-                let bodyDummyEnd = text.endIndex
                 
                 let splitChecked = text[startStart ..< endEnd]
-                var splitContent = String(splitChecked)
+                let splitContent = String(splitChecked)
                 var splitTypeContent =  String(splitChecked)
                 
                 splitTypeContent = splitTypeContent.replacingOccurrences(of: bodyEndRange, with: "")
                 splitTypeContent = splitTypeContent.replacingOccurrences(of: bodyStartRange, with: "")
                 
-                var bodySplitContent = text.replacingOccurrences(of: splitContent, with: splitTypeContent)
+                let bodySplitContent = text.replacingOccurrences(of: splitContent, with: splitTypeContent)
                 
                 return (bodySplitContent, splitTypeContent)
                 

@@ -143,19 +143,22 @@ extension HomeArticleViewController: UITableViewDelegate {
             let tmpLabel = UILabel()
             tmpLabel.text = content.first
             tmpLabel.font = blockType.first?.font
-            let cellWidth = 263.0
+            let cellWidth = 319.0
             let heightCnt = ceil((tmpLabel.intrinsicContentSize.width) / cellWidth)
             print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
             print("몇 번째: \(indexPath.row)")
-            print("전체 가로 길이: \((ceil(tmpLabel.intrinsicContentSize.width) / cellWidth))")
+            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
             print("줄 개수 \(heightCnt)")
             print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
             print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
-            return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9
+            return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9 + 30
         case .img:
-            return 270
+            return 300
+        case .hr:
+            return 31
         case .none:
             return 0
+        
         }
     }
     
@@ -250,6 +253,7 @@ enum ArticleType: String {
     case title
     case body
     case img
+    case hr
     
     var font: UIFont? {
         switch self {
@@ -258,6 +262,8 @@ enum ArticleType: String {
         case .body:
             return .pppBody5
         case .img:
+            return nil
+        case .hr:
             return nil
         }
     }
@@ -287,6 +293,8 @@ extension HomeArticleViewController {
             articleType = .title
         case ArticleType.img.rawValue:
             articleType = .img
+        case ArticleType.hr.rawValue:
+            articleType = .hr
         default:
             break
         }
