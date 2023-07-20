@@ -46,6 +46,7 @@ class HomeWeeklyView: UIView {
             $0.font = .pppTitle1
             $0.textColor = .pppWhite
             $0.textAlignment = .left
+            $0.numberOfLines = 0
         }
         
         cardStoreOwnerLabel.do {
@@ -88,6 +89,7 @@ class HomeWeeklyView: UIView {
         cardTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
             $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalTo(thisWeekCardImage)
         }
         
         cardStoreOwnerLabel.snp.makeConstraints {
