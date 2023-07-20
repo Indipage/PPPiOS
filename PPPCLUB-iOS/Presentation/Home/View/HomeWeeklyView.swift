@@ -34,6 +34,14 @@ class HomeWeeklyView: UIView {
         hierarchy()
         layout()
         
+//        cardTitleLabel.isHidden = true
+//        thisWeekCardImage.isHidden = true
+//        nextWeekCardImage.isHidden = true
+//        cardTitleLabel.isHidden = true
+//        cardStoreNameLabel.isHidden = true
+//        cardStoreOwnerLabel.isHidden = true
+//        ticketCoverImageView.isHidden = true
+        
     }
     
     required init?(coder: NSCoder) {
@@ -50,7 +58,7 @@ class HomeWeeklyView: UIView {
     }
     
     private func style() {
-            
+        
         cardTitleLabel.do {
             $0.text = "바보"
             $0.font = .pppTitle1
@@ -78,7 +86,7 @@ class HomeWeeklyView: UIView {
         }
         
         weeklyCollectionView.do {
-            let layout = UICollectionViewFlowLayout()
+            let layout = AllCustomFlowLayout()
                 layout.scrollDirection = .horizontal
                 $0.collectionViewLayout = layout
                 $0.showsVerticalScrollIndicator = false
@@ -126,10 +134,8 @@ class HomeWeeklyView: UIView {
         }
         
         weeklyCollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(27)
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(40)
-            $0.height.equalTo(472)
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(600)
         }
     }
 }

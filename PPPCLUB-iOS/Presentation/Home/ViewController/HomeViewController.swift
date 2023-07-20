@@ -175,12 +175,26 @@ final class HomeViewController: BaseViewController {
 //MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView {
+        case rootView.homeWeeklyView.weeklyCollectionView:
+            var newtop = Size.height * 0.057
+            var newbottom = Size.height * 0.169
+            var newside = Size.width * 0.106 * 5/4
+            return UIEdgeInsets(top: newtop, left: newside, bottom: newbottom, right: newside)
+        default:
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case rootView.homeAllView.allArticleCollectionView:
             return CGSize(width: 319, height: 180)
         case rootView.homeWeeklyView.weeklyCollectionView:
-            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+            var cellHeight = Size.height * 0.513
+            var cellwidth = cellHeight * 0.625
+            return CGSize(width: cellwidth, height: cellHeight)
         default:
             return CGSize.zero
         }
@@ -191,7 +205,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case rootView.homeAllView.allArticleCollectionView:
             return 20
         case rootView.homeWeeklyView.weeklyCollectionView:
-            return 10
+            var spacingCal = Size.height * 0.513 * 0.04
+            return spacingCal
         default:
             return 0
         }

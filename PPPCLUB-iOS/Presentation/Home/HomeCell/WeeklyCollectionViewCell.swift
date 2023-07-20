@@ -36,7 +36,6 @@ class thisWeekCell: UICollectionViewCell {
         
     }
     private func layout() {
-        
     }
 }
 
