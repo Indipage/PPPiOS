@@ -38,6 +38,14 @@ class HomeArticleTableViewCell: UITableViewCell {
         layout()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cellTitleLabel.font = .pppSubHead1
+        cellTitleLabel.textColor = .pppBlack
+        cellBodyLabel.font = .pppBody5
+        cellBodyLabel.textColor = .pppBlack
+    }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -150,7 +158,7 @@ extension HomeArticleTableViewCell {
         let bodyList = ["bold","color","link"]
         var compeletBody : String = bodyFull
         var _ : Int
-
+        
         for i in 0...2 {
             if compeletBody.contains(bodyList[i]) == true {
                 let bodyStartRange = "<" + bodyList[i] + ">"
@@ -158,7 +166,7 @@ extension HomeArticleTableViewCell {
                 
                 compeletBody = compeletBody.replacingOccurrences(of: bodyEndRange, with: "")
                 compeletBody = compeletBody.replacingOccurrences(of: bodyStartRange, with: "")
-
+                
             }
         }
         return compeletBody
@@ -187,7 +195,7 @@ extension HomeArticleTableViewCell {
         let bodyList = ["color","bold","link"]
         var bodySplitType : String
         var _ : Int
-
+        
         for i in 0...2 {
             
             while bodyString.contains(bodyList[i]) == true {
