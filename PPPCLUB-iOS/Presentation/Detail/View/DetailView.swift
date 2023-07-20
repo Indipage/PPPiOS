@@ -13,16 +13,21 @@ import Then
 final class DetailView: UIScrollView {
     
     // MARK: - Properties
-    
+    var introduceHeigth: Double = Double()
+    var curationHeight: Double = Double()
+    var introText: String = String()
     var isArticleExist = true {
         didSet {
             moveToArticleView.isHidden = !isArticleExist
             articleRequestView.isHidden = isArticleExist
         }
     }
-    
-    private final let introduce = "대전 성심당 부근 여행자에게 영감을 주는 여행 서점 겸 카페다. 서점은 2층에 있으며, 1층은 '도시여행자' 카페로 운영한다. 전시와 북토크, 심야책방을 정기적으로 연다. 책방지기는 이 공간에서 삶의 다양한 방향성을 제시하고자 한다. 도시문화 콘텐츠 기획을 겸하고 있다."
-    private final let curation = "대전 성심당 부근 여행자에게 영감을 주는 여행 서점 겸 카페다. 서점은 2층에 있으며, 1층은 '도시여행자' 카페로 운영한다. 전시와 북토크, 심야책방을 정기적으로 연다. 책방지기는 이 공간에서 삶의 다양한 방향성을 제시하고자 한다. 도시문화 콘텐츠 기획을 겸하고 있다."
+    var model: Detail? {
+        didSet {
+            style()
+            updateLayout()
+        }
+    }
     
     // MARK: - UI Components
     
@@ -38,7 +43,6 @@ final class DetailView: UIScrollView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        style()
         hieararchy()
         layout()
     }
@@ -50,8 +54,9 @@ final class DetailView: UIScrollView {
     // MARK: - Custom Method
     
     private func style() {
+        guard let model = model else { return }
         ownerView.do {
-            $0.model = Detail(introduce: introduce, curation: curation)
+            $0.model = Detail(introduce: model.introduce, curation: model.curation)
         }
         
         moveToArticleView.do {
@@ -86,13 +91,13 @@ final class DetailView: UIScrollView {
             $0.height.equalTo(444.adjusted)
         }
         
-        let introduceHeigth = calculateTextViewHeight(
-            text: introduce,
+        introduceHeigth = calculateTextViewHeight(
+            text: model?.introduce ?? "",
             width: Size.width - 56.adjusted
         )
         
-        let curationHeight = calculateTextViewHeight(
-            text: curation,
+        curationHeight = calculateTextViewHeight(
+            text: model?.curation ?? "",
             width: Size.width - 128.adjusted
         )
         
@@ -122,6 +127,43 @@ final class DetailView: UIScrollView {
         }
     }
     
+    private func updateLayout() {
+        introduceHeigth = calculateTextViewHeight(
+            text: model?.introduce ?? "",
+            width: Size.width - 56.adjusted
+        )
+        
+        curationHeight = calculateTextViewHeight(
+            text: model?.curation ?? "",
+            width: Size.width - 128.adjusted
+        )
+        
+        ownerView.snp.updateConstraints {
+            $0.top.equalTo(detailTopView.snp.bottom).offset(38.adjusted)
+            $0.width.leading.equalToSuperview()
+            $0.height.equalTo(introduceHeigth + curationHeight + 463)
+        }
+        
+        uniqueView.snp.updateConstraints {
+            $0.top.equalTo(ownerView.snp.bottom).offset(78.adjusted)
+            $0.width.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.height.equalTo(300.adjusted)
+        }
+        
+        moveToArticleView.snp.updateConstraints {
+            $0.top.equalTo(uniqueView.snp.bottom).offset(78.adjusted)
+            $0.bottom.equalToSuperview().inset(250.adjusted)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        articleRequestView.snp.updateConstraints {
+            $0.top.equalTo(uniqueView.snp.bottom).offset(78)
+            $0.width.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
     private func calculateTextViewHeight(text: String, width: CGFloat) -> CGFloat {
         let textView = UITextView(
             frame: CGRect(
@@ -133,5 +175,14 @@ final class DetailView: UIScrollView {
         textView.setAttribute(text, font: .pppBody5, color: .pppBlack)
 
         return textView.contentSize.height + 28
+    }
+    
+    func introDataBind(introduce: String) {
+        model = Detail(introduce: introduce, curation: "")
+        introText = introduce
+    }
+    
+    func curationDataBind(curation: String) {
+        model = Detail(introduce: introText, curation: curation)
     }
 }

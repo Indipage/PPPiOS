@@ -27,6 +27,7 @@ final class DetailViewController: BaseViewController {
         didSet {
             if !recommandBookData.isEmpty {
                 self.detailView.ownerView.curationDataBind(curation:recommandBookData[self.currentIndex].comment)
+                self.detailView.curationDataBind(curation: recommandBookData[self.currentIndex].comment)
                 detailView.ownerView.curationTextView.text = recommandBookData[self.currentIndex].comment
                 detailView.ownerView.bookNameLabel.text = recommandBookData[self.currentIndex].book.title
             }
@@ -306,6 +307,7 @@ extension DetailViewController {
                                                    rest: result.closedDays,
                                                    imageURL: result.imageURL ?? String())
             self.addHashTag(list: result.tagList)
+            self.detailView.introDataBind(introduce: result.introduction)
             self.detailView.ownerView.introDataBind(owner: result.owner,
                                                     introduce: result.introduction)
             self.detailView.detailTopView.tagCollectionView.reloadData()
