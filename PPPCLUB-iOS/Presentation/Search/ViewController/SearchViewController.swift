@@ -51,9 +51,8 @@ final class SearchViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        dismissKeyboardWhenTappedAround()
+        self.tabBarController?.tabBar.isHidden = false
         requestGetAllSpace()
-//        requestGetSearchSpace(keyword: "서울")
     }
     
     // MARK: - Custom Method
