@@ -79,10 +79,10 @@ class HomeWeeklyView: UIView {
     private func layout() {
         
         thisWeekCardImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(27)
+            $0.top.equalToSuperview().inset(27.adjusted)
             $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(40)
-            $0.height.equalTo(472)
+            $0.width.equalTo(295.adjusted)
+            $0.height.equalTo(472.adjusted)
         }
         
         cardTitleLabel.snp.makeConstraints {
@@ -102,7 +102,8 @@ class HomeWeeklyView: UIView {
         ticketCoverImageView.snp.makeConstraints {
             $0.top.equalTo(thisWeekCardImage.snp.top).offset(44)
             $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(28)
+            $0.width.equalTo(319.adjusted)
+            $0.height.equalTo(486.adjusted)
         }
     }
 }
