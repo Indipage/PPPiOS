@@ -92,10 +92,11 @@ extension MySavedArticleViewController: UICollectionViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension MySavedArticleViewController: SavedArticleCellDelegate {
-    func articleDidTap() {
-        let articleViewController = HomeArticleViewController()
+    func articleDidTap(articleID: Int?) {
+        let articleViewController = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(articleViewController, animated: true)
     }
+
     
     private func requestSavedArticleAPI() {
         MyAPI.shared.getSavedArticle() { result in

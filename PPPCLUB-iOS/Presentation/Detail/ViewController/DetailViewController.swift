@@ -318,7 +318,7 @@ extension DetailViewController {
     
     private func requestPostFollow() {
         DetailAPI.shared.postFollow(spaceID: "\(spaceID)") { result in
-            guard let result = self.validateResult(result) as? VoidResult else { return }
+            guard self.validateResult(result) is VoidResult else { return }
             self.isFollowed = true
         }
     }

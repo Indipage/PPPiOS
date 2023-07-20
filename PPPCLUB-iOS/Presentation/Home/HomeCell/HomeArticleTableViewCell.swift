@@ -13,8 +13,6 @@ import Then
 typealias ArticleBlockType = Dictionary<ArticleType,String>
 
 protocol TableViewCellDelegate: AnyObject {
-    func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event)
-    
     func pushDetailView()
 }
 
@@ -238,9 +236,6 @@ extension HomeArticleTableViewCell {
         switch bodyType {
         case "link":
             self.linkText = bodyContent
-            print("💩💩💩💩💩💩💩💩💩")
-            print(self.linkText)
-            print("💩💩💩💩💩💩💩💩💩")
             cellBodyLabel.asUnder(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
             
         case "bold":

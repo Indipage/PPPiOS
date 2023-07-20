@@ -16,6 +16,7 @@ final class HomeViewController: BaseViewController {
     
     var viewTranslation = CGPoint(x: 0, y: 0)
     var viewVelocity = CGPoint(x: 0, y: 0)
+    var articleID: Int?
     
     private var gesture : UIPanGestureRecognizer!
     
@@ -120,7 +121,7 @@ final class HomeViewController: BaseViewController {
     
     func pushToArticleViewController() {
         
-        let homeArticleVC = HomeArticleViewController()
+        let homeArticleVC = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(homeArticleVC, animated: true)
         
     }
@@ -200,8 +201,8 @@ extension HomeViewController: UICollectionViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension HomeViewController: SavedArticleCellDelegate {
-    func articleDidTap() {
-        let articleViewController = HomeArticleViewController()
+    func articleDidTap(articleID: Int?) {
+        let articleViewController = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(articleViewController, animated: true)
     }
 }
@@ -227,6 +228,7 @@ extension HomeViewController {
         HomeAPI.shared.getArticleCard() { result in
             guard let result = self.validateResult(result) as? HomeArticleCardResult else { return }
             self.articleCardData = result
+            self.articleID = result.id
         }
     }
     
