@@ -69,6 +69,7 @@
 		D224D4B42A5DFB6B00B014ED /* Unbounded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */; };
 		D224D4B62A5DFB7300B014ED /* Unbounded-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */; };
 		D224D4B82A5DFBC300B014ED /* Unbounded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */; };
+		D23B6AFF2A6908A700894C38 /* ArticleParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23B6AFE2A6908A700894C38 /* ArticleParsingManager.swift */; };
 		D2614A462A52836E00869710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A452A52836E00869710 /* AppDelegate.swift */; };
 		D2614A482A52836E00869710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2614A472A52836E00869710 /* SceneDelegate.swift */; };
 		D2614A4D2A52836F00869710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4B2A52836F00869710 /* Main.storyboard */; };
@@ -205,6 +206,7 @@
 		D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Regular.ttf"; sourceTree = "<group>"; };
 		D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Light.ttf"; sourceTree = "<group>"; };
 		D224D4B72A5DFBC200B014ED /* Unbounded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-SemiBold.ttf"; sourceTree = "<group>"; };
+		D23B6AFE2A6908A700894C38 /* ArticleParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleParsingManager.swift; sourceTree = "<group>"; };
 		D2614A422A52836E00869710 /* PPPCLUB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PPPCLUB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2614A452A52836E00869710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2614A472A52836E00869710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				D26594062A5C56F50089E56A /* QRManager.swift */,
+				D23B6AFE2A6908A700894C38 /* ArticleParsingManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -999,6 +1002,7 @@
 				D26594072A5C56F50089E56A /* QRManager.swift in Sources */,
 				D2B0961E2A5299B2007BC756 /* MyView.swift in Sources */,
 				2C17965A2A6710980020B9A5 /* HomeService.swift in Sources */,
+				D23B6AFF2A6908A700894C38 /* ArticleParsingManager.swift in Sources */,
 				D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
 				2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */,

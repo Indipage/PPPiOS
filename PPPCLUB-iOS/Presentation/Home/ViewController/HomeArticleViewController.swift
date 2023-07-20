@@ -45,6 +45,7 @@ class HomeArticleViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        parsingData = HomeArticleParsing()
         target()
         register()
         delegate()
@@ -58,13 +59,9 @@ class HomeArticleViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        parsingData = HomeArticleParsing()
+        rootView.articleTableView.setContentOffset(CGPoint(x: 0, y: -rootView.articleTableView.contentInset.top), animated: true)
         requestBookmarkCheckAPI()
         requestTicketCheckAPI()
-        for i in 0..<parsingData.count-1 {
-            print("🤩🤩🤩🤩🤩🤩🤩🤩🤩")
-            print(parsingData[i])
-        }
     }
     
     // MARK: - Custom Method
@@ -136,24 +133,28 @@ extension HomeArticleViewController: UITableViewDelegate {
             let tmpLabel = UILabel()
             tmpLabel.text = content.first
             tmpLabel.font = blockType.first?.font
-            let cellWidth = 263.0
+            let cellWidth = 319.0
             let heightCnt = ceil((tmpLabel.intrinsicContentSize.width) / cellWidth)
             print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
             print("몇 번째: \(indexPath.row)")
-            print("전체 가로 길이: \((ceil(tmpLabel.intrinsicContentSize.width) / cellWidth))")
+            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
             print("줄 개수 \(heightCnt)")
             print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
             print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
-            return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9
+            return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9 + 30
         case .img:
-            return 270
+            return 300
+        case .hr:
+            return 31
         case .none:
             return 0
+        
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleHeaderView.cellIdentifier) as? HomeArticleHeaderView else { return UIView()}
+        header.delegate = self
         return header
     }
     
@@ -213,6 +214,11 @@ extension HomeArticleViewController {
             self.ticketGetData = result
         }
     }
+    
+    public func pushDetailViewController() {
+        let detailViewController = DetailViewController()
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -223,6 +229,7 @@ extension HomeArticleViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeArticleTableViewCell.cellIdentifier, for: indexPath) as? HomeArticleTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         cell.configureCell(article: parsingData[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -242,6 +249,7 @@ enum ArticleType: String {
     case title
     case body
     case img
+    case hr
     
     var font: UIFont? {
         switch self {
@@ -250,6 +258,8 @@ enum ArticleType: String {
         case .body:
             return .pppBody5
         case .img:
+            return nil
+        case .hr:
             return nil
         }
     }
@@ -279,6 +289,8 @@ extension HomeArticleViewController {
             articleType = .title
         case ArticleType.img.rawValue:
             articleType = .img
+        case ArticleType.hr.rawValue:
+            articleType = .hr
         default:
             break
         }
@@ -339,3 +351,18 @@ extension HomeArticleViewController {
 }
 
 
+extension HomeArticleViewController: TableViewCellDelegate {
+    func tableViewCell(_ cell: UITableViewCell, addTarget target: Any?, action: Selector, for controlEvents: UIControl.Event) {
+        
+    }
+    
+    func pushDetailView() {
+        pushDetailViewController()
+    }
+}
+
+extension HomeArticleViewController: ArticleHeaderViewDelegate {
+    func enterStoreButtonDidTap() {
+        pushDetailViewController()
+    }
+}
