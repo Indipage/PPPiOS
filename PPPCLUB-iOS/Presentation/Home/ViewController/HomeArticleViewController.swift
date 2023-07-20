@@ -26,7 +26,6 @@ class HomeArticleViewController: BaseViewController {
     
     private var ticketCheckData: HomeTicketCheckResult? {
         didSet {
-
             rootView.articleTableView.reloadData()
         }
     }
@@ -137,7 +136,7 @@ extension HomeArticleViewController: UITableViewDelegate {
         return header
     }
     
-    private func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 692
     }
     
@@ -186,7 +185,6 @@ extension HomeArticleViewController {
         HomeAPI.shared.getTicketCheck(spaceID: "1") { result in
             guard let result = self.validateResult(result) as? HomeTicketCheckResult else { return }
             self.ticketCheckData = result
-            
         }
     }
     

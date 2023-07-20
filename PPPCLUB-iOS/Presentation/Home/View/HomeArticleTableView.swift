@@ -13,8 +13,6 @@ import Then
 final class HomeArticleTableView: UITableView {
     
     // MARK: - UI Components
-    public var headerView = HomeArticleHeaderView()
-    public var footerView = HomeArticleFooterView()
     
     // MARK: - Life Cycle
     

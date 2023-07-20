@@ -113,7 +113,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     
     func dataBindTicketCheck(articleData: HomeTicketCheckResult?) {
         guard let articleData = articleData else { return }
-
+        
         ticketID = articleData.ticket.id
         ticketURL = articleData.ticket.ticketImageURL
         cardURL = articleData.ticket.cardImageURL
@@ -122,3 +122,4 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         ticketImageView.kfSetImage(url: ticketURL)
     }
 }
+
