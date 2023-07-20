@@ -76,6 +76,7 @@ class HomeArticleViewController: BaseViewController {
         
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
         rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
+        rootView.articleTableView.footerView.ticketButton.addTarget(self, action: #selector(ticketReceivedTap), for: .touchUpInside)
         
     }
     
@@ -120,6 +121,12 @@ class HomeArticleViewController: BaseViewController {
         else {
             requestBookmarkDeleteAPI()
         }
+    }
+    
+    @objc
+    func ticketReceivedTap() {
+        rootView.articleTableView.footerView.ticketButton.kfSetButtonImage(url: rootView.articleTableView.footerView.ticketURL, state: .selected)
+        rootView.articleTableView.footerView.ticketButton.isEnabled = false
     }
     
 }

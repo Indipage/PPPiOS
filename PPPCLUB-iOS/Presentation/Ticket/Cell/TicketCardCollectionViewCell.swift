@@ -81,7 +81,7 @@ extension TicketCardCollectionViewCell {
     func configureCell(card: TicketCardResult) {
         self.cardID = card.cardID
         self.spaceID = card.spaceID
-        cardImageButton.kfSetButtonImage(url: card.imageURL)
+        cardImageButton.kfSetButtonImage(url: card.imageURL, state: .normal)
     }
 }
 

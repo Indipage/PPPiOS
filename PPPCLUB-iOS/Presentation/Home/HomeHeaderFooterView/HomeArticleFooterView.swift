@@ -24,7 +24,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     var divideBarView = UIView()
     var ticketTitleLabel = UILabel()
     var ticketSubLabel = UILabel()
-    var ticketImageView = UIImageView()
+    var ticketButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -66,17 +66,15 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
             $0.textAlignment = .center
         }
         
-        ticketImageView.do {
-            $0.backgroundColor = .white
-            $0.image = Image.mockDetailCard
+        ticketButton.do {
+            $0.setImage(Image.mockNoTicket, for: .normal)
         }
-        
     }
     
     private func hierarchy() {
         
         self.addSubviews(divideBarView,
-                         ticketImageView,
+                         ticketButton,
                          ticketTitleLabel,
                          ticketSubLabel
         )
@@ -100,16 +98,23 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
             $0.centerX.equalToSuperview()
         }
         
-        ticketImageView.snp.makeConstraints {
+        ticketButton.snp.makeConstraints {
             $0.top.equalTo(ticketSubLabel.snp.bottom).offset(27)
             $0.leading.equalToSuperview().inset(89)
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(91)
         }
         
+        
     }
     
     //MARK: - Action Method
+    
+    @objc
+    func ticketReceivedTap() {
+        ticketButton.kfSetButtonImage(url: ticketURL, state: .selected)
+        ticketButton.isEnabled = false
+    }
     
     func dataBindTicketCheck(articleData: HomeTicketCheckResult?) {
         guard let articleData = articleData else { return }
@@ -119,7 +124,13 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         cardURL = articleData.ticket.cardImageURL
         ticketReceived = articleData.hasReceivedTicket
         
-        ticketImageView.kfSetImage(url: ticketURL)
+        if !ticketReceived {
+            ticketButton.isEnabled = true
+        }
+        else {
+            ticketButton.kfSetButtonImage(url: ticketURL, state: .normal)
+            ticketButton.isEnabled = false
+        }
     }
 }
 
