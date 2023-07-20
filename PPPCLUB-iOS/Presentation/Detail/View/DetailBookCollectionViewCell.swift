@@ -28,7 +28,7 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        bookImageView.image?.alpha(1)
+        bookImageView.image?.setAlpha(1)
     }
     
     @available(*, unavailable)
@@ -59,16 +59,16 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
     func configureCell(recommendBookResult: DetailRecommendBookResult, isCenter: Bool) {
         bookImageView.kfSetImage(url: recommendBookResult.book.imageURL)
         if isCenter {
-            bookImageView.image = bookImageView.image?.alpha(1)
+            bookImageView.image = bookImageView.image?.setAlpha(1)
             bookImageView.layer.borderWidth = 6
             bookImageView.layer.borderColor = UIColor.pppMainPurple.cgColor
         } else {
-            bookImageView.image = bookImageView.image?.alpha(0.5)
+            bookImageView.image = bookImageView.image?.setAlpha(0.5)
             bookImageView.layer.borderWidth = 0
         }
     }
 
     private func prepare() {
-        bookImageView.image = bookImageView.image?.alpha(1)
+        bookImageView.image = bookImageView.image?.setAlpha(1)
     }
 }

@@ -14,22 +14,25 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
     
+    private var spaceID = 1
+    private var isFollowed: Bool = false
     private var hashTagList: [String] = [String]()
     private var recommandBookData: [DetailRecommendBookResult] = [] {
         didSet {
             detailView.ownerView.bookCollectionView.reloadData()
+            self.moveCellToMiddle()
         }
     }
-    private var isFollowed: Bool = false
     private var currentIndex: Int = 0 {
         didSet {
             if !recommandBookData.isEmpty {
+                self.detailView.ownerView.curationDataBind(curation: recommandBookData[self.currentIndex].comment)
+                self.detailView.curationDataBind(curation: recommandBookData[self.currentIndex].comment)
                 detailView.ownerView.curationTextView.text = recommandBookData[self.currentIndex].comment
                 detailView.ownerView.bookNameLabel.text = recommandBookData[self.currentIndex].book.title
             }
         }
     }
-    private var spaceID = 1
     
     // MARK: - UI Components
     
@@ -41,8 +44,8 @@ final class DetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = true
+        requestGetRecommendBook()
         requestGetSpace()
-        requestGetRecommendBool()
         requestGetFollow()
         requestSavedBookMarkAPI()
         requestGetCheckedArticle()
@@ -112,16 +115,30 @@ final class DetailViewController: BaseViewController {
         detailView.articleRequestView.requestButton.backgroundColor = .pppMainPurple
     }
     
+    private func moveCellToMiddle() {
+        self.detailView.ownerView.bookCollectionView.isPagingEnabled = false
+        self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
+        self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
+    }
+    
+    private func checkCellIndex(index: Int) -> Int {
+        if index < 0 {
+            return 0
+        } else if index > 2 {
+            return 2
+        }
+        
+        return index
+    }
+    
     // MARK: - Action Method
     
     @objc
     private func didTouchedSaveButton() {
         detailView.detailTopView.saveButton.isSelected.toggle()
         if detailView.detailTopView.saveButton.isSelected {
-            print("🥰🥰")
             requestPostSavedBookMarkAPI()
         } else {
-            print("🥲🥲")
             requestDeleteSavedBookMarkAPI()
         }
     }
@@ -171,6 +188,7 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let bookCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBookCollectionViewCell.cellIdentifier,
                                                                     for: indexPath) as? DetailBookCollectionViewCell else { return UICollectionViewCell() }
             bookCell.configureCell(recommendBookResult: recommandBookData[indexPath.row], isCenter: indexPath.row == currentIndex)
+
             return bookCell
             
         default:
@@ -182,19 +200,6 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
-    //    func collectionView(_ collectionView: UICollectionView,
-    //                        layout collectionViewLayout: UICollectionViewLayout,
-    //                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    //        switch collectionView {
-    //        case detailView.detailTopView.tagCollectionView:
-    //            return 8
-    //        case detailView.ownerView.bookCollectionView:
-    //            return 32
-    //        default:
-    //            return 0
-    //        }
-    //    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
@@ -239,7 +244,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         let scrolledOffset = scrollView.contentOffset.x + scrollView.contentInset.left
         let cellWidth = Const.itemSize.width + Const.itemSpacing
         let index = Int(round(scrolledOffset / cellWidth))
-        currentIndex = index
+        currentIndex = checkCellIndex(index: index)
         detailView.ownerView.bookCollectionView.reloadData()
     }
 }
@@ -289,6 +294,7 @@ extension DetailViewController {
                                                    rest: result.closedDays,
                                                    imageURL: result.imageURL ?? String())
             self.addHashTag(list: result.tagList)
+            self.detailView.introDataBind(introduce: result.introduction)
             self.detailView.ownerView.introDataBind(owner: result.owner,
                                                     introduce: result.introduction)
             self.detailView.detailTopView.tagCollectionView.reloadData()
@@ -317,12 +323,10 @@ extension DetailViewController {
         }
     }
     
-    private func requestGetRecommendBool() {
+    private func requestGetRecommendBook() {
         DetailAPI.shared.getRecommendBool(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? [DetailRecommendBookResult] else { return }
             self.recommandBookData = result
-            print("🎈🎈🎈🎈🎈🎈")
-            print(result)
         }
     }
 }
