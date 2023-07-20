@@ -14,21 +14,23 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Properties
     
-//    private let dummy = SearchListModel.dummy()
+    private var isFiltering: Bool = false
     private var allSpace: [SpaceData] = [] {
         didSet {
             isFiltering = false
             searchView.searchTableView.reloadData()
         }
     }
-//    private var filter = [SearchList]()
     private var filteredSpace: [SpaceData] = [] {
         didSet {
             searchView.searchTableView.reloadData()
         }
     }
-
-    private var isFiltering: Bool = false
+    private var isResultExisted: Bool = true {
+        didSet {
+            showNoResultImage(isExisted: isResultExisted)
+        }
+    }
     
     // MARK: - UI Components
     
@@ -42,7 +44,6 @@ final class SearchViewController: BaseViewController {
         register()
         delegate()
         
-        style()
         hierarchy()
         layout()
     }
@@ -68,8 +69,6 @@ final class SearchViewController: BaseViewController {
         searchView.searchBar.delegate = self
     }
 
-    private func style() {}
-
     private func hierarchy() {
         view.addSubviews(searchView)
     }
@@ -80,19 +79,11 @@ final class SearchViewController: BaseViewController {
         }
     }
     
-    private func isSearchBarEmpty() -> Bool {
-        return searchView.searchBar.text?.isEmpty ?? true
+    private func showNoResultImage(isExisted: Bool) {
+        searchView.searchTableView.isHidden = !isExisted
+        searchView.noResultImageView.isHidden = isExisted
+        searchView.noResultLabelStackView.isHidden = isExisted
     }
-    
-//    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-//        isFiltering = true
-//        filter = dummy.filter({(place: SearchList) -> Bool in
-//            return place.location.lowercased().contains(searchText.lowercased())
-//        })
-//        searchView.searchHeaderView.allLabel.text = searchText
-//        searchView.searchBar.resignFirstResponder()
-//        searchView.searchTableView.reloadData()
-//    }
 }
 
 // MARK: - UITableViewDataSource
@@ -139,33 +130,28 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let touchCell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath) as? SearchTableViewCell ?? SearchTableViewCell()
-        
         guard let cell = tableView.cellForRow(at: indexPath) as? SearchTableViewCell else { return }
-        
-
         let detailViewController = DetailViewController()
-        
         detailViewController.spaceID = cell.id
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
+
+// MARK: - UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchView.searchBar.text == "" {
             self.searchView.searchBar.resignFirstResponder()
-            self.searchView.searchHeaderView.allLabel.text = "전체"
             self.isFiltering = false
-            self.searchView.searchTableView.reloadData()
+            requestGetAllSpace()
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         isFiltering = true
         requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
-//        filterContentForSearchText(searchView.searchBar.text ?? String())
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -178,7 +164,12 @@ extension SearchViewController {
     private func requestGetSearchSpace(keyword: String) {
         SearchAPI.shared.getSearchSpace(keyword: keyword) { result in
             guard let result = self.validateResult(result) as? [SpaceData] else { return }
-            self.filteredSpace = result
+            if result.count == 0 {
+                self.isResultExisted = false
+            } else {
+                self.isResultExisted = true
+                self.filteredSpace = result
+            }
             dump(result)
         }
     }
@@ -186,9 +177,8 @@ extension SearchViewController {
     private func requestGetAllSpace() {
         SearchAPI.shared.getAllSpace { result in
             guard let result = self.validateResult(result) as? [SpaceData] else { return }
-                        
+            self.isResultExisted = true
             self.allSpace = result
-
         }
     }
 }
