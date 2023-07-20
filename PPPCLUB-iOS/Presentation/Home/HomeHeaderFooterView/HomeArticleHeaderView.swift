@@ -23,7 +23,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - UI Components
     
-    private var articleImage = UILabel()
+    private var articleImage = UIImageView()
     //UIImageView 로 구현해야 함
     
     private var editorLabel = UILabel()
@@ -69,10 +69,10 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.font = .pppCaption1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
+            $0.setLineSpacing(spacing: 5)
         }
         
         articleTitleLabel.do {
-            $0.text = "반복되는 일상 속 나만의\n아지트가 되어주는 공간"
             $0.font = .pppSubHead1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
@@ -81,7 +81,6 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         }
         
         dateLabel.do {
-            $0.text = "2023-06-08"
             $0.font = .pppCaption2
             $0.textColor = .pppBlack
             $0.textAlignment = .center
@@ -125,6 +124,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         articleTitleLabel.snp.makeConstraints {
             $0.top.equalTo(articleImage.snp.bottom).offset(37)
             $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(91)
         }
         
         dateLabel.snp.makeConstraints {
@@ -152,6 +152,16 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     @objc func enterStoreButtonGestureHandler() {
         delegate?.enterStoreButtonDidTap()
+    }
+}
+
+extension HomeArticleHeaderView {
+    func dataBind(articleData: HomeDetailArticleResult?) {
+        guard let articleData = articleData else { return }
+        articleTitleLabel.text = articleData.title
+        editorLabel.text = articleData.spaceOwner
+        dateLabel.text = articleData.issueDate
+        articleImage.kfSetImage(url: articleData.thumbnailURL)
     }
 }
 

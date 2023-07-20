@@ -236,9 +236,6 @@ extension HomeArticleTableViewCell {
         switch bodyType {
         case "link":
             self.linkText = bodyContent
-            print("💩💩💩💩💩💩💩💩💩")
-            print(self.linkText)
-            print("💩💩💩💩💩💩💩💩💩")
             cellBodyLabel.asUnder(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
             
         case "bold":

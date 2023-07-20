@@ -97,10 +97,11 @@ extension MySavedBookStoreViewController: UITableViewDataSource {
 //MARK: - SavedArticleCellDelegate
 
 extension MySavedBookStoreViewController: SavedArticleCellDelegate {
-    func articleDidTap() {
+    func articleDidTap(articleID: Int?) {
         let detailViewController = DetailViewController()
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
+        
     
     func requestSavedSpaceAPI() {
         MyAPI.shared.getSavedSpace() { result in
