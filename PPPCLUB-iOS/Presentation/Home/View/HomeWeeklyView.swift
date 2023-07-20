@@ -34,14 +34,6 @@ class HomeWeeklyView: UIView {
         hierarchy()
         layout()
         
-//        cardTitleLabel.isHidden = true
-//        thisWeekCardImage.isHidden = true
-//        nextWeekCardImage.isHidden = true
-//        cardTitleLabel.isHidden = true
-//        cardStoreNameLabel.isHidden = true
-//        cardStoreOwnerLabel.isHidden = true
-//        ticketCoverImageView.isHidden = true
-        
     }
     
     required init?(coder: NSCoder) {
