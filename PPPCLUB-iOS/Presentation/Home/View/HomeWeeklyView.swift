@@ -46,6 +46,7 @@ class HomeWeeklyView: UIView {
             $0.font = .pppTitle1
             $0.textColor = .pppWhite
             $0.textAlignment = .left
+            $0.numberOfLines = 0
         }
         
         cardStoreOwnerLabel.do {
@@ -79,15 +80,16 @@ class HomeWeeklyView: UIView {
     private func layout() {
         
         thisWeekCardImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(27)
+            $0.top.equalToSuperview().inset(27.adjusted)
             $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(40)
-            $0.height.equalTo(472)
+            $0.width.equalTo(295.adjusted)
+            $0.height.equalTo(472.adjusted)
         }
         
         cardTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
             $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalTo(thisWeekCardImage)
         }
         
         cardStoreOwnerLabel.snp.makeConstraints {
@@ -102,7 +104,8 @@ class HomeWeeklyView: UIView {
         ticketCoverImageView.snp.makeConstraints {
             $0.top.equalTo(thisWeekCardImage.snp.top).offset(44)
             $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(28)
+            $0.width.equalTo(319.adjusted)
+            $0.height.equalTo(486.adjusted)
         }
     }
 }

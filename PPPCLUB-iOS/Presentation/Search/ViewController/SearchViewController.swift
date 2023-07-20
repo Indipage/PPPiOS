@@ -53,7 +53,6 @@ final class SearchViewController: BaseViewController {
         
         dismissKeyboardWhenTappedAround()
         requestGetAllSpace()
-//        requestGetSearchSpace(keyword: "서울")
     }
     
     // MARK: - Custom Method
@@ -75,7 +74,8 @@ final class SearchViewController: BaseViewController {
 
     private func layout() {
         searchView.snp.makeConstraints {
-            $0.leading.trailing.top.bottom.equalToSuperview()
+            $0.leading.trailing.top.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(Size.tabBarHeight-16)
         }
     }
     
@@ -123,10 +123,6 @@ extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 108
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return searchView.searchHeaderView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
