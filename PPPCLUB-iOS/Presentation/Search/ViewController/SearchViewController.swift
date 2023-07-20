@@ -14,8 +14,20 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let dummy = SearchListModel.dummy()
-    private var filter = [SearchList]()
+//    private let dummy = SearchListModel.dummy()
+    private var allSpace: [SpaceData] = [] {
+        didSet {
+            isFiltering = false
+            searchView.searchTableView.reloadData()
+        }
+    }
+//    private var filter = [SearchList]()
+    private var filteredSpace: [SpaceData] = [] {
+        didSet {
+            searchView.searchTableView.reloadData()
+        }
+    }
+
     private var isFiltering: Bool = false
     
     // MARK: - UI Components
@@ -37,7 +49,10 @@ final class SearchViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         dismissKeyboardWhenTappedAround()
+        requestGetAllSpace()
+//        requestGetSearchSpace(keyword: "서울")
     }
     
     // MARK: - Custom Method
@@ -69,15 +84,15 @@ final class SearchViewController: BaseViewController {
         return searchView.searchBar.text?.isEmpty ?? true
     }
     
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        isFiltering = true
-        filter = dummy.filter({(place: SearchList) -> Bool in
-            return place.location.lowercased().contains(searchText.lowercased())
-        })
-        searchView.searchHeaderView.allLabel.text = searchText
-        searchView.searchBar.resignFirstResponder()
-        searchView.searchTableView.reloadData()
-    }
+//    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+//        isFiltering = true
+//        filter = dummy.filter({(place: SearchList) -> Bool in
+//            return place.location.lowercased().contains(searchText.lowercased())
+//        })
+//        searchView.searchHeaderView.allLabel.text = searchText
+//        searchView.searchBar.resignFirstResponder()
+//        searchView.searchTableView.reloadData()
+//    }
 }
 
 // MARK: - UITableViewDataSource
@@ -87,24 +102,30 @@ extension SearchViewController: UITableViewDelegate {}
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-            return filter.count
+            return filteredSpace.count
         } else {
-            return dummy.count
+            return allSpace.count
         }
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier,
                                                  for: indexPath) as? SearchTableViewCell ?? SearchTableViewCell()
         cell.selectionStyle = .none
+        
         if isFiltering {
-            cell.dataBind(image: filter[indexPath.row].image,
-                          name: filter[indexPath.row].name,
-                          location: filter[indexPath.row].location)
+            cell.id = filteredSpace[indexPath.row].spaceID
+            cell.dataBind2(image: filteredSpace[indexPath.row].imageURL ?? "",
+                           name: filteredSpace[indexPath.row].spaceName,
+                           location: filteredSpace[indexPath.row].address
+            )
         } else {
-            cell.dataBind(image: dummy[indexPath.row].image,
-                          name: dummy[indexPath.row].name,
-                          location: dummy[indexPath.row].location)
+            cell.id = allSpace[indexPath.row].spaceID
+            cell.dataBind2(image: allSpace[indexPath.row].imageURL ?? String(),
+                          name: allSpace[indexPath.row].spaceName,
+                          location: allSpace[indexPath.row].address
+            )
         }
         return cell
     }
@@ -118,7 +139,14 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let touchCell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath) as? SearchTableViewCell ?? SearchTableViewCell()
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? SearchTableViewCell else { return }
+        
+
         let detailViewController = DetailViewController()
+        
+        detailViewController.spaceID = cell.id
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
@@ -135,10 +163,32 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        filterContentForSearchText(searchView.searchBar.text ?? String())
+        isFiltering = true
+        requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
+//        filterContentForSearchText(searchView.searchBar.text ?? String())
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.searchView.searchTableView.reloadData()
+        isFiltering = true
+        requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
+    }
+}
+
+extension SearchViewController {
+    private func requestGetSearchSpace(keyword: String) {
+        SearchAPI.shared.getSearchSpace(keyword: keyword) { result in
+            guard let result = self.validateResult(result) as? [SpaceData] else { return }
+            self.filteredSpace = result
+            dump(result)
+        }
+    }
+    
+    private func requestGetAllSpace() {
+        SearchAPI.shared.getAllSpace { result in
+            guard let result = self.validateResult(result) as? [SpaceData] else { return }
+                        
+            self.allSpace = result
+
+        }
     }
 }

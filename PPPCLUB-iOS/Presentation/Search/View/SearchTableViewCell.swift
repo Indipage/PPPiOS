@@ -13,7 +13,7 @@ import Then
 class SearchTableViewCell: UITableViewCell {
     
     // MARK: - UI Components
-    
+    var id = 0
     lazy var placeImageView = UIImageView()
     lazy var placeNameLabel = UILabel()
     lazy var locationLabel = UILabel()
@@ -84,12 +84,6 @@ class SearchTableViewCell: UITableViewCell {
 }
 
 extension SearchTableViewCell {
-    func dataBind(image: UIImage, name: String, location: String) {
-        placeImageView.image = image
-        placeNameLabel.text = name
-        locationLabel.text = location
-    }
-    
     func dataBind2(image: String, name: String, location: String) {
         placeImageView.kfSetImage(url: image)
         placeNameLabel.text = name
