@@ -10,6 +10,23 @@ import UIKit
 import SnapKit
 import Then
 
+enum ArticleType: String {
+    case title
+    case body
+    case img
+    
+    var font: UIFont? {
+        switch self {
+        case .title:
+            return .pppSubHead1
+        case .body:
+            return .pppBody5
+        case .img:
+            return nil
+        }
+    }
+}
+
 
 class HomeArticleViewController: UIViewController {
     
@@ -34,22 +51,11 @@ class HomeArticleViewController: UIViewController {
         super.viewDidLoad()
         
         target()
-        register()
         delegate()
-        
-        style()
-        hierarchy()
-        layout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        parsingData = HomeArticleParsing()
-        for i in 0..<parsingData.count-1 {
-            print("🤩🤩🤩🤩🤩🤩🤩🤩🤩")
-            print(parsingData[i])
-        }
     }
     
     // MARK: - Custom Method
@@ -59,23 +65,10 @@ class HomeArticleViewController: UIViewController {
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
     }
     
-    private func register() {
-        
-    }
-    
     private func delegate() {
         
         rootView.articleTableView.delegate = self
         rootView.articleTableView.dataSource = self
-    }
-    
-    private func style() {
-    }
-    
-    private func hierarchy() {
-    }
-    
-    private func layout() {
     }
     
     //MARK: - Action Method
@@ -155,23 +148,6 @@ extension HomeArticleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parsingData.count
-    }
-}
-
-enum ArticleType: String {
-    case title
-    case body
-    case img
-    
-    var font: UIFont? {
-        switch self {
-        case .title:
-            return .pppSubHead1
-        case .body:
-            return .pppBody5
-        case .img:
-            return nil
-        }
     }
 }
 
