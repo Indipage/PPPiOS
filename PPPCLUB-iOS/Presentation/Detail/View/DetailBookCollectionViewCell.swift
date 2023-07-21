@@ -41,7 +41,6 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
     private func style() {
         bookImageView.do {
             $0.backgroundColor = .pppGrey3
-            $0.image = Image.mockBook
             $0.contentMode = .scaleAspectFill
         }
     }

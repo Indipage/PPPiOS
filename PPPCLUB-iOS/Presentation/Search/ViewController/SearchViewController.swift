@@ -52,6 +52,7 @@ final class SearchViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = false
+        dismissKeyboard()
         requestGetAllSpace()
     }
     
@@ -139,6 +140,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchView.searchBar.text == "" {
+            print("👺👺👺👺👺👺")
             self.searchView.searchBar.resignFirstResponder()
             self.isFiltering = false
             requestGetAllSpace()
@@ -146,12 +148,16 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("👻👻👻👻👻👻")
         isFiltering = true
+        self.searchView.searchBar.resignFirstResponder()
         requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("🤖🤖🤖🤖🤖🤖")
         isFiltering = true
+        self.searchView.searchBar.resignFirstResponder()
         requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
     }
 }

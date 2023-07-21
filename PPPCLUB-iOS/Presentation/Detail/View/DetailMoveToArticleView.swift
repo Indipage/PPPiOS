@@ -49,7 +49,6 @@ final class DetailMoveToArticleView: UIView {
         }
         
         spaceTypeLabel.do {
-            $0.text = "독립서점"
             $0.font = .pppCaption2
             $0.textColor = .pppWhite
             $0.textAlignment = .center
@@ -65,13 +64,11 @@ final class DetailMoveToArticleView: UIView {
         }
         
         spaceNameLabel.do {
-            $0.text = "문학살롱 초고"
             $0.font = .pppSubHead1
             $0.textColor = .pppWhite
         }
         
         titleLabel.do {
-            $0.text = "반복되는 일상 속 나만의 아지트가 되어주는 공간"
             $0.font = .pppBody6
             $0.textColor = .pppWhite
             $0.numberOfLines = 0

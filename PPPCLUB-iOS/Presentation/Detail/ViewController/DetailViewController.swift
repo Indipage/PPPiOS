@@ -20,7 +20,11 @@ final class DetailViewController: BaseViewController {
     private var recommandBookData: [DetailRecommendBookResult] = [] {
         didSet {
             detailView.ownerView.bookCollectionView.reloadData()
-            self.moveCellToMiddle()
+            if (!recommandBookData.isEmpty) {
+                self.moveCellToMiddle()
+            } else {
+                presentBottomAlert("추천서가가 비어있습니다!")
+            }
         }
     }
     private var currentIndex: Int = 0 {
