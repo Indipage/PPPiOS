@@ -11,8 +11,8 @@ struct DetailGetSpaceResult: Codable {
     let id: Int
     let name: String
     let imageURL: String?
-    let roadAddress, type, owner, operatingTime, closedDays, introduction: String
-    let peculiarityTitle, peculiarityContent, peculiarityImageURL: String
+    let roadAddress, type: String
+    let owner, operatingTime, closedDays, introduction, peculiarityTitle, peculiarityContent, peculiarityImageURL: String?
     let tagList: [TagList]
     
     enum CodingKeys: String, CodingKey {

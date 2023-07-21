@@ -293,17 +293,17 @@ extension DetailViewController {
             
             self.detailView.detailTopView.dataBind(name: result.name,
                                                    address: result.roadAddress,
-                                                   runtime: result.operatingTime,
-                                                   rest: result.closedDays,
+                                                   runtime: result.operatingTime ?? "정보 없음",
+                                                   rest: result.closedDays ?? "",
                                                    imageURL: result.imageURL ?? String())
             self.addHashTag(list: result.tagList)
-            self.detailView.uniqueView.dataBind(title: result.peculiarityTitle,
-                                                content: result.peculiarityContent,
-                                                image: result.peculiarityImageURL
+            self.detailView.uniqueView.dataBind(title: result.peculiarityTitle ?? "",
+                                                content: result.peculiarityContent ?? "",
+                                                image: result.peculiarityImageURL ?? String()
             )
-            self.detailView.introDataBind(introduce: result.introduction)
-            self.detailView.ownerView.introDataBind(owner: result.owner,
-                                                    introduce: result.introduction)
+            self.detailView.introDataBind(introduce: result.introduction ?? "")
+            self.detailView.ownerView.introDataBind(owner: result.owner ?? "",
+                                                    introduce: result.introduction ?? "")
             self.detailView.detailTopView.tagCollectionView.reloadData()
         }
     }
