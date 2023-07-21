@@ -175,8 +175,8 @@ extension HomeViewController {
     }
     
     func requestPutSlideAPI() {
-        HomeAPI.shared.putArticleCheck() { result in
-            guard let result = self.validateResult(result) else { return }
+        HomeAPI.shared.patchArticleCheck() { result in
+            guard self.validateResult(result) != nil else { return }
         }
     }
 

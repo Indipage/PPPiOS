@@ -34,7 +34,7 @@ extension TicketService: BaseTargetType {
         case .getTotalCard:
             return .get
         case .putQRCodeCheck:
-            return .put
+            return .patch
         }
     }
     
