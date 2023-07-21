@@ -129,7 +129,28 @@ ArticleView
 <summary> 📄 윤빈 </summary>
 <div markdown="1">
 	
-[👄 트러블 슈팅]()
+- 
+    1. ScrollView 및 TextView높이 동적 할당
+    
+    받아오는 데이터에 따라서 높이가 동적으로 할당되어야 하는 TextView가 있었고, 해당 TextView는 ScrollView의 컴포넌트 중 하나였기 때문에 이 둘의 높이 동적 할당을 구현해야 했습니다.
+    
+    그렇지만 ScrollView에게는 정확한 높이를 할당해주어야 했는데, 변화하는 TextView의 높이를 어떻게 ScrollView에게 전달해주어야 할지 감을 잡지 못했고, 이로 인해서 스크롤이 끝까지 되지 않는다거나, TextView의 길이가 늘어나지 않는다거나, 다른 컴포넌트들의 모양이 이상해진다거나 하는 이슈들이 발생했다.
+    
+    해결 방법은 아래와 같습니당
+    
+    - text를 받아줄 model을 만든다
+    - didSet을 활용하여 model 에 새로운 데이터가 들어왔을 때, updateConstraint()를 통해 높이를 업데이트 해준다.
+    - ScrollView의 높이를 고정길이 + 동적길이로 부여해준다
+    
+    1. CollectionView Paging기능 구현
+    
+    collectionView를 스크롤할 때 마다 cell이 중앙으로 자동 정렬이 되어야하고, 중앙에 온 cell에 포커스를 주어야 했습니다.
+    
+    scrollViewWillEndDragging과 scrollViewDidScroll를 활용하여 스크롤 될 때와 스크롤이 끝나고 난 이후의 index를 계산해주어서 인덱스에 맞추어 포커스를 주는 형식으로 기능을 구현하였습니다
+    
+    1. 검색 bar 구현
+    
+    처음에는 UISearchBarController를 사용해서 navigationBar에 SearchBar를 삽입하는 방식으로 구현했지만, 스크롤 시 SearchBar가 숨겨지는 현상이 발생했기 때문에 UISearchBar만 사용하여 UI를 구성해주고, UISearchBarDelegate를 위임하여 검색 기능을 구현해주었습니다.
 
 </div>
 </details>
@@ -138,7 +159,60 @@ ArticleView
 <summary> 📄 지원 </summary>
 <div markdown="1">
 
-[🫦 트러블 슈팅]()
+트러블 슈팅
+
+1. 카드 커버를 슬라이드하는 애니메이션
+
+UIPanGestureRecognizer 를 사용하여 누르고 떼는 모션을 이용하여 카드 커버의 애니메이션을 구현하였다. 커버가 일정 위치에 도달하지 못하면 원 위치로 spring 되고, 일정 위치에 도달한다면 아래로 슬라이드 되어 해당 아티클로 화면 전환이 되도록 구현해야 하였다. 
+
+따라서 .changed 에서 움직인 거리를 측정하여 일정 거리에 도달한다면 아래로 슬라이드 되도록 하였고, .end 에서도(손을 뗐을 떄에도) 아래로 슬라이드 되도록 하였다. 하지만 손을 떼지 않은 상태에서 커버가 일정 위치에 도달하면 아래로 내려가는 애니메이션 없이 바로 화면 전환이 되었다. 
+
+따라서 sender 를 사용하여 .changed 에서 일정 거리에 도달한다면 애니메이션이 이루어지고 sender.ended 되는 함수를 추가해주었더니 잘 작동되었다.
+
+https://ena-is.me/75  ⇒ 자세한 코드는 이 곳에 있습니다.
+
+1. Text 길이만큼 동적으로 길이가 할당되는 label 구현
+
+현재 내가 맡은 디자인에서는 위 label을 쓰지 않지만 서점 상세페이지에서 가공하여 사용하고 있다 :) 
+
+https://ena-is.me/72 ⇒ 자세한 코드는 이 곳에 있습니다.
+
+1. CollectionView 의 FolwLayout 을 수정하여 Carousel 형태로 구현
+
+HomeView - WeeklyView- HomeWeeklySlideView 에서 이번 주 카드와 다음 주 카드를 보여주는데 Carousel 형태로 구현하여야 했다. 이번 주 카드가 중간에 있을 때 다음 주 카드가 오른쪽에 살짝 걸치게끔 뷰가 구현되어야 하는데, custom 함수 안에서 spacing 을 잡아주어 cell 끼리의 위치를 조절하니 아예 다음 주 카드가 보이지 않는 문제가 있었다.
+
+CustomFlowLayout 내부에서 cell 끼리의 간격을 잡아주지 않았고 ViewController 의 UICollectionViewDelegateFlowLayout 에서  Cell 의 크기와 위치를 잡아주어 문제를 해결하였다.
+
+```jsx
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView {
+        case rootView.homeWeeklyView.homeWeeklySlidedView:
+            let newtop = Size.height * 0.06
+            let newbottom = Size.height * 0.212
+            let newside = Size.width * 0.053 * 2
+            return UIEdgeInsets(top: newtop, left: newside, bottom: newbottom, right: newside)
+        default:
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView {
+        case rootView.homeWeeklyView.homeWeeklySlidedView:
+            var cellHeight = Size.height * 0.58
+            var cellwidth = Size.width * 0.786
+            return CGSize(width: cellwidth, height: cellHeight)
+        default:
+            return CGSize.zero
+        }
+    }
+}
+```
+
+1. • heightForFooterInSection 의 return 값은 CGFloat
+
+heightForFooterInSection 의 return 값을 Int 로 받았더니 TableView 의 height 가 정상적으로 계산되지 않았습니다. 따라서 Int 를 CGFloat 으로 변경하였습니다.
 
 </div>
 </details>
