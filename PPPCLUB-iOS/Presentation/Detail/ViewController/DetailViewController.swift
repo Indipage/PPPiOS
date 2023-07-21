@@ -15,6 +15,7 @@ final class DetailViewController: BaseViewController {
     // MARK: - Properties
     
     private var spaceID: Int?
+    private var articleID: Int?
     private var isFollowed: Bool = false
     private var hashTagList: [String] = [String]()
     private var recommandBookData: [DetailRecommendBookResult] = [] {
@@ -58,6 +59,7 @@ final class DetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gesture()
         target()
         register()
         delegate()
@@ -70,10 +72,17 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Custom Method
     
+    private func gesture() {
+        lazy var moveToArticleViewGesture = UITapGestureRecognizer.init(target: self, action: #selector(moveToArticleViewGestureHandler))
+        
+        detailView.moveToArticleView .addGestureRecognizer(moveToArticleViewGesture)
+    }
+    
     private func target() {
         detailView.detailTopView.saveButton.addTarget(self, action: #selector(didTouchedSaveButton), for: .touchUpInside)
         detailView.detailTopView.backButton.addTarget(self, action: #selector(didTouchedBackButton), for: .touchUpInside)
         detailView.articleRequestView.requestButton.addTarget(self, action: #selector(didTouchedRequestButton), for: .touchUpInside)
+        detailView.moveToArticleView.contentButton.addTarget(self, action: #selector(moveToArticleViewDidTap), for: .touchUpInside)
     }
     
     private func register() {
@@ -156,6 +165,18 @@ final class DetailViewController: BaseViewController {
     @objc func didTouchedBackButton() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func moveToArticleViewDidTap() {
+        print("Move to article view tapped!")
+        let articleViewController = HomeArticleViewController(articleID: articleID)
+        self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+    
+    @objc func moveToArticleViewGestureHandler() {
+        print("Move to article view tapped!")
+        let articleViewController = HomeArticleViewController(articleID: articleID)
+        self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -190,7 +211,7 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let bookCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBookCollectionViewCell.cellIdentifier,
                                                                     for: indexPath) as? DetailBookCollectionViewCell else { return UICollectionViewCell() }
             bookCell.configureCell(recommendBookResult: recommandBookData[indexPath.row], isCenter: indexPath.row == currentIndex)
-
+            
             return bookCell
             
         default:
@@ -286,6 +307,7 @@ extension DetailViewController {
                 return
             }
             self.detailView.isArticleExist = true
+            self.articleID = result.id
             self.detailView.moveToArticleView.dataBind(result: result)
         }
     }

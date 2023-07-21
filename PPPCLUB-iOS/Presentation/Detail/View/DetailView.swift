@@ -13,6 +13,7 @@ import Then
 final class DetailView: UIScrollView {
     
     // MARK: - Properties
+    
     var introduceHeigth: Double = Double()
     var curationHeight: Double = Double()
     var introText: String = String()
@@ -74,8 +75,9 @@ final class DetailView: UIScrollView {
         contentView.addSubviews(detailTopView,
                                 ownerView,
                                 uniqueView,
-                                moveToArticleView,
-                                articleRequestView
+                                articleRequestView,
+                                moveToArticleView
+                                
         )
     }
     
@@ -116,6 +118,7 @@ final class DetailView: UIScrollView {
         
         moveToArticleView.snp.makeConstraints {
             $0.top.equalTo(uniqueView.snp.bottom).offset(78.adjusted)
+            
             $0.bottom.equalToSuperview().inset(250.adjusted)
             $0.leading.trailing.equalToSuperview()
         }

@@ -12,8 +12,10 @@ import Then
 
 final class DetailMoveToArticleView: UIView {
 
+
     // MARK: - UI Components
     
+    lazy var contentButton = UIButton()
     private let placeLabel = UILabel()
     private let spaceTypeLabel = UILabel()
     private let frontEmptyLabel = UILabel()
@@ -24,14 +26,14 @@ final class DetailMoveToArticleView: UIView {
     )
     private var spaceNameLabel = UILabel()
     private var titleLabel = UILabel()
-    private lazy var shopImageView = UIImageView()
-    private lazy var goReadButton = UIButton()
+    lazy var shopImageView = UIImageView()
+    lazy var goReadButton = BaseButton()
 
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         style()
         hierarchy()
         layout()
@@ -40,8 +42,12 @@ final class DetailMoveToArticleView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func style() {
+        contentButton.do {
+            $0.backgroundColor = .clear
+            $0.isEnabled = true
+        }
         placeLabel.do {
             $0.text = "공간 이야기"
             $0.font = .pppSubHead1
@@ -85,21 +91,26 @@ final class DetailMoveToArticleView: UIView {
         goReadButton.do {
             $0.backgroundColor = .clear
             $0.layer.cornerRadius = 12
+            $0.isEnabled = true
             $0.setImage(Image.ticketNotReceivedImage, for: .normal)
         }
     }
     
     private func hierarchy() {
-        self.addSubviews(placeLabel,
+        self.addSubviews(
+                         placeLabel,
                          shopImageView,
                          spaceTypeStackView,
                          spaceNameLabel,
                          titleLabel,
-                         goReadButton
+                         goReadButton,contentButton
         )
     }
     
     private func layout() {
+        contentButton.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         placeLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(28)
@@ -148,6 +159,7 @@ final class DetailMoveToArticleView: UIView {
             $0.bottom.equalTo(shopImageView).inset(12.adjusted)
         }
     }
+    
     
     func dataBind(result: DetailCheckArticleResult) {
         spaceNameLabel.text = result.spaceName
