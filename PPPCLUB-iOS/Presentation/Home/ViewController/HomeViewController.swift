@@ -22,7 +22,7 @@ final class HomeViewController: BaseViewController{
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
             self.dataBindArticleCard(articleData: articleCardData)
-            self.rootView.homeWeeklyView.weeklyCollectionView.reloadData()
+            self.rootView.weeklyCollectionView.reloadData()
         }
     }
     
@@ -82,8 +82,8 @@ final class HomeViewController: BaseViewController{
         
         rootView.homeAllView.allArticleCollectionView.delegate = self
         rootView.homeAllView.allArticleCollectionView.dataSource = self
-        rootView.homeWeeklyView.weeklyCollectionView.delegate = self
-        rootView.homeWeeklyView.weeklyCollectionView.dataSource = self
+        rootView.weeklyCollectionView.delegate = self
+        rootView.weeklyCollectionView.dataSource = self
     }
     
     private func style() {
@@ -178,7 +178,7 @@ final class HomeViewController: BaseViewController{
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView {
-        case rootView.homeWeeklyView.weeklyCollectionView:
+        case rootView.weeklyCollectionView:
             let newtop = Size.height * 0.06
             let newbottom = Size.height * 0.212
             let newside = Size.width * 0.053 * 2
@@ -192,7 +192,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case rootView.homeAllView.allArticleCollectionView:
             return CGSize(width: 319, height: 180)
-        case rootView.homeWeeklyView.weeklyCollectionView:
+        case rootView.weeklyCollectionView:
             var cellHeight = Size.height * 0.58
             var cellwidth = Size.width * 0.786
             return CGSize(width: cellwidth, height: cellHeight)
@@ -205,7 +205,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case rootView.homeAllView.allArticleCollectionView:
             return 20
-        case rootView.homeWeeklyView.weeklyCollectionView:
+        case rootView.weeklyCollectionView:
             var spacingCal = Size.width * 0.026
             return spacingCal
         default:
@@ -221,7 +221,7 @@ extension HomeViewController: UICollectionViewDataSource {
         switch collectionView {
         case rootView.homeAllView.allArticleCollectionView:
             return articleAllData.count
-        case rootView.homeWeeklyView.weeklyCollectionView:
+        case rootView.weeklyCollectionView:
             return 2
         default:
             return 0
@@ -235,7 +235,7 @@ extension HomeViewController: UICollectionViewDataSource {
             cell.delegate = self
             cell.dataBindHome(articleData: articleAllData[indexPath.item])
             return cell
-        case rootView.homeWeeklyView.weeklyCollectionView:
+        case rootView.weeklyCollectionView:
             if indexPath.item == 0 {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: thisWeekCell.cellIdentifier, for: indexPath) as? thisWeekCell else { return UICollectionViewCell() }
                 cell.configureCell(articleData: articleCardData)
@@ -270,6 +270,7 @@ extension HomeViewController: ThisWeekCellDelegate {
 extension HomeViewController {
     func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
+        
         rootView.homeWeeklyView.cardId = articleData.id
         rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
         rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
@@ -283,11 +284,14 @@ extension HomeViewController {
         rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
         rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
         rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
+        
     }
     
     func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
         guard let hasSlide = articleData?.hasSlide else { return }
-        rootView.homeWeeklyView.isHidden = !hasSlide
+        rootView.hasSlide = hasSlide
+        rootView.homeWeeklyView.isHidden = hasSlide
+        rootView.weeklyCollectionView.isHidden = !hasSlide
     }
     
     func requestArticleCardAPI() {

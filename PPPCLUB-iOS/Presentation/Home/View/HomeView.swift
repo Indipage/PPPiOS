@@ -13,18 +13,22 @@ import Then
 final class HomeView: UIView {
     
     // MARK: - Properties
+    var hasSlide = Bool()
     
     // MARK: - UI Components
     
     public lazy var homeNavigationView = HomeNavigationView()
     public lazy var homeWeeklyView = HomeWeeklyView()
     public lazy var homeAllView = HomeAllView()
+    var weeklyCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        register()
+        
         style()
         hierarchy()
         layout()
@@ -39,6 +43,13 @@ final class HomeView: UIView {
     
     // MARK: - Custom Method
     
+    private func register() {
+        
+        weeklyCollectionView.register(thisWeekCell.self, forCellWithReuseIdentifier: thisWeekCell.cellIdentifier)
+        weeklyCollectionView.register(nextWeekCell.self, forCellWithReuseIdentifier: nextWeekCell.cellIdentifier)
+        
+    }
+    
     private func style() {
     
         homeNavigationView.do {
@@ -47,17 +58,42 @@ final class HomeView: UIView {
         
         homeWeeklyView.do {
             $0.backgroundColor = .pppWhite
-            $0.isHidden = true
+            
+            if hasSlide {
+                $0.isHidden = true
+            }
+            else {
+                $0.isHidden = false
+                }
         }
         
         homeAllView.do {
             $0.backgroundColor = .pppWhite
         }
+        
+        weeklyCollectionView.do {
+            let layout = AllCustomFlowLayout()
+                layout.scrollDirection = .horizontal
+                $0.collectionViewLayout = layout
+                $0.showsVerticalScrollIndicator = false
+                $0.isScrollEnabled = true
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                $0.showsHorizontalScrollIndicator = true
+                $0.contentInsetAdjustmentBehavior = .never
+            
+            if hasSlide {
+                $0.isHidden = false
+            }
+            else {
+                $0.isHidden = true
+                }
+        }
+        
     }
     
     private func hierarchy() {
         
-        self.addSubviews(homeNavigationView, homeWeeklyView, homeAllView)
+        self.addSubviews(homeWeeklyView, homeAllView, weeklyCollectionView, homeNavigationView)
 
     }
     
@@ -79,6 +115,11 @@ final class HomeView: UIView {
             $0.top.equalTo(homeNavigationView.snp.bottom)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview()
+        }
+        
+        weeklyCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(600)
         }
         
     }

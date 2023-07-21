@@ -21,15 +21,11 @@ class HomeWeeklyView: UIView {
     var cardStoreOwnerLabel = UILabel()
     var ticketCoverImageView = UIImageView()
     
-    var weeklyCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        register()
-        
+
         style()
         hierarchy()
         layout()
@@ -41,13 +37,6 @@ class HomeWeeklyView: UIView {
     }
     
     // MARK: - Custom Method
-    
-    private func register() {
-        
-        weeklyCollectionView.register(thisWeekCell.self, forCellWithReuseIdentifier: thisWeekCell.cellIdentifier)
-        weeklyCollectionView.register(nextWeekCell.self, forCellWithReuseIdentifier: nextWeekCell.cellIdentifier)
-        
-    }
     
     private func style() {
         
@@ -77,23 +66,11 @@ class HomeWeeklyView: UIView {
             $0.isHidden = true
         }
         
-        weeklyCollectionView.do {
-            let layout = AllCustomFlowLayout()
-                layout.scrollDirection = .horizontal
-                $0.collectionViewLayout = layout
-                $0.showsVerticalScrollIndicator = false
-                $0.isScrollEnabled = true
-                $0.translatesAutoresizingMaskIntoConstraints = false
-                $0.showsHorizontalScrollIndicator = true
-                $0.contentInsetAdjustmentBehavior = .never
-        }
     }
     
     private func hierarchy() {
         self.addSubviews(thisWeekCardImage, nextWeekCardImage, ticketCoverImageView)
         thisWeekCardImage.addSubviews(cardTitleLabel, cardStoreNameLabel, cardStoreOwnerLabel)
-        self.addSubview(weeklyCollectionView)
-        
     }
     
     private func layout() {
@@ -123,11 +100,6 @@ class HomeWeeklyView: UIView {
             $0.top.equalTo(thisWeekCardImage.snp.top).offset(44)
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().inset(28)
-        }
-        
-        weeklyCollectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.width.equalTo(600)
         }
     }
 }
