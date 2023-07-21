@@ -17,9 +17,9 @@ enum SavedViewType {
     var image: UIImage? {
         switch self {
         case .article:
-            return nil
+            return Image.savedArticle
         case .store:
-            return nil
+            return Image.savedSpace
         }
     }
     

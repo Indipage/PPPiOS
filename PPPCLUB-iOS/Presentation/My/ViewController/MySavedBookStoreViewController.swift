@@ -36,14 +36,14 @@ final class MySavedBookStoreViewController: BaseViewController {
         target()
         delegate()
         
-        requestSavedSpaceAPI()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         tabBarController?.tabBar.isHidden = true
+        requestSavedSpaceAPI()
     }
     
     //MARK: - Custom Method
