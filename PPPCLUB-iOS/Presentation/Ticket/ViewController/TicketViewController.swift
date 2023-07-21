@@ -135,7 +135,7 @@ extension TicketViewController: UICollectionViewDelegateFlowLayout {
         case rootView.ticketView.ticketCollectionView:
             return CGSize(width: Size.width, height: 247)
         case rootView.cardView.ticketCardCollectionView:
-            return CGSize(width: 68, height: 108)
+            return CGSize(width: 68.adjusted, height: 108.adjusted)
         default:
             return CGSize(width: 0, height: 0)
         }

@@ -52,9 +52,9 @@ final class TicketCardCollectionViewCell: UICollectionViewCell {
     
     private func style() {
         cardImageButton.do {
-            $0.backgroundColor = .blue
-            $0.makeCornerRadius(ratio: 4)
+            $0.makeCornerRadius(ratio: 4.adjusted)
             $0.makeShadow(color: .black, offset: CGSize(width: 2, height: 2), radius: 2.5, opacity: 0.25)
+            $0.contentMode = .scaleToFill
         }
     }
     
