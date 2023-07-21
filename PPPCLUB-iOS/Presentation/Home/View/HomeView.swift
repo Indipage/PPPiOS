@@ -71,7 +71,7 @@ final class HomeView: UIView {
         homeNavigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.width.equalToSuperview()
-            $0.height.equalTo(77)
+            $0.height.equalTo(77.adjusted)
         }
         
         homeWeeklyView.snp.makeConstraints {
