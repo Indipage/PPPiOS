@@ -14,22 +14,17 @@ final class HomeViewController: BaseViewController{
     
     // MARK: - Properties
     
-    var viewTranslation = CGPoint(x: 0, y: 0)
-    var viewVelocity = CGPoint(x: 0, y: 0)
     var articleID: Int?
-    
-    private var gesture : UIPanGestureRecognizer!
     
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
-            self.dataBindArticleCard(articleData: articleCardData)
-            self.rootView.weeklyCollectionView.reloadData()
+            rootView.homeWeeklyView.dataBindArticleCard(articleData: articleCardData)
         }
     }
     
     private var articleSlideCheckData: HomeArticleCheckResult? {
         didSet {
-            self.dataBindArticleSlideCheck(articleData: articleSlideCheckData)
+            rootView.homeWeeklyView.dataBindArticleSlideCheck(articleData: articleSlideCheckData)
         }
     }
     
@@ -52,12 +47,9 @@ final class HomeViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        gesture()
         target()
         delegate()
-        
-        style()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,36 +62,27 @@ final class HomeViewController: BaseViewController{
     
     // MARK: - Custom Method
     
-    private func target() {
-        
-        gesture = UIPanGestureRecognizer(target: self,
+    private func gesture() {
+        let gesture: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,
                                          action: #selector(ticketCaseMoved(_:)))
+        rootView.homeWeeklyView.ticketCoverImageView.addGestureRecognizer(gesture)
+    }
+    
+    private func target() {
         rootView.homeNavigationView.weeklyButton.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
         rootView.homeNavigationView.allButton.addTarget(self, action: #selector(allButtonTap), for: .touchUpInside)
-        
     }
     
     private func delegate() {
-        
         rootView.homeAllView.allArticleCollectionView.delegate = self
         rootView.homeAllView.allArticleCollectionView.dataSource = self
         rootView.weeklyCollectionView.delegate = self
         rootView.weeklyCollectionView.dataSource = self
     }
     
-    private func style() {
-        
-        rootView.homeWeeklyView.ticketCoverImageView.do {
-            $0.addGestureRecognizer(gesture)
-        }
-        
-    }
-    
     //MARK: - Action Method
     
-    @objc
-    func weeklyButtonTap() {
-        
+    @objc func weeklyButtonTap() {
         rootView.homeNavigationView.weeklyButton.isSelected = true
         rootView.homeNavigationView.allButton.isSelected = false
         rootView.homeNavigationView.weeklyButton.backgroundColor = .pppMainPurple
@@ -109,9 +92,7 @@ final class HomeViewController: BaseViewController{
         rootView.homeAllView.isHidden = true
     }
     
-    @objc
-    func allButtonTap() {
-        
+    @objc func allButtonTap() {
         rootView.homeNavigationView.weeklyButton.isSelected = false
         rootView.homeNavigationView.allButton.isSelected = true
         rootView.homeNavigationView.weeklyButton.backgroundColor = .pppGrey2
@@ -121,55 +102,9 @@ final class HomeViewController: BaseViewController{
         rootView.homeAllView.isHidden = false
     }
     
-    
-    func pushToArticleViewController() {
-        
-        let homeArticleVC = HomeArticleViewController(articleID: articleID)
-        self.navigationController?.pushViewController(homeArticleVC, animated: true)
-        
-    }
-    
-    private func ticketDragAnimation() {
-        requestPutSlideAPI()
-        pushToArticleViewController()
-    }
-    
-    @objc
-    private func ticketCaseMoved(_ sender: UIPanGestureRecognizer) {
-        
-        viewTranslation = sender.translation(in: rootView.homeWeeklyView.ticketCoverImageView)
-        viewVelocity = sender.velocity(in: rootView.homeWeeklyView.ticketCoverImageView)
-        
-        switch sender.state {
-        case .changed:
-            if abs(viewVelocity.y) > abs(viewVelocity.x) {
-                
-                if viewTranslation.y >= 152 {
-                    UIView.animate(withDuration: 0.1, animations: {
-                        self.rootView.homeWeeklyView.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: 600)
-                        sender.state = .ended
-                    }, completion: { _ in
-                        self.ticketDragAnimation()
-                    })
-                }
-                
-                else if viewVelocity.y > 0 {
-                    UIView.animate(withDuration: 0.1, animations: {
-                        self.rootView.homeWeeklyView.ticketCoverImageView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
-                    })
-                }
-            }
-            
-        case .ended:
-            if viewTranslation.y < 152 {
-                UIView.animate(withDuration: 0.04, animations: {
-                    self.rootView.homeWeeklyView.ticketCoverImageView.transform = .identity
-                })
-            }
-            
-        default:
-            break
-            
+    @objc private func ticketCaseMoved(_ sender: UIPanGestureRecognizer) {
+        AnimationManager.shared.ticketCoverAnimate(sender, targetView: rootView.homeWeeklyView.ticketCoverImageView) { _ in
+            self.ticketDragAnimation()
         }
     }
 }
@@ -257,6 +192,9 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: SavedArticleCellDelegate {
     func articleDidTap(articleID: Int?) {
+        print("🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃")
+        print("아티클 아이디가 이거란 말이요 \(articleID)")
+        print("🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃")
         let articleViewController = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(articleViewController, animated: true)
     }
@@ -269,30 +207,16 @@ extension HomeViewController: ThisWeekCellDelegate {
 }
 
 extension HomeViewController {
-    func dataBindArticleCard(articleData: HomeArticleCardResult?) {
-        guard let articleData = articleData else { return }
+    func pushToArticleViewController() {
         
-        rootView.homeWeeklyView.cardId = articleData.id
-        rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
-        rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
-        rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
-        rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
-        rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
-        
-        rootView.homeWeeklyView.cardId = articleData.id
-        rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
-        rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
-        rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
-        rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
-        rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
+        let homeArticleVC = HomeArticleViewController(articleID: articleID)
+        self.navigationController?.pushViewController(homeArticleVC, animated: true)
         
     }
     
-    func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
-        guard let hasSlide = articleData?.hasSlide else { return }
-        rootView.hasSlide = hasSlide
-        rootView.homeWeeklyView.isHidden = hasSlide
-        rootView.weeklyCollectionView.isHidden = !hasSlide
+    private func ticketDragAnimation() {
+        requestPutSlideAPI()
+        pushToArticleViewController()
     }
     
     func requestArticleCardAPI() {
@@ -311,8 +235,8 @@ extension HomeViewController {
     }
     
     func requestPutSlideAPI() {
-        HomeAPI.shared.putArticleCheck() { result in
-            guard let result = self.validateResult(result) else { return }
+        HomeAPI.shared.patchArticleCheck() { result in
+            guard self.validateResult(result) != nil else { return }
         }
     }
     
@@ -323,6 +247,3 @@ extension HomeViewController {
         }
     }
 }
-
-
-

@@ -110,14 +110,20 @@ extension MyViewController: UITableViewDataSource {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoTableViewCell.cellIdentifier, for: indexPath) as? MyInfoTableViewCell else { return UITableViewCell() }
             cell.configureCell(title: infoData[indexPath.row].title)
+            cell.selectionStyle = .none
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoTableViewCell.cellIdentifier, for: indexPath) as? MyInfoTableViewCell else { return UITableViewCell() }
             cell.configureCell(title: accountData[indexPath.row].title)
+            cell.selectionStyle = .none
             return cell
         default:
             return UITableViewCell()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presentBottomAlert("기능 준비중입니다!")
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -132,7 +138,6 @@ extension MyViewController {
             guard let result = self.validateResult(result) as? MyUserInfoResult else {
                 return
             }
-            print("🍠👆 \(result)")
             self.userInfo = result
         }
     }

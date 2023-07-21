@@ -106,3 +106,22 @@ class HomeWeeklyView: UIView {
         }
     }
 }
+
+extension HomeWeeklyView {
+    func dataBindArticleCard(articleData: HomeArticleCardResult?) {
+        guard let articleData = articleData else { return }
+        cardId = articleData.id
+        thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
+        nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
+        cardTitleLabel.text = articleData.title
+        cardStoreNameLabel.text = articleData.spaceName
+        cardStoreOwnerLabel.text = articleData.spaceOwner
+        cardRemainingDayLabel.text = String(articleData.remainingDays)
+    }
+    
+    func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
+        print("😵‍💫실행됨")
+        guard let hasSlide = articleData?.hasSlide else { return }
+        ticketCoverImageView.isHidden = false
+    }
+}

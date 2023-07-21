@@ -158,6 +158,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
     }
     
     func dataBindHome(articleData: HomeArticleListResult) {
+        articleID = articleData.id
         spaceTypeLabel.setTitle(articleData.spaceType, for: .normal)
         titleLabel.text = articleData.spaceName
         subTitleLabel.text = articleData.title

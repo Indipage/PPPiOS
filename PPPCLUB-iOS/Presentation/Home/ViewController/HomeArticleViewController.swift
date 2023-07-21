@@ -3,9 +3,7 @@ import UIKit
 import SnapKit
 import Then
 
-
-
-class HomeArticleViewController: BaseViewController {
+final class HomeArticleViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -16,7 +14,11 @@ class HomeArticleViewController: BaseViewController {
         }
     }
     
-    private var bookmarkCheckData: HomeBookmarkCheckResult?
+    private var bookmarkCheckData: HomeBookmarkCheckResult? {
+        didSet {
+            rootView.articleNavigationView.dataBind(articleData: bookmarkCheckData)
+        }
+    }
     
     private var ticketCheckData: HomeTicketCheckResult? {
         didSet {
@@ -41,12 +43,10 @@ class HomeArticleViewController: BaseViewController {
     
     var fullText = "" {
         didSet {
-            articleDummy = fullText
-            parsingData = HomeArticleParsing()
+            ArticleParsingManager.shared.articleDummy = fullText
+            parsingData = ArticleParsingManager.shared.homeArticleParsing()
         }
     }
-    
-    var articleDummy:String = ""
     
     // MARK: - UI Components
     
@@ -97,13 +97,11 @@ class HomeArticleViewController: BaseViewController {
     
     //MARK: - Action Method
     
-    @objc
-    func backButtonTap() {
+    @objc func backButtonTap() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc
-    func saveButtonTap() {
+    @objc func saveButtonTap() {
         rootView.articleNavigationView.saveButton.isSelected.toggle()
         
         if rootView.articleNavigationView.saveButton.isSelected {
@@ -124,7 +122,7 @@ extension HomeArticleViewController: UITableViewDelegate {
         let blockType = parsingData[indexPath.row].keys
         let content = parsingData[indexPath.row].values
         
-        print("😄Type: \(blockType), 😍Content: \(content)")
+//        print("😄Type: \(blockType), 😍Content: \(content)")
         
         switch blockType.first {
         case .title, .body:
@@ -133,12 +131,12 @@ extension HomeArticleViewController: UITableViewDelegate {
             tmpLabel.font = blockType.first?.font
             let cellWidth = 319.0
             let heightCnt = ceil((tmpLabel.intrinsicContentSize.width) / cellWidth)
-            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
-            print("몇 번째: \(indexPath.row)")
-            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
-            print("줄 개수 \(heightCnt)")
-            print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
-            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+//            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+//            print("몇 번째: \(indexPath.row)")
+//            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
+//            print("줄 개수 \(heightCnt)")
+//            print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
+//            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
             return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9 + 30
         case .img:
             return 300
@@ -190,8 +188,6 @@ extension HomeArticleViewController: UITableViewDataSource {
     
 }
 
-
-
 extension HomeArticleViewController: TableViewCellDelegate {
     func pushDetailView() {
         pushDetailViewController()
@@ -205,42 +201,25 @@ extension HomeArticleViewController: ArticleHeaderViewDelegate {
 }
 
 extension HomeArticleViewController {
-    func dataBind(articleData: HomeBookmarkCheckResult?) {
-        guard let bookMarked = articleData?.bookmarked else { return }
-        rootView.articleNavigationView.saveButton.isSelected = bookMarked
-    }
-    
-    func dataBind(articleData: HomeTicketGetResult?) {
-        guard let message = articleData?.message else { return }
-    }
-    
-    func dataBind(articleData: HomeDetailArticleResult?) {
-        guard let articleData = articleData else { return }
-        self.articleID = articleData.id
-        self.spaceID = articleData.spaceID
-        self.fullText = articleData.content
-    }
-    
     func requestBookmarkCheckAPI() {
         guard let articleID = articleID else { return }
         HomeAPI.shared.getBookmarkCheck(articleID: "\(articleID)") { result in
             guard let result = self.validateResult(result) as? HomeBookmarkCheckResult else { return }
             self.bookmarkCheckData = result
-            self.dataBind(articleData: self.bookmarkCheckData)
         }
     }
     
     public func requestBookmarkRegisterAPI() {
         guard let articleID = articleID else { return }
         HomeAPI.shared.postBookmarkCheck(articleID: "\(articleID)") { result in
-            guard let result = self.validateResult(result) else { return }
+            guard self.validateResult(result) != nil else { return }
         }
     }
     
     public func requestBookmarkDeleteAPI() {
         guard let articleID = articleID else { return }
         HomeAPI.shared.deleteBookmarkCheck(articleID: "\(articleID)") { result in
-            guard let result = self.validateResult(result) else { return }
+            guard self.validateResult(result) != nil else { return }
         }
     }
     
@@ -257,7 +236,6 @@ extension HomeArticleViewController {
         HomeAPI.shared.postTicketGet(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? HomeTicketGetResult else { return }
             self.ticketGetData = result
-            self.dataBind(articleData: self.ticketGetData)
         }
     }
     
@@ -266,147 +244,15 @@ extension HomeArticleViewController {
         HomeAPI.shared.getDetailArticle(articleID: "\(articleID)") { result in
             guard let result = self.validateResult(result) as? HomeDetailArticleResult else { return }
             self.homeDetailArticleData = result
-            self.dataBind(articleData: self.homeDetailArticleData)
+            self.articleID = result.id
+            self.spaceID = result.spaceID
+            self.fullText = result.content
         }
     }
     
     public func pushDetailViewController() {
         let detailViewController = DetailViewController()
+        detailViewController.dataBind(spaceID: spaceID)
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-enum ArticleType: String {
-    case title
-    case body
-    case img
-    case hr
-    
-    var font: UIFont? {
-        switch self {
-        case .title:
-            return .pppSubHead1
-        case .body:
-            return .pppBody5
-        case .img:
-            return nil
-        case .hr:
-            return nil
-        }
-    }
-}
-
-
-
-
-
-
-extension HomeArticleViewController {
-    func blockCheck(text: String) -> ArticleType? {
-        var articleType: ArticleType?
-        guard let bodyStart = text.range(of: "<") else { return nil }
-        guard let bodyEnd = text.range(of: ">") else { return nil}
-        
-        let startEnd = text[bodyStart].endIndex
-        let endStart = text[bodyEnd].startIndex
-        let endEnd = text[bodyEnd].endIndex
-        
-        let articleDummyEnd = text.endIndex
-        let bodyChecked = text[startEnd ... endStart]
-        
-        var bodyTypeCheck = String(bodyChecked)
-        bodyTypeCheck = bodyTypeCheck.trimmingCharacters(in: ["<", ">"])
-        
-        switch bodyTypeCheck {
-        case ArticleType.body.rawValue:
-            articleType = .body
-        case ArticleType.title.rawValue:
-            articleType = .title
-        case ArticleType.img.rawValue:
-            articleType = .img
-        case ArticleType.hr.rawValue:
-            articleType = .hr
-        default:
-            break
-        }
-        
-        articleDummy = String(text[endEnd ..< articleDummyEnd])
-        
-        return articleType
-    }
-    
-    func blockContentCheck(text:String, type: ArticleType?) -> (String)? {
-        guard text.range(of: type?.rawValue ?? "") != nil else { return nil}
-        let bodyEndRange = "<" + "/" + (type?.rawValue)! + ">"
-        guard let bodyEnd = text.range(of: bodyEndRange) else { return nil }
-        
-        let endStart = text[bodyEnd].startIndex
-        let endEnd = text[bodyEnd].endIndex
-        let articleDummyEnd = text.endIndex
-        
-        let bodyChecked = text[text.startIndex ..< endStart]
-        let bodyContentChecked =  String(bodyChecked)
-        
-        articleDummy = String(text[endEnd ..< articleDummyEnd])
-        
-        return (bodyContentChecked)
-        
-    }
-    
-    func HomeArticleParsing() -> [ArticleBlockType] {
-        
-        typealias ArticleBlockType = Dictionary<ArticleType,String>
-        var parsingStored: [ArticleBlockType] = []
-        
-        
-        while articleDummy.count > 0 {
-            var blockType : ArticleType?
-            var blockContent : String?
-            
-            while (blockType != .body) && articleDummy.count > 0 {
-                
-                
-                blockType = blockCheck(text: articleDummy)
-                blockContent = blockContentCheck(text: articleDummy, type: blockType)
-                if let blockType = blockType, let blockContent = blockContent {
-                    let articleBlock: ArticleBlockType = [blockType: blockContent]
-                    parsingStored.append(articleBlock)
-                }
-            }
-        }
-        return parsingStored
-    }
-    
 }

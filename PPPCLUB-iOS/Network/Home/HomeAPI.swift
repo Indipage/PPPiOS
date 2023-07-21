@@ -37,8 +37,8 @@ extension HomeAPI{
         }
     }
     
-    public func putArticleCheck(completion: @escaping (NetworkResult<Any>) -> Void) {
-        homeProvider.request(.putArticleCheck) { (result) in
+    public func patchArticleCheck(completion: @escaping (NetworkResult<Any>) -> Void) {
+        homeProvider.request(.patchArticleCheck) { (result) in
             self.disposeNetwork(
                 result,
                 dataModel: VoidResult.self,
@@ -97,7 +97,7 @@ extension HomeAPI{
     }
     
     public func getTicketCheck(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        homeProvider.request(.getTicketCheck(spaceID: "1")) { (result) in
+        homeProvider.request(.getTicketCheck(spaceID: spaceID)) { (result) in
             self.disposeNetwork(
                 result,
                 dataModel: HomeTicketCheckResult.self,
@@ -107,7 +107,7 @@ extension HomeAPI{
     }
     
     public func postTicketGet(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        homeProvider.request(.postTicketGet(spaceID: "1")) { (result) in
+        homeProvider.request(.postTicketGet(spaceID: spaceID)) { (result) in
             self.disposeNetwork(
                 result,
                 dataModel: VoidResult.self,

@@ -53,7 +53,9 @@ final class TicketSuccessView: UIView {
         cardImageView.do {
             $0.backgroundColor = .gray
             $0.makeCornerRadius(ratio: 15)
-            $0.transform = .init(rotationAngle: 9.15)
+            let angleInDegrees: CGFloat = -9.15
+            let angleInRadians = angleInDegrees * .pi / 180.0
+            $0.transform = .init(rotationAngle: angleInRadians)
             $0.makeShadow(color: .black, offset: CGSize(width: -2, height: 3), radius: 4.2727, opacity: 0.25)
         }
         

@@ -12,7 +12,7 @@ import Moya
 enum HomeService {
     case getArticleCard
     case getArticleCheck
-    case putArticleCheck
+    case patchArticleCheck
     case getAllArticle
     case getDetailArticle(articleID: String)
     
@@ -31,7 +31,7 @@ extension HomeService: BaseTargetType {
             return URLs.weeklyArticle
         case .getArticleCheck:
             return URLs.patchSlideArticle
-        case .putArticleCheck:
+        case .patchArticleCheck:
             return URLs.patchSlideArticle
         case .getAllArticle:
             return URLs.totalArticle
@@ -58,8 +58,8 @@ extension HomeService: BaseTargetType {
             return .get
         case .getArticleCheck:
             return .get
-        case .putArticleCheck:
-            return .put
+        case .patchArticleCheck:
+            return .patch
         case .getAllArticle:
             return .get
         case .getDetailArticle:
@@ -85,7 +85,7 @@ extension HomeService: BaseTargetType {
             return .requestPlain
         case .getArticleCheck:
             return .requestPlain
-        case .putArticleCheck:
+        case .patchArticleCheck:
             return .requestPlain
         case .getAllArticle:
             return .requestPlain
@@ -112,7 +112,7 @@ extension HomeService: BaseTargetType {
             return APIConstants.noTokenHeader
         case .getArticleCheck:
             return APIConstants.noTokenHeader
-        case .putArticleCheck:
+        case .patchArticleCheck:
             return APIConstants.noTokenHeader
         case .getAllArticle:
             return APIConstants.noTokenHeader

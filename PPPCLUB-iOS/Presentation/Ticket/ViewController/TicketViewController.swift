@@ -96,7 +96,7 @@ final class TicketViewController: BaseViewController {
         } else {
             AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
-                translationX: -158,
+                translationX: -158.adjusted,
                 selectedLabel: toggleView.ticketLabel,
                 unSelectedLable: toggleView.cardLabel) { _ in
                     self.showSelectedView()
@@ -110,7 +110,7 @@ final class TicketViewController: BaseViewController {
         if toggleMode {
             AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
-                translationX: 158,
+                translationX: 158.adjusted,
                 selectedLabel: toggleView.cardLabel,
                 unSelectedLable: toggleView.ticketLabel) { _ in
                     self.showSelectedView()

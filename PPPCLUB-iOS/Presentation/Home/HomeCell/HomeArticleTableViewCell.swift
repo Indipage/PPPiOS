@@ -126,33 +126,7 @@ class HomeArticleTableViewCell: UITableViewCell {
     //MARK: - Action Method
     
     @objc func handleLabelTap(_ recognizer: UITapGestureRecognizer) {
-        let tapLocation = recognizer.location(in: cellBodyLabel)
-        let textStorage = NSTextStorage(attributedString: cellBodyLabel.attributedText!)
-        let layoutManager = NSLayoutManager()
-        textStorage.addLayoutManager(layoutManager)
-        
-        // 클릭한 위치의 글자 인덱스를 찾기 위해 textContainer 사용
-        let textContainer = NSTextContainer(size: cellBodyLabel.bounds.size)
-        layoutManager.addTextContainer(textContainer)
-        
-        // 터치한 지점에 해당하는 글자의 인덱스를 가져옴
-        let characterIndex = layoutManager.characterIndex(for: tapLocation, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        print("클릭한 특정 텍스트의 인덱스: \(characterIndex)")
-        
-        let labelText = cellBodyLabel.text
-        let targetText = linkText
-        guard let labelText = labelText else { return }
-        guard let targetText = targetText else { return }
-        if let range = labelText.range(of: targetText) {
-            let startIndex = labelText.distance(from: labelText.startIndex, to: range.lowerBound)
-            let endIndex = labelText.distance(from: labelText.startIndex, to: range.upperBound)
-            
-            print("특정 텍스트가 있는 위치: \(startIndex) ~ \(endIndex)")
-            if startIndex <= characterIndex && characterIndex <= endIndex {
-                delegate?.pushDetailView()
-            }
-        }
-        
+        handleTextInteraction(recognizer)
     }
 }
 
@@ -170,10 +144,10 @@ extension HomeArticleTableViewCell {
             cellBodyLabel.isHidden = false
             cellTitleLabel.isHidden = true
             cellImageView.isHidden = true
-            fullText = findBody(bodyFull: article.values.first ?? "")
-            cellBodyLabel.text = fullText
+            ArticleParsingManager.shared.findBody(bodyFull: article.values.first ?? "")
+            cellBodyLabel.text = ArticleParsingManager.shared.fullText
             cellBodyLabel.setLineSpacing(spacing: 9)
-            bodyInsideCheck(bodyArticle: article.values.first ?? "")
+            ArticleParsingManager.shared.bodyInsideCheck(targetLabel: cellBodyLabel, bodyArticle: article.values.first ?? "")
             cellUnderLine.isHidden = true
         case .img:
             cellImageView.isHidden = false
@@ -190,109 +164,34 @@ extension HomeArticleTableViewCell {
             break
         }
     }
-}
+    
+    func handleTextInteraction(_ recognizer: UITapGestureRecognizer) {
+        let tapLocation = recognizer.location(in: cellBodyLabel)
+        let textStorage = NSTextStorage(attributedString: cellBodyLabel.attributedText!)
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        
+        // 클릭한 위치의 글자 인덱스를 찾기 위해 textContainer 사용
+        let textContainer = NSTextContainer(size: cellBodyLabel.bounds.size)
+        layoutManager.addTextContainer(textContainer)
+        
+        // 터치한 지점에 해당하는 글자의 인덱스를 가져옴
+        let characterIndex = layoutManager.characterIndex(for: tapLocation, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        print("클릭한 특정 텍스트의 인덱스: \(characterIndex)")
+        
+        let labelText = cellBodyLabel.text
+        let targetText = ArticleParsingManager.shared.linkText
+        guard let labelText = labelText else { return }
 
-enum BodyType: String {
-    case link
-    case color
-    case bold
-    case none
-    
-    func setLabelStyle(text: String) {
-        switch self {
-        case .link:
-            print("\(text) link 입니다")
-        case .color:
-            print("\(text) color 입니다")
-        case .bold:
-            print("\(text) bold 입니다")
-        case .none:
-            print("\(text) 아무것도 아닙니다")
-        }
-    }
-}
-
-extension HomeArticleTableViewCell {
-    
-    func findBody(bodyFull: String) -> String {
-        let bodyList = ["bold","color","link"]
-        var compeletBody : String = bodyFull
-        var _ : Int
-        
-        for i in 0...2 {
-            if compeletBody.contains(bodyList[i]) == true {
-                let bodyStartRange = "<" + bodyList[i] + ">"
-                let bodyEndRange = "<" + "/" + bodyList[i] + ">"
-                
-                compeletBody = compeletBody.replacingOccurrences(of: bodyEndRange, with: "")
-                compeletBody = compeletBody.replacingOccurrences(of: bodyStartRange, with: "")
-                
+        if let range = labelText.range(of: targetText) {
+            let startIndex = labelText.distance(from: labelText.startIndex, to: range.lowerBound)
+            let endIndex = labelText.distance(from: labelText.startIndex, to: range.upperBound)
+            
+            print("특정 텍스트가 있는 위치: \(startIndex) ~ \(endIndex)")
+            if startIndex <= characterIndex && characterIndex <= endIndex {
+                delegate?.pushDetailView()
             }
         }
-        return compeletBody
-    }
-    
-    func changeBody(bodyType: String, bodyContent: String) {
-        switch bodyType {
-        case "link":
-            self.linkText = bodyContent
-            cellBodyLabel.asUnder(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
-            
-        case "bold":
-            cellBodyLabel.asFont(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, spacing: 9, lineHeight: 9)
-            
-        case "color":
-            cellBodyLabel.asFontColor(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple, spacing: 8, lineHeight: 8)
-            
-        default:
-            break
-        }
-    }
-    
-    private func bodyInsideCheck(bodyArticle: String){
         
-        var bodyString = bodyArticle
-        let bodyList = ["color","bold","link"]
-        var bodySplitType : String
-        var _ : Int
-        
-        for i in 0...2 {
-            
-            while bodyString.contains(bodyList[i]) == true {
-                (bodyString, bodySplitType) = bodySplitParsing(text: bodyString, version: bodyList[i]) ?? ("","")
-                changeBody(bodyType: bodyList[i], bodyContent: bodySplitType)
-                print("⭐️\(bodyList[i])    \(bodySplitType)")
-            }
-        }
-    }
-    
-    private func bodySplitParsing(text:String, version: String) -> (String, String)? {
-        
-        let bodyStartRange = "<" + version + ">"
-        let bodyEndRange = "<" + "/" + version + ">"
-        
-        if let bodyStart = text.range(of: bodyStartRange) {
-            
-            if let bodyEnd = text.range(of: bodyEndRange) {
-                
-                let startStart = text[bodyStart].startIndex
-                let endEnd = text[bodyEnd].endIndex
-                
-                
-                let splitChecked = text[startStart ..< endEnd]
-                let splitContent = String(splitChecked)
-                var splitTypeContent =  String(splitChecked)
-                
-                splitTypeContent = splitTypeContent.replacingOccurrences(of: bodyEndRange, with: "")
-                splitTypeContent = splitTypeContent.replacingOccurrences(of: bodyStartRange, with: "")
-                
-                let bodySplitContent = text.replacingOccurrences(of: splitContent, with: splitTypeContent)
-                
-                return (bodySplitContent, splitTypeContent)
-                
-            }
-            else { return nil }
-        }
-        else { return nil }
     }
 }

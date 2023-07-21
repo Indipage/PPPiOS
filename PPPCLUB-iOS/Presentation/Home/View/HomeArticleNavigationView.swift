@@ -94,3 +94,10 @@ class HomeArticleNavigationView: UIView {
     }
 }
 
+extension HomeArticleNavigationView {
+    func dataBind(articleData: HomeBookmarkCheckResult?) {
+        guard let bookMarked = articleData?.bookmarked else { return }
+        saveButton.isSelected = bookMarked
+    }
+}
+

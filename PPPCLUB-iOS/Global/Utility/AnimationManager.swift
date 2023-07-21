@@ -21,7 +21,7 @@ class AnimationManager {
     ) {
         let transform: CGAffineTransform
         if let translationX {
-            transform = CGAffineTransform(translationX: translationX.adjusted, y: 0)
+            transform = CGAffineTransform(translationX: translationX, y: 0)
         } else {
             transform = .identity
         }
@@ -36,7 +36,6 @@ class AnimationManager {
                 
                 
             }, completion: completion)
-        
     }
     
     func ticketAnimate(
@@ -57,21 +56,60 @@ class AnimationManager {
         case .began:
             if velocity.x > 0 { recoginizer.state = .cancelled }
         case .changed:
-            if velocity.x > 0 { targetView.center.x = point.x-55 }
+            if velocity.x > 0 { targetView.center.x = point.x-55.adjusted }
         case .ended:
-            if targetView.center.x + translation.x < 35 {
+            if targetView.center.x + translation.x < 35.adjusted {
                 UIView.animate(withDuration: 0.3, animations: {
-                    targetView.center.x = point.x-55
+                    targetView.center.x = point.x-55.adjusted
                 }, completion: completion)
                 
             } else {
                 UIView.animate(withDuration: 0.3, animations: {
-                    targetView.center.x = point.x-55
+                    targetView.center.x = point.x-55.adjusted
                 })
             }
         @unknown default:
             break
         }
+    }
+    
+    func ticketCoverAnimate(_ sender: UIPanGestureRecognizer, targetView: UIView, completion: (((Bool) -> Void)?)) {
+        var viewTranslation = CGPoint(x: 0, y: 0)
+        var viewVelocity = CGPoint(x: 0, y: 0)
+        
+        viewTranslation = sender.translation(in: targetView)
+        viewVelocity = sender.velocity(in: targetView)
+        
+        switch sender.state {
+        case .changed:
+            if abs(viewVelocity.y) > abs(viewVelocity.x) {
+                
+                if viewTranslation.y >= 152 {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        targetView.transform = CGAffineTransform(translationX: 0, y: 600)
+                        sender.state = .ended
+                    }, completion: completion)
+                }
+                
+                else if viewVelocity.y > 0 {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        targetView.transform = CGAffineTransform(translationX: 0, y: viewTranslation.y)
+                    })
+                }
+            }
+            
+        case .ended:
+            if viewTranslation.y < 152 {
+                UIView.animate(withDuration: 0.04, animations: {
+                    targetView.transform = .identity
+                })
+            }
+            
+        default:
+            break
+            
+        }
+        
     }
 }
 

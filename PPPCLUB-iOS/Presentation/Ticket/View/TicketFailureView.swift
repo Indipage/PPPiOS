@@ -49,7 +49,7 @@ final class TicketFailureView: UIView {
         }
         
         failImage.do {
-            $0.backgroundColor = .gray
+            $0.image = Image.qrFail
         }
         
         failLabel.do {
@@ -78,7 +78,6 @@ final class TicketFailureView: UIView {
     
     private func hieararchy() {
         self.addSubview(failView)
-        //contentView.addSubview(failView)
         failView.addSubviews(failImage, failLabel, exitButton, tryButton)
     }
     
