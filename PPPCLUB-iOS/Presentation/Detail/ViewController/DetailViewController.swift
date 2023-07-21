@@ -65,6 +65,7 @@ final class DetailViewController: BaseViewController {
         style()
         hieararchy()
         layout()
+        swipeRecognizer()
     }
     
     
