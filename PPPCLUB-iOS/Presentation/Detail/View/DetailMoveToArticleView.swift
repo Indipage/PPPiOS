@@ -141,9 +141,7 @@ final class DetailMoveToArticleView: UIView {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(spaceNameLabel.snp.bottom).offset(2.adjusted)
-            $0.leading.equalTo(spaceTypeStackView)
-            $0.trailing.equalTo(spaceNameLabel).inset(16)
-            $0.height.equalTo(18.adjusted)
+            $0.leading.trailing.equalTo(shopImageView).inset(16)
         }
         
         goReadButton.snp.makeConstraints {
