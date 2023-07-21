@@ -129,7 +129,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         }
         
         ticketReceivedImage.snp.makeConstraints {
-            $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(47)
+            $0.height.equalTo(35)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview()
         }

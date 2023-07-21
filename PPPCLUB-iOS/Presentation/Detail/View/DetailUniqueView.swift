@@ -91,8 +91,14 @@ final class DetailUniqueView: UIView {
         
         peculiarityTitleLabel.snp.makeConstraints {
             $0.bottom.equalTo(peculiarityContentLabel.snp.top).offset(-8)
-            $0.trailing.equalTo(uniqueImageView).inset(28)
+            $0.leading.trailing.equalTo(uniqueImageView).inset(28)
             $0.height.equalTo(28)
         }
+    }
+    
+    func dataBind(title: String, content: String, image: String) {
+        peculiarityTitleLabel.text = title
+        peculiarityContentLabel.text = content
+        uniqueImageView.kfSetImage(url: image)
     }
 }
