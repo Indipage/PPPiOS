@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Splash 화면을 2초 동안 보여줍니다.
-        Thread.sleep(forTimeInterval: 2.0)
+        Thread.sleep(forTimeInterval: 0.7)
         
         // Main.storyboard에서 초기 뷰 컨트롤러를 찾아 메인 화면으로 이동합니다.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

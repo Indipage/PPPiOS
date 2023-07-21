@@ -18,7 +18,7 @@ class PPPTabBarController: UITabBarController {
     let homeViewController = HomeViewController()
     let searchViewController = SearchViewController()
     let myViewController = MyViewController()
-    let ticketViewController = TicketViewController()
+    let ticketViewController = TicketSuccessViewController()
     
     lazy var homeNavigationContrller = UINavigationController(rootViewController: homeViewController)
     lazy var searchNavigationContrller = UINavigationController(rootViewController: searchViewController)

@@ -78,7 +78,6 @@ final class TicketFailureView: UIView {
     
     private func hieararchy() {
         self.addSubview(failView)
-        //contentView.addSubview(failView)
         failView.addSubviews(failImage, failLabel, exitButton, tryButton)
     }
     
