@@ -57,8 +57,7 @@ class HomeAllView: UIView {
         
         private func layout() {
             allArticleCollectionView.snp.makeConstraints {
-                $0.top.equalToSuperview()
-                $0.width.bottom.equalToSuperview()
+                $0.edges.equalToSuperview()
             }
         }
 

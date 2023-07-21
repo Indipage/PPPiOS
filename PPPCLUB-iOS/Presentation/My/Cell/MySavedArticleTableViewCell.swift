@@ -79,6 +79,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         subTitleLabel.do {
             $0.font = .pppBody6
             $0.textColor = .pppWhite
+            $0.numberOfLines = 0
         }
         
         ticketReceivedImage.do {
@@ -124,6 +125,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         subTitleLabel.snp.makeConstraints {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(3)
             $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalTo(spaceImage).inset(16)
         }
         
         ticketReceivedImage.snp.makeConstraints {

@@ -830,7 +830,6 @@
 			isa = PBXGroup;
 			children = (
 				D2B096192A529994007BC756 /* SearchView.swift */,
-				05CD07E42A5ED7D8003EEE84 /* SearchHeaderView.swift */,
 				05CD07DC2A5E9C37003EEE84 /* SearchTableViewCell.swift */,
 			);
 			path = View;
@@ -1041,7 +1040,6 @@
 				D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */,
 				D224D4A92A5DB66800B014ED /* MyInfoModel.swift in Sources */,
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,
-				05CD07E52A5ED7D8003EEE84 /* SearchHeaderView.swift in Sources */,
 				D2614A782A528D5800869710 /* UIFont+.swift in Sources */,
 				D28ACC1C2A69C55C0093B01E /* TicketQRCodeModel.swift in Sources */,
 				D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */,
