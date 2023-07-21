@@ -14,10 +14,8 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private var isFiltering: Bool = false
-    private var allSpace: [SpaceData] = [] {
+    private var spaceSearchedResult: [SpaceData] = [] {
         didSet {
-            isFiltering = false
             searchView.searchTableView.reloadData()
         }
     }
@@ -46,14 +44,14 @@ final class SearchViewController: BaseViewController {
         
         hierarchy()
         layout()
+        requestGetAllSpace()
+        dismissKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = false
-        dismissKeyboard()
-        requestGetAllSpace()
     }
     
     // MARK: - Custom Method
@@ -93,11 +91,7 @@ extension SearchViewController: UITableViewDelegate {}
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredSpace.count
-        } else {
-            return allSpace.count
-        }
+        return spaceSearchedResult.count
     }
 
     
@@ -109,19 +103,11 @@ extension SearchViewController: UITableViewDataSource {
             cell.separateBar.isHidden = true
         }
         
-        if isFiltering {
-            cell.id = filteredSpace[indexPath.row].spaceID
-            cell.dataBind(image: filteredSpace[indexPath.row].imageURL,
-                           name: filteredSpace[indexPath.row].spaceName,
-                           location: filteredSpace[indexPath.row].address
-            )
-        } else {
-            cell.id = allSpace[indexPath.row].spaceID
-            cell.dataBind(image: allSpace[indexPath.row].imageURL,
-                          name: allSpace[indexPath.row].spaceName,
-                          location: allSpace[indexPath.row].address
-            )
-        }
+        cell.id = spaceSearchedResult[indexPath.row].spaceID
+        cell.dataBind(image: spaceSearchedResult[indexPath.row].imageURL,
+                      name: spaceSearchedResult[indexPath.row].spaceName,
+                      location: spaceSearchedResult[indexPath.row].address
+        )
         return cell
     }
 
@@ -142,26 +128,27 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchView.searchBar.text == "" {
-            print("👺👺👺👺👺👺")
+        if searchBar.text == "" {
             self.searchView.searchBar.resignFirstResponder()
-            self.isFiltering = false
             requestGetAllSpace()
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("👻👻👻👻👻👻")
-        isFiltering = true
+        if searchBar.text != "" {
+            requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
+        }
         self.searchView.searchBar.resignFirstResponder()
-        requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("🤖🤖🤖🤖🤖🤖")
-        isFiltering = true
+        if searchBar.text == "" {
+            requestGetAllSpace()
+        } else {
+            requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
+        }
         self.searchView.searchBar.resignFirstResponder()
-        requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
+        
     }
 }
 
@@ -173,9 +160,8 @@ extension SearchViewController {
                 self.isResultExisted = false
             } else {
                 self.isResultExisted = true
-                self.filteredSpace = result
+                self.spaceSearchedResult = result
             }
-            dump(result)
         }
     }
     
@@ -183,7 +169,7 @@ extension SearchViewController {
         SearchAPI.shared.getAllSpace { result in
             guard let result = self.validateResult(result) as? [SpaceData] else { return }
             self.isResultExisted = true
-            self.allSpace = result
+            self.spaceSearchedResult = result
         }
     }
 }

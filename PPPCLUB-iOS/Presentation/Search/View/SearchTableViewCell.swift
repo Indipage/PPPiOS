@@ -37,6 +37,12 @@ class SearchTableViewCell: UITableViewCell {
     
     // MARK: - Functions
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        separateBar.isHidden = false
+    }
+    
     func setUI() {
         placeImageView.do {
             $0.layer.cornerRadius = 5
