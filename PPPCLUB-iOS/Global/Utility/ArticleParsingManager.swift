@@ -27,9 +27,31 @@ enum ArticleType: String {
     }
 }
 
+enum BodyType: String {
+    case link
+    case color
+    case bold
+    case none
+    
+    func setLabelStyle(text: String) {
+        switch self {
+        case .link:
+            print("\(text) link 입니다")
+        case .color:
+            print("\(text) color 입니다")
+        case .bold:
+            print("\(text) bold 입니다")
+        case .none:
+            print("\(text) 아무것도 아닙니다")
+        }
+    }
+}
+
 final class ArticleParsingManager {
     static let shared = ArticleParsingManager()
     var articleDummy: String = ""
+    var fullText: String = ""
+    var linkText: String = ""
     
     func blockCheck(text: String) -> ArticleType? {
         var articleType: ArticleType?
@@ -104,5 +126,84 @@ final class ArticleParsingManager {
         }
         return parsingStored
     }
+    
+    func findBody(bodyFull: String) {
+        let bodyList = ["bold","color","link"]
+        var compeletBody : String = bodyFull
+        var _ : Int
+        
+        for i in 0...2 {
+            if compeletBody.contains(bodyList[i]) == true {
+                let bodyStartRange = "<" + bodyList[i] + ">"
+                let bodyEndRange = "<" + "/" + bodyList[i] + ">"
+                
+                compeletBody = compeletBody.replacingOccurrences(of: bodyEndRange, with: "")
+                compeletBody = compeletBody.replacingOccurrences(of: bodyStartRange, with: "")
+                
+            }
+        }
+        self.fullText = compeletBody
+    }
+    
+    func changeBody(targetLabel: UILabel, bodyType: String, bodyContent: String) {
+        switch bodyType {
+        case "link":
+            self.linkText = bodyContent
+            targetLabel.asUnder(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
+            
+        case "bold":
+            targetLabel.asFont(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, spacing: 9, lineHeight: 9)
+            
+        case "color":
+            targetLabel.asFontColor(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple, spacing: 8, lineHeight: 8)
+            
+        default:
+            break
+        }
+    }
+    
+    func bodyInsideCheck(targetLabel: UILabel, bodyArticle: String){
+        
+        var bodyString = bodyArticle
+        let bodyList = ["color","bold","link"]
+        var bodySplitType : String
+        var _ : Int
+        
+        for i in 0...2 {
+            
+            while bodyString.contains(bodyList[i]) == true {
+                (bodyString, bodySplitType) = bodySplitParsing(text: bodyString, version: bodyList[i]) ?? ("","")
+                changeBody(targetLabel: targetLabel, bodyType: bodyList[i], bodyContent: bodySplitType)
+//                print("⭐️\(bodyList[i])    \(bodySplitType)")
+            }
+        }
+    }
+    
+    private func bodySplitParsing(text:String, version: String) -> (String, String)? {
+        
+        let bodyStartRange = "<" + version + ">"
+        let bodyEndRange = "<" + "/" + version + ">"
+        
+        guard let bodyStart = text.range(of: bodyStartRange) else { return nil}
+        guard let bodyEnd = text.range(of: bodyEndRange) else { return nil}
+        
+        
+        let startStart = text[bodyStart].startIndex
+        let endEnd = text[bodyEnd].endIndex
+        
+        
+        let splitChecked = text[startStart ..< endEnd]
+        let splitContent = String(splitChecked)
+        var splitTypeContent =  String(splitChecked)
+        
+        splitTypeContent = splitTypeContent.replacingOccurrences(of: bodyEndRange, with: "")
+        splitTypeContent = splitTypeContent.replacingOccurrences(of: bodyStartRange, with: "")
+        
+        let bodySplitContent = text.replacingOccurrences(of: splitContent, with: splitTypeContent)
+        
+        return (bodySplitContent, splitTypeContent)
+        
+    }
+
 }
 
