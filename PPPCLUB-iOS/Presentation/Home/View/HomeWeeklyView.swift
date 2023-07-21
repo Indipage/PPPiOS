@@ -116,12 +116,6 @@ extension HomeWeeklyView {
         cardTitleLabel.text = articleData.title
         cardStoreNameLabel.text = articleData.spaceName
         cardStoreOwnerLabel.text = articleData.spaceOwner
-        cardRemainingDayLabel.text = String(articleData.remainingDays)
-    }
-    
-    func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
-        print("😵‍💫실행됨")
-        guard let hasSlide = articleData?.hasSlide else { return }
-        ticketCoverImageView.isHidden = false
+//        cardRemainingDayLabel.text = String(articleData.remainingDays)
     }
 }

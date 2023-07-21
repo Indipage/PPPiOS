@@ -26,7 +26,7 @@ final class HomeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         register()
         
         style()
@@ -51,7 +51,7 @@ final class HomeView: UIView {
     }
     
     private func style() {
-    
+        
         homeNavigationView.do {
             $0.backgroundColor = .pppWhite
         }
@@ -64,7 +64,7 @@ final class HomeView: UIView {
             }
             else {
                 $0.isHidden = false
-                }
+            }
         }
         
         homeAllView.do {
@@ -73,20 +73,20 @@ final class HomeView: UIView {
         
         weeklyCollectionView.do {
             let layout = AllCustomFlowLayout()
-                layout.scrollDirection = .horizontal
-                $0.collectionViewLayout = layout
-                $0.showsVerticalScrollIndicator = false
-                $0.isScrollEnabled = true
-                $0.translatesAutoresizingMaskIntoConstraints = false
-                $0.showsHorizontalScrollIndicator = true
-                $0.contentInsetAdjustmentBehavior = .never
+            layout.scrollDirection = .horizontal
+            $0.collectionViewLayout = layout
+            $0.showsVerticalScrollIndicator = false
+            $0.isScrollEnabled = true
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.showsHorizontalScrollIndicator = true
+            $0.contentInsetAdjustmentBehavior = .never
             
             if hasSlide {
                 $0.isHidden = false
             }
             else {
                 $0.isHidden = true
-                }
+            }
         }
         
     }
@@ -94,11 +94,11 @@ final class HomeView: UIView {
     private func hierarchy() {
         
         self.addSubviews(homeWeeklyView, homeAllView, weeklyCollectionView, homeNavigationView)
-
+        
     }
     
     private func layout() {
-
+        
         homeNavigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.width.equalToSuperview()
@@ -122,6 +122,14 @@ final class HomeView: UIView {
             $0.width.equalTo(600)
         }
         
+    }
+    
+    func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
+        print("😵‍💫실행됨")
+        guard let hasSlide = articleData?.hasSlide else { return }
+        self.hasSlide = hasSlide
+        self.homeWeeklyView.isHidden = hasSlide
+        self.weeklyCollectionView.isHidden = !hasSlide
     }
     
 }

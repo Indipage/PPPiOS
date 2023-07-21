@@ -24,7 +24,7 @@ final class HomeViewController: BaseViewController{
     
     private var articleSlideCheckData: HomeArticleCheckResult? {
         didSet {
-            rootView.homeWeeklyView.dataBindArticleSlideCheck(articleData: articleSlideCheckData)
+            rootView.dataBindArticleSlideCheck(articleData: articleSlideCheckData)
         }
     }
     
@@ -115,7 +115,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView {
         case rootView.weeklyCollectionView:
-            let newtop = Size.height * 0.06
+            let newtop = Size.height * 0.206
             let newbottom = Size.height * 0.212
             let newside = Size.width * 0.053 * 2
             return UIEdgeInsets(top: newtop, left: newside, bottom: newbottom, right: newside)
