@@ -121,10 +121,11 @@ final class DetailViewController: BaseViewController {
     private func addHashTag(list: [TagList]) {
         let label = UILabel()
         for index in 0..<list.count {
-            hashTagList.append("# \(list[index].name)")
-            label.text = "# \(list[index].name)"
+            hashTagList.append("#\(list[index].name)")
+            label.text = "#\(list[index].name)"
             totalCellWidth = totalCellWidth + Int(label.intrinsicContentSize.width) + 40
         }
+            totalCellWidth = totalCellWidth - 20
     }
     
     private func isFollowAction() {

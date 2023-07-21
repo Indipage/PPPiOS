@@ -16,7 +16,6 @@ final class DetailTopView: UIView {
     
     private var collectionViewWidth: Int = 0 {
         didSet {
-            print("여기 찍혀?!?!?!?!??!?!?!")
             updateLayout()
         }
     }
@@ -252,7 +251,6 @@ final class DetailTopView: UIView {
     }
     
     func calcCollectionViewWidth(width: Int) {
-        print("여기 찍혀!!!!!")
         collectionViewWidth = width
     }
 }
