@@ -39,8 +39,8 @@ class PPPTabBarController: UITabBarController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tabBar.frame.size.height = 116
-        tabBar.frame.origin.y = view.frame.height - 100
+        tabBar.frame.size.height = 116.adjusted
+        tabBar.frame.origin.y = view.frame.height - 100.adjusted
     }
     
     //MARK: - Custom Method

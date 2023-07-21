@@ -114,7 +114,7 @@ final class HomeView: UIView {
         homeAllView.snp.makeConstraints {
             $0.top.equalTo(homeNavigationView.snp.bottom)
             $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(Size.tabBarHeight)
         }
         
         weeklyCollectionView.snp.makeConstraints {

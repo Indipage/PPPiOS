@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
+
 final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
@@ -20,18 +21,20 @@ final class TicketViewController: BaseViewController {
     private var ticketData: [TicketResult] = [] {
         didSet {
             rootView.ticketView.ticketCollectionView.reloadData()
+            self.isEmptyView()
         }
     }
     
     private var cardData: [TicketCardResult] = [] {
         didSet {
             rootView.cardView.ticketCardCollectionView.reloadData()
+            self.isEmptyView()
         }
     }
     
     //MARK: - UI Components
     
-    lazy var rootView = TicketView()
+    let rootView = TicketView()
     
     //MARK: - Life Cycle
     
@@ -49,14 +52,14 @@ final class TicketViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        showSelectedView()
+        self.tabBarController?.tabBar.isHidden = false
         requestTicketAPI()
+        requestTicketCardAPI()
+        showSelectedView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        self.tabBarController?.hidesBottomBarWhenPushed = true
         
         displayMode.toggle()
     }
@@ -82,39 +85,44 @@ final class TicketViewController: BaseViewController {
         let toggleView = rootView.ticketToggleView
         requestTicketAPI()
         if toggleMode {
-            ticketToggleButtonAnimate(
+            AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: nil,
                 selectedLabel: toggleView.ticketLabel,
-                unSelectedLable: toggleView.cardLabel
-            )
+                unSelectedLable: toggleView.cardLabel) { _ in
+                    self.showSelectedView()
+                }
+            
         } else {
-            ticketToggleButtonAnimate(
+            AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: -158,
                 selectedLabel: toggleView.ticketLabel,
-                unSelectedLable: toggleView.cardLabel
-            )
+                unSelectedLable: toggleView.cardLabel) { _ in
+                    self.showSelectedView()
+                }
         }
     }
     
     @objc func cardToggleButtonDidTap() {
         let toggleView = rootView.ticketToggleView
-        requestCardAPI()
+        requestTicketCardAPI()
         if toggleMode {
-            ticketToggleButtonAnimate(
+            AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: 158,
                 selectedLabel: toggleView.cardLabel,
-                unSelectedLable: toggleView.ticketLabel
-            )
+                unSelectedLable: toggleView.ticketLabel) { _ in
+                    self.showSelectedView()
+                }
         } else {
-            ticketToggleButtonAnimate(
+            AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: nil,
                 selectedLabel: toggleView.cardLabel,
-                unSelectedLable: toggleView.ticketLabel
-            )
+                unSelectedLable: toggleView.ticketLabel) { _ in
+                    self.showSelectedView()
+                }
         }
     }
 }
@@ -139,17 +147,6 @@ extension TicketViewController: UICollectionViewDelegateFlowLayout {
             return 25
         case rootView.cardView.ticketCardCollectionView:
             return 15
-        default:
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        switch collectionView {
-        case rootView.ticketView.ticketCollectionView:
-            return 0
-        case rootView.cardView.ticketCardCollectionView:
-            return 0
         default:
             return 0
         }
@@ -183,8 +180,8 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCardCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCardCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(card: cardData[indexPath.item])
             cell.delegate = self
+            cell.configureCell(card: cardData[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -203,7 +200,7 @@ extension TicketViewController: TicketCardDelegate {
 //MARK: - TicketDelegate
 
 extension TicketViewController: TicketDelegate {
-    func ticketImageDidSwapped(spaceID: Int) {
+    func ticketImageDidSwapped(spaceID: Int?) {
         pushToQRChecktView(spaceID: spaceID)
     }
 }
@@ -211,30 +208,35 @@ extension TicketViewController: TicketDelegate {
 //MARK: - TicketViewController
 
 extension TicketViewController {
-    private func pushToQRChecktView(spaceID: Int) {
-        let qrcheckViewController = TicketCheckQRCodeViewController(spaceID: spaceID)
+    private func pushToQRChecktView(spaceID: Int?) {
+        let qrcheckViewController = TicketCheckQRCodeViewController(spaceID: spaceID!)
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     
     private func isEmptyView() {
-        if ticketData.count == 0 {
+        if ticketData.isEmpty {
             rootView.ticketView.noTicketView.isHidden = false
             rootView.ticketView.ticketCollectionView.isHidden = true
+        } else {
+            rootView.ticketView.noTicketView.isHidden = true
+            rootView.ticketView.ticketCollectionView.isHidden = false
         }
         
-        if cardData.count == 0 {
+        if cardData.isEmpty {
             rootView.cardView.noTicketCardView.isHidden = false
             rootView.cardView.ticketCardCollectionView.isHidden = true
             rootView.cardView.cardImageView.isHidden = true
+        } else {
+            rootView.cardView.noTicketCardView.isHidden = true
+            rootView.cardView.ticketCardCollectionView.isHidden = false
+            rootView.cardView.cardImageView.isHidden = false
         }
     }
     
     private func showSelectedView() {
-        rootView.ticketToggleView.ticketToggleButton.isEnabled = displayMode
-        rootView.ticketToggleView.cardToggleButton.isEnabled = !displayMode
         rootView.ticketView.isHidden = displayMode
         rootView.cardView.isHidden = !displayMode
-        
+        isEmptyView()
         displayMode.toggle()
     }
     
@@ -244,44 +246,18 @@ extension TicketViewController {
                 return
             }
             self.ticketData = result
-            self.isEmptyView()
         }
     }
     
-    private func requestCardAPI() {
+    private func requestTicketCardAPI() {
         TicketAPI.shared.getTotalCard() { result in
             guard let result = self.validateResult(result) as? [TicketCardResult] else {
                 return
             }
             self.cardData = result
-            self.isEmptyView()
+            if !self.cardData.isEmpty {
+                self.rootView.cardView.cardImageView.kfSetImage(url: self.cardData[0].imageURL)
+            }
         }
     }
-    
-    
-    private func ticketToggleButtonAnimate(
-        targetView: UIView,
-        translationX: CGFloat?,
-        selectedLabel: UILabel,
-        unSelectedLable: UILabel) {
-            let transform: CGAffineTransform
-            if let translationX {
-                transform = CGAffineTransform(translationX: translationX.adjusted, y: 0)
-            } else {
-                transform = .identity
-            }
-            UIView.animate(
-                withDuration: 0.25,
-                delay: 0,
-                options: .curveEaseInOut,
-                animations: {
-                    targetView.transform = transform
-                    selectedLabel.textColor = .pppWhite
-                    unSelectedLable.textColor = .pppGrey4
-                }, completion: { _ in
-                    self.showSelectedView()
-                }
-            )
-        }
 }
-

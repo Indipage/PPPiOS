@@ -21,4 +21,8 @@ struct Size {
     static var qrFocusZone: CGRect {
         return CGRect(x: (Size.width - 200) / 2 , y: (Size.height - 200) / 2, width: 200, height: 200)
     }
+    
+    static var tabBarHeight: CGFloat {
+        return 116.adjusted
+    }
 }

@@ -21,9 +21,17 @@ final class SearchView: UIView {
         
     // MARK: - UI Components
     
-    lazy var searchTableView = UITableView(frame: .zero, style: .grouped)
+    lazy var searchTableView = UITableView()
     lazy var searchBar = UISearchBar()
-    lazy var searchHeaderView = SearchHeaderView()
+    lazy var noResultImageView = UIImageView()
+    lazy var noSpaceLabel = UILabel()
+    lazy var noRegistedPlaceLabel = UILabel()
+    lazy var checkAddressLabel = UILabel()
+    lazy var noResultLabelStackView = UIStackView(arrangedSubviews: [noSpaceLabel,
+                                                                     noRegistedPlaceLabel,
+                                                                     checkAddressLabel
+                                                                    ]
+    )
     
     // MARK: - Life Cycle
     
@@ -57,11 +65,43 @@ final class SearchView: UIView {
             $0.searchTextField.attributedPlaceholder = attributedString
             $0.showsCancelButton = false
         }
+        
+        noResultImageView.do {
+            $0.image = Image.blankPlace
+            $0.isHidden = true
+        }
+        
+        noSpaceLabel.do {
+            $0.text = "검색된 공간이 없어요"
+            $0.font = .pppBody1
+            $0.textColor = .pppGrey5
+        }
+        
+        noRegistedPlaceLabel.do {
+            $0.text = "- 아직 미등록된 공간일 수 있어요"
+            $0.font = .pppBody5
+            $0.textColor = .pppGrey4
+        }
+        
+        checkAddressLabel.do {
+            $0.text = "- 지역명이 정확한지 확인해보세요"
+            $0.font = .pppBody5
+            $0.textColor = .pppGrey4
+        }
+        
+        noResultLabelStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 7
+            $0.alignment = .center
+            $0.isHidden = true
+        }
     }
     
     private func hierarchy() {
         self.addSubviews(searchTableView,
-                         searchBar
+                         searchBar,
+                         noResultImageView,
+                         noResultLabelStackView
         )
     }
     
@@ -78,8 +118,16 @@ final class SearchView: UIView {
             $0.bottom.equalToSuperview()
         }
         
-        searchHeaderView.snp.makeConstraints {
-            $0.height.equalTo(46)
+        noResultImageView.snp.makeConstraints {
+            $0.height.equalTo(96)
+            $0.width.equalTo(84)
+            $0.center.equalToSuperview()
+        }
+        
+        noResultLabelStackView.snp.makeConstraints {
+            $0.top.equalTo(noResultImageView.snp.bottom).offset(16)
+            $0.centerX.equalTo(noResultImageView)
+            $0.width.equalTo(212)
         }
     }
 }

@@ -68,11 +68,17 @@ extension UILabel {
         attributedText = attributedString
     }
     
-    func asFontColor(targetString: String, font: UIFont?, color: UIColor?) {
+    func asFontColor(fullText: String?, targetString: String, font: UIFont?, color: UIColor?, spacing: CGFloat, lineHeight: CGFloat) {
         let fullText = text ?? ""
         let attributedString = NSMutableAttributedString(string: fullText)
         let range = (fullText as NSString).range(of: targetString)
         attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any], range: range)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = spacing
+        paragraphStyle.minimumLineHeight = lineHeight
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: fullText.count))
+        
         attributedText = attributedString
     }
     

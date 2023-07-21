@@ -13,13 +13,14 @@ import Then
 //MARK: - SavedArticleCellDelegate
 
 protocol SavedArticleCellDelegate: AnyObject {
-    func articleDidTap()
+    func articleDidTap(articleID: Int?)
 }
 
 final class MySavedArticleCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
+    private var articleID: Int?
     weak var delegate: SavedArticleCellDelegate?
     
     //MARK: - UI Components
@@ -78,6 +79,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         subTitleLabel.do {
             $0.font = .pppBody6
             $0.textColor = .pppWhite
+            $0.numberOfLines = 0
         }
         
         ticketReceivedImage.do {
@@ -123,6 +125,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         subTitleLabel.snp.makeConstraints {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(3)
             $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalTo(spaceImage).inset(16)
         }
         
         ticketReceivedImage.snp.makeConstraints {
@@ -142,10 +145,11 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
     //MARK: - Action Method
     
     @objc func articleButtonDidTap() {
-        delegate?.articleDidTap()
+        delegate?.articleDidTap(articleID: articleID)
     }
     
     func dataBind(articleData: MySavedArticleResult) {
+        articleID = articleData.id
         spaceTypeLabel.setTitle(articleData.spaceType, for: .normal)
         titleLabel.text = articleData.spaceName
         subTitleLabel.text = articleData.title

@@ -9,7 +9,6 @@ import Foundation
 
 struct MyUserInfoResult: Codable {
     let id: Int
-    let createdAt: String
     let name: String
     let email: String
 }

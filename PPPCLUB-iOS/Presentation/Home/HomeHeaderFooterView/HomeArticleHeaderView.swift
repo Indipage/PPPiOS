@@ -10,24 +10,34 @@ import UIKit
 import SnapKit
 import Then
 
+protocol ArticleHeaderViewDelegate: AnyObject {
+    func enterStoreButtonDidTap()
+}
+
 class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     
+    //MARK: - Properties
+    
+    weak var delegate: ArticleHeaderViewDelegate?
+    
     // MARK: - UI Components
     
-    private var articleImage = UILabel()
+    private var articleImage = UIImageView()
     //UIImageView 로 구현해야 함
     
     private var editorLabel = UILabel()
     private var articleTitleLabel = UILabel()
     private var dateLabel = UILabel()
-    private var enterStoreButton = UIButton()
+    private var enterStoreButton = UIImageView()
     private var divideBarView = UIView()
     
     // MARK: - Life Cycle
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        
+        gesture()
         
         style()
         hierarchy()
@@ -40,13 +50,18 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Custom Method
     
+    private func gesture() {
+        lazy var enterStoreButtonGesture = UITapGestureRecognizer.init(target: self, action: #selector(enterStoreButtonGestureHandler))
+        
+        self.enterStoreButton.addGestureRecognizer(enterStoreButtonGesture)
+    }
+    
     private func style() {
         
         self.backgroundColor = .pppWhite
         
         articleImage.do {
             $0.backgroundColor = .black
-//            imgView.contentMode = .scaleAspectFill
         }
         
         editorLabel.do {
@@ -54,10 +69,10 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.font = .pppCaption1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
+            $0.setLineSpacing(spacing: 5)
         }
         
         articleTitleLabel.do {
-            $0.text = "반복되는 일상 속 나만의\n아지트가 되어주는 공간"
             $0.font = .pppSubHead1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
@@ -66,15 +81,14 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         }
         
         dateLabel.do {
-            $0.text = "2023-06-08"
             $0.font = .pppCaption2
             $0.textColor = .pppBlack
             $0.textAlignment = .center
         }
         
         enterStoreButton.do {
-            $0.backgroundColor = .white
-            $0.setImage( Image.articleGo, for: .normal)
+            $0.image = Image.articleGo
+            $0.isUserInteractionEnabled = true
         }
         
         divideBarView.do {
@@ -85,7 +99,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
     private func hierarchy() {
         
-        self.addSubviews(articleImage,
+        contentView.addSubviews(articleImage,
                          editorLabel,
                          articleTitleLabel,
                          dateLabel,
@@ -110,6 +124,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         articleTitleLabel.snp.makeConstraints {
             $0.top.equalTo(articleImage.snp.bottom).offset(37)
             $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(91)
         }
         
         dateLabel.snp.makeConstraints {
@@ -120,6 +135,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         enterStoreButton.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(16)
             $0.width.equalToSuperview()
+            $0.height.equalTo(103)
         }
         
         divideBarView.snp.makeConstraints {
@@ -130,6 +146,22 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.height.equalTo(1)
         }
         
+    }
+    
+    //MARK: - Action Method
+    
+    @objc func enterStoreButtonGestureHandler() {
+        delegate?.enterStoreButtonDidTap()
+    }
+}
+
+extension HomeArticleHeaderView {
+    func dataBind(articleData: HomeDetailArticleResult?) {
+        guard let articleData = articleData else { return }
+        articleTitleLabel.text = articleData.title
+        editorLabel.text = articleData.spaceOwner
+        dateLabel.text = articleData.issueDate
+        articleImage.kfSetImage(url: articleData.thumbnailURL)
     }
 }
 

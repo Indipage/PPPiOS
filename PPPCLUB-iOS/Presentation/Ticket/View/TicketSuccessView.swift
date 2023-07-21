@@ -16,7 +16,7 @@ final class TicketSuccessView: UIView {
     
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
-    private let cardImageView = UIImageView()
+    let cardImageView = UIImageView()
     lazy var cardViewButton = UIButton()
     
     // MARK: - Life Cycle

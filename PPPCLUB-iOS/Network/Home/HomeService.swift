@@ -14,6 +14,7 @@ enum HomeService {
     case getArticleCheck
     case putArticleCheck
     case getAllArticle
+    case getDetailArticle(articleID: String)
     
     case getBookmarkCheck(articleID: String)
     case postBookmarkCheck(articleID: String)
@@ -34,6 +35,8 @@ extension HomeService: BaseTargetType {
             return URLs.patchSlideArticle
         case .getAllArticle:
             return URLs.totalArticle
+        case .getDetailArticle(let articleID):
+            return URLs.detailArticle.replacingOccurrences(of: "{articleId}", with: articleID)
             
         case .getBookmarkCheck(let articleID):
             return URLs.getSavedArticle.replacingOccurrences(of: "{articleId}", with: articleID)
@@ -58,6 +61,8 @@ extension HomeService: BaseTargetType {
         case .putArticleCheck:
             return .put
         case .getAllArticle:
+            return .get
+        case .getDetailArticle:
             return .get
             
         case .getBookmarkCheck:
@@ -84,6 +89,8 @@ extension HomeService: BaseTargetType {
             return .requestPlain
         case .getAllArticle:
             return .requestPlain
+        case .getDetailArticle:
+            return .requestPlain
             
         case .getBookmarkCheck:
             return .requestPlain
@@ -109,7 +116,8 @@ extension HomeService: BaseTargetType {
             return APIConstants.noTokenHeader
         case .getAllArticle:
             return APIConstants.noTokenHeader
-            
+        case .getDetailArticle:
+            return APIConstants.noTokenHeader
         case .getBookmarkCheck:
             return APIConstants.noTokenHeader
         case .postBookmarkCheck:
@@ -121,6 +129,7 @@ extension HomeService: BaseTargetType {
             return APIConstants.noTokenHeader
         case .postTicketGet:
             return APIConstants.noTokenHeader
+        
         }
     }
 }

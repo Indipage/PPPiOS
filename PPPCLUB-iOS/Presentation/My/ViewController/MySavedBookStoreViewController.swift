@@ -14,7 +14,6 @@ final class MySavedBookStoreViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private let dummy = SearchListModel.dummy()
     private var savedSpaceData: [MySavedSpaceResult] = [] {
         didSet {
             rootView.savedBookStoreTableView.reloadData()
@@ -37,12 +36,13 @@ final class MySavedBookStoreViewController: BaseViewController {
         target()
         delegate()
         
+        requestSavedSpaceAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        requestSavedSpaceAPI()
+        
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -73,6 +73,7 @@ extension MySavedBookStoreViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
+        detailViewController.dataBind(spaceID: savedSpaceData[indexPath.row].id)
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
@@ -87,21 +88,14 @@ extension MySavedBookStoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.dataBind2(image: savedSpaceData[indexPath.row].imageURL,
-                          name: savedSpaceData[indexPath.row].name,
-                          location: savedSpaceData[indexPath.row].roadAddress)
+        cell.dataBind(mySavedSpaceResult: savedSpaceData[indexPath.row])
         return cell
     }
 }
 
 //MARK: - SavedArticleCellDelegate
 
-extension MySavedBookStoreViewController: SavedArticleCellDelegate {
-    func articleDidTap() {
-        let detailViewController = DetailViewController()
-        self.navigationController?.pushViewController(detailViewController, animated: true)
-    }
-    
+extension MySavedBookStoreViewController {
     func requestSavedSpaceAPI() {
         MyAPI.shared.getSavedSpace() { result in
             guard let result = self.validateResult(result) as? [MySavedSpaceResult] else { return }
@@ -109,3 +103,4 @@ extension MySavedBookStoreViewController: SavedArticleCellDelegate {
         }
     }
 }
+

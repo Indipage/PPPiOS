@@ -19,7 +19,7 @@ public enum URLs{
     //MARK: - Search
     
     static let getSpace = "/space/{spaceId}"
-    static let getSearchSpace = "/space/list?keyword={}"
+    static let getSearchSpace = "/space/list"
     
     //MARK: - Detail
     
