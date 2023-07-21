@@ -18,7 +18,8 @@ final class HomeViewController: BaseViewController{
     
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
-            rootView.homeWeeklyView.dataBindArticleCard(articleData: articleCardData)
+            rootView.homeWeeklyView.homeWeeklySlideYetView.dataBindArticleCard(articleData: articleCardData)
+            rootView.homeWeeklyView.homeWeeklySlidedView.reloadData()
         }
     }
     
@@ -66,7 +67,7 @@ final class HomeViewController: BaseViewController{
     private func gesture() {
         let gesture: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,
                                          action: #selector(ticketCaseMoved(_:)))
-        rootView.homeWeeklyView.ticketCoverImageView.addGestureRecognizer(gesture)
+        rootView.homeWeeklyView.homeWeeklySlideYetView.ticketCoverImageView.addGestureRecognizer(gesture)
     }
     
     private func target() {
@@ -77,8 +78,8 @@ final class HomeViewController: BaseViewController{
     private func delegate() {
         rootView.homeAllView.allArticleCollectionView.delegate = self
         rootView.homeAllView.allArticleCollectionView.dataSource = self
-        rootView.weeklyCollectionView.delegate = self
-        rootView.weeklyCollectionView.dataSource = self
+        rootView.homeWeeklyView.homeWeeklySlidedView.delegate = self
+        rootView.homeWeeklyView.homeWeeklySlidedView.dataSource = self
     }
     
     //MARK: - Action Method
@@ -104,7 +105,7 @@ final class HomeViewController: BaseViewController{
     }
     
     @objc private func ticketCaseMoved(_ sender: UIPanGestureRecognizer) {
-        AnimationManager.shared.ticketCoverAnimate(sender, targetView: rootView.homeWeeklyView.ticketCoverImageView) { _ in
+        AnimationManager.shared.ticketCoverAnimate(sender, targetView: rootView.homeWeeklyView.homeWeeklySlideYetView.ticketCoverImageView) { _ in
             self.ticketDragAnimation()
         }
     }
@@ -115,7 +116,7 @@ final class HomeViewController: BaseViewController{
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView {
-        case rootView.weeklyCollectionView:
+        case rootView.homeWeeklyView.homeWeeklySlidedView:
             let newtop = Size.height * 0.06
             let newbottom = Size.height * 0.212
             let newside = Size.width * 0.053 * 2
@@ -129,7 +130,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case rootView.homeAllView.allArticleCollectionView:
             return CGSize(width: 319, height: 180)
-        case rootView.weeklyCollectionView:
+        case rootView.homeWeeklyView.homeWeeklySlidedView:
             var cellHeight = Size.height * 0.58
             var cellwidth = Size.width * 0.786
             return CGSize(width: cellwidth, height: cellHeight)
@@ -142,7 +143,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case rootView.homeAllView.allArticleCollectionView:
             return 20
-        case rootView.weeklyCollectionView:
+        case rootView.homeWeeklyView.homeWeeklySlidedView:
             var spacingCal = Size.width * 0.026
             return spacingCal
         default:
@@ -158,7 +159,7 @@ extension HomeViewController: UICollectionViewDataSource {
         switch collectionView {
         case rootView.homeAllView.allArticleCollectionView:
             return articleAllData.count
-        case rootView.weeklyCollectionView:
+        case rootView.homeWeeklyView.homeWeeklySlidedView:
             return 2
         default:
             return 0
@@ -172,14 +173,14 @@ extension HomeViewController: UICollectionViewDataSource {
             cell.delegate = self
             cell.dataBindHome(articleData: articleAllData[indexPath.item])
             return cell
-        case rootView.weeklyCollectionView:
+        case rootView.homeWeeklyView.homeWeeklySlidedView:
             if indexPath.item == 0 {
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: thisWeekCell.cellIdentifier, for: indexPath) as? thisWeekCell else { return UICollectionViewCell() }
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThisWeekCell.cellIdentifier, for: indexPath) as? ThisWeekCell else { return UICollectionViewCell() }
                 cell.configureCell(articleData: articleCardData)
                 cell.delegate = self
                 return cell
             } else {
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nextWeekCell.cellIdentifier, for: indexPath) as? nextWeekCell else { return UICollectionViewCell() }
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NextWeekCell.cellIdentifier, for: indexPath) as? NextWeekCell else { return UICollectionViewCell() }
                 cell.configureCell(articleData: articleCardData)
                 return cell
             }
@@ -202,14 +203,13 @@ extension HomeViewController: SavedArticleCellDelegate {
 }
 
 extension HomeViewController: ThisWeekCellDelegate {
-    func thisWeekCardImageDidTap() {
+    func thisWeekCardImageDidTap(articleID: Int?) {
         pushToArticleViewController()
     }
 }
 
 extension HomeViewController {
     func pushToArticleViewController() {
-        
         let homeArticleVC = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(homeArticleVC, animated: true)
         

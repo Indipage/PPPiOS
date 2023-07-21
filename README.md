@@ -24,6 +24,104 @@
 
 <br>
 
+## 역할 분배
+## 🌷 역할 분담
+<details>
+<summary> 💋 희재 </summary>
+<div markdown="1">
+1. 마이페이지 UI 구현
+2. 티켓페이지
+- AVFoundation을 이용한 QR코드 체크
+- 카드 수령 과정 애니메이션 구현
+- 티켓 카드 토글 버튼 애니메이션 구현
+
+</div>
+</details>
+	
+<details>
+<summary> 👄 윤빈 </summary>
+<div markdown="1">
+  
+  - **공간 상세보기 화면 UI 구성**
+    - UIScrollView 활용
+    - CollectionView 활용하여 Paging 기능 구현
+
+  - **공간 검색 화면 UI 구성**
+    - UISearchBar 활용
+    - TableView 활용
+   
+  - **기기대응**
+    - HomeVC, SearchVC, DetailVC, TicketVC, MyVC
+    - SE, 13 mini, 14 Pro
+      
+  - **공간 상세보기 관련 API 연동**
+    - 공간에 대한 아티클 조회
+    - 공간 상세 조회
+    - 공간의 추천서가 조회
+    - 조르기 여부 조회
+    - 조르기
+    - 공간 북마크 여부  조회
+    - 공간 북마크 등록하기
+    - 공간 북마크 취소하기
+   
+  - **검색 관련 API 연동**
+    - 키워드(지역) 기반 검색하기
+
+
+</div>
+</details>
+  
+<details>
+<summary> 🫦 지원 </summary>
+<div markdown="1">
+HomeView - Weekly (처음 들어갔을 때 열리는 뷰)
+
+- 카드의 슬라이드를 내리지 않았을 때 ) 카드를 슬라이드 하는 뷰와 애니메이션 기능 구현
+- 카드의 슬라이드를 내렸을 때 ) 이번 주와 다음 주 카드를 가로로 scroll 하는 뷰 구현
+- 네비게이션 바 구햔
+
+HomeView - All
+
+- 전체 아티클 목록 구현
+
+ArticleView
+
+- 아티클 Cell 에 Parsing 하는 알고리즘 구현
+- 네비게이션 바 구현
+- TableView 의 HeaderView 와 FooterVIew 구현
+- FooterView 에서 티켓 클릭시 받아지도록 구현
+</div>
+</details>
+  
+<br>
+	
+## 💭 트러블 슈팅
+<details>
+<summary> 📄 희재 </summary>
+<div markdown="1">
+
+[💋 트러블 슈팅]()
+
+</div>
+</details>
+
+<details>
+<summary> 📄 윤빈 </summary>
+<div markdown="1">
+	
+[👄 트러블 슈팅]()
+
+</div>
+</details>
+
+<details>
+<summary> 📄 지원 </summary>
+<div markdown="1">
+
+[🫦 트러블 슈팅]()
+
+</div>
+</details>
 
 
 
