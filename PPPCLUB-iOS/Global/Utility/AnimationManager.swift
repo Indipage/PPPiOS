@@ -21,7 +21,7 @@ class AnimationManager {
     ) {
         let transform: CGAffineTransform
         if let translationX {
-            transform = CGAffineTransform(translationX: translationX.adjusted, y: 0)
+            transform = CGAffineTransform(translationX: translationX, y: 0)
         } else {
             transform = .identity
         }

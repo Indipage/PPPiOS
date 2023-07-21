@@ -36,12 +36,12 @@ final class TicketToggleView: UIView {
     private func style() {
         contentView.do {
             $0.backgroundColor = .pppGrey2
-            $0.makeCornerRadius(ratio: 20)
+            $0.makeCornerRadius(ratio: 20.adjusted)
         }
         
         toggleButton.do {
             $0.backgroundColor = .pppMainPurple
-            $0.makeCornerRadius(ratio: 18)
+            $0.makeCornerRadius(ratio: 18.adjusted)
         }
         
         ticketLabel.do {
@@ -78,8 +78,9 @@ final class TicketToggleView: UIView {
         contentView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().offset(28)
-            $0.height.equalTo(40)
+            $0.width.equalTo(319.adjusted)
+            print(28.adjusted)
+            $0.height.equalTo(40.adjusted)
         }
         
         ticketLabel.snp.makeConstraints {
@@ -89,24 +90,24 @@ final class TicketToggleView: UIView {
         
         ticketToggleButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.top.leading.bottom.equalToSuperview().inset(3)
+            $0.top.leading.bottom.equalToSuperview().inset(3.adjusted)
             $0.width.equalTo(155.adjusted)
         }
         
         cardToggleButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.top.trailing.bottom.equalToSuperview().inset(3)
+            $0.top.trailing.bottom.equalToSuperview().inset(3.adjusted)
             $0.width.equalTo(155.adjusted)
         }
         
         cardLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(68)
+            $0.trailing.equalToSuperview().inset(68.adjusted)
         }
         
         toggleButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.top.leading.bottom.equalToSuperview().inset(3)
+            $0.top.leading.bottom.equalToSuperview().inset(3.adjusted)
             $0.width.equalTo(155.adjusted)
         }
         

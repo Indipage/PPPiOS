@@ -64,7 +64,3 @@ final class TicketView: UIView {
         }
     }
 }
-
-
-
-
