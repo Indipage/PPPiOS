@@ -73,5 +73,44 @@ class AnimationManager {
             break
         }
     }
+    
+    func ticketCoverAnimate(_ sender: UIPanGestureRecognizer, targetView: UIView, completion: (((Bool) -> Void)?)) {
+        var viewTranslation = CGPoint(x: 0, y: 0)
+        var viewVelocity = CGPoint(x: 0, y: 0)
+        
+        viewTranslation = sender.translation(in: targetView)
+        viewVelocity = sender.velocity(in: targetView)
+        
+        switch sender.state {
+        case .changed:
+            if abs(viewVelocity.y) > abs(viewVelocity.x) {
+                
+                if viewTranslation.y >= 152 {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        targetView.transform = CGAffineTransform(translationX: 0, y: 600)
+                        sender.state = .ended
+                    }, completion: completion)
+                }
+                
+                else if viewVelocity.y > 0 {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        targetView.transform = CGAffineTransform(translationX: 0, y: viewTranslation.y)
+                    })
+                }
+            }
+            
+        case .ended:
+            if viewTranslation.y < 152 {
+                UIView.animate(withDuration: 0.04, animations: {
+                    targetView.transform = .identity
+                })
+            }
+            
+        default:
+            break
+            
+        }
+        
+    }
 }
 
