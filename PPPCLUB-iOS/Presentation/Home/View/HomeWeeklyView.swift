@@ -19,14 +19,13 @@ class HomeWeeklyView: UIView {
     var cardTitleLabel = UILabel()
     var cardStoreNameLabel = UILabel()
     var cardStoreOwnerLabel = UILabel()
-    var cardRemainingDayLabel = UILabel()
     var ticketCoverImageView = UIImageView()
     
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         style()
         hierarchy()
         layout()
@@ -40,7 +39,7 @@ class HomeWeeklyView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-            
+        
         cardTitleLabel.do {
             $0.text = "바보"
             $0.font = .pppTitle1
@@ -67,14 +66,12 @@ class HomeWeeklyView: UIView {
             $0.isUserInteractionEnabled = true
             $0.isHidden = true
         }
+        
     }
     
     private func hierarchy() {
-        
         self.addSubviews(thisWeekCardImage, nextWeekCardImage, ticketCoverImageView)
         thisWeekCardImage.addSubviews(cardTitleLabel, cardStoreNameLabel, cardStoreOwnerLabel)
-        nextWeekCardImage.addSubviews(cardRemainingDayLabel)
-        
     }
     
     private func layout() {

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class HomeViewController: BaseViewController {
+final class HomeViewController: BaseViewController{
     
     // MARK: - Properties
     
@@ -23,6 +23,7 @@ final class HomeViewController: BaseViewController {
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
             self.dataBindArticleCard(articleData: articleCardData)
+            self.rootView.weeklyCollectionView.reloadData()
         }
     }
     
@@ -73,7 +74,6 @@ final class HomeViewController: BaseViewController {
         
         gesture = UIPanGestureRecognizer(target: self,
                                          action: #selector(ticketCaseMoved(_:)))
-        
         rootView.homeNavigationView.weeklyButton.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
         rootView.homeNavigationView.allButton.addTarget(self, action: #selector(allButtonTap), for: .touchUpInside)
         
@@ -83,6 +83,8 @@ final class HomeViewController: BaseViewController {
         
         rootView.homeAllView.allArticleCollectionView.delegate = self
         rootView.homeAllView.allArticleCollectionView.dataSource = self
+        rootView.weeklyCollectionView.delegate = self
+        rootView.weeklyCollectionView.dataSource = self
     }
     
     private func style() {
@@ -118,6 +120,7 @@ final class HomeViewController: BaseViewController {
         rootView.homeWeeklyView.isHidden = true
         rootView.homeAllView.isHidden = false
     }
+    
     
     func pushToArticleViewController() {
         
@@ -174,12 +177,41 @@ final class HomeViewController: BaseViewController {
 //MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView {
+        case rootView.weeklyCollectionView:
+            let newtop = Size.height * 0.06
+            let newbottom = Size.height * 0.212
+            let newside = Size.width * 0.053 * 2
+            return UIEdgeInsets(top: newtop, left: newside, bottom: newbottom, right: newside)
+        default:
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 319, height: 180)
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            return CGSize(width: 319, height: 180)
+        case rootView.weeklyCollectionView:
+            var cellHeight = Size.height * 0.58
+            var cellwidth = Size.width * 0.786
+            return CGSize(width: cellwidth, height: cellHeight)
+        default:
+            return CGSize.zero
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            return 20
+        case rootView.weeklyCollectionView:
+            var spacingCal = Size.width * 0.026
+            return spacingCal
+        default:
+            return 0
+        }
     }
 }
 
@@ -187,14 +219,37 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articleAllData.count
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            return articleAllData.count
+        case rootView.weeklyCollectionView:
+            return 2
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
-        cell.delegate = self
-        cell.dataBindHome(articleData: articleAllData[indexPath.item])
-        return cell
+        switch collectionView {
+        case rootView.homeAllView.allArticleCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySavedArticleCollectionViewCell.cellIdentifier, for: indexPath) as? MySavedArticleCollectionViewCell else { return MySavedArticleCollectionViewCell() }
+            cell.delegate = self
+            cell.dataBindHome(articleData: articleAllData[indexPath.item])
+            return cell
+        case rootView.weeklyCollectionView:
+            if indexPath.item == 0 {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: thisWeekCell.cellIdentifier, for: indexPath) as? thisWeekCell else { return UICollectionViewCell() }
+                cell.configureCell(articleData: articleCardData)
+                cell.delegate = self
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nextWeekCell.cellIdentifier, for: indexPath) as? nextWeekCell else { return UICollectionViewCell() }
+                cell.configureCell(articleData: articleCardData)
+                return cell
+            }
+        default:
+            return UICollectionViewCell()
+        }
     }
 }
 
@@ -207,21 +262,37 @@ extension HomeViewController: SavedArticleCellDelegate {
     }
 }
 
+extension HomeViewController: ThisWeekCellDelegate {
+    func thisWeekCardImageDidTap() {
+        pushToArticleViewController()
+    }
+}
+
 extension HomeViewController {
     func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
+        
         rootView.homeWeeklyView.cardId = articleData.id
         rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
         rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
         rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
         rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
         rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
-        rootView.homeWeeklyView.cardRemainingDayLabel.text = String(articleData.remainingDays)
+        
+        rootView.homeWeeklyView.cardId = articleData.id
+        rootView.homeWeeklyView.thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
+        rootView.homeWeeklyView.nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
+        rootView.homeWeeklyView.cardTitleLabel.text = articleData.title
+        rootView.homeWeeklyView.cardStoreNameLabel.text = articleData.spaceName
+        rootView.homeWeeklyView.cardStoreOwnerLabel.text = articleData.spaceOwner
+        
     }
     
     func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
         guard let hasSlide = articleData?.hasSlide else { return }
-        rootView.homeWeeklyView.ticketCoverImageView.isHidden = false
+        rootView.hasSlide = hasSlide
+        rootView.homeWeeklyView.isHidden = hasSlide
+        rootView.weeklyCollectionView.isHidden = !hasSlide
     }
     
     func requestArticleCardAPI() {
@@ -244,7 +315,7 @@ extension HomeViewController {
             guard let result = self.validateResult(result) else { return }
         }
     }
-
+    
     func requestAllArticleAPI() {
         HomeAPI.shared.getAllArticle() { result in
             guard let result = self.validateResult(result) as? [HomeArticleListResult] else { return }
@@ -252,5 +323,6 @@ extension HomeViewController {
         }
     }
 }
-    
-    
+
+
+
