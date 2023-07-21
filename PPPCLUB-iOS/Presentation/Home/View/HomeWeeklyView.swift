@@ -20,7 +20,6 @@ class HomeWeeklyView: UIView {
         style()
         hierarchy()
         layout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -31,10 +30,13 @@ class HomeWeeklyView: UIView {
     
     private func style() {
         
+        homeWeeklySlideYetView.isHidden = false
+        homeWeeklySlidedView.isHidden = false
         
     }
     
     private func hierarchy() {
+        
         self.addSubviews(homeWeeklySlideYetView, homeWeeklySlidedView)
     }
     
@@ -46,5 +48,12 @@ class HomeWeeklyView: UIView {
         homeWeeklySlidedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
+        
+        guard let hasSlide = articleData?.hasSlide else { return }
+        self.homeWeeklySlideYetView.isHidden = hasSlide
+        self.homeWeeklySlidedView.isHidden = !hasSlide
     }
 }

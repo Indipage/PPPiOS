@@ -48,6 +48,4 @@ class HomeWeeklySlidedView: UICollectionView {
             $0.contentInsetAdjustmentBehavior = .never
         }
     }
-
-    
 }

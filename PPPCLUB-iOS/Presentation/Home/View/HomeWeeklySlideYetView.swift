@@ -9,13 +9,12 @@ import UIKit
 
 class HomeWeeklySlideYetView: UIView {
     
+    // MARK: - Properties
     var cardId = Int()
-    var slideCheck = Bool()
     
     // MARK: - UI Components
     
-    var thisWeekCardImage = UIImageView()
-    var nextWeekCardImage = UIImageView()
+    var cardImage = UIImageView()
     var cardTitleLabel = UILabel()
     var cardStoreNameLabel = UILabel()
     var cardStoreOwnerLabel = UILabel()
@@ -40,8 +39,10 @@ class HomeWeeklySlideYetView: UIView {
     
     private func style() {
         
+        cardImage.do {
+            $0.backgroundColor = .pppBlack
+        }
         cardTitleLabel.do {
-            $0.text = "바보"
             $0.font = .pppTitle1
             $0.textColor = .pppWhite
             $0.textAlignment = .left
@@ -49,13 +50,11 @@ class HomeWeeklySlideYetView: UIView {
         }
         
         cardStoreOwnerLabel.do {
-            $0.text = "바보"
             $0.font = .pppBody5
             $0.textColor = .pppMainLightGreen
             $0.textAlignment = .right
         }
         cardStoreNameLabel.do {
-            $0.text = "바보"
             $0.font = .pppTitle2
             $0.textColor = .pppMainLightGreen
             $0.textAlignment = .right
@@ -64,19 +63,20 @@ class HomeWeeklySlideYetView: UIView {
         ticketCoverImageView.do {
             $0.image = Image.mockArticleCardPacked
             $0.isUserInteractionEnabled = true
-            $0.isHidden = true
+            $0.isHidden = false
         }
         
     }
     
     private func hierarchy() {
-        self.addSubviews(thisWeekCardImage, nextWeekCardImage, ticketCoverImageView)
-        thisWeekCardImage.addSubviews(cardTitleLabel, cardStoreNameLabel, cardStoreOwnerLabel)
+        self.addSubviews(cardImage)
+        cardImage.addSubviews(cardTitleLabel, cardStoreNameLabel, cardStoreOwnerLabel)
+        self.addSubview(ticketCoverImageView)
     }
     
     private func layout() {
         
-        thisWeekCardImage.snp.makeConstraints {
+        cardImage.snp.makeConstraints {
             $0.top.equalToSuperview().inset(27.adjusted)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(295.adjusted)
@@ -86,20 +86,21 @@ class HomeWeeklySlideYetView: UIView {
         cardTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
             $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalTo(thisWeekCardImage)
+            $0.trailing.equalTo(cardImage)
         }
         
         cardStoreOwnerLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(36)
             $0.trailing.equalToSuperview().inset(24)
         }
+        
         cardStoreNameLabel.snp.makeConstraints {
             $0.bottom.equalTo(cardStoreOwnerLabel.snp.top).offset(-6)
             $0.trailing.equalTo(cardStoreOwnerLabel.snp.trailing)
         }
         
         ticketCoverImageView.snp.makeConstraints {
-            $0.top.equalTo(thisWeekCardImage.snp.top).offset(44)
+            $0.top.equalTo(cardImage.snp.top).offset(44)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(319.adjusted)
             $0.height.equalTo(486.adjusted)
@@ -109,8 +110,7 @@ class HomeWeeklySlideYetView: UIView {
     func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
         cardId = articleData.id
-        thisWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
-        nextWeekCardImage.kfSetImage(url: articleData.thumbnailUrlOfNextWeek)
+        cardImage.kfSetImage(url: articleData.thumbnailUrlOfThisWeek)
         cardTitleLabel.text = articleData.title
         cardStoreNameLabel.text = articleData.spaceName
         cardStoreOwnerLabel.text = articleData.spaceOwner

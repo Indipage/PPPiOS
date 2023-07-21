@@ -25,7 +25,7 @@ final class HomeViewController: BaseViewController{
     
     private var articleSlideCheckData: HomeArticleCheckResult? {
         didSet {
-            rootView.dataBindArticleSlideCheck(articleData: articleSlideCheckData)
+            rootView.homeWeeklyView.dataBindArticleSlideCheck(articleData: articleSlideCheckData)
         }
     }
     

@@ -13,7 +13,7 @@ import Then
 final class HomeView: UIView {
     
     // MARK: - Properties
-    var hasSlide = Bool()
+//    var hasSlide = Bool()
     
     // MARK: - UI Components
     
@@ -34,15 +34,6 @@ final class HomeView: UIView {
         
         homeWeeklyView.isHidden = false
         homeAllView.isHidden = true
-        
-        if !hasSlide {
-            homeWeeklyView.homeWeeklySlideYetView.isHidden = false
-            homeWeeklyView.homeWeeklySlidedView.isHidden = true
-        }
-        else {
-            homeWeeklyView.homeWeeklySlideYetView.isHidden = true
-            homeWeeklyView.homeWeeklySlidedView.isHidden = false
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -95,14 +86,6 @@ final class HomeView: UIView {
             $0.bottom.equalToSuperview().inset(Size.tabBarHeight)
         }
         
-    }
-    
-    func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
-        print("😵‍💫실행됨")
-        guard let hasSlide = articleData?.hasSlide else { return }
-        self.hasSlide = hasSlide
-        self.homeWeeklyView.homeWeeklySlideYetView.isHidden = hasSlide
-        self.homeWeeklyView.homeWeeklySlidedView.isHidden = !hasSlide
     }
     
 }

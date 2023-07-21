@@ -43,7 +43,6 @@
 		2C17965A2A6710980020B9A5 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796592A6710980020B9A5 /* HomeService.swift */; };
 		2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */; };
 		2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */; };
-		2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */; };
 		2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A96382A6304BC009B2919 /* HomeAllView.swift */; };
 		2CC8E6352A68353B00C117D7 /* HomeBookmarkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E6342A68353B00C117D7 /* HomeBookmarkCheckModel.swift */; };
 		2CC8E63A2A6854C100C117D7 /* HomeTicketGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E6392A6854C100C117D7 /* HomeTicketGetModel.swift */; };
@@ -187,7 +186,6 @@
 		2C1796592A6710980020B9A5 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCardModel.swift; sourceTree = "<group>"; };
 		2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCheckModel.swift; sourceTree = "<group>"; };
-		2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleParsing.swift; sourceTree = "<group>"; };
 		2C8A96382A6304BC009B2919 /* HomeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAllView.swift; sourceTree = "<group>"; };
 		2CC8E6342A68353B00C117D7 /* HomeBookmarkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookmarkCheckModel.swift; sourceTree = "<group>"; };
 		2CC8E6392A6854C100C117D7 /* HomeTicketGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTicketGetModel.swift; sourceTree = "<group>"; };
@@ -774,7 +772,6 @@
 				2C0C72A02A6069CF00EC2117 /* HomeCell */,
 				D2B096122A529921007BC756 /* ViewController */,
 				D2B096112A52991A007BC756 /* View */,
-				2C1F44102A649B4D006CEF71 /* HomeArticleParsing.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1104,7 +1101,6 @@
 				05CD07DD2A5E9C37003EEE84 /* SearchTableViewCell.swift in Sources */,
 				2C0C729D2A60699600EC2117 /* HomeArticleCollectionView.swift in Sources */,
 				0525C7452A69362B00699B2C /* SearchAPI.swift in Sources */,
-				2C1F44112A649B4D006CEF71 /* HomeArticleParsing.swift in Sources */,
 				D2B096162A529963007BC756 /* TicketTicketView.swift in Sources */,
 				D2B031972A61397E00DE8896 /* MySavedArticleTableViewCell.swift in Sources */,
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
