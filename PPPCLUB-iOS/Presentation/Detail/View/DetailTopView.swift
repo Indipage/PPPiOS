@@ -12,6 +12,15 @@ import Then
 
 final class DetailTopView: UIView {
     
+    // MARK: - Properities
+    
+    private var collectionViewWidth: Int = 0 {
+        didSet {
+            print("여기 찍혀?!?!?!?!??!?!?!")
+            updateLayout()
+        }
+    }
+    
     // MARK: - UI Components
     
     private let shopImageView = UIImageView()
@@ -228,11 +237,22 @@ final class DetailTopView: UIView {
         }
     }
     
+    private func updateLayout() {
+        tagCollectionView.snp.updateConstraints {
+            $0.width.equalTo(collectionViewWidth)
+        }
+    }
+    
     func dataBind(name: String, address: String, runtime: String, rest: String, imageURL: String) {
         shopNameLabel.text = name
         detailAddressLabel.text = address
         detailRunTimeLabel.text = runtime
         detailRestLabel.text = rest
         shopImageView.kfSetImage(url: imageURL)
+    }
+    
+    func calcCollectionViewWidth(width: Int) {
+        print("여기 찍혀!!!!!")
+        collectionViewWidth = width
     }
 }

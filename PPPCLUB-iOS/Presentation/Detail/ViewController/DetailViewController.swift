@@ -18,6 +18,7 @@ final class DetailViewController: BaseViewController {
     private var articleID: Int?
     private var isFollowed: Bool = false
     private var hashTagList: [String] = [String]()
+    private var totalCellWidth: Int = 0
     private var recommandBookData: [DetailRecommendBookResult] = [] {
         didSet {
             detailView.ownerView.bookCollectionView.reloadData()
@@ -118,8 +119,11 @@ final class DetailViewController: BaseViewController {
     }
     
     private func addHashTag(list: [TagList]) {
+        let label = UILabel()
         for index in 0..<list.count {
             hashTagList.append("# \(list[index].name)")
+            label.text = "# \(list[index].name)"
+            totalCellWidth = totalCellWidth + Int(label.intrinsicContentSize.width) + 40
         }
     }
     
@@ -330,6 +334,7 @@ extension DetailViewController {
             self.detailView.introDataBind(introduce: result.introduction ?? "")
             self.detailView.ownerView.introDataBind(owner: result.owner ?? "",
                                                     introduce: result.introduction ?? "")
+            self.detailView.detailTopView.calcCollectionViewWidth(width: self.totalCellWidth)
             self.detailView.detailTopView.tagCollectionView.reloadData()
         }
     }
