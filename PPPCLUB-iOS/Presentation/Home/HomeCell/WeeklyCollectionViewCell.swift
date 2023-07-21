@@ -14,7 +14,7 @@ protocol ThisWeekCellDelegate: AnyObject {
     func thisWeekCardImageDidTap()
 }
 
-final class thisWeekCell: UICollectionViewCell {
+final class ThisWeekCell: UICollectionViewCell {
     
     weak var delegate: ThisWeekCellDelegate?
     
@@ -110,7 +110,7 @@ final class thisWeekCell: UICollectionViewCell {
     }
 }
 
-class nextWeekCell: UICollectionViewCell {
+class NextWeekCell: UICollectionViewCell {
     
     // MARK: - UI Components
     

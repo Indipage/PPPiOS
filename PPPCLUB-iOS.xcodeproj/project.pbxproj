@@ -50,6 +50,8 @@
 		2CC8E63C2A68735300C117D7 /* HomeTicketCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E63B2A68735300C117D7 /* HomeTicketCheckModel.swift */; };
 		2CDCCE722A6955680001FD0F /* AllCustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDCCE712A6955680001FD0F /* AllCustomFlowLayout.swift */; };
 		2CDCCE742A69A6810001FD0F /* WeeklyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDCCE732A69A6810001FD0F /* WeeklyCollectionViewCell.swift */; };
+		2CDCCE762A6AA35E0001FD0F /* HomeWeeklySlideYetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDCCE752A6AA35E0001FD0F /* HomeWeeklySlideYetView.swift */; };
+		2CDCCE782A6AA7890001FD0F /* HomeWeeklySlidedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDCCE772A6AA7890001FD0F /* HomeWeeklySlidedView.swift */; };
 		D20CE78B2A69542800A6A79D /* HomeDetailArticleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20CE78A2A69542800A6A79D /* HomeDetailArticleResult.swift */; };
 		D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886C2A5924C600F097C7 /* DetailViewController.swift */; };
 		D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221886E2A5924D200F097C7 /* DetailTopView.swift */; };
@@ -192,6 +194,8 @@
 		2CC8E63B2A68735300C117D7 /* HomeTicketCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTicketCheckModel.swift; sourceTree = "<group>"; };
 		2CDCCE712A6955680001FD0F /* AllCustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCustomFlowLayout.swift; sourceTree = "<group>"; };
 		2CDCCE732A69A6810001FD0F /* WeeklyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCollectionViewCell.swift; sourceTree = "<group>"; };
+		2CDCCE752A6AA35E0001FD0F /* HomeWeeklySlideYetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklySlideYetView.swift; sourceTree = "<group>"; };
+		2CDCCE772A6AA7890001FD0F /* HomeWeeklySlidedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklySlidedView.swift; sourceTree = "<group>"; };
 		D20CE78A2A69542800A6A79D /* HomeDetailArticleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailArticleResult.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
@@ -876,6 +880,8 @@
 				D2B096212A5299CC007BC756 /* HomeView.swift */,
 				2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */,
 				2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */,
+				2CDCCE772A6AA7890001FD0F /* HomeWeeklySlidedView.swift */,
+				2CDCCE752A6AA35E0001FD0F /* HomeWeeklySlideYetView.swift */,
 				2C8A96382A6304BC009B2919 /* HomeAllView.swift */,
 				2C0C72982A60696100EC2117 /* HomeArticleView.swift */,
 				2C0C729A2A60697600EC2117 /* HomeArticleNavigationView.swift */,
@@ -1034,6 +1040,7 @@
 				D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
 				2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */,
+				2CDCCE762A6AA35E0001FD0F /* HomeWeeklySlideYetView.swift in Sources */,
 				D2614A662A528C8000869710 /* UITableViewCell+.swift in Sources */,
 				2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */,
 				D26594092A5C6FE70089E56A /* TicketCardView.swift in Sources */,
@@ -1081,6 +1088,7 @@
 				055E51BB2A603FCC001BD991 /* UITextView+.swift in Sources */,
 				D221886F2A5924D200F097C7 /* DetailTopView.swift in Sources */,
 				2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */,
+				2CDCCE782A6AA7890001FD0F /* HomeWeeklySlidedView.swift in Sources */,
 				D2B0961C2A5299A0007BC756 /* MyViewController.swift in Sources */,
 				D2B031B42A631A3D00DE8896 /* TicketService.swift in Sources */,
 				0525C73E2A675DD000699B2C /* Detail.swift in Sources */,
