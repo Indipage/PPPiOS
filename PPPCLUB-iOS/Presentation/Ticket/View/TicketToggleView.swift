@@ -79,7 +79,6 @@ final class TicketToggleView: UIView {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
             $0.width.equalTo(319.adjusted)
-            print(28.adjusted)
             $0.height.equalTo(40.adjusted)
         }
         
