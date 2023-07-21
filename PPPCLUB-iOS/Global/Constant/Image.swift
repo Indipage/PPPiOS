@@ -70,6 +70,7 @@ public enum Image {
     static let ticketNotReceivedImage = UIImage(named: "ticketNotReceivedImage")!
     static let savedArticle = UIImage(named: "savedArticle")
     static let savedSpace = UIImage(named: "savedSpace")
+    static let profile = UIImage(named: "profile")
     
     //MARK: - Graphics
     

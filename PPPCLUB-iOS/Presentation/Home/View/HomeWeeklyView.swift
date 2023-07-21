@@ -49,7 +49,7 @@ class HomeWeeklyView: UIView {
             $0.edges.equalToSuperview()
         }
     }
-    
+
     func dataBindArticleSlideCheck(articleData: HomeArticleCheckResult?) {
         
         guard let hasSlide = articleData?.hasSlide else { return }

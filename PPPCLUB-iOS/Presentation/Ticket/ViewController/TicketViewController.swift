@@ -133,9 +133,9 @@ extension TicketViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return CGSize(width: Size.width, height: 247)
+            return CGSize(width: Size.width, height: 247.adjusted)
         case rootView.cardView.ticketCardCollectionView:
-            return CGSize(width: 68, height: 108)
+            return CGSize(width: 68.adjusted, height: 108.adjusted)
         default:
             return CGSize(width: 0, height: 0)
         }
@@ -144,7 +144,7 @@ extension TicketViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return 25
+            return 25.adjusted
         case rootView.cardView.ticketCardCollectionView:
             return 15
         default:

@@ -23,6 +23,7 @@ class BaseViewController : UIViewController {
         
         setUI()
         setLayout()
+        swipeRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {

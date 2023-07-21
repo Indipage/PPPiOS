@@ -56,6 +56,7 @@ final class HomeViewController: BaseViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        self.tabBarController?.tabBar.isHidden = false
         requestArticleCardAPI()
         requestSlideCheckAPI()
         requestAllArticleAPI()

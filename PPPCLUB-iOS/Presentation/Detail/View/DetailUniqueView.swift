@@ -43,14 +43,12 @@ final class DetailUniqueView: UIView {
         }
         
         peculiarityTitleLabel.do {
-            $0.text = "문학 칵테일"
             $0.font = .pppSubHead1
             $0.textColor = .pppWhite
             $0.textAlignment = .right
         }
         
         peculiarityContentLabel.do {
-            $0.text = "문학 작품과 즐기는 칵테일,\n이런 고급스러운 취미는 어때요?"
             $0.numberOfLines = 0
             $0.font = .pppBody4
             $0.textColor = .pppWhite

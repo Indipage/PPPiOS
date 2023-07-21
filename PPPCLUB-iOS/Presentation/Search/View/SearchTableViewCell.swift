@@ -17,6 +17,7 @@ class SearchTableViewCell: UITableViewCell {
     lazy var placeImageView = UIImageView()
     lazy var placeNameLabel = UILabel()
     lazy var locationLabel = UILabel()
+    let separateBar = UIView()
     private lazy var infoStackView = UIStackView(arrangedSubviews: [placeNameLabel,
                                                                     locationLabel])
     
@@ -35,6 +36,12 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     // MARK: - Functions
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        separateBar.isHidden = false
+    }
     
     func setUI() {
         placeImageView.do {
@@ -60,11 +67,16 @@ class SearchTableViewCell: UITableViewCell {
             $0.alignment = .leading
             $0.spacing = 5
         }
+        
+        separateBar.do {
+            $0.backgroundColor = .pppGrey2
+        }
     }
     
     func setConstraint() {
         contentView.addSubviews(placeImageView,
-                                infoStackView
+                                infoStackView,
+                                separateBar
         )
     }
     
@@ -79,6 +91,11 @@ class SearchTableViewCell: UITableViewCell {
             $0.centerY.equalTo(placeImageView)
             $0.leading.equalTo(placeImageView.snp.trailing).offset(12)
             $0.trailing.equalToSuperview().inset(10)
+        }
+        
+        separateBar.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.leading.trailing.equalToSuperview()
         }
     }
 }

@@ -46,9 +46,9 @@ final class TicketCardView: UIView {
         }
         
         cardImageView.do {
-            $0.backgroundColor = .gray
             $0.makeCornerRadius(ratio: 17.4)
             $0.makeShadow(color: .black, offset: CGSize(width: 4, height: 4), radius: 5, opacity: 0.25)
+            $0.contentMode = .scaleToFill
         }
         
         ticketCardCollectionView.do {

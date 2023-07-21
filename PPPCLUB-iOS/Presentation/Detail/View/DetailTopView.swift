@@ -49,8 +49,7 @@ final class DetailTopView: UIView {
     
     private func style() {
         shopImageView.do {
-            $0.image = Image.mockDetailCard
-            $0.backgroundColor = .red
+            $0.backgroundColor = .pppGrey3
             $0.contentMode = .scaleToFill
         }
         
@@ -69,7 +68,6 @@ final class DetailTopView: UIView {
         }
         
         shopNameLabel.do {
-            $0.text = "인디페이지 최고"
             $0.font = .pppTitle2
             $0.textColor = .white
         }
@@ -81,7 +79,6 @@ final class DetailTopView: UIView {
         }
         
         detailAddressLabel.do {
-            $0.text = "상세 주소란"
             $0.font = .pppBody6
             $0.textColor = .white
             $0.numberOfLines = 0
@@ -102,7 +99,6 @@ final class DetailTopView: UIView {
         }
         
         detailRunTimeLabel.do {
-            $0.text = "Tue-Sat 08:00-19:00"
             $0.font = .pppBody6
             $0.textColor = .white
         }
@@ -118,7 +114,6 @@ final class DetailTopView: UIView {
         }
         
         detailRestLabel.do {
-            $0.text = "Tue-Sat 08:00-19:00"
             $0.font = .pppBody6
             $0.textColor = .white
         }

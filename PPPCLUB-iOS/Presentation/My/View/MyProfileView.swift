@@ -47,7 +47,7 @@ final class MyProfileView: UIView {
     
     private func style() {
         profileImageVIew.do {
-            $0.backgroundColor = .pppGrey2
+            $0.image = Image.profile
         }
         
         profileNameLabel.do {
