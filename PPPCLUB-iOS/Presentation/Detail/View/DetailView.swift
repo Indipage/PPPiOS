@@ -33,7 +33,7 @@ final class DetailView: UIScrollView {
     
     let detailTopView = DetailTopView()
     let ownerView = DetailOwnerView()
-    private let uniqueView = DetailUniqueView()
+    let uniqueView = DetailUniqueView()
     lazy var articleRequestView = DetailArticleRequestView()
     lazy var moveToArticleView = DetailMoveToArticleView()
     private let contentView = UIView()

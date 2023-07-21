@@ -171,7 +171,7 @@ final class DetailTopView: UIView {
             $0.bottom.equalTo(shopImageView).inset(23)
             $0.leading.equalToSuperview().inset(28)
             $0.height.equalTo(34)
-            $0.trailing.equalToSuperview()
+            $0.width.equalTo(270)
         }
         
         restLabel.snp.makeConstraints {

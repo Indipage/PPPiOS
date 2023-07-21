@@ -95,4 +95,10 @@ final class DetailUniqueView: UIView {
             $0.height.equalTo(28)
         }
     }
+    
+    func dataBind(title: String, content: String, image: String) {
+        peculiarityTitleLabel.text = title
+        peculiarityContentLabel.text = content
+        uniqueImageView.kfSetImage(url: image)
+    }
 }
