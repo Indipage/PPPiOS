@@ -198,7 +198,7 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacing section: Int) -> CGFloat {
         switch collectionView {
         case detailView.detailTopView.tagCollectionView:
             return 8
@@ -293,13 +293,17 @@ extension DetailViewController {
             
             self.detailView.detailTopView.dataBind(name: result.name,
                                                    address: result.roadAddress,
-                                                   runtime: result.operatingTime,
-                                                   rest: result.closedDays,
+                                                   runtime: result.operatingTime ?? "정보 없음",
+                                                   rest: result.closedDays ?? "",
                                                    imageURL: result.imageURL ?? String())
             self.addHashTag(list: result.tagList)
-            self.detailView.introDataBind(introduce: result.introduction)
-            self.detailView.ownerView.introDataBind(owner: result.owner,
-                                                    introduce: result.introduction)
+            self.detailView.uniqueView.dataBind(title: result.peculiarityTitle ?? "",
+                                                content: result.peculiarityContent ?? "",
+                                                image: result.peculiarityImageURL ?? String()
+            )
+            self.detailView.introDataBind(introduce: result.introduction ?? "")
+            self.detailView.ownerView.introDataBind(owner: result.owner ?? "",
+                                                    introduce: result.introduction ?? "")
             self.detailView.detailTopView.tagCollectionView.reloadData()
         }
     }
@@ -313,7 +317,6 @@ extension DetailViewController {
             }
             print(result)
             self.isFollowed = result.isFollowed ?? false
-            print(self.isFollowed)
             if self.isFollowed {
                 self.isFollowAction()
             }

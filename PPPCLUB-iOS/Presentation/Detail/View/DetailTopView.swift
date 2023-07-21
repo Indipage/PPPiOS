@@ -84,6 +84,7 @@ final class DetailTopView: UIView {
             $0.text = "상세 주소란"
             $0.font = .pppBody6
             $0.textColor = .white
+            $0.numberOfLines = 0
         }
         
         addressBar.do {
@@ -171,7 +172,7 @@ final class DetailTopView: UIView {
             $0.bottom.equalTo(shopImageView).inset(23)
             $0.leading.equalToSuperview().inset(28)
             $0.height.equalTo(34)
-            $0.trailing.equalToSuperview()
+            $0.width.equalTo(270)
         }
         
         restLabel.snp.makeConstraints {
@@ -209,7 +210,7 @@ final class DetailTopView: UIView {
         }
         
         addressLabel.snp.makeConstraints {
-            $0.bottom.equalTo(runTimeLabel.snp.top).offset(-6)
+            $0.top.equalTo(detailAddressLabel)
             $0.leading.equalToSuperview().inset(28)
         }
         
@@ -221,8 +222,9 @@ final class DetailTopView: UIView {
         }
         
         detailAddressLabel.snp.makeConstraints {
+            $0.bottom.equalTo(runTimeLabel.snp.top).offset(-6)
             $0.leading.equalTo(addressBar.snp.trailing).offset(4)
-            $0.centerY.equalTo(addressLabel)
+            $0.trailing.equalToSuperview().inset(28)
         }
         
         shopNameLabel.snp.makeConstraints {

@@ -82,10 +82,11 @@ final class DetailMoveToArticleView: UIView {
             $0.contentMode = .scaleToFill
             $0.layer.cornerRadius = 10
             $0.backgroundColor = .pppMainLightGreen
+            $0.clipsToBounds = true
         }
         
         goReadButton.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .clear
             $0.layer.cornerRadius = 12
             $0.setImage(Image.ticketNotReceivedImage, for: .normal)
         }
@@ -110,7 +111,7 @@ final class DetailMoveToArticleView: UIView {
         
         shopImageView.snp.makeConstraints {
             $0.top.equalTo(placeLabel.snp.bottom).offset(8)
-            $0.height.equalTo(180.adjusted)
+            $0.height.equalTo(180)
             $0.leading.trailing.equalToSuperview().inset(28)
         }
         
@@ -140,14 +141,12 @@ final class DetailMoveToArticleView: UIView {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(spaceNameLabel.snp.bottom).offset(2.adjusted)
-            $0.leading.equalTo(spaceTypeStackView)
-            $0.trailing.equalTo(spaceNameLabel).inset(16)
-            $0.height.equalTo(18.adjusted)
+            $0.leading.trailing.equalTo(shopImageView).inset(16)
         }
         
         goReadButton.snp.makeConstraints {
             $0.height.equalTo(33.adjusted)
-            $0.width.equalTo(95)
+            $0.width.equalTo(95.adjusted)
             $0.trailing.equalTo(shopImageView).inset(16)
             $0.bottom.equalTo(shopImageView).inset(12.adjusted)
         }

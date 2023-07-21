@@ -33,7 +33,7 @@ final class DetailView: UIScrollView {
     
     let detailTopView = DetailTopView()
     let ownerView = DetailOwnerView()
-    private let uniqueView = DetailUniqueView()
+    let uniqueView = DetailUniqueView()
     lazy var articleRequestView = DetailArticleRequestView()
     lazy var moveToArticleView = DetailMoveToArticleView()
     private let contentView = UIView()
@@ -153,7 +153,7 @@ final class DetailView: UIScrollView {
         
         moveToArticleView.snp.updateConstraints {
             $0.top.equalTo(uniqueView.snp.bottom).offset(78.adjusted)
-            $0.bottom.equalToSuperview().inset(250.adjusted)
+            $0.bottom.equalToSuperview().inset(280.adjusted)
             $0.leading.trailing.equalToSuperview()
         }
         
