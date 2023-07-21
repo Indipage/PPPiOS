@@ -15,11 +15,12 @@ struct HomeTicketCheckResult: Codable {
 // MARK: - Ticket
 struct Ticket: Codable {
     let id: Int
-    let ticketImageURL, cardImageURL: String
+    let ticketImageURL, cardImageURL, ticketForArticleImageURL: String
 
     enum CodingKeys: String, CodingKey {
         case id
         case ticketImageURL = "ticketImageUrl"
         case cardImageURL = "cardImageUrl"
+        case ticketForArticleImageURL = "ticketForArticleImageUrl"
     }
 }

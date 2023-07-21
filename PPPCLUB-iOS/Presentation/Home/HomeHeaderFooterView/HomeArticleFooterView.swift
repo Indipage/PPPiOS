@@ -125,7 +125,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         guard let articleData = articleData else { return }
         
         ticketID = articleData.ticket.id
-        ticketURL = articleData.ticket.ticketImageURL
+        ticketURL = articleData.ticket.ticketForArticleImageURL
         cardURL = articleData.ticket.cardImageURL
         ticketReceived = articleData.hasReceivedTicket
         
