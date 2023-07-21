@@ -51,8 +51,8 @@ final class TicketSuccessView: UIView {
         }
         
         cardImageView.do {
-            $0.backgroundColor = .gray
-            $0.makeCornerRadius(ratio: 15)
+            $0.image = Image.mockBook
+            $0.clipsToBounds = true
             let angleInDegrees: CGFloat = -9.15
             let angleInRadians = angleInDegrees * .pi / 180.0
             $0.transform = .init(rotationAngle: angleInRadians)
@@ -86,7 +86,7 @@ final class TicketSuccessView: UIView {
         cardImageView.snp.makeConstraints {
             $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(39.adjusted)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(243)
+            $0.width.equalTo(243.adjusted)
             $0.height.equalTo(384.adjusted)
         }
         

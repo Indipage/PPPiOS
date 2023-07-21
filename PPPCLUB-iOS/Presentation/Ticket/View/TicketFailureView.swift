@@ -45,7 +45,7 @@ final class TicketFailureView: UIView {
         
         failView.do {
             $0.backgroundColor = .pppWhite
-            $0.makeCornerRadius(ratio: 16)
+            $0.makeCornerRadius(ratio: 16.adjusted)
         }
         
         failImage.do {
@@ -64,7 +64,7 @@ final class TicketFailureView: UIView {
             $0.setTitleColor(.pppGrey4, for: .normal)
             $0.titleLabel?.font = .pppBody3
             $0.backgroundColor = .pppGrey2
-            $0.makeCornerRadius(ratio: 6)
+            $0.makeCornerRadius(ratio: 6.adjusted)
         }
         
         tryButton.do {
@@ -72,7 +72,7 @@ final class TicketFailureView: UIView {
             $0.setTitleColor(.pppWhite, for: .normal)
             $0.titleLabel?.font = .pppBody3
             $0.backgroundColor = .pppMainPurple
-            $0.makeCornerRadius(ratio: 6)
+            $0.makeCornerRadius(ratio: 6.adjusted)
         }
     }
     
@@ -85,34 +85,34 @@ final class TicketFailureView: UIView {
         failView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(299/Size.width)
-            $0.height.equalToSuperview().multipliedBy(317/Size.height)
+            $0.width.equalTo(299.adjusted)
+            $0.height.equalTo(317.adjusted)
         }
         
         failImage.snp.makeConstraints {
             $0.top.equalToSuperview().offset(36)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(self).multipliedBy(156/Size.width)
-            $0.height.equalTo(self).multipliedBy(117/Size.height)
+            $0.width.equalTo(156.adjusted)
+            $0.height.equalTo(117.adjusted)
         }
         
         failLabel.snp.makeConstraints {
-            $0.top.equalTo(self.failImage.snp.bottom).offset(30)
+            $0.top.equalTo(self.failImage.snp.bottom).offset(30.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         exitButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(19)
-            $0.bottom.equalToSuperview().inset(23)
-            $0.width.equalTo(self).multipliedBy(105/Size.width)
-            $0.height.equalTo(self).multipliedBy(52/Size.height)
+            $0.leading.equalToSuperview().offset(19.adjusted)
+            $0.bottom.equalToSuperview().inset(23.adjusted)
+            $0.width.equalTo(105.adjusted)
+            $0.height.equalTo(52.adjusted)
         }
         
         tryButton.snp.makeConstraints {
-            $0.leading.equalTo(self.exitButton.snp.trailing).offset(10)
-            $0.bottom.equalToSuperview().inset(23)
-            $0.width.equalTo(self).multipliedBy(147/Size.width)
-            $0.height.equalTo(self).multipliedBy(52/Size.height)
+            $0.leading.equalTo(self.exitButton.snp.trailing).offset(10.adjusted)
+            $0.bottom.equalToSuperview().inset(23.adjusted)
+            $0.width.equalTo(147.adjusted)
+            $0.height.equalTo(52.adjusted)
         }
     }
 }
