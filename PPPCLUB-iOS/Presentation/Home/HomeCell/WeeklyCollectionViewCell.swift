@@ -11,11 +11,14 @@ import SnapKit
 import Then
     
 protocol ThisWeekCellDelegate: AnyObject {
-    func thisWeekCardImageDidTap()
+    func thisWeekCardImageDidTap(articleID: Int?)
 }
 
 final class ThisWeekCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
+    var articleID: Int?
     weak var delegate: ThisWeekCellDelegate?
     
     // MARK: - UI Components
@@ -53,19 +56,18 @@ final class ThisWeekCell: UICollectionViewCell {
             $0.backgroundColor = .pppBlack
         }
         cardTitleLabel.do {
-            $0.text = "바보"
             $0.font = .pppTitle1
             $0.textColor = .pppWhite
             $0.textAlignment = .left
+            $0.numberOfLines = 0
+            $0.setLineSpacing(spacing: 9)
         }
         cardStoreNameLabel.do {
-            $0.text = "바보"
             $0.font = .pppTitle2
             $0.textColor = .pppMainLightGreen
             $0.textAlignment = .right
         }
         cardStoreOwnerLabel.do {
-            $0.text = "바보"
             $0.font = .pppBody5
             $0.textColor = .pppMainLightGreen
             $0.textAlignment = .right
@@ -86,6 +88,7 @@ final class ThisWeekCell: UICollectionViewCell {
         cardTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
             $0.leading.equalToSuperview().inset(20)
+            $0.width.equalToSuperview()
         }
         cardStoreNameLabel.snp.makeConstraints {
             $0.bottom.equalTo(cardStoreOwnerLabel.snp.top).offset(-6)
@@ -99,6 +102,7 @@ final class ThisWeekCell: UICollectionViewCell {
     
     func configureCell(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
+        self.articleID = articleData.id
         thisWeekCardImage.kfSetButtonImage(url: articleData.thumbnailUrlOfThisWeek, state: .normal)
         cardTitleLabel.text = articleData.title
         cardStoreNameLabel.text = articleData.spaceName
@@ -106,7 +110,7 @@ final class ThisWeekCell: UICollectionViewCell {
     }
     
     @objc func thisWeekCardImageDidTap() {
-        delegate?.thisWeekCardImageDidTap()
+        delegate?.thisWeekCardImageDidTap(articleID: articleID)
     }
 }
 

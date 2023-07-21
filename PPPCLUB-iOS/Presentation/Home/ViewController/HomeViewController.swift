@@ -19,6 +19,7 @@ final class HomeViewController: BaseViewController{
     private var articleCardData: HomeArticleCardResult?  {
         didSet {
             rootView.homeWeeklyView.homeWeeklySlideYetView.dataBindArticleCard(articleData: articleCardData)
+            rootView.homeWeeklyView.homeWeeklySlidedView.reloadData()
         }
     }
     
@@ -201,14 +202,13 @@ extension HomeViewController: SavedArticleCellDelegate {
 }
 
 extension HomeViewController: ThisWeekCellDelegate {
-    func thisWeekCardImageDidTap() {
+    func thisWeekCardImageDidTap(articleID: Int?) {
         pushToArticleViewController()
     }
 }
 
 extension HomeViewController {
     func pushToArticleViewController() {
-        
         let homeArticleVC = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(homeArticleVC, animated: true)
         

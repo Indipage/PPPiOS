@@ -105,9 +105,7 @@ class HomeWeeklySlideYetView: UIView {
             $0.height.equalTo(486.adjusted)
         }
     }
-}
-
-extension HomeWeeklySlideYetView {
+    
     func dataBindArticleCard(articleData: HomeArticleCardResult?) {
         guard let articleData = articleData else { return }
         cardId = articleData.id
@@ -117,4 +115,5 @@ extension HomeWeeklySlideYetView {
         cardStoreNameLabel.text = articleData.spaceName
         cardStoreOwnerLabel.text = articleData.spaceOwner
     }
+    
 }
