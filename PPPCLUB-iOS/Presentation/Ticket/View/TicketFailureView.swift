@@ -49,7 +49,7 @@ final class TicketFailureView: UIView {
         }
         
         failImage.do {
-            $0.backgroundColor = .gray
+            $0.image = Image.qrFail
         }
         
         failLabel.do {

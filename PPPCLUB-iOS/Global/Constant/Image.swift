@@ -53,6 +53,7 @@ public enum Image {
     
     static let noTicket = UIImage(named: "noTicket")!
     static let noCard = UIImage(named: "noCard")!
+    static let qrFail = UIImage(named: "qrFail")
     
     // MARK: - Detail
     

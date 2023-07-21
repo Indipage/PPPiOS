@@ -336,7 +336,8 @@ extension DetailViewController {
         }
     }
     
-    func dataBind(spaceID: Int) {
+    func dataBind(spaceID: Int?) {
+        print("여기로 들어온 spaceID는 \(spaceID)")
         self.spaceID = spaceID
     }
 }

@@ -138,6 +138,9 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: SavedArticleCellDelegate {
     func articleDidTap(articleID: Int?) {
+        print("🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃")
+        print("아티클 아이디가 이거란 말이요 \(articleID)")
+        print("🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃")
         let articleViewController = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(articleViewController, animated: true)
     }
