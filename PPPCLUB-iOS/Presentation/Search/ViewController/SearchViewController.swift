@@ -105,6 +105,9 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier,
                                                  for: indexPath) as? SearchTableViewCell ?? SearchTableViewCell()
         cell.selectionStyle = .none
+        if indexPath.row == 0 {
+            cell.separateBar.isHidden = true
+        }
         
         if isFiltering {
             cell.id = filteredSpace[indexPath.row].spaceID
