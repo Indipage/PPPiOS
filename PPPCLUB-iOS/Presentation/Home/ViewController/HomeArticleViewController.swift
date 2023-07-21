@@ -48,8 +48,6 @@ final class HomeArticleViewController: BaseViewController {
         }
     }
     
-    var articleDummy:String = ""
-    
     // MARK: - UI Components
     
     private let rootView = HomeArticleView()
@@ -99,13 +97,11 @@ final class HomeArticleViewController: BaseViewController {
     
     //MARK: - Action Method
     
-    @objc
-    func backButtonTap() {
+    @objc func backButtonTap() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc
-    func saveButtonTap() {
+    @objc func saveButtonTap() {
         rootView.articleNavigationView.saveButton.isSelected.toggle()
         
         if rootView.articleNavigationView.saveButton.isSelected {
@@ -216,14 +212,14 @@ extension HomeArticleViewController {
     public func requestBookmarkRegisterAPI() {
         guard let articleID = articleID else { return }
         HomeAPI.shared.postBookmarkCheck(articleID: "\(articleID)") { result in
-            guard let result = self.validateResult(result) else { return }
+            guard self.validateResult(result) != nil else { return }
         }
     }
     
     public func requestBookmarkDeleteAPI() {
         guard let articleID = articleID else { return }
         HomeAPI.shared.deleteBookmarkCheck(articleID: "\(articleID)") { result in
-            guard let result = self.validateResult(result) else { return }
+            guard self.validateResult(result) != nil else { return }
         }
     }
     
