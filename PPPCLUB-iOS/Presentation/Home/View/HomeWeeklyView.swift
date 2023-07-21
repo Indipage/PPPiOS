@@ -30,8 +30,8 @@ class HomeWeeklyView: UIView {
     
     private func style() {
         
-        homeWeeklySlideYetView.isHidden = false
-        homeWeeklySlidedView.isHidden = false
+        homeWeeklySlideYetView.isHidden = true
+        homeWeeklySlidedView.isHidden = true
         
     }
     
