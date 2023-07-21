@@ -259,7 +259,7 @@ extension HomeArticleTableViewCell {
         for i in 0...2 {
             
             while bodyString.contains(bodyList[i]) == true {
-                (bodyString, bodySplitType) = bodySplitParsing(text: bodyString, version: bodyList[i]) ?? "" as! (String, String)
+                (bodyString, bodySplitType) = bodySplitParsing(text: bodyString, version: bodyList[i]) ?? ("","")
                 changeBody(bodyType: bodyList[i], bodyContent: bodySplitType)
                 print("⭐️\(bodyList[i])    \(bodySplitType)")
             }

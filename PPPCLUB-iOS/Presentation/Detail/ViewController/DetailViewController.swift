@@ -14,7 +14,7 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
     
-    var spaceID = 1
+    private var spaceID: Int?
     private var isFollowed: Bool = false
     private var hashTagList: [String] = [String]()
     private var recommandBookData: [DetailRecommendBookResult] = [] {
@@ -133,8 +133,7 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Action Method
     
-    @objc
-    private func didTouchedSaveButton() {
+    @objc private func didTouchedSaveButton() {
         detailView.detailTopView.saveButton.isSelected.toggle()
         if detailView.detailTopView.saveButton.isSelected {
             requestPostSavedBookMarkAPI()
@@ -150,8 +149,7 @@ final class DetailViewController: BaseViewController {
         }
     }
     
-    @objc
-    func didTouchedBackButton() {
+    @objc func didTouchedBackButton() {
         navigationController?.popViewController(animated: true)
     }
 }
@@ -253,6 +251,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension DetailViewController {
     private func requestSavedBookMarkAPI() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.getSavedSpace(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? DetailSavedBookMarkResult else { return }
             self.detailView.detailTopView.saveButton.isSelected = result.bookmarked!
@@ -260,6 +259,7 @@ extension DetailViewController {
     }
     
     private func requestPostSavedBookMarkAPI() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.postSavedSpace(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? VoidResult else { return }
             print(result)
@@ -267,6 +267,7 @@ extension DetailViewController {
     }
     
     private func requestDeleteSavedBookMarkAPI() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.deleteSavedSpace(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? VoidResult else { return }
             print(result)
@@ -274,6 +275,7 @@ extension DetailViewController {
     }
     
     private func requestGetCheckedArticle() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.getCheckArticle(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? DetailCheckArticleResult else {
                 self.detailView.isArticleExist = false
@@ -285,6 +287,7 @@ extension DetailViewController {
     }
     
     private func requestGetSpace() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.getSpace(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? DetailGetSpaceResult else { return }
             
@@ -302,6 +305,7 @@ extension DetailViewController {
     }
     
     private func requestGetFollow() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.getFollow(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? DetailGetFollowResult else {
                 print("😀😀😀😀")
@@ -317,6 +321,7 @@ extension DetailViewController {
     }
     
     private func requestPostFollow() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.postFollow(spaceID: "\(spaceID)") { result in
             guard self.validateResult(result) is VoidResult else { return }
             self.isFollowed = true
@@ -324,9 +329,14 @@ extension DetailViewController {
     }
     
     private func requestGetRecommendBook() {
+        guard let spaceID = spaceID else { return }
         DetailAPI.shared.getRecommendBool(spaceID: "\(spaceID)") { result in
             guard let result = self.validateResult(result) as? [DetailRecommendBookResult] else { return }
             self.recommandBookData = result
         }
+    }
+    
+    func dataBind(spaceID: Int) {
+        self.spaceID = spaceID
     }
 }

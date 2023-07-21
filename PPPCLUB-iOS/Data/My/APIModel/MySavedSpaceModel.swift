@@ -9,11 +9,11 @@ import Foundation
 
 struct MySavedSpaceResult: Codable {
     let id: Int
-    let name, imageURL, roadAddress: String
+    let name, imageURL, address: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name
         case imageURL = "imageUrl"
-        case roadAddress
+        case address
     }
 }

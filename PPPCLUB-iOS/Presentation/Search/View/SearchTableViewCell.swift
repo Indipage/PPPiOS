@@ -84,7 +84,17 @@ class SearchTableViewCell: UITableViewCell {
 }
 
 extension SearchTableViewCell {
-    func dataBind2(image: String, name: String, location: String) {
+    func dataBind(mySavedSpaceResult: MySavedSpaceResult?) {
+        guard let mySavedSpaceResult = mySavedSpaceResult else { return }
+        placeImageView.kfSetImage(url: mySavedSpaceResult.imageURL)
+        placeNameLabel.text = mySavedSpaceResult.name
+        locationLabel.text = mySavedSpaceResult.address
+    }
+    
+    func dataBind(image: String?, name: String?, location: String?) {
+        guard let image = image else { return }
+        guard let name = name else { return }
+        guard let location = location else { return }
         placeImageView.kfSetImage(url: image)
         placeNameLabel.text = name
         locationLabel.text = location

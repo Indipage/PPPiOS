@@ -39,13 +39,13 @@ final class TicketCheckQRCodeViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         QRManager.shared.start()
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
     }
-    
     
     //MARK: - Custom Method
     
@@ -86,10 +86,13 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
             guard let qrCodeStringData = metaDataObj.stringValue else { return }
             print("🔫qr이 맞습니다!🔫")
             print("🔫\(qrCodeStringData)🔫")
-            if qrCodeStringData == "\(spaceID)" {
-                QRManager.shared.stop()
-                requestQRCodeAPI(spaceID: qrCodeStringData)
+            QRManager.shared.stop()
+            print(spaceID)
+            if extractNumberFromURL(qrCodeStringData) == "\(spaceID)" {
+                print("😈알겠습니다😈")
+                requestQRCodeAPI(spaceID: extractNumberFromURL(qrCodeStringData))
             } else {
+                print(extractNumberFromURL(qrCodeStringData))
                 presentToFailView()
             }
         }
@@ -161,18 +164,20 @@ extension TicketCheckQRCodeViewController {
         
     }
     
-    private func requestQRCodeAPI(spaceID: String) {
+    private func requestQRCodeAPI(spaceID: String?) {
+        guard let spaceID = spaceID else { return }
         TicketAPI.shared.putQRCodeCheck(spaceID: spaceID) { result in
-            guard self.validateResult(result) is SimpleResponse else {
+            guard let result = self.validateResult(result) as? TicketQRCodeResult else {
                 self.presentToFailView()
                 return
             }
-            self.pushToSuccessView()
+            self.pushToSuccessView(imageURL: result.cardImageURL)
         }
     }
     
-    private func pushToSuccessView() {
+    private func pushToSuccessView(imageURL: String) {
         let ticketSuccessView = TicketSuccessViewController()
+        ticketSuccessView.dataBind(imageURL: imageURL)
         self.navigationController?.pushViewController(ticketSuccessView, animated: true)
     }
     
@@ -182,6 +187,23 @@ extension TicketCheckQRCodeViewController {
         self.modalPresentationStyle = .fullScreen
         self.present(ticketFailView, animated: true)
     }
+    
+    func extractNumberFromURL(_ urlString: String) -> String {
+        guard let url = URL(string: urlString) else {
+            return ""
+        }
+        
+        // URL의 경로 컴포넌트를 가져옴
+        let pathComponents = url.pathComponents
+        
+        // 경로 컴포넌트에서 "space" 다음에 오는 컴포넌트를 반환
+        if let index = pathComponents.firstIndex(of: "space"), index + 1 < pathComponents.count {
+            return pathComponents[index + 1]
+        }
+        
+        return ""
+    }
+
 }
 
 extension TicketCheckQRCodeViewController: ExitButtonDelegate {
