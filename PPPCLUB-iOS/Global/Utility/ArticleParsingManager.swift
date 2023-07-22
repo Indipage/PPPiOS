@@ -149,7 +149,7 @@ final class ArticleParsingManager {
         switch bodyType {
         case "link":
             self.linkText = bodyContent
-            targetLabel.asUnder(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple)
+            targetLabel.asUnder(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, color: .pppMainPurple, spacing: 9, lineHeight: 9)
             
         case "bold":
             targetLabel.asFont(fullText: fullText, targetString: bodyContent, font: .pppBodyBold5, spacing: 9, lineHeight: 9)

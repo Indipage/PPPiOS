@@ -47,18 +47,18 @@ extension UILabel {
     }
     
     func asFont(fullText: String?, targetString: String, font: UIFont, spacing: CGFloat, lineHeight: CGFloat) {
-            let fullText = fullText ?? ""
-            let attributedString = NSMutableAttributedString(string: fullText)
-            let range = (fullText as NSString).range(of: targetString)
-            attributedString.addAttribute(.font, value: font, range: range)
-            
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = spacing
-            paragraphStyle.minimumLineHeight = lineHeight
-            attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: fullText.count))
-            
-            attributedText = attributedString
-        }
+        let fullText = fullText ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.font, value: font, range: range)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = spacing
+        paragraphStyle.minimumLineHeight = lineHeight
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: fullText.count))
+        
+        attributedText = attributedString
+    }
     
     func asColor(targetString: String, color: UIColor) {
         let fullText = text ?? ""
@@ -82,49 +82,55 @@ extension UILabel {
         attributedText = attributedString
     }
     
-    func asUnder(fullText: String?, targetString: String, font: UIFont?, color: UIColor?) {
-            let fullText = text ?? ""
-            let attributedString = NSMutableAttributedString(string: fullText)
-            let range = (fullText as NSString).range(of: targetString)
+    func asUnder(fullText: String?, targetString: String, font: UIFont?, color: UIColor?, spacing: CGFloat, lineHeight: CGFloat) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
         attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: range)
-            attributedText = attributedString
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = spacing
+        paragraphStyle.minimumLineHeight = lineHeight
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: fullText.count))
+        
+        attributedText = attributedString
     }
     
     func setupLabel(
         fullText: String?,
-            text: String,
-            color: UIColor,
-            font: UIFont,
-            align: NSTextAlignment = .left,
-            kern: Double? = 1.0,
-            lineSpacing: CGFloat
-        ) {
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = lineSpacing
-            paragraphStyle.alignment = align
-            
-            let attributedString = NSMutableAttributedString(string: text)
-            attributedString.addAttributes(
-                [
-                    .font: font,
-                    .foregroundColor: color,
-                    .kern: kern,
-                    .paragraphStyle: paragraphStyle
-                ],
-                range: NSRange(location: 0, length: text.count)
-            )
-            
-            self.attributedText = attributedString
-        }
+        text: String,
+        color: UIColor,
+        font: UIFont,
+        align: NSTextAlignment = .left,
+        kern: Double? = 1.0,
+        lineSpacing: CGFloat
+    ) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpacing
+        paragraphStyle.alignment = align
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttributes(
+            [
+                .font: font,
+                .foregroundColor: color,
+                .kern: kern,
+                .paragraphStyle: paragraphStyle
+            ],
+            range: NSRange(location: 0, length: text.count)
+        )
+        
+        self.attributedText = attributedString
+    }
     
     func underLine(from text: String?, at range: String?) {
-            guard let text = text,
-                  let range = range else { return }
-            
-            let attributedString = NSMutableAttributedString(string: text)
-            attributedString.addAttributes([NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: NSString(string: text).range(of: range))
-            self.attributedText = attributedString
-        }
+        guard let text = text,
+              let range = range else { return }
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttributes([NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: NSString(string: text).range(of: range))
+        self.attributedText = attributedString
+    }
 }
 
 
