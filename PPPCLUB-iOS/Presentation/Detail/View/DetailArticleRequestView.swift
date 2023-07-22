@@ -42,7 +42,7 @@ final class DetailArticleRequestView: UIView {
         }
         
         noticeLabel.do {
-            $0.text = "인디페이지에서 서점이야기를 준비 중이에요.\n빠른 소식을 원한다면 아래 ‘조르기’ 버튼을 눌러주세요:)"
+            $0.text = "PPPCLub에서 서점이야기를 준비 중이에요.\n빠른 소식을 원한다면 아래 ‘조르기’ 버튼을 눌러주세요:)"
             $0.font = .pppBody6
             $0.textColor = .pppGrey4
             $0.numberOfLines = 3
