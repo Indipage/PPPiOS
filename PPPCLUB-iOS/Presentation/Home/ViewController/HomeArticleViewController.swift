@@ -77,6 +77,7 @@ final class HomeArticleViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tabBarController?.tabBar.isHidden = true
         rootView.articleTableView.setContentOffset(CGPoint(x: 0, y: -rootView.articleTableView.contentInset.top), animated: true)
         requestBookmarkCheckAPI()
         requestDetailArticleAPI()
