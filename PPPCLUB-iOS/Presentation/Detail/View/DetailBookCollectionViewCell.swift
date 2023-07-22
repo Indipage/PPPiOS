@@ -28,7 +28,7 @@ final class DetailBookCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        bookImageView.image?.setAlpha(1)
+        bookImageView.image = bookImageView.image?.setAlpha(0.5)
     }
     
     @available(*, unavailable)

@@ -29,7 +29,7 @@ final class DetailViewController: BaseViewController {
             }
         }
     }
-    private var currentIndex: Int = 0 {
+    private var currentIndex: Int = 1 {
         didSet {
             if !recommandBookData.isEmpty {
                 self.detailView.ownerView.curationDataBind(curation: recommandBookData[self.currentIndex].comment)
@@ -135,7 +135,7 @@ final class DetailViewController: BaseViewController {
     
     private func moveCellToMiddle() {
         self.detailView.ownerView.bookCollectionView.isPagingEnabled = false
-        self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
+        self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
         self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
     }
     
