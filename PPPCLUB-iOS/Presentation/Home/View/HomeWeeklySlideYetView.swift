@@ -38,10 +38,11 @@ class HomeWeeklySlideYetView: UIView {
     // MARK: - Custom Method
     
     private func style() {
-        
         cardImage.do {
-            $0.backgroundColor = .pppBlack
+            $0.backgroundColor = .pppWhite
+            $0.image = Image.gradient
         }
+        
         cardTitleLabel.do {
             $0.font = .pppTitle1
             $0.textColor = .pppWhite
