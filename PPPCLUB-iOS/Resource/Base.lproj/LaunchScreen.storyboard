@@ -16,11 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="R5o-RX-qMe">
-                                <rect key="frame" x="76" y="362" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="APn-1C-0vc">
+                                <rect key="frame" x="98.666666666666671" y="328" width="195.66666666666663" height="196"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="GdF-QF-hE5"/>
-                                    <constraint firstAttribute="height" constant="128" id="rVJ-rD-DZh"/>
+                                    <constraint firstAttribute="width" constant="195.66999999999999" id="Sdu-eK-gFF"/>
+                                    <constraint firstAttribute="height" constant="195.66999999999999" id="a0z-zf-qi2"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -28,8 +28,8 @@
                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="R5o-RX-qMe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="303" id="hYo-zN-rlX"/>
-                            <constraint firstItem="R5o-RX-qMe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="76" id="x4v-q7-mJL"/>
+                            <constraint firstItem="APn-1C-0vc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="S3j-IG-aDw"/>
+                            <constraint firstItem="APn-1C-0vc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rLS-fp-OoU"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pppIcon" width="341.33334350585938" height="341.33334350585938"/>
+        <image name="logo.png" width="195.66667175292969" height="195.66667175292969"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

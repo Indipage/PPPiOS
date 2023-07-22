@@ -115,8 +115,9 @@
 		D28ACC1C2A69C55C0093B01E /* TicketQRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */; };
 		D28ACC1E2A69C9DF0093B01E /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */; };
 		D28ACC1F2A6A89BB0093B01E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4E2A52837000869710 /* Assets.xcassets */; };
+		D28ACC212A6ADF1E0093B01E /* PPPToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */; };
+		D28ACC242A6BAAF90093B01E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D28ACC232A6BAAF90093B01E /* logo.png */; };
 		D2B031972A61397E00DE8896 /* MySavedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */; };
-		D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */; };
 		D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */; };
 		D2B0319D2A6139F100DE8896 /* MySavedBookStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319C2A6139F100DE8896 /* MySavedBookStoreViewController.swift */; };
 		D2B0319F2A614FD500DE8896 /* MySavedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */; };
@@ -255,8 +256,9 @@
 		D26594142A5CF4B90089E56A /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketQRCodeModel.swift; sourceTree = "<group>"; };
 		D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPToastMessage.swift; sourceTree = "<group>"; };
+		D28ACC232A6BAAF90093B01E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleTableViewCell.swift; sourceTree = "<group>"; };
-		D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreTableViewCell.swift; sourceTree = "<group>"; };
 		D2B0319A2A6139B800DE8896 /* MySavedArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleViewController.swift; sourceTree = "<group>"; };
 		D2B0319C2A6139F100DE8896 /* MySavedBookStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBookStoreViewController.swift; sourceTree = "<group>"; };
 		D2B0319E2A614FD500DE8896 /* MySavedArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedArticleView.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				058326862A5BF893004A295F /* PPPTagView.swift */,
+				D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -490,7 +493,6 @@
 				D224D4AE2A5DF25600B014ED /* HeaderFooterView */,
 				D224D49E2A5DA6B900B014ED /* MyInfoTableViewCell.swift */,
 				D2B031962A61397E00DE8896 /* MySavedArticleTableViewCell.swift */,
-				D2B031982A61399800DE8896 /* MySavedBookStoreTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -689,6 +691,14 @@
 			path = APIModel;
 			sourceTree = "<group>";
 		};
+		D28ACC222A6BAAA40093B01E /* LaunchScreenAsset */ = {
+			isa = PBXGroup;
+			children = (
+				D28ACC232A6BAAF90093B01E /* logo.png */,
+			);
+			path = LaunchScreenAsset;
+			sourceTree = "<group>";
+		};
 		D2B031A42A62B2A200DE8896 /* APIModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,6 +730,7 @@
 		D2B096012A529730007BC756 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D28ACC222A6BAAA40093B01E /* LaunchScreenAsset */,
 				D2B096022A529748007BC756 /* Font */,
 				D2614A4B2A52836F00869710 /* Main.storyboard */,
 				D2614A4E2A52837000869710 /* Assets.xcassets */,
@@ -970,6 +981,7 @@
 			files = (
 				D224D4B62A5DFB7300B014ED /* Unbounded-Light.ttf in Resources */,
 				D2614A522A52837000869710 /* LaunchScreen.storyboard in Resources */,
+				D28ACC242A6BAAF90093B01E /* logo.png in Resources */,
 				D224D4B22A5DFAE900B014ED /* Pretendard-Regular.otf in Resources */,
 				D224D4B02A5DFAC400B014ED /* Pretendard-Bold.otf in Resources */,
 				D22188772A5925F100F097C7 /* Pretendard-SemiBold.otf in Resources */,
@@ -992,7 +1004,6 @@
 				D2B031A32A6205F400DE8896 /* Config.swift in Sources */,
 				D224D4982A5D1D6300B014ED /* TicketSuccessView.swift in Sources */,
 				2CC8E63C2A68735300C117D7 /* HomeTicketCheckModel.swift in Sources */,
-				D2B031992A61399800DE8896 /* MySavedBookStoreTableViewCell.swift in Sources */,
 				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2B031B22A631A2600DE8896 /* TicketAPI.swift in Sources */,
 				0525C73C2A67533A00699B2C /* DetailRecommendBookModel.swift in Sources */,
@@ -1021,6 +1032,7 @@
 				D2614A5E2A528C2A00869710 /* Image.swift in Sources */,
 				D224D49A2A5D1D7400B014ED /* TicketFailureView.swift in Sources */,
 				D2B031A12A61B89A00DE8896 /* MySavedBookStoreView.swift in Sources */,
+				D28ACC212A6ADF1E0093B01E /* PPPToastMessage.swift in Sources */,
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
@@ -1262,9 +1274,10 @@
 				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "PPP CLUB";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1276,7 +1289,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "hellohidi.PPPCLUB-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hellohidi.PPPCLUB-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1292,9 +1305,10 @@
 				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3DGF5D388H;
+				DEVELOPMENT_TEAM = 27VUFHH5W2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "PPP CLUB";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1306,7 +1320,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "hellohidi.PPPCLUB-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hellohidi.PPPCLUB-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
