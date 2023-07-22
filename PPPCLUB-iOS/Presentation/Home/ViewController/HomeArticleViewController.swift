@@ -245,6 +245,7 @@ extension HomeArticleViewController {
         HomeAPI.shared.getDetailArticle(articleID: "\(articleID)") { result in
             guard let result = self.validateResult(result) as? HomeDetailArticleResult else { return }
             self.homeDetailArticleData = result
+            self.rootView.articleNavigationView.storeLabel.text = result.spaceName
             self.articleID = result.id
             self.spaceID = result.spaceID
             self.fullText = result.content

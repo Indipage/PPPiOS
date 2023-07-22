@@ -60,10 +60,6 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
             $0.backgroundColor = .pppGrey2
         }
         
-        spaceImage.do {
-            $0.setImage(Image.mockArticle, for: .normal)
-        }
-        
         spaceTypeLabel.do {
             $0.setTitleColor(.pppWhite, for: .normal)
             $0.titleLabel?.font = .pppCaption2
@@ -155,6 +151,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         subTitleLabel.text = articleData.title
         ticketReceivedImage.isHidden = articleData.ticketReceived
         ticketNotReceivedImage.isHidden = !articleData.ticketReceived
+        spaceImage.kfSetButtonImage(url: articleData.thumbnailURL, state: .normal)
     }
     
     func dataBindHome(articleData: HomeArticleListResult) {
@@ -164,6 +161,7 @@ final class MySavedArticleCollectionViewCell: UICollectionViewCell {
         subTitleLabel.text = articleData.title
         ticketReceivedImage.isHidden = articleData.ticketReceived
         ticketNotReceivedImage.isHidden = !articleData.ticketReceived
+        spaceImage.kfSetButtonImage(url: articleData.thumbnailURL, state: .normal)
     }
 }
 

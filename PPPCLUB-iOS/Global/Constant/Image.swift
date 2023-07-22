@@ -38,6 +38,7 @@ public enum Image {
     static let articleGo = UIImage(named: "articleClickGO")!
     static let articleTicket = UIImage(named: "articleTicket")!
     static let articleTicketGradient = UIImage(named: "ticketGradient")!
+    static let articleArrow = UIImage(named: "articleArrow")!
     
     //MARK: - Mock
     
