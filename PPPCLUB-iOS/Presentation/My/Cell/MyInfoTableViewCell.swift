@@ -35,9 +35,6 @@ final class MyInfoTableViewCell: UITableViewCell {
     
     //MARK: - Custom Method
     
-    private func target() {
-    }
-    
     private func cellStyle() {
         infoTitleLabel.do {
             $0.font = .pppBody4
