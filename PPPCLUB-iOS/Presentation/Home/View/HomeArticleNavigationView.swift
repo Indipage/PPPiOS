@@ -18,7 +18,7 @@ class HomeArticleNavigationView: UIView {
     // MARK: - UI Components
     
     public let articleBackButton = UIButton()
-    private let storeLabel = UILabel()
+    var storeLabel = UILabel()
     public let saveButton = UIButton()
     
     
@@ -54,7 +54,6 @@ class HomeArticleNavigationView: UIView {
         }
         
         storeLabel.do {
-            $0.text = "문학살롱 초고"
             $0.font = .pppSubHead1
             $0.textColor = .pppBlack
             $0.textAlignment = .center

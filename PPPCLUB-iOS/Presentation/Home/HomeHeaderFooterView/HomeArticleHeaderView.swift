@@ -16,7 +16,6 @@ protocol ArticleHeaderViewDelegate: AnyObject {
 
 class HomeArticleHeaderView: UITableViewHeaderFooterView {
     
-    
     //MARK: - Properties
     
     weak var delegate: ArticleHeaderViewDelegate?
@@ -24,12 +23,16 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     // MARK: - UI Components
     
     private var articleImage = UIImageView()
-    //UIImageView 로 구현해야 함
+    
+    private let enterDetailView = UIView()
+    private let enterDetailTitleLabel = UILabel()
+    private let enterSpaceLabel = UILabel()
+    private let enterSpaceArrow = UIImageView()
+    private let enterDetailSubTitleLabel = UILabel()
     
     private var editorLabel = UILabel()
     private var articleTitleLabel = UILabel()
     private var dateLabel = UILabel()
-    private var enterStoreButton = UIImageView()
     private var divideBarView = UIView()
     
     // MARK: - Life Cycle
@@ -53,7 +56,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
     private func gesture() {
         lazy var enterStoreButtonGesture = UITapGestureRecognizer.init(target: self, action: #selector(enterStoreButtonGestureHandler))
         
-        self.enterStoreButton.addGestureRecognizer(enterStoreButtonGesture)
+        self.enterDetailView.addGestureRecognizer(enterStoreButtonGesture)
     }
     
     private func style() {
@@ -65,7 +68,6 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
         }
         
         editorLabel.do {
-            $0.text = "책방지기 키위"
             $0.font = .pppCaption1
             $0.textColor = .pppBlack
             $0.textAlignment = .center
@@ -86,9 +88,29 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.textAlignment = .center
         }
         
-        enterStoreButton.do {
-            $0.image = Image.articleGo
-            $0.isUserInteractionEnabled = true
+        enterDetailView.do {
+            $0.backgroundColor = .pppBlack
+        }
+        
+        enterDetailTitleLabel.do {
+            $0.text = "나만 알고싶은"
+            $0.textColor = .pppMainLightGreen
+            $0.font = .pppCaption1
+        }
+        
+        enterSpaceLabel.do {
+            $0.textColor = .pppMainLightGreen
+            $0.font = .pppBody3
+        }
+        
+        enterDetailSubTitleLabel.do {
+            $0.textColor = .pppMainLightGreen
+            $0.font = .pppBody3
+            $0.text = "바로가기"
+        }
+        
+        enterSpaceArrow.do {
+            $0.image = Image.articleArrow
         }
         
         divideBarView.do {
@@ -103,9 +125,15 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
                          editorLabel,
                          articleTitleLabel,
                          dateLabel,
-                         enterStoreButton,
+                        enterDetailView,
                          divideBarView)
         
+        enterDetailView.addSubviews(
+            enterDetailTitleLabel,
+            enterSpaceLabel,
+            enterDetailSubTitleLabel,
+            enterSpaceArrow
+        )
     }
     
     private func layout() {
@@ -132,20 +160,37 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
             $0.centerX.equalToSuperview()
         }
         
-        enterStoreButton.snp.makeConstraints {
+        enterDetailView.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(16)
             $0.width.equalToSuperview()
             $0.height.equalTo(103)
         }
         
         divideBarView.snp.makeConstraints {
-            $0.top.equalTo(enterStoreButton.snp.bottom).offset(20)
+            $0.top.equalTo(enterDetailView.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(30)
             $0.height.equalTo(1)
         }
         
+        enterDetailTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(28)
+        }
+        enterSpaceLabel.snp.makeConstraints {
+            $0.top.equalTo(self.enterDetailTitleLabel.snp.bottom).offset(4)
+            $0.leading.equalTo(self.enterDetailTitleLabel)
+        }
+        
+        enterDetailSubTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(self.enterSpaceLabel.snp.bottom).offset(2)
+            $0.leading.equalTo(self.enterDetailTitleLabel)
+        }
+        enterSpaceArrow.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(62)
+            $0.trailing.equalToSuperview().inset(28)
+        }
     }
     
     //MARK: - Action Method
@@ -158,6 +203,7 @@ class HomeArticleHeaderView: UITableViewHeaderFooterView {
 extension HomeArticleHeaderView {
     func dataBind(articleData: HomeDetailArticleResult?) {
         guard let articleData = articleData else { return }
+        enterSpaceLabel.text = articleData.spaceName
         articleTitleLabel.text = articleData.title
         editorLabel.text = articleData.spaceOwner
         dateLabel.text = articleData.issueDate
