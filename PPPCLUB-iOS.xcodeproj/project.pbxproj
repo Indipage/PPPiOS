@@ -112,7 +112,7 @@
 		D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D265940D2A5CF2360089E56A /* TicketCardCollectionViewCell.swift */; };
 		D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594122A5CF4580089E56A /* TicketCardModel.swift */; };
 		D26594152A5CF4B90089E56A /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26594142A5CF4B90089E56A /* TicketView.swift */; };
-		D273F2762A7B70360022BE63 /* TicketVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D273F2752A7B70360022BE63 /* TicketVIewModel.swift */; };
+		D273F2762A7B70360022BE63 /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D273F2752A7B70360022BE63 /* TicketViewModel.swift */; };
 		D28ACC1C2A69C55C0093B01E /* TicketQRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */; };
 		D28ACC1E2A69C9DF0093B01E /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */; };
 		D28ACC1F2A6A89BB0093B01E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4E2A52837000869710 /* Assets.xcassets */; };
@@ -255,7 +255,7 @@
 		D265940D2A5CF2360089E56A /* TicketCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		D26594122A5CF4580089E56A /* TicketCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardModel.swift; sourceTree = "<group>"; };
 		D26594142A5CF4B90089E56A /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
-		D273F2752A7B70360022BE63 /* TicketVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketVIewModel.swift; sourceTree = "<group>"; };
+		D273F2752A7B70360022BE63 /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
 		D273F2792A7B70C60022BE63 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketQRCodeModel.swift; sourceTree = "<group>"; };
 		D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
@@ -696,7 +696,7 @@
 		D273F2742A7B701E0022BE63 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D273F2752A7B70360022BE63 /* TicketVIewModel.swift */,
+				D273F2752A7B70360022BE63 /* TicketViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1088,7 +1088,7 @@
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
 				058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */,
 				D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */,
-				D273F2762A7B70360022BE63 /* TicketVIewModel.swift in Sources */,
+				D273F2762A7B70360022BE63 /* TicketViewModel.swift in Sources */,
 				D224D4A92A5DB66800B014ED /* MyInfoModel.swift in Sources */,
 				2CDCCE722A6955680001FD0F /* AllCustomFlowLayout.swift in Sources */,
 				D2B0961A2A529994007BC756 /* SearchView.swift in Sources */,

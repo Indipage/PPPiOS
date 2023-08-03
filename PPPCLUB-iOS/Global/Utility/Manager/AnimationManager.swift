@@ -24,14 +24,16 @@ class AnimationManager {
         } else {
             transform = .identity
         }
+        let selectedTextColor: UIColor = .pppWhite
+        let unSelectedTextColor: UIColor = .pppGrey4
         UIView.animate(
             withDuration: 0.25,
             delay: 0,
             options: .curveEaseInOut,
             animations: {
                 targetView.transform = transform
-                selectedLabel.textColor = .pppWhite
-                unSelectedLable.textColor = .pppGrey4
+                selectedLabel.textColor = selectedTextColor
+                unSelectedLable.textColor = unSelectedTextColor
             })
     }
     

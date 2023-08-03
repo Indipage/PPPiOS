@@ -14,8 +14,6 @@ final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var toggleMode: Bool = true
-    
     private let viewModel: TicketViewModel
     private let animatinoManager: AnimationManager
     private let ticketNetworkManager: TicketAPI
@@ -79,6 +77,7 @@ final class TicketViewController: BaseViewController {
     private func bind() {
         viewModel.displayMode.observe(on: self) { DisplayModel in
             self.updateSelectedView(DisplayModel)
+            self.updateToggleView(DisplayModel)
         }
     }
     
@@ -100,6 +99,19 @@ final class TicketViewController: BaseViewController {
         }
     }
     
+    func updateToggleView(_ displayMode: DisplayMode) {
+        switch displayMode {
+        case .ticket:
+            break
+        case .card:
+            rootView.ticketToggleView.toggleButton.snp.remakeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.top.trailing.bottom.equalToSuperview().inset(3.adjusted)
+                $0.width.equalTo(155.adjusted)
+            }
+        }
+    }
+    
     //MARK: - Action Method
     
     @objc func ticketToggleButtonDidTap() {
@@ -107,39 +119,24 @@ final class TicketViewController: BaseViewController {
         let toggleView = rootView.ticketToggleView
         requestTicketAPI()
         
-        if toggleMode {
-            animatinoManager.ticketToggleButtonAnimate (
-                targetView: toggleView.toggleButton,
-                translationX: nil,
-                selectedLabel: toggleView.ticketLabel,
-                unSelectedLable: toggleView.cardLabel)
-
-        } else {
-            animatinoManager.ticketToggleButtonAnimate (
-                targetView: toggleView.toggleButton,
-                translationX: -158.adjusted,
-                selectedLabel: toggleView.ticketLabel,
-                unSelectedLable: toggleView.cardLabel)
-        }
+        animatinoManager.ticketToggleButtonAnimate (
+            targetView: toggleView.toggleButton,
+            translationX: viewModel.moveBy(),
+            selectedLabel: toggleView.ticketLabel,
+            unSelectedLable: toggleView.cardLabel
+        )
     }
     
     @objc func cardToggleButtonDidTap() {
         let toggleView = rootView.ticketToggleView
         viewModel.cardToggleButtonDidTap()
         requestTicketCardAPI()
-        if toggleMode {
-            animatinoManager.ticketToggleButtonAnimate (
-                targetView: toggleView.toggleButton,
-                translationX: 158.adjusted,
-                selectedLabel: toggleView.cardLabel,
-                unSelectedLable: toggleView.ticketLabel)
-        } else {
-            animatinoManager.ticketToggleButtonAnimate (
-                targetView: toggleView.toggleButton,
-                translationX: nil,
-                selectedLabel: toggleView.cardLabel,
-                unSelectedLable: toggleView.ticketLabel)
-        }
+        
+        animatinoManager.ticketToggleButtonAnimate (
+            targetView: toggleView.toggleButton,
+            translationX: viewModel.moveBy(),
+            selectedLabel: toggleView.cardLabel,
+            unSelectedLable: toggleView.ticketLabel)
     }
 }
 

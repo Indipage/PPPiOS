@@ -176,7 +176,7 @@ extension TicketCheckQRCodeViewController {
     }
     
     private func pushToSuccessView(imageURL: String) {
-        let ticketSuccessView = TicketSuccessViewController()
+        let ticketSuccessView = TicketSuccessViewController(viewModel: TicketViewModel())
         ticketSuccessView.dataBind(imageURL: imageURL)
         self.navigationController?.pushViewController(ticketSuccessView, animated: true)
     }

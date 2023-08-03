@@ -50,6 +50,7 @@ enum DisplayMode {
 protocol TicketViewModelInput {
     func ticketToggleButtonDidTap()
     func cardToggleButtonDidTap()
+    func moveBy() -> CGFloat?
     func checkTicketEmptyView() -> Bool
     func checkCardEmptyView() -> Bool
 }
@@ -71,22 +72,34 @@ final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
         return cardData.isEmpty
     }
     
-    var displayMode: Observable<DisplayMode> = Observable(.ticket)
-    var toggleMode: Observable<DisplayMode> = Observable(.ticket)
+    var displayMode: Observable<DisplayMode> = Observable(.card)
+    var toggleMode: Observable<DisplayMode> = Observable(.card)
     
     func ticketToggleButtonDidTap() {
-        print("🖕🖕🖕🖕🖕🖕🖕🖕🖕")
-        print("티켓 버튼 눌럿을대")
         displayMode.value = .ticket
         
     }
     
     func cardToggleButtonDidTap() {
-        print("🖕🖕🖕🖕🖕🖕🖕🖕🖕")
-        print("카드 버튼 눌럿을대")
         displayMode.value = .card
     }
-
     
+    func moveBy() -> CGFloat? {
+        if displayMode.value == toggleMode.value {
+            print("👀 \(displayMode.value) /// \(toggleMode.value)")
+            return nil
+            
+        }
+        else if toggleMode.value ==  .ticket {
+            print("👃 \(displayMode.value) /// \(toggleMode.value)")
+            return 158
+            
+        }
+        else {
+            print("💋 \(displayMode.value) /// \(toggleMode.value)")
+            return -158
+            
+        }
+    }
 }
 
