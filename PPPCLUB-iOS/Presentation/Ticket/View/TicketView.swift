@@ -23,7 +23,6 @@ final class TicketView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        style()
         hieararchy()
         layout()
     }
@@ -33,11 +32,6 @@ final class TicketView: UIView {
     }
     
     // MARK: - Custom Method
-    
-    private func style() {
-        cardView.isHidden = true
-        ticketView.isHidden = false
-    }
     
     private func hieararchy() {
         self.addSubviews(ticketToggleView, ticketView, cardView)

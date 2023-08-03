@@ -41,7 +41,7 @@ final class Observable<T> {
 }
 
 
-enum DisplayModel {
+enum DisplayMode {
     case ticket
     case card
 }
@@ -50,41 +50,39 @@ enum DisplayModel {
 protocol TicketViewModelInput {
     func ticketToggleButtonDidTap()
     func cardToggleButtonDidTap()
+    func checkTicketEmptyView() -> Bool
+    func checkCardEmptyView() -> Bool
 }
 
 protocol TicketViewViewModelOutput {
-    var displayModel: Observable<DisplayModel> { get }
+    var displayMode: Observable<DisplayMode> { get }
 }
 
 final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
-    var displayModel: Observable<DisplayModel> = Observable(.ticket)
+    var ticketData: [TicketResult] = []
+    var cardData: [TicketCardResult] = []
     
-//    var ticketCnt: Int
-//    var cardCnt: Int
-//    
-//    init(ticketCnt: Int, cardCnt: Int) {
-//        self.ticketCnt = ticketCnt
-//        self.cardCnt = cardCnt
-//    }
-    
-    
-    
-    func updateSelectedView() {
-        print("일단은 기능 구현 안하고 나머지 부터 먼저 해봅시다")
+    func checkTicketEmptyView() -> Bool {
+        return ticketData.isEmpty
     }
     
+    func checkCardEmptyView() -> Bool {
+        return cardData.isEmpty
+    }
+    
+    var displayMode: Observable<DisplayMode> = Observable(.card)
     
     func ticketToggleButtonDidTap() {
         print("🖕🖕🖕🖕🖕🖕🖕🖕🖕")
         print("티켓 버튼 눌럿을대")
-        displayModel.value = .ticket
+        displayMode.value = .ticket
         
     }
     
     func cardToggleButtonDidTap() {
         print("🖕🖕🖕🖕🖕🖕🖕🖕🖕")
         print("카드 버튼 눌럿을대")
-        displayModel.value = .card
+        displayMode.value = .card
     }
 
     

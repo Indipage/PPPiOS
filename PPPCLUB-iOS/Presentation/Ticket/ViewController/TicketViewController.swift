@@ -10,26 +10,11 @@ import UIKit
 import SnapKit
 import Then
 
-
 final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
     
     var toggleMode: Bool = true
-    
-    private var ticketData: [TicketResult] = [] {
-        didSet {
-            rootView.ticketView.ticketCollectionView.reloadData()
-            self.isEmptyView()
-        }
-    }
-    
-    private var cardData: [TicketCardResult] = [] {
-        didSet {
-            rootView.cardView.ticketCardCollectionView.reloadData()
-            self.isEmptyView()
-        }
-    }
     
     private let viewModel: TicketViewModel
     
@@ -68,12 +53,6 @@ final class TicketViewController: BaseViewController {
         requestTicketCardAPI()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-//        viewModel.toggle()
-    }
-    
     //MARK: - Custom Method
     
     private func target() {
@@ -90,19 +69,27 @@ final class TicketViewController: BaseViewController {
     }
     
     private func bind() {
-        viewModel.displayModel.observe(on: self) { DisplayModel in
+        viewModel.displayMode.observe(on: self) { DisplayModel in
             self.updateSelectedView(DisplayModel)
+            //self.updateToggleViewUI(DisplayModel)
         }
     }
     
-    func updateSelectedView(_ displayMode: DisplayModel) {
+    func updateSelectedView(_ displayMode: DisplayMode) {
         switch displayMode {
         case .ticket:
+            let isHidden = viewModel.checkTicketEmptyView()
             rootView.ticketView.isHidden = false
             rootView.cardView.isHidden = true
+            rootView.ticketView.noTicketView.isHidden = !isHidden
+            rootView.ticketView.ticketCollectionView.isHidden = isHidden
         case .card:
+            let isHidden = viewModel.checkCardEmptyView()
             rootView.ticketView.isHidden = true
             rootView.cardView.isHidden = false
+            rootView.cardView.noTicketCardView.isHidden = !isHidden
+            rootView.cardView.ticketCardCollectionView.isHidden = isHidden
+            rootView.cardView.cardImageView.isHidden = isHidden
         }
     }
     
@@ -112,13 +99,14 @@ final class TicketViewController: BaseViewController {
         viewModel.ticketToggleButtonDidTap()
         let toggleView = rootView.ticketToggleView
         requestTicketAPI()
+        
         if toggleMode {
             AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: nil,
                 selectedLabel: toggleView.ticketLabel,
                 unSelectedLable: toggleView.cardLabel)
-            
+
         } else {
             AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
@@ -180,9 +168,9 @@ extension TicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return ticketData.count
+            return viewModel.ticketData.count
         case rootView.cardView.ticketCardCollectionView:
-            return cardData.count
+            return viewModel.cardData.count
         default:
             return 0
         }
@@ -194,7 +182,7 @@ extension TicketViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(ticket: ticketData[indexPath.item], point: cell.center)
+            cell.configureCell(ticket: viewModel.ticketData[indexPath.item], point: cell.center)
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
@@ -202,7 +190,7 @@ extension TicketViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.delegate = self
-            cell.configureCell(card: cardData[indexPath.item])
+            cell.configureCell(card: viewModel.cardData[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -234,32 +222,13 @@ extension TicketViewController {
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
     
-    private func isEmptyView() {
-        if ticketData.isEmpty {
-            rootView.ticketView.noTicketView.isHidden = false
-            rootView.ticketView.ticketCollectionView.isHidden = true
-        } else {
-            rootView.ticketView.noTicketView.isHidden = true
-            rootView.ticketView.ticketCollectionView.isHidden = false
-        }
-        
-        if cardData.isEmpty {
-            rootView.cardView.noTicketCardView.isHidden = false
-            rootView.cardView.ticketCardCollectionView.isHidden = true
-            rootView.cardView.cardImageView.isHidden = true
-        } else {
-            rootView.cardView.noTicketCardView.isHidden = true
-            rootView.cardView.ticketCardCollectionView.isHidden = false
-            rootView.cardView.cardImageView.isHidden = false
-        }
-    }
-    
     private func requestTicketAPI() {
         TicketAPI.shared.getTotalTicket() { result in
             guard let result = self.validateResult(result) as? [TicketResult] else {
                 return
             }
-            self.ticketData = result
+            self.viewModel.ticketData = result
+            self.rootView.ticketView.ticketCollectionView.reloadData()
         }
     }
     
@@ -268,10 +237,11 @@ extension TicketViewController {
             guard let result = self.validateResult(result) as? [TicketCardResult] else {
                 return
             }
-            self.cardData = result
-            if !self.cardData.isEmpty {
-                self.rootView.cardView.cardImageView.kfSetImage(url: self.cardData[0].imageURL)
+            self.viewModel.cardData = result
+            if !self.viewModel.cardData.isEmpty {
+                self.rootView.cardView.cardImageView.kfSetImage(url: self.viewModel.cardData[0].imageURL)
             }
+            self.rootView.cardView.ticketCardCollectionView.reloadData()
         }
     }
 }
