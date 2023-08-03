@@ -20,7 +20,7 @@ class PPPTabBarController: UITabBarController {
     let myViewController = MyViewController()
     let ticketViewModel = TicketViewModel() // TicketViewController에 전달할 TicketViewModel 인스턴스 생성
     
-    let ticketViewController = TicketViewController(viewModel: TicketViewModel())
+    let ticketViewController = TicketViewController(viewModel: TicketViewModel(), animatinoManager: AnimationManager(), ticketNetworkManager: TicketAPI())
     
     
     lazy var homeNavigationContrller = UINavigationController(rootViewController: homeViewController)

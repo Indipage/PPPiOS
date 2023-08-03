@@ -12,7 +12,7 @@ import Moya
 final class TicketAPI: BaseAPI {
     static let shared = TicketAPI()
     private var ticketProvider = MoyaProvider<TicketService>(plugins: [MoyaLoggingPlugin()])
-    private override init() {}
+    override init() {}
 }
 
 extension TicketAPI {

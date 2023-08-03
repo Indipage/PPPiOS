@@ -56,6 +56,7 @@ protocol TicketViewModelInput {
 
 protocol TicketViewViewModelOutput {
     var displayMode: Observable<DisplayMode> { get }
+    var toggleMode: Observable<DisplayMode> { get }
 }
 
 final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
@@ -70,7 +71,8 @@ final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
         return cardData.isEmpty
     }
     
-    var displayMode: Observable<DisplayMode> = Observable(.card)
+    var displayMode: Observable<DisplayMode> = Observable(.ticket)
+    var toggleMode: Observable<DisplayMode> = Observable(.ticket)
     
     func ticketToggleButtonDidTap() {
         print("🖕🖕🖕🖕🖕🖕🖕🖕🖕")

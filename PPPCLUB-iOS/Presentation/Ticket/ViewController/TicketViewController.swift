@@ -17,9 +17,17 @@ final class TicketViewController: BaseViewController {
     var toggleMode: Bool = true
     
     private let viewModel: TicketViewModel
+    private let animatinoManager: AnimationManager
+    private let ticketNetworkManager: TicketAPI
     
-    init(viewModel: TicketViewModel) {
+    init(
+        viewModel: TicketViewModel,
+        animatinoManager: AnimationManager,
+        ticketNetworkManager: TicketAPI
+    ) {
         self.viewModel = viewModel
+        self.animatinoManager = animatinoManager
+        self.ticketNetworkManager =  ticketNetworkManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,9 +48,9 @@ final class TicketViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bind()
         delegate()
         target()
-        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +79,6 @@ final class TicketViewController: BaseViewController {
     private func bind() {
         viewModel.displayMode.observe(on: self) { DisplayModel in
             self.updateSelectedView(DisplayModel)
-            //self.updateToggleViewUI(DisplayModel)
         }
     }
     
@@ -101,14 +108,14 @@ final class TicketViewController: BaseViewController {
         requestTicketAPI()
         
         if toggleMode {
-            AnimationManager.shared.ticketToggleButtonAnimate (
+            animatinoManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: nil,
                 selectedLabel: toggleView.ticketLabel,
                 unSelectedLable: toggleView.cardLabel)
 
         } else {
-            AnimationManager.shared.ticketToggleButtonAnimate (
+            animatinoManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: -158.adjusted,
                 selectedLabel: toggleView.ticketLabel,
@@ -121,13 +128,13 @@ final class TicketViewController: BaseViewController {
         viewModel.cardToggleButtonDidTap()
         requestTicketCardAPI()
         if toggleMode {
-            AnimationManager.shared.ticketToggleButtonAnimate (
+            animatinoManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: 158.adjusted,
                 selectedLabel: toggleView.cardLabel,
                 unSelectedLable: toggleView.ticketLabel)
         } else {
-            AnimationManager.shared.ticketToggleButtonAnimate (
+            animatinoManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: nil,
                 selectedLabel: toggleView.cardLabel,
@@ -223,7 +230,7 @@ extension TicketViewController {
     }
     
     private func requestTicketAPI() {
-        TicketAPI.shared.getTotalTicket() { result in
+        ticketNetworkManager.getTotalTicket() { result in
             guard let result = self.validateResult(result) as? [TicketResult] else {
                 return
             }
@@ -233,7 +240,7 @@ extension TicketViewController {
     }
     
     private func requestTicketCardAPI() {
-        TicketAPI.shared.getTotalCard() { result in
+        ticketNetworkManager.getTotalCard() { result in
             guard let result = self.validateResult(result) as? [TicketCardResult] else {
                 return
             }

@@ -10,7 +10,7 @@ import UIKit
 class AnimationManager {
     static let shared = AnimationManager()
     
-    private init() {}
+    init() {}
     
     func ticketToggleButtonAnimate(
         targetView: UIView,
@@ -32,8 +32,6 @@ class AnimationManager {
                 targetView.transform = transform
                 selectedLabel.textColor = .pppWhite
                 unSelectedLable.textColor = .pppGrey4
-                
-                
             })
     }
     
