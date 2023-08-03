@@ -43,8 +43,7 @@ final class TicketSuccessViewController: BaseViewController {
     //MARK: - Action Method
     
     @objc func cardButtonDidTap() {
-        let ticketViewController = TicketViewController()
-        ticketViewController.displayMode = true
+        let ticketViewController = TicketViewController(viewModel: TicketViewModel())
         ticketViewController.toggleMode = false
         
         ticketViewController.rootView.ticketToggleView.toggleButton.snp.remakeConstraints {

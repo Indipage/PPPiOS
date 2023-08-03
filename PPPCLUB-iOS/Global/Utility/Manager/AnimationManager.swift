@@ -16,8 +16,7 @@ class AnimationManager {
         targetView: UIView,
         translationX: CGFloat?,
         selectedLabel: UILabel,
-        unSelectedLable: UILabel,
-        completion: (((Bool) -> Void)?)
+        unSelectedLable: UILabel
     ) {
         let transform: CGAffineTransform
         if let translationX {
@@ -35,7 +34,7 @@ class AnimationManager {
                 unSelectedLable.textColor = .pppGrey4
                 
                 
-            }, completion: completion)
+            })
     }
     
     func ticketAnimate(

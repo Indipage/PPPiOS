@@ -41,6 +41,11 @@ final class Observable<T> {
 }
 
 
+enum DisplayModel {
+    case ticket
+    case card
+}
+
 
 protocol TicketViewModelInput {
     func ticketToggleButtonDidTap()
@@ -48,25 +53,20 @@ protocol TicketViewModelInput {
 }
 
 protocol TicketViewViewModelOutput {
-    var ticketAppear: Observable<Bool> { get }
-    var noTicketAppear: Observable<Bool> { get }
-    var cardAppear: Observable<Bool> { get }
-    var noCardAppear: Observable<Bool> { get }
+    var displayModel: Observable<DisplayModel> { get }
 }
 
 final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
-    var ticketCnt: Int
-    var cardCnt: Int
+    var displayModel: Observable<DisplayModel> = Observable(.ticket)
     
-    init(ticketCnt: Int, cardCnt: Int) {
-        self.ticketCnt = ticketCnt
-        self.cardCnt = cardCnt
-    }
+//    var ticketCnt: Int
+//    var cardCnt: Int
+//    
+//    init(ticketCnt: Int, cardCnt: Int) {
+//        self.ticketCnt = ticketCnt
+//        self.cardCnt = cardCnt
+//    }
     
-    var ticketAppear: Observable<Bool> = Observable(true)
-    var cardAppear: Observable<Bool> = Observable(true)
-    var noTicketAppear: Observable<Bool> = Observable(true)
-    var noCardAppear: Observable<Bool> = Observable(true)
     
     
     func updateSelectedView() {
@@ -75,15 +75,16 @@ final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
     
     
     func ticketToggleButtonDidTap() {
+        print("🖕🖕🖕🖕🖕🖕🖕🖕🖕")
         print("티켓 버튼 눌럿을대")
-        ticketAppear.value.toggle()
-        cardAppear.value.toggle()
+        displayModel.value = .ticket
+        
     }
     
     func cardToggleButtonDidTap() {
+        print("🖕🖕🖕🖕🖕🖕🖕🖕🖕")
         print("카드 버튼 눌럿을대")
-        ticketAppear.value.toggle()
-        cardAppear.value.toggle()
+        displayModel.value = .card
     }
 
     

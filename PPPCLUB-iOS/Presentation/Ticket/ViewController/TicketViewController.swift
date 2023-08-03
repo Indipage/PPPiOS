@@ -15,7 +15,6 @@ final class TicketViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var displayMode: Bool = false
     var toggleMode: Bool = true
     
     private var ticketData: [TicketResult] = [] {
@@ -30,6 +29,17 @@ final class TicketViewController: BaseViewController {
             rootView.cardView.ticketCardCollectionView.reloadData()
             self.isEmptyView()
         }
+    }
+    
+    private let viewModel: TicketViewModel
+    
+    init(viewModel: TicketViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - UI Components
@@ -47,6 +57,7 @@ final class TicketViewController: BaseViewController {
         
         delegate()
         target()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,13 +66,12 @@ final class TicketViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
         requestTicketAPI()
         requestTicketCardAPI()
-        showSelectedView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        displayMode.toggle()
+//        viewModel.toggle()
     }
     
     //MARK: - Custom Method
@@ -79,9 +89,27 @@ final class TicketViewController: BaseViewController {
         rootView.cardView.ticketCardCollectionView.dataSource = self
     }
     
+    private func bind() {
+        viewModel.displayModel.observe(on: self) { DisplayModel in
+            self.updateSelectedView(DisplayModel)
+        }
+    }
+    
+    func updateSelectedView(_ displayMode: DisplayModel) {
+        switch displayMode {
+        case .ticket:
+            rootView.ticketView.isHidden = false
+            rootView.cardView.isHidden = true
+        case .card:
+            rootView.ticketView.isHidden = true
+            rootView.cardView.isHidden = false
+        }
+    }
+    
     //MARK: - Action Method
     
     @objc func ticketToggleButtonDidTap() {
+        viewModel.ticketToggleButtonDidTap()
         let toggleView = rootView.ticketToggleView
         requestTicketAPI()
         if toggleMode {
@@ -89,40 +117,33 @@ final class TicketViewController: BaseViewController {
                 targetView: toggleView.toggleButton,
                 translationX: nil,
                 selectedLabel: toggleView.ticketLabel,
-                unSelectedLable: toggleView.cardLabel) { _ in
-                    self.showSelectedView()
-                }
+                unSelectedLable: toggleView.cardLabel)
             
         } else {
             AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: -158.adjusted,
                 selectedLabel: toggleView.ticketLabel,
-                unSelectedLable: toggleView.cardLabel) { _ in
-                    self.showSelectedView()
-                }
+                unSelectedLable: toggleView.cardLabel)
         }
     }
     
     @objc func cardToggleButtonDidTap() {
         let toggleView = rootView.ticketToggleView
+        viewModel.cardToggleButtonDidTap()
         requestTicketCardAPI()
         if toggleMode {
             AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: 158.adjusted,
                 selectedLabel: toggleView.cardLabel,
-                unSelectedLable: toggleView.ticketLabel) { _ in
-                    self.showSelectedView()
-                }
+                unSelectedLable: toggleView.ticketLabel)
         } else {
             AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: nil,
                 selectedLabel: toggleView.cardLabel,
-                unSelectedLable: toggleView.ticketLabel) { _ in
-                    self.showSelectedView()
-                }
+                unSelectedLable: toggleView.ticketLabel)
         }
     }
 }
@@ -231,13 +252,6 @@ extension TicketViewController {
             rootView.cardView.ticketCardCollectionView.isHidden = false
             rootView.cardView.cardImageView.isHidden = false
         }
-    }
-    
-    private func showSelectedView() {
-        rootView.ticketView.isHidden = displayMode
-        rootView.cardView.isHidden = !displayMode
-        isEmptyView()
-        displayMode.toggle()
     }
     
     private func requestTicketAPI() {
