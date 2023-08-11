@@ -72,8 +72,8 @@ final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
         return cardData.isEmpty
     }
     
-    var displayMode: Observable<DisplayMode> = Observable(.card)
-    var toggleMode: Observable<DisplayMode> = Observable(.card)
+    var displayMode: Observable<DisplayMode> = Observable(.ticket)
+    var toggleMode: Observable<DisplayMode> = Observable(.ticket)
     
     func ticketToggleButtonDidTap() {
         displayMode.value = .ticket
@@ -85,21 +85,9 @@ final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
     }
     
     func moveBy() -> CGFloat? {
-        if displayMode.value == toggleMode.value {
-            print("👀 \(displayMode.value) /// \(toggleMode.value)")
-            return nil
-            
-        }
-        else if toggleMode.value ==  .ticket {
-            print("👃 \(displayMode.value) /// \(toggleMode.value)")
-            return 158
-            
-        }
-        else {
-            print("💋 \(displayMode.value) /// \(toggleMode.value)")
-            return -158
-            
-        }
+        if displayMode.value == toggleMode.value { return nil }
+        else if displayMode.value ==  .ticket { return 158 }
+        else { return -158 }
     }
 }
 

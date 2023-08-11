@@ -81,41 +81,9 @@ final class TicketViewController: BaseViewController {
         }
     }
     
-    func updateSelectedView(_ displayMode: DisplayMode) {
-        switch displayMode {
-        case .ticket:
-            let isHidden = viewModel.checkTicketEmptyView()
-            rootView.ticketView.isHidden = false
-            rootView.cardView.isHidden = true
-            rootView.ticketView.noTicketView.isHidden = !isHidden
-            rootView.ticketView.ticketCollectionView.isHidden = isHidden
-        case .card:
-            let isHidden = viewModel.checkCardEmptyView()
-            rootView.ticketView.isHidden = true
-            rootView.cardView.isHidden = false
-            rootView.cardView.noTicketCardView.isHidden = !isHidden
-            rootView.cardView.ticketCardCollectionView.isHidden = isHidden
-            rootView.cardView.cardImageView.isHidden = isHidden
-        }
-    }
-    
-    func updateToggleView(_ displayMode: DisplayMode) {
-        switch displayMode {
-        case .ticket:
-            break
-        case .card:
-            rootView.ticketToggleView.toggleButton.snp.remakeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.top.trailing.bottom.equalToSuperview().inset(3.adjusted)
-                $0.width.equalTo(155.adjusted)
-            }
-        }
-    }
-    
     //MARK: - Action Method
     
     @objc func ticketToggleButtonDidTap() {
-        viewModel.ticketToggleButtonDidTap()
         let toggleView = rootView.ticketToggleView
         requestTicketAPI()
         
@@ -125,18 +93,20 @@ final class TicketViewController: BaseViewController {
             selectedLabel: toggleView.ticketLabel,
             unSelectedLable: toggleView.cardLabel
         )
+        viewModel.ticketToggleButtonDidTap()
     }
     
     @objc func cardToggleButtonDidTap() {
         let toggleView = rootView.ticketToggleView
-        viewModel.cardToggleButtonDidTap()
         requestTicketCardAPI()
         
         animatinoManager.ticketToggleButtonAnimate (
             targetView: toggleView.toggleButton,
             translationX: viewModel.moveBy(),
             selectedLabel: toggleView.cardLabel,
-            unSelectedLable: toggleView.ticketLabel)
+            unSelectedLable: toggleView.ticketLabel
+        )
+        viewModel.cardToggleButtonDidTap()
     }
 }
 
@@ -221,6 +191,38 @@ extension TicketViewController: TicketDelegate {
 //MARK: - TicketViewController
 
 extension TicketViewController {
+    
+    private func updateSelectedView(_ displayMode: DisplayMode) {
+        switch displayMode {
+        case .ticket:
+            let isHidden = viewModel.checkTicketEmptyView()
+            rootView.ticketView.isHidden = false
+            rootView.cardView.isHidden = true
+            rootView.ticketView.noTicketView.isHidden = !isHidden
+            rootView.ticketView.ticketCollectionView.isHidden = isHidden
+        case .card:
+            let isHidden = viewModel.checkCardEmptyView()
+            rootView.ticketView.isHidden = true
+            rootView.cardView.isHidden = false
+            rootView.cardView.noTicketCardView.isHidden = !isHidden
+            rootView.cardView.ticketCardCollectionView.isHidden = isHidden
+            rootView.cardView.cardImageView.isHidden = isHidden
+        }
+    }
+    
+    private func updateToggleView(_ displayMode: DisplayMode) {
+        switch displayMode {
+        case .ticket:
+            break
+        case .card:
+            rootView.ticketToggleView.toggleButton.snp.remakeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.top.trailing.bottom.equalToSuperview().inset(3.adjusted)
+                $0.width.equalTo(155.adjusted)
+            }
+        }
+    }
+    
     private func pushToQRChecktView(spaceID: Int?) {
         let qrcheckViewController = TicketCheckQRCodeViewController(spaceID: spaceID!)
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
@@ -242,7 +244,7 @@ extension TicketViewController {
                 return
             }
             self.viewModel.cardData = result
-            if !self.viewModel.cardData.isEmpty {
+            if !self.viewModel.checkCardEmptyView() {
                 self.rootView.cardView.cardImageView.kfSetImage(url: self.viewModel.cardData[0].imageURL)
             }
             self.rootView.cardView.ticketCardCollectionView.reloadData()
