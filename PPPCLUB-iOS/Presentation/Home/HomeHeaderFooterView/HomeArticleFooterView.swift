@@ -65,7 +65,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         }
         
         ticketSubLabel.do {
-            $0.text = "이번 주 아티클은 잘 읽으셨나요?\nPPPclub에서 드리는 티켓을 가지고\n문학살롱 초고에 방문하여 인증받아보세요!"
+            $0.text = ""
             $0.font = .systemFont(ofSize: 15)
             $0.textColor = .pppBlack
             $0.setLineSpacing(spacing: 10)
@@ -112,8 +112,6 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
             $0.height.equalTo(383)
             $0.bottom.equalToSuperview().inset(91)
         }
-        
-        
     }
     
     //MARK: - Action Method
@@ -133,9 +131,14 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
             ticketButton.setImage(Image.mockNoTicket, for: .normal)
         }
         else {
-            ticketButton.kfSetButtonImage(url: ticketURL, state: .normal)
+            ticketButton.kfSetButtonImage(url: ticketURL, state: .disabled)
             ticketButton.isEnabled = false
         }
+    }
+    
+    func dataBindTicketCheck2(articleData: HomeDetailArticleResult?) {
+        guard let articleData = articleData else { return }
+        ticketSubLabel.text = "이번 주 아티클은 잘 읽으셨나요?\nPPPclub에서 드리는 티켓을 가지고\n\(articleData.spaceName)에 방문하여 인증받아보세요!"
     }
 }
 

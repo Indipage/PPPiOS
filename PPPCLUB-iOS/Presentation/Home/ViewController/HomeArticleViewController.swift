@@ -184,6 +184,7 @@ extension HomeArticleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
         footer.dataBindTicketCheck(articleData: ticketCheckData)
+        footer.dataBindTicketCheck2(articleData: homeDetailArticleData)
         return footer
     }
     
