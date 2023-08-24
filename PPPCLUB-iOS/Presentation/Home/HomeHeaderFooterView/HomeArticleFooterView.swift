@@ -131,7 +131,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
             ticketButton.setImage(Image.mockNoTicket, for: .normal)
         }
         else {
-            ticketButton.kfSetButtonImage(url: ticketURL, state: .normal)
+            ticketButton.kfSetButtonImage(url: ticketURL, state: .disabled)
             ticketButton.isEnabled = false
         }
     }
