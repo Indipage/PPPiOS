@@ -24,6 +24,7 @@ final class TicketToggleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
         style()
         hierarchy()
         layout()

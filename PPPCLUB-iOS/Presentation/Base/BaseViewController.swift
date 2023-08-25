@@ -12,39 +12,19 @@ import Then
 
 class BaseViewController : UIViewController {
     
-    //MARK: - Properties
-    
-    //MARK: - UI Components
-    
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
-        setLayout()
         swipeRecognizer()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     //MARK: - Custom Method
     
     func setUI(){
         view.backgroundColor = .pppWhite
-        self.navigationController?.isNavigationBarHidden = true
-    }
-    
-    func setLayout(){
-        
     }
     
     public func showToast(message : String, font: UIFont) {
@@ -72,8 +52,6 @@ class BaseViewController : UIViewController {
             print("⭐️⭐️⭐️⭐️⭐️⭐️")
             print(data)
             return data
-        case .notFoundErr(_):
-            presentBottomAlert("")
         case .requestErr(let message):
             presentBottomAlert(message)
         case .pathErr:
@@ -102,22 +80,6 @@ class BaseViewController : UIViewController {
 }
 
 extension BaseViewController: UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-    
-//    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-//
-//        print(#function)
-//        // 1. 현재 뷰컨트롤러에서 Swipe 제스처 인식기를 생성합니다.
-//        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
-//        swipeGesture.direction = .right
-//        view.addGestureRecognizer(swipeGesture)
-//
-//        // 2. 이전 뷰컨트롤러에서 Swipe 제스처 인식기를 제거합니다.
-//        if let previousViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) {
-//            for recognizer in previousViewController.view.gestureRecognizers ?? [] {
-//                previousViewController.view.removeGestureRecognizer(recognizer)
-//            }
-//        }
-//    }
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         print("Child ViewControllers", navigationController.viewControllers.count)
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = navigationController.viewControllers.count > 1

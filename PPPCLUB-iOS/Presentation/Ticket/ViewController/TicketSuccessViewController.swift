@@ -12,11 +12,24 @@ import Then
 
 final class TicketSuccessViewController: BaseViewController {
     
+    //MARK: - Properties
+    
+    private let viewModel: TicketViewModel
+    
     //MARK: - UI Components
     
     let rootView = TicketSuccessView()
     
     //MARK: - Life Cycle
+    
+    init(viewModel: TicketViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.view = rootView
@@ -43,15 +56,10 @@ final class TicketSuccessViewController: BaseViewController {
     //MARK: - Action Method
     
     @objc func cardButtonDidTap() {
-        let ticketViewController = TicketViewController()
-        ticketViewController.displayMode = true
-        ticketViewController.toggleMode = false
+        viewModel.toggleMode.value = .card
+        viewModel.displayMode.value = .card
+        let ticketViewController = TicketViewController(viewModel: viewModel, animatinoManager: AnimationManager(), ticketNetworkManager: TicketAPI())
         
-        ticketViewController.rootView.ticketToggleView.toggleButton.snp.remakeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.top.trailing.bottom.equalToSuperview().inset(3)
-                $0.width.equalTo(155.adjusted)
-        }
         
         self.navigationController?.pushViewController(ticketViewController, animated: true)
     }

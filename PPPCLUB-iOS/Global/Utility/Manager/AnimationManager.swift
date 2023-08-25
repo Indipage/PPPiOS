@@ -10,14 +10,13 @@ import UIKit
 class AnimationManager {
     static let shared = AnimationManager()
     
-    private init() {}
+    init() {}
     
     func ticketToggleButtonAnimate(
         targetView: UIView,
         translationX: CGFloat?,
         selectedLabel: UILabel,
-        unSelectedLable: UILabel,
-        completion: (((Bool) -> Void)?)
+        unSelectedLable: UILabel
     ) {
         let transform: CGAffineTransform
         if let translationX {
@@ -25,17 +24,17 @@ class AnimationManager {
         } else {
             transform = .identity
         }
+        let selectedTextColor: UIColor = .pppWhite
+        let unSelectedTextColor: UIColor = .pppGrey4
         UIView.animate(
             withDuration: 0.25,
             delay: 0,
             options: .curveEaseInOut,
             animations: {
                 targetView.transform = transform
-                selectedLabel.textColor = .pppWhite
-                unSelectedLable.textColor = .pppGrey4
-                
-                
-            }, completion: completion)
+                selectedLabel.textColor = selectedTextColor
+                unSelectedLable.textColor = unSelectedTextColor
+            })
     }
     
     func ticketAnimate(
