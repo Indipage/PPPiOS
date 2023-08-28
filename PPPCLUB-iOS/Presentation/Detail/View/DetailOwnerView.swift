@@ -37,13 +37,13 @@ final class DetailOwnerView: UIView {
     // MARK: - UI Components
 
     private lazy var ownerIntroLabel = UILabel()
-    private lazy var introduceTextView = UITextView(frame: CGRect(x: 0, y: 0, width: Size.width - 128, height: 40))
+    private lazy var introduceTextView = UITextView(frame: CGRect(x: 0, y: 0, width: Size.width - 128, height: 0))
     let recommendBookLabel = UILabel()
     let flowLayout = UICollectionViewFlowLayout()
     lazy var bookCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: flowLayout)
     lazy var bookNameLabel = UILabel()
-    var curationTextView = UITextView(frame: CGRect(x: 0, y: 0, width: Size.width - 128, height: 40))
+    var curationTextView = UITextView(frame: CGRect(x: 0, y: 0, width: Size.width - 128, height: 0))
 
     // MARK: - Life Cycle
 
@@ -199,7 +199,7 @@ final class DetailOwnerView: UIView {
             color: .pppBlack,
             spacing: 10
         )
-        return textView.contentSize.height + 28
+        return textView.contentSize.height + 14
     }
     
     func introDataBind(owner: String, introduce: String) {

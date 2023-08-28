@@ -173,7 +173,7 @@ final class DetailView: UIScrollView {
                 x: 0,
                 y: 0,
                 width: width,
-                height: 30)
+                height: 0)
         )
         textView.setAttribute(text, font: .pppBody5, color: .pppBlack)
 
