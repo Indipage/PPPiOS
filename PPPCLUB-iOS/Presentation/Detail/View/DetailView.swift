@@ -177,7 +177,7 @@ final class DetailView: UIScrollView {
         )
         textView.setAttribute(text, font: .pppBody5, color: .pppBlack)
 
-        return textView.contentSize.height + 28
+        return textView.contentSize.height + 14
     }
     
     func introDataBind(introduce: String) {
