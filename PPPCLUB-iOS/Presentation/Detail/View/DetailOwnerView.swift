@@ -91,7 +91,7 @@ final class DetailOwnerView: UIView {
             )
 
             $0.backgroundColor = .pppGrey2
-            $0.textContainerInset = UIEdgeInsets(top: 14, left: 20, bottom: 14, right: 20)
+            $0.textContainerInset = UIEdgeInsets(top: 14, left: 20, bottom: 0, right: 20)
             $0.textAlignment = .center
             $0.isEditable = false
             $0.isScrollEnabled = false
