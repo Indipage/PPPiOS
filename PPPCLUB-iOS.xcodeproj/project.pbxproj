@@ -141,6 +141,12 @@
 		D2B096222A5299CC007BC756 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096212A5299CC007BC756 /* HomeView.swift */; };
 		D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096232A529A8C007BC756 /* TicketViewController.swift */; };
 		D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B096252A529AC4007BC756 /* PPPTabBarController.swift */; };
+		D2D4835D2A9DCBFE00261CFF /* TicketCheckQRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D4835C2A9DCBFE00261CFF /* TicketCheckQRCodeViewModel.swift */; };
+		D2D483612A9DCCD200261CFF /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D483602A9DCCD200261CFF /* Observable.swift */; };
+		D2D483642AA028B000261CFF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D2D483632AA028B000261CFF /* RxCocoa */; };
+		D2D483662AA028B000261CFF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D2D483652AA028B000261CFF /* RxSwift */; };
+		D2D4836A2AA0312100261CFF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D483692AA0312100261CFF /* ViewModelType.swift */; };
+		D2D4836D2AA0473600261CFF /* TicketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D4836C2AA0473600261CFF /* TicketRepository.swift */; };
 		D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D22A5E811E002004A5 /* CALayer+.swift */; };
 		D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */; };
 		D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */; };
@@ -256,7 +262,6 @@
 		D26594122A5CF4580089E56A /* TicketCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardModel.swift; sourceTree = "<group>"; };
 		D26594142A5CF4B90089E56A /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		D273F2752A7B70360022BE63 /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
-		D273F2792A7B70C60022BE63 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketQRCodeModel.swift; sourceTree = "<group>"; };
 		D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPToastMessage.swift; sourceTree = "<group>"; };
@@ -284,6 +289,10 @@
 		D2B096212A5299CC007BC756 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D2B096232A529A8C007BC756 /* TicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
 		D2B096252A529AC4007BC756 /* PPPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPTabBarController.swift; sourceTree = "<group>"; };
+		D2D4835C2A9DCBFE00261CFF /* TicketCheckQRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCheckQRCodeViewModel.swift; sourceTree = "<group>"; };
+		D2D483602A9DCCD200261CFF /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		D2D483692AA0312100261CFF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		D2D4836C2AA0473600261CFF /* TicketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketRepository.swift; sourceTree = "<group>"; };
 		D2E8C3D22A5E811E002004A5 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEmptyView.swift; sourceTree = "<group>"; };
 		D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardEmptyView.swift; sourceTree = "<group>"; };
@@ -299,11 +308,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2D483642AA028B000261CFF /* RxCocoa in Frameworks */,
 				D2614A832A528EB400869710 /* Kingfisher in Frameworks */,
 				D2614A8A2A52906D00869710 /* KakaoSDK in Frameworks */,
 				D2614A7D2A528DBA00869710 /* SnapKit in Frameworks */,
 				D2614A872A528FF600869710 /* Moya in Frameworks */,
 				D2614A802A528E2800869710 /* Then in Frameworks */,
+				D2D483662AA028B000261CFF /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +494,6 @@
 		D22188802A5BDB3100F097C7 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				D273F2782A7B70B00022BE63 /* DesignPattern */,
 				D273F2772A7B70A60022BE63 /* Manager */,
 			);
 			path = Utility;
@@ -578,6 +588,7 @@
 		D2614A5F2A528C3800869710 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				D2D4835F2A9DCCC100261CFF /* DesignPattern */,
 				D22188802A5BDB3100F097C7 /* Utility */,
 				D2614A602A528C4500869710 /* Extension */,
 				D2614A5A2A528C0F00869710 /* Constant */,
@@ -697,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				D273F2752A7B70360022BE63 /* TicketViewModel.swift */,
+				D2D4835C2A9DCBFE00261CFF /* TicketCheckQRCodeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -709,14 +721,6 @@
 				D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		D273F2782A7B70B00022BE63 /* DesignPattern */ = {
-			isa = PBXGroup;
-			children = (
-				D273F2792A7B70C60022BE63 /* Observable.swift */,
-			);
-			path = DesignPattern;
 			sourceTree = "<group>";
 		};
 		D28ACC222A6BAAA40093B01E /* LaunchScreenAsset */ = {
@@ -783,6 +787,7 @@
 		D2B096032A529794007BC756 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D2D483672AA0310B00261CFF /* Common */,
 				D2B096082A52982E007BC756 /* Ticket */,
 				058326832A5BF08C004A295F /* Component */,
 				D22188692A5924A600F097C7 /* Detail */,
@@ -837,6 +842,7 @@
 		D2B096082A52982E007BC756 /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
+				D2D4836B2AA0469C00261CFF /* Repository */,
 				D273F2742A7B701E0022BE63 /* ViewModel */,
 				D265940A2A5C88860089E56A /* Cell */,
 				D2B0960C2A5298EF007BC756 /* ViewController */,
@@ -936,6 +942,38 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		D2D4835F2A9DCCC100261CFF /* DesignPattern */ = {
+			isa = PBXGroup;
+			children = (
+				D2D483602A9DCCD200261CFF /* Observable.swift */,
+			);
+			path = DesignPattern;
+			sourceTree = "<group>";
+		};
+		D2D483672AA0310B00261CFF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D2D483682AA0311200261CFF /* Protocol */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D2D483682AA0311200261CFF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D2D483692AA0312100261CFF /* ViewModelType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		D2D4836B2AA0469C00261CFF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D2D4836C2AA0473600261CFF /* TicketRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -958,6 +996,8 @@
 				D2614A822A528EB400869710 /* Kingfisher */,
 				D2614A862A528FF600869710 /* Moya */,
 				D2614A892A52906D00869710 /* KakaoSDK */,
+				D2D483632AA028B000261CFF /* RxCocoa */,
+				D2D483652AA028B000261CFF /* RxSwift */,
 			);
 			productName = "PPPCLUB-iOS";
 			productReference = D2614A422A52836E00869710 /* PPPCLUB-iOS.app */;
@@ -993,6 +1033,7 @@
 				D2614A812A528EB400869710 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D2614A852A528FF600869710 /* XCRemoteSwiftPackageReference "Moya" */,
 				D2614A882A52906D00869710 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				D2D483622AA028B000261CFF /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = D2614A432A52836E00869710 /* Products */;
 			projectDirPath = "";
@@ -1041,6 +1082,7 @@
 				D2614A9E2A5291F400869710 /* VoidResult.swift in Sources */,
 				D2B0319D2A6139F100DE8896 /* MySavedBookStoreViewController.swift in Sources */,
 				2CDCCE742A69A6810001FD0F /* WeeklyCollectionViewCell.swift in Sources */,
+				D2D4836D2AA0473600261CFF /* TicketRepository.swift in Sources */,
 				D2B031A92A62B46100DE8896 /* MyAPI.swift in Sources */,
 				D224D49F2A5DA6B900B014ED /* MyInfoTableViewCell.swift in Sources */,
 				D2614A762A528D4900869710 /* UICollectionReusableView+.swift in Sources */,
@@ -1066,6 +1108,7 @@
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
 				D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */,
+				D2D4836A2AA0312100261CFF /* ViewModelType.swift in Sources */,
 				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
@@ -1106,6 +1149,7 @@
 				2C0C72A22A6069FD00EC2117 /* HomeArticleTableViewCell.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
 				D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */,
+				D2D4835D2A9DCBFE00261CFF /* TicketCheckQRCodeViewModel.swift in Sources */,
 				D2B031AF2A62E1D100DE8896 /* MySavedArticleModel.swift in Sources */,
 				D265940E2A5CF2370089E56A /* TicketCardCollectionViewCell.swift in Sources */,
 				D2B0960A2A529894007BC756 /* BaseViewController.swift in Sources */,
@@ -1133,6 +1177,7 @@
 				0525C73E2A675DD000699B2C /* Detail.swift in Sources */,
 				D26594152A5CF4B90089E56A /* TicketView.swift in Sources */,
 				0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */,
+				D2D483612A9DCCD200261CFF /* Observable.swift in Sources */,
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
@@ -1422,6 +1467,14 @@
 				kind = branch;
 			};
 		};
+		D2D483622AA028B000261CFF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1449,6 +1502,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D2614A882A52906D00869710 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDK;
+		};
+		D2D483632AA028B000261CFF /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2D483622AA028B000261CFF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		D2D483652AA028B000261CFF /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2D483622AA028B000261CFF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

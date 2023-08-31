@@ -18,6 +18,8 @@ class AnimationManager {
         selectedLabel: UILabel,
         unSelectedLable: UILabel
     ) {
+        
+        print("translationX: \(String(describing: translationX))")
         let transform: CGAffineTransform
         if let translationX {
             transform = CGAffineTransform(translationX: translationX, y: 0)
