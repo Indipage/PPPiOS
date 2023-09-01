@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+
 import RxSwift
 import RxCocoa
 
@@ -17,21 +18,13 @@ final class TicketViewController: BaseViewController {
     //MARK: - Properties
     
     private var viewModel: TicketViewModel
-    private let animatinoManager: AnimationManager
     
     private let requestTotalTicket = PublishRelay<Void>()
     private let requestTotalCard =  PublishRelay<Void>()
-    
-    
-    
     private let disposeBag = DisposeBag()
     
-    init(
-        viewModel: TicketViewModel,
-        animatinoManager: AnimationManager
-    ) {
+    init(viewModel: TicketViewModel) {
         self.viewModel = viewModel
-        self.animatinoManager = animatinoManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -105,7 +98,7 @@ final class TicketViewController: BaseViewController {
             
             self.viewModel.getTotalTicket()
             
-            self.animatinoManager.ticketToggleButtonAnimate (
+            AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: self.viewModel.moveBy(),
                 selectedLabel: toggleView.ticketLabel,
@@ -120,7 +113,7 @@ final class TicketViewController: BaseViewController {
             
             self.viewModel.getTotalCard()
             
-            self.animatinoManager.ticketToggleButtonAnimate (
+            AnimationManager.shared.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: self.viewModel.moveBy(),
                 selectedLabel: toggleView.cardLabel,

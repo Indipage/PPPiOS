@@ -25,8 +25,7 @@ class PPPTabBarController: UITabBarController {
 //    )
     
     let ticketViewController = TicketViewController(
-        viewModel: TicketViewModel(repository: TicketRepositoryImpl()),
-        animatinoManager: AnimationManager()
+        viewModel: TicketViewModel(repository: TicketRepositoryImpl())
     )
     
     lazy var homeNavigationContrller = UINavigationController(rootViewController: homeViewController)

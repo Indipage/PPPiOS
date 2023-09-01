@@ -10,7 +10,7 @@ import UIKit
 class AnimationManager {
     static let shared = AnimationManager()
     
-    init() {}
+    private init() {}
     
     func ticketToggleButtonAnimate(
         targetView: UIView,
