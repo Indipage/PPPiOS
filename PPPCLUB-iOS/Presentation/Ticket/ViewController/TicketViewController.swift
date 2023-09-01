@@ -18,13 +18,15 @@ final class TicketViewController: BaseViewController {
     //MARK: - Properties
     
     private var viewModel: TicketViewModel
+    private var animationManager: AnimationManager
     
     private let requestTotalTicket = PublishRelay<Void>()
     private let requestTotalCard =  PublishRelay<Void>()
     private let disposeBag = DisposeBag()
     
-    init(viewModel: TicketViewModel) {
+    init(viewModel: TicketViewModel, animationManager: AnimationManager) {
         self.viewModel = viewModel
+        self.animationManager = animationManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -98,7 +100,7 @@ final class TicketViewController: BaseViewController {
             
             self.viewModel.getTotalTicket()
             
-            AnimationManager.shared.ticketToggleButtonAnimate (
+            self.animationManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: self.viewModel.moveBy(),
                 selectedLabel: toggleView.ticketLabel,
@@ -113,7 +115,7 @@ final class TicketViewController: BaseViewController {
             
             self.viewModel.getTotalCard()
             
-            AnimationManager.shared.ticketToggleButtonAnimate (
+            self.animationManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
                 translationX: self.viewModel.moveBy(),
                 selectedLabel: toggleView.cardLabel,
@@ -167,16 +169,12 @@ extension TicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else {
-                return UICollectionViewCell()
-            }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else { return UICollectionViewCell() }
             cell.configureCell(ticket: viewModel.ticketData.value[indexPath.item], point: cell.center)
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCardCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCardCollectionViewCell else {
-                return UICollectionViewCell()
-            }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCardCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCardCollectionViewCell else { return UICollectionViewCell() }
             cell.delegate = self
             cell.configureCell(card: viewModel.cardData.value[indexPath.item])
             return cell

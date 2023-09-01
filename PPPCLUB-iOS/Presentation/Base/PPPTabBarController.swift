@@ -15,17 +15,13 @@ class PPPTabBarController: UITabBarController {
     
     //MARK: - UI Components
     
-    let homeViewController = HomeViewController()
+    let homeViewController = HomeViewController(animationManager: AnimationManager())
     let searchViewController = SearchViewController()
     let myViewController = MyViewController()
     
-//    let ticketViewController = TicketViewController(
-//        viewModel: TicketViewModel(),
-//        animatinoManager: AnimationManager()
-//    )
-    
     let ticketViewController = TicketViewController(
-        viewModel: TicketViewModel(repository: TicketRepositoryImpl())
+        viewModel: TicketViewModel(repository: TicketRepositoryImpl()),
+        animationManager: AnimationManager()
     )
     
     lazy var homeNavigationContrller = UINavigationController(rootViewController: homeViewController)

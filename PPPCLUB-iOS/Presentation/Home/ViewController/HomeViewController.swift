@@ -14,6 +14,7 @@ final class HomeViewController: BaseViewController{
     
     // MARK: - Properties
     
+    private var animationManager: AnimationManager
     var articleID: Int?
     
     private var articleCardData: HomeArticleCardResult?  {
@@ -40,6 +41,15 @@ final class HomeViewController: BaseViewController{
     private let rootView = HomeView()
     
     // MARK: - Life Cycles
+    
+    init(animationManager: AnimationManager) {
+        self.animationManager = animationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.view = rootView
@@ -105,7 +115,7 @@ final class HomeViewController: BaseViewController{
     }
     
     @objc private func ticketCaseMoved(_ sender: UIPanGestureRecognizer) {
-        AnimationManager.shared.ticketCoverAnimate(sender, targetView: rootView.homeWeeklyView.homeWeeklySlideYetView.ticketCoverImageView) { _ in
+        animationManager.ticketCoverAnimate(sender, targetView: rootView.homeWeeklyView.homeWeeklySlideYetView.ticketCoverImageView) { _ in
             self.ticketDragAnimation()
         }
     }
@@ -131,8 +141,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case rootView.homeAllView.allArticleCollectionView:
             return CGSize(width: 319, height: 180)
         case rootView.homeWeeklyView.homeWeeklySlidedView:
-            var cellHeight = Size.height * 0.58
-            var cellwidth = Size.width * 0.786
+            let cellHeight = Size.height * 0.58
+            let cellwidth = Size.width * 0.786
             return CGSize(width: cellwidth, height: cellHeight)
         default:
             return CGSize.zero
@@ -144,7 +154,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case rootView.homeAllView.allArticleCollectionView:
             return 20
         case rootView.homeWeeklyView.homeWeeklySlidedView:
-            var spacingCal = Size.width * 0.026
+            let spacingCal = Size.width * 0.026
             return spacingCal
         default:
             return 0
@@ -194,9 +204,6 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: SavedArticleCellDelegate {
     func articleDidTap(articleID: Int?) {
-        print("🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃")
-        print("아티클 아이디가 이거란 말이요 \(articleID)")
-        print("🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃")
         let articleViewController = HomeArticleViewController(articleID: articleID)
         self.navigationController?.pushViewController(articleViewController, animated: true)
     }
