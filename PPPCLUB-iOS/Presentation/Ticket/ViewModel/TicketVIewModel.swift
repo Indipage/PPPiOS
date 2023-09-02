@@ -64,7 +64,7 @@ final class TicketViewModel: ViewModelType {
     }
     
     private func bindOutput(output: Output, disposeBag: DisposeBag) {
-        // UseCase에서 데이터를 가져와서 ViewModel의 BehaviorRelay에 바인딩
+        
         ticketUseCase.displayMode.subscribe(onNext: { displayMode in
             output.displayMode.accept(displayMode)
         }).disposed(by: disposeBag)
