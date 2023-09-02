@@ -20,6 +20,8 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
+    private var animationManager: AnimationManager
+    
     weak var delegate: TicketDelegate?
     private var point: CGPoint = CGPoint(x: 0, y: 0)
     private var ticketID: Int?
@@ -31,7 +33,8 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Life Cycles
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, animationManager: AnimationManager) {
+        self.animationManager = animationManager
         super.init(frame: frame)
         
         gesture()
@@ -66,7 +69,7 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     //MARK: - Action Method
     
     @objc func ticketGestureHandler(recognizer: UIPanGestureRecognizer) {
-        AnimationManager.shared.ticketAnimate(
+        animationManager.ticketAnimate(
             point: point,
             targetView: ticketImageView,
             recoginizer: recognizer

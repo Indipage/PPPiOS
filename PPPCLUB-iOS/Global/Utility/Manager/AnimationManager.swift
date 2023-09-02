@@ -7,10 +7,25 @@
 
 import UIKit
 
-class AnimationManager {
-    static let shared = AnimationManager()
+protocol AnimationManaging {
+    func ticketToggleButtonAnimate(
+        targetView: UIView,
+        translationX: CGFloat?,
+        selectedLabel: UILabel,
+        unSelectedLable: UILabel
+    )
     
-    init() {}
+    func ticketAnimate(
+        point: CGPoint,
+        targetView: UIView,
+        recoginizer: UIPanGestureRecognizer,
+        completion: (((Bool) -> Void)?)
+    )
+    
+    func ticketCoverAnimate(_ sender: UIPanGestureRecognizer, targetView: UIView, completion: (((Bool) -> Void)?))
+    
+}
+class AnimationManager: AnimationManaging {
     
     func ticketToggleButtonAnimate(
         targetView: UIView,
@@ -18,6 +33,8 @@ class AnimationManager {
         selectedLabel: UILabel,
         unSelectedLable: UILabel
     ) {
+        
+        print("translationX: \(String(describing: translationX))")
         let transform: CGAffineTransform
         if let translationX {
             transform = CGAffineTransform(translationX: translationX, y: 0)

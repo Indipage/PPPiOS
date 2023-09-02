@@ -8,18 +8,22 @@
 import AVFoundation
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class TicketCheckQRCodeViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    private var spaceID: Int
+    private var viewModel: TicketCheckQRCodeViewModel
+    private var qrManager: QRManager
+    private let disposeBag = DisposeBag()
     
     //MARK: - Life Cycle
     
-    init(spaceID: Int) {
-        QRManager.shared.setCamera()
-        self.spaceID = spaceID
+    init(viewModel: TicketCheckQRCodeViewModel, qrManager: QRManager) {
+        self.viewModel = viewModel
+        self.qrManager = qrManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -30,6 +34,7 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bind()
         delegate()
         
         layout()
@@ -38,35 +43,37 @@ final class TicketCheckQRCodeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        QRManager.shared.start()
         self.tabBarController?.tabBar.isHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
     }
     
     //MARK: - Custom Method
     
+    private func bind() {
+        let input = TicketCheckQRCodeViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.asObservable())
+        
+        let output = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
+        
+        self.rx.viewWillAppear.bind { _ in
+            self.qrManager.start()
+        }.disposed(by: disposeBag)
+    }
+    
     private func delegate() {
-        QRManager.shared.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        QRManager.shared.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
+        qrManager.captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        qrManager.captureMetadataOutput.rectOfInterest = setVideoLayer(rectOfInterest: Size.qrFocusZone)
     }
     
     private func layout() {
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: QRManager.shared.captureSession)
-        videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        
-        self.videoPreviewLayer?.frame = self.view.layer.bounds
-        self.view.layer.addSublayer(self.videoPreviewLayer!)
+        guard let videoPreviewLayer = qrManager.videoPreviewLayer else { return }
+        videoPreviewLayer.frame = self.view.layer.bounds
+        self.view.layer.addSublayer(videoPreviewLayer)
         setPreviewLayer()
     }
     
     //MARK: - Action Method
     
     @objc func backButtonDidTap() {
-        QRManager.shared.stop()
+        qrManager.stop()
         
         self.navigationController?.popViewController(animated: true)
     }
@@ -86,8 +93,8 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
             guard let qrCodeStringData = metaDataObj.stringValue else { return }
             print("🔫qr이 맞습니다!🔫")
             print("🔫\(qrCodeStringData)🔫")
-            QRManager.shared.stop()
-            print(spaceID)
+            qrManager.stop()
+            guard let spaceID = viewModel.getSpaceID().value else { return }
             if extractNumberFromURL(qrCodeStringData) == "\(spaceID)" {
                 print("😈알겠습니다😈")
                 requestQRCodeAPI(spaceID: extractNumberFromURL(qrCodeStringData))
@@ -101,7 +108,7 @@ extension TicketCheckQRCodeViewController: AVCaptureMetadataOutputObjectsDelegat
 
 extension TicketCheckQRCodeViewController {
     private func setVideoLayer(rectOfInterest: CGRect) -> CGRect {
-        let videoLayer = AVCaptureVideoPreviewLayer(session: QRManager.shared.captureSession) // 영상을 담을 공간.
+        let videoLayer = AVCaptureVideoPreviewLayer(session: qrManager.captureSession) // 영상을 담을 공간.
         videoLayer.frame = view.layer.bounds //카메라의 크기 지정
         videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill //카메라의 비율지정
         view.layer.addSublayer(videoLayer)
@@ -111,7 +118,7 @@ extension TicketCheckQRCodeViewController {
     
     private func setPreviewLayer() {
         let readingRect = Size.qrFocusZone
-        let previewLayer = AVCaptureVideoPreviewLayer(session: QRManager.shared.captureSession) // AVCaptureVideoPreviewLayer를 구성.
+        let previewLayer = AVCaptureVideoPreviewLayer(session: qrManager.captureSession) // AVCaptureVideoPreviewLayer를 구성.
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         previewLayer.frame = self.view.layer.bounds
         
@@ -130,7 +137,7 @@ extension TicketCheckQRCodeViewController {
         
         
         self.view.layer.addSublayer(previewLayer)
-        self.videoPreviewLayer = previewLayer
+        qrManager.videoPreviewLayer = previewLayer
         
         let describeLabel = UILabel()
         describeLabel.do {
@@ -176,7 +183,13 @@ extension TicketCheckQRCodeViewController {
     }
     
     private func pushToSuccessView(imageURL: String) {
-        let ticketSuccessView = TicketSuccessViewController(viewModel: TicketViewModel())
+        let ticketSuccessView = TicketSuccessViewController(
+            viewModel: TicketViewModel(
+                ticketUseCase: DefaultTicketUseCase(
+                    repository: DefaultTicketRepository()
+                )
+            )
+        )
         ticketSuccessView.dataBind(imageURL: imageURL)
         self.navigationController?.pushViewController(ticketSuccessView, animated: true)
     }

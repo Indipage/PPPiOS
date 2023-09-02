@@ -56,12 +56,12 @@ final class TicketSuccessViewController: BaseViewController {
     //MARK: - Action Method
     
     @objc func cardButtonDidTap() {
-        viewModel.toggleMode.value = .card
-        viewModel.displayMode.value = .card
-        let ticketViewController = TicketViewController(viewModel: viewModel, animatinoManager: AnimationManager(), ticketNetworkManager: TicketAPI())
-        
-        
-        self.navigationController?.pushViewController(ticketViewController, animated: true)
+//        viewModel.toggleMode.value = .card
+//        viewModel.displayMode.value = .card
+//        let ticketViewController = TicketViewController(viewModel: viewModel, animatinoManager: AnimationManager())
+//        
+//        
+//        self.navigationController?.pushViewController(ticketViewController, animated: true)
     }
 }
 

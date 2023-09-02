@@ -7,87 +7,94 @@
 
 import Foundation
 
-final class Observable<T> {
-    
-    struct Observer<T> {
-        weak var observer: AnyObject?
-        let block: (T) -> Void
-    }
-    
-    private var observers = [Observer<T>]()
-    
-    var value: T {
-        didSet { notifyObservers() }
-    }
-    
-    init(_ value: T) {
-        self.value = value
-    }
-    
-    func observe(on observer: AnyObject, observerBlock: @escaping (T) -> Void) {
-        observers.append(Observer(observer: observer, block: observerBlock))
-        observerBlock(self.value)
-    }
-    
-    func remove(observer: AnyObject) {
-        observers = observers.filter { $0.observer !== observer }
-    }
-    
-    private func notifyObservers() {
-        for observer in observers {
-            observer.block(self.value)
-        }
-    }
-}
-
+import RxSwift
+import RxCocoa
 
 enum DisplayMode {
     case ticket
     case card
 }
 
-
-protocol TicketViewModelInput {
-    func ticketToggleButtonDidTap()
-    func cardToggleButtonDidTap()
-    func moveBy() -> CGFloat?
-    func checkTicketEmptyView() -> Bool
-    func checkCardEmptyView() -> Bool
-}
-
-protocol TicketViewViewModelOutput {
-    var displayMode: Observable<DisplayMode> { get }
-    var toggleMode: Observable<DisplayMode> { get }
-}
-
-final class TicketViewModel: TicketViewModelInput, TicketViewViewModelOutput {
-    var ticketData: [TicketResult] = []
-    var cardData: [TicketCardResult] = []
+final class TicketViewModel: ViewModelType {
+    internal var disposeBag = DisposeBag()
+    private let ticketUseCase: TicketUseCase
     
-    func checkTicketEmptyView() -> Bool {
-        return ticketData.isEmpty
+    struct Input {
+        let viewWillAppearEvent: Observable<Void>
+        let ticketToggleButtonDidTapEvent: Observable<Void>
+        let cardToggleButtonDidTapEvent: Observable<Void>
     }
     
-    func checkCardEmptyView() -> Bool {
-        return cardData.isEmpty
+    struct Output {
+        var displayMode: BehaviorRelay<DisplayMode> = BehaviorRelay(value: .ticket)
+        var toggleMode: BehaviorRelay<DisplayMode> = BehaviorRelay(value: .ticket)
+        var ticketData: BehaviorRelay<[TicketResult]> = BehaviorRelay<[TicketResult]>(value: [])
+        var cardData: BehaviorRelay<[TicketCardResult]> = BehaviorRelay<[TicketCardResult]>(value: [])
     }
     
-    var displayMode: Observable<DisplayMode> = Observable(.ticket)
-    var toggleMode: Observable<DisplayMode> = Observable(.ticket)
+    init(ticketUseCase: TicketUseCase) {
+        self.ticketUseCase = ticketUseCase
+    }
     
-    func ticketToggleButtonDidTap() {
-        displayMode.value = .ticket
+    private let displayMode = BehaviorRelay<DisplayMode>(value: .ticket)
+    private let toggleMode = BehaviorRelay<DisplayMode>(value: .ticket)
+    private let ticketData: BehaviorRelay<[TicketResult]> = BehaviorRelay<[TicketResult]>(value: [])
+    private let cardData: BehaviorRelay<[TicketCardResult]> = BehaviorRelay<[TicketCardResult]>(value: [])
+    
+    func transform(from input: Input, disposeBag: DisposeBag) -> Output {
+        let output = Output()
+        self.bindOutput(output: output, disposeBag: disposeBag)
         
+        input.viewWillAppearEvent.subscribe(onNext: { [weak self] in
+            self?.ticketUseCase.getTicketData()
+            self?.ticketUseCase.getCardData()
+        }).disposed(by: disposeBag)
+        
+        input.ticketToggleButtonDidTapEvent.subscribe(onNext: { [weak self] _ in
+            self?.ticketUseCase.getTicketData()
+            self?.ticketUseCase.loadTicketView()
+        }).disposed(by: disposeBag)
+        
+        input.cardToggleButtonDidTapEvent.subscribe(onNext: { [weak self] _ in
+            self?.ticketUseCase.getCardData()
+            self?.ticketUseCase.loadCardView()
+        }).disposed(by: disposeBag)
+        
+        return output
     }
     
-    func cardToggleButtonDidTap() {
-        displayMode.value = .card
+    private func bindOutput(output: Output, disposeBag: DisposeBag) {
+        
+        ticketUseCase.displayMode.subscribe(onNext: { displayMode in
+            output.displayMode.accept(displayMode)
+        }).disposed(by: disposeBag)
+        
+        ticketUseCase.toggleMode.subscribe(onNext: { toggleMode in
+            output.toggleMode.accept(toggleMode)
+        }).disposed(by: disposeBag)
+        
+        ticketUseCase.ticketData.subscribe(onNext: { ticketData in
+            output.ticketData.accept(ticketData)
+        }).disposed(by: disposeBag)
+        
+        ticketUseCase.cardData.subscribe(onNext: { cardData in
+            output.cardData.accept(cardData)
+        }).disposed(by: disposeBag)
     }
     
     func moveBy() -> CGFloat? {
-        if displayMode.value == toggleMode.value { return nil }
-        else if displayMode.value ==  .ticket { return 158 }
-        else { return -158 }
+        if ticketUseCase.displayMode.value == ticketUseCase.toggleMode.value { return nil }
+        else if ticketUseCase.displayMode.value ==  .ticket { return -158 }
+        else { return 158 }
     }
 }
 
+extension TicketViewModel {
+    func getTicketData() -> BehaviorRelay<[TicketResult]> {
+        return ticketUseCase.ticketData
+    }
+    
+    func getCardData() -> BehaviorRelay<[TicketCardResult]> {
+        return ticketUseCase.cardData
+    }
+}
