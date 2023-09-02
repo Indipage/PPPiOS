@@ -20,7 +20,11 @@ class PPPTabBarController: UITabBarController {
     let myViewController = MyViewController()
     
     let ticketViewController = TicketViewController(
-        viewModel: TicketViewModel(repository: TicketRepositoryImpl()),
+        viewModel: TicketViewModel(
+            ticketUseCase: DefaultTicketUseCase(
+                repository: DefaultTicketRepository()
+            )
+        ),
         animationManager: AnimationManager()
     )
     

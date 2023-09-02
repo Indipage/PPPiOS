@@ -55,9 +55,6 @@ final class TicketViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = false
-        
-        viewModel.getTotalTicket()
-        viewModel.getTotalCard()
     }
     
     //MARK: - Custom Method
@@ -72,33 +69,28 @@ final class TicketViewController: BaseViewController {
     
     private func bind() {
         let input = TicketViewModel.Input(
+            viewWillAppearEvent: self.rx.viewWillAppear.asObservable(),
             ticketToggleButtonDidTapEvent: rootView.ticketToggleView.ticketToggleButton.rx.tap.asObservable(),
-            cardToggleButtonDidTapEvent: rootView.ticketToggleView.cardToggleButton.rx.tap.asObservable(),
-            requestGetTotalTicket: self.requestTotalTicket.asObservable(),
-            requestGetTotalCard: self.requestTotalCard.asObservable()
-        )
+            cardToggleButtonDidTapEvent: rootView.ticketToggleView.cardToggleButton.rx.tap.asObservable())
+        
         let output = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
         
         updateSelectedView(with: output.displayMode.value)
         
         output.ticketData.asObservable().subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.rootView.ticketView.ticketCollectionView.reloadData()
+            self?.rootView.ticketView.ticketCollectionView.reloadData()
         }).disposed(by: self.disposeBag)
         
         output.cardData.asObservable().subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
             if !output.cardData.value.isEmpty {
-                self.rootView.cardView.cardImageView.kfSetImage(url: output.cardData.value[0].imageURL)
+                self?.rootView.cardView.cardImageView.kfSetImage(url: output.cardData.value[0].imageURL)
             }
-            self.rootView.cardView.ticketCardCollectionView.reloadData()
+            self?.rootView.cardView.ticketCardCollectionView.reloadData()
         }).disposed(by: self.disposeBag)
         
         self.rootView.ticketToggleView.ticketToggleButton.rx.tap.bind { [weak self] _ in
             guard let self = self else { return }
             let toggleView = self.rootView.ticketToggleView
-            
-            self.viewModel.getTotalTicket()
             
             self.animationManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
@@ -112,8 +104,6 @@ final class TicketViewController: BaseViewController {
         self.rootView.ticketToggleView.cardToggleButton.rx.tap.bind { [weak self] _ in
             guard let self = self else { return }
             let toggleView = self.rootView.ticketToggleView
-            
-            self.viewModel.getTotalCard()
             
             self.animationManager.ticketToggleButtonAnimate (
                 targetView: toggleView.toggleButton,
@@ -158,9 +148,9 @@ extension TicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
-            return viewModel.ticketData.value.count
+            return viewModel.getTicketData().value.count
         case rootView.cardView.ticketCardCollectionView:
-            return viewModel.cardData.value.count
+            return viewModel.getCardData().value.count
         default:
             return 0
         }
@@ -170,13 +160,13 @@ extension TicketViewController: UICollectionViewDataSource {
         switch collectionView {
         case rootView.ticketView.ticketCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(ticket: viewModel.ticketData.value[indexPath.item], point: cell.center)
+            cell.configureCell(ticket: viewModel.getTicketData().value[indexPath.item], point: cell.center)
             cell.delegate = self
             return cell
         case rootView.cardView.ticketCardCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCardCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCardCollectionViewCell else { return UICollectionViewCell() }
             cell.delegate = self
-            cell.configureCell(card: viewModel.cardData.value[indexPath.item])
+            cell.configureCell(card: viewModel.getCardData().value[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -206,13 +196,13 @@ extension TicketViewController {
     private func updateSelectedView(with displayMode: DisplayMode) {
         switch displayMode {
         case .ticket:
-            let isHidden = viewModel.ticketData.value.isEmpty
+            let isHidden = viewModel.getTicketData().value.isEmpty
             rootView.ticketView.isHidden = false
             rootView.cardView.isHidden = true
             rootView.ticketView.noTicketView.isHidden = !isHidden
             rootView.ticketView.ticketCollectionView.isHidden = isHidden
         case .card:
-            let isHidden = viewModel.cardData.value.isEmpty
+            let isHidden = viewModel.getCardData().value.isEmpty
             rootView.ticketView.isHidden = true
             rootView.cardView.isHidden = false
             rootView.cardView.noTicketCardView.isHidden = !isHidden
@@ -235,7 +225,13 @@ extension TicketViewController {
     }
     
     private func pushToQRChecktView(spaceID: Int?) {
-        let qrcheckViewController = TicketCheckQRCodeViewController(spaceID: spaceID!)
+        guard let spaceID = spaceID else { return }
+        let qrcheckViewController = TicketCheckQRCodeViewController(
+            viewModel: TicketCheckQRCodeViewModel(
+                spaceID: spaceID,
+                repository: DefaultTicketRepository()
+            ), qrManager: QRManager()
+        )
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
 }

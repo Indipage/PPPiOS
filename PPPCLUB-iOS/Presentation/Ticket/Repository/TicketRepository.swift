@@ -10,14 +10,20 @@ import Foundation
 protocol TicketRepository {
     func requestTicketAPI(completion: @escaping (NetworkResult<Any>) -> Void)
     func requestTicketCardAPI(completion: @escaping (NetworkResult<Any>) -> Void)
+    func requestQRCodeAPI(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void)
 }
 
-class TicketRepositoryImpl: TicketRepository {
+class DefaultTicketRepository: TicketRepository {
     func requestTicketAPI(completion: @escaping (NetworkResult<Any>) -> Void) {
         TicketAPI.shared.getTotalTicket(completion: completion)
     }
+    
     func requestTicketCardAPI(completion: @escaping (NetworkResult<Any>) -> Void) {
         TicketAPI.shared.getTotalCard(completion: completion)
+    }
+    
+    func requestQRCodeAPI(spaceID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        TicketAPI.shared.putQRCodeCheck(spaceID: spaceID, completion: completion)
     }
     
 }
