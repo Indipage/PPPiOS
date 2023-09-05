@@ -19,6 +19,7 @@ final class OnboardingAgreementView: UIView {
     private lazy var backButton = UIButton()
     private let titleLabel = UILabel()
     let agreementCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    lazy var agreementButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -65,10 +66,18 @@ final class OnboardingAgreementView: UIView {
             $0.isScrollEnabled = false
             $0.backgroundColor = .pppWhite
         }
+        
+        agreementButton.do {
+            $0.backgroundColor = .pppGrey3
+            $0.makeCornerRadius(ratio: 7)
+            $0.setTitleColor(.pppWhite, for: .normal)
+            $0.setTitle("확인", for: .normal)
+            $0.isEnabled = false
+        }
     }
     
     private func hieararchy() {
-        self.addSubviews(backButton, titleLabel, agreementCollectionView)
+        self.addSubviews(backButton, titleLabel, agreementCollectionView,agreementButton)
     }
     
     private func layout() {
@@ -86,6 +95,13 @@ final class OnboardingAgreementView: UIView {
             $0.top.equalTo(titleLabel.snp.bottom).offset(42)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(171)
+        }
+        
+        agreementButton.snp.makeConstraints {
+            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(44)
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(22)
+            $0.height.equalTo(50)
         }
     }
 }

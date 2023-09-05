@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class OnboardingAgreementCollectionHeaderView: UITableViewHeaderFooterView {
+final class OnboardingAgreementCollectionHeaderView: UICollectionReusableView {
     
     // MARK: - UI Components
     
@@ -19,8 +19,8 @@ final class OnboardingAgreementCollectionHeaderView: UITableViewHeaderFooterView
 
     // MARK: - Life Cycle
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         style()
         hierarchy()
@@ -35,8 +35,8 @@ final class OnboardingAgreementCollectionHeaderView: UITableViewHeaderFooterView
     
     private func style() {
         allAgreementCheckButton.do {
-            $0.setImage(Image.check, for: .normal)
-            $0.setImage(Image.checkFill, for: .selected)
+            $0.setImage(Image.checkRound, for: .normal)
+            $0.setImage(Image.checkRoundFill, for: .selected)
         }
         
         allAgreementTitleLabel.do {
@@ -45,11 +45,10 @@ final class OnboardingAgreementCollectionHeaderView: UITableViewHeaderFooterView
             $0.font = .pppTitle3
             $0.setLineSpacing(spacing: 18)
         }
-        
     }
     
     private func hierarchy() {
-        contentView.addSubviews(allAgreementCheckButton, allAgreementTitleLabel)
+        self.addSubviews(allAgreementCheckButton, allAgreementTitleLabel)
     }
     
     private func layout() {
@@ -60,14 +59,9 @@ final class OnboardingAgreementCollectionHeaderView: UITableViewHeaderFooterView
         }
         
         allAgreementTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(<#T##other: ConstraintRelatableTarget##ConstraintRelatableTarget#>)
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(allAgreementCheckButton.snp.trailing).offset(13)
         }
     }
-        
 }
-
-extension HomeArticleHeaderView {
-   
-}
-
 

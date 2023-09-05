@@ -24,6 +24,8 @@ public enum Image {
     static let pppLogo = UIImage(named: "ppp")
     static let check = UIImage(named: "check")
     static let checkFill = UIImage(named: "check.fill")
+    static let checkRound = UIImage(named: "check.round")
+    static let checkRoundFill = UIImage(named: "check.roundFill")
     
     //MARK: - TabBar
     

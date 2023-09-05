@@ -10,7 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+protocol OnboardingAgreementCollectionViewCellDelegate: AnyObject {
+    func checkButtonDidTapped(tag: Int)
+}
+
 final class OnboardingAgreementCollectionViewCell: UICollectionViewCell {
+    
+    //MARK: - Properties
+    
+    weak var delegate: OnboardingAgreementCollectionViewCellDelegate?
     
     // MARK: - UI Components
     
@@ -22,6 +30,8 @@ final class OnboardingAgreementCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        target()
         
         style()
         hieararchy()
@@ -60,27 +70,38 @@ final class OnboardingAgreementCollectionViewCell: UICollectionViewCell {
     }
     
     private func layout() {
-        checkButton.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview().offset(30)
-            $0.size.equalTo(17)
-        }
-        
         agreementLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(checkButton.snp.trailing).offset(16)
         }
         
         agreementDetailButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(6)
+            $0.top.equalToSuperview()
             $0.trailing.equalToSuperview().inset(24)
             $0.width.equalTo(28)
             $0.height.equalTo(19)
         }
+        
+        checkButton.snp.makeConstraints {
+            $0.centerY.equalTo(agreementLabel)
+            $0.leading.equalToSuperview().offset(30)
+            $0.size.equalTo(17)
+        }
     }
     
-    func dataBind(_ data: OnboardingAgreementModel) {
+    func target() {
+        checkButton.addTarget(self, action: #selector(checkButtonDidTap), for: .touchUpInside)
+    }
+    
+    func dataBind(tag: Int, _ data: OnboardingAgreementModel) {
+        checkButton.tag = tag
         checkButton.isSelected = data.isSelected
         agreementLabel.text = data.title
+    }
+    
+    @objc
+    private func checkButtonDidTap(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        delegate?.checkButtonDidTapped(tag: sender.tag)
     }
 }
