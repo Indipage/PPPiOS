@@ -14,34 +14,35 @@ final class OnboardingLoginViewController : UIViewController {
     
     //MARK: - Properties
     
+    
+    
     //MARK: - UI Components
     
-    private let loginView = OnboardingLoginView()
+    let rootView = OnboardingLoginView()
     
     //MARK: - Life Cycle
     
     override func loadView() {
-        self.view = loginView
+        self.view = rootView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
-        setLayout()
+        target()
     }
     
     //MARK: - Custom Method
     
-    
-    private func setUI(){
-        
-    }
-    
-    private func setLayout(){
-        
+    private func target() {
+        rootView.appleLoginButton.addTarget(self, action: #selector(appleLoginButtonDidTap), for: .touchUpInside)
     }
     
     //MARK: - Action Method
+    
+    @objc private func appleLoginButtonDidTap() {
+        let onboardingAgreementVC = OnboardingAgreementViewController()
+        self.navigationController?.pushViewController(onboardingAgreementVC, animated: true)
+    }
     
 }

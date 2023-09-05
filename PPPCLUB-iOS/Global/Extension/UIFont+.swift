@@ -18,6 +18,10 @@ extension UIFont{
         return UIFont(name: "Pretendard-Semibold", size: 24)!
     }
     
+    class var pppTitle3: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 15)!
+    }
+    
     class var pppSubHead1: UIFont {
         return UIFont(name: "Pretendard-Semibold", size: 20)!
     }
