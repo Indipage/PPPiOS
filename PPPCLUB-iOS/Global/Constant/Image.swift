@@ -20,6 +20,7 @@ public enum Image {
     static let right = UIImage(named: "right")!
     static let ticketIcon = UIImage(named: "ticketIcon")!
     static let xmark = UIImage(named: "xmark")!
+    static let pppLogo = UIImage(named: "ppp")
     
     //MARK: - TabBar
     

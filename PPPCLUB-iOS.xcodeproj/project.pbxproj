@@ -150,6 +150,8 @@
 		D2D483662AA028B000261CFF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D2D483652AA028B000261CFF /* RxSwift */; };
 		D2D4836A2AA0312100261CFF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D483692AA0312100261CFF /* ViewModelType.swift */; };
 		D2D4836D2AA0473600261CFF /* TicketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D4836C2AA0473600261CFF /* TicketRepository.swift */; };
+		D2E45CF02AA71694002A6830 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */; };
+		D2E45CF32AA716CA002A6830 /* OnboardingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CF22AA716CA002A6830 /* OnboardingLoginView.swift */; };
 		D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D22A5E811E002004A5 /* CALayer+.swift */; };
 		D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */; };
 		D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */; };
@@ -299,6 +301,8 @@
 		D2D483602A9DCCD200261CFF /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D2D483692AA0312100261CFF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		D2D4836C2AA0473600261CFF /* TicketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketRepository.swift; sourceTree = "<group>"; };
+		D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
+		D2E45CF22AA716CA002A6830 /* OnboardingLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginView.swift; sourceTree = "<group>"; };
 		D2E8C3D22A5E811E002004A5 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEmptyView.swift; sourceTree = "<group>"; };
 		D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardEmptyView.swift; sourceTree = "<group>"; };
@@ -560,6 +564,7 @@
 		D2614A442A52836E00869710 /* PPPCLUB-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D2D4400B2AA332F400329F35 /* Domain */,
 				D2B096032A529794007BC756 /* Presentation */,
 				D2B096012A529730007BC756 /* Resource */,
 				D2614A9B2A5291E300869710 /* Data */,
@@ -794,7 +799,7 @@
 		D2B096032A529794007BC756 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				D2D4400B2AA332F400329F35 /* Domain */,
+				D2E45CED2AA71650002A6830 /* Onboarding */,
 				D2D483672AA0310B00261CFF /* Common */,
 				D2B096082A52982E007BC756 /* Ticket */,
 				058326832A5BF08C004A295F /* Component */,
@@ -1015,6 +1020,31 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		D2E45CED2AA71650002A6830 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CF12AA716BE002A6830 /* View */,
+				D2E45CEE2AA71664002A6830 /* ViewController */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D2E45CEE2AA71664002A6830 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D2E45CF12AA716BE002A6830 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CF22AA716CA002A6830 /* OnboardingLoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1151,6 +1181,7 @@
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
+				D2E45CF02AA71694002A6830 /* OnboardingLoginViewController.swift in Sources */,
 				D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */,
 				D2D4836A2AA0312100261CFF /* ViewModelType.swift in Sources */,
 				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
@@ -1192,6 +1223,7 @@
 				D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */,
 				2C0C72A22A6069FD00EC2117 /* HomeArticleTableViewCell.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
+				D2E45CF32AA716CA002A6830 /* OnboardingLoginView.swift in Sources */,
 				D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */,
 				D2D4835D2A9DCBFE00261CFF /* TicketCheckQRCodeViewModel.swift in Sources */,
 				D2B031AF2A62E1D100DE8896 /* MySavedArticleModel.swift in Sources */,
