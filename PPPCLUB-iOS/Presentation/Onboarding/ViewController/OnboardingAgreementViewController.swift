@@ -14,7 +14,11 @@ final class OnboardingAgreementViewController : UIViewController {
     
     //MARK: - Properties
     
-    private var agreementData = OnboardingAgreementModel.mockDummy()
+    private var agreementData = OnboardingAgreementModel.mockDummy() {
+        didSet {
+            rootView.agreementCollectionView.reloadData()
+        }
+    }
     
     //MARK: - UI Components
     
@@ -39,6 +43,8 @@ final class OnboardingAgreementViewController : UIViewController {
     private func delegate() {
         rootView.agreementCollectionView.delegate = self
         rootView.agreementCollectionView.dataSource = self
+        
+        rootView.agreementHeaderView.delegate = self
     }
     
     //MARK: - Action Method
@@ -61,11 +67,16 @@ extension OnboardingAgreementViewController: UICollectionViewDelegateFlowLayout 
 
 extension OnboardingAgreementViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(#function)
         return agreementData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingAgreementCollectionViewCell.cellIdentifier, for: indexPath) as? OnboardingAgreementCollectionViewCell else { return UICollectionViewCell() }
+        print(#function)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingAgreementCollectionViewCell.cellIdentifier, for: indexPath) as? OnboardingAgreementCollectionViewCell else {
+            return UICollectionViewCell()
+            
+        }
         cell.dataBind(tag: indexPath.item, agreementData[indexPath.item])
         cell.delegate = self
         return cell
@@ -79,6 +90,26 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionViewCe
         if (agreementData[0].isSelected == true
             && agreementData[1].isSelected == true
             && agreementData[2].isSelected == true) {
+            rootView.agreementButton.backgroundColor = .pppMainPurple
+            if agreementData[3].isSelected == true {
+                rootView.agreementHeaderView.allAgreementCheckButton.isSelected = true
+            } else {
+                rootView.agreementHeaderView.allAgreementCheckButton.isSelected = false
+            }
+        } else {
+            rootView.agreementHeaderView.allAgreementCheckButton.isSelected = false
+            rootView.agreementButton.backgroundColor = .pppGrey3
+        }
+    }
+}
+
+extension OnboardingAgreementViewController: OnboardingAgreementCollectionHeaderViewDelegate {
+    func allAgreementCheckButtonDidTapped(_ tag: Int) {
+        for i in 0..<agreementData.count {
+            agreementData[i].isSelected.toggle()
+        }
+        
+        if (agreementData[0].isSelected) {
             rootView.agreementButton.backgroundColor = .pppMainPurple
         } else {
             rootView.agreementButton.backgroundColor = .pppGrey3

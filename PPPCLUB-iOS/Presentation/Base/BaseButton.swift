@@ -22,7 +22,7 @@ class BaseButton: UIButton {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         super.point(inside: point, with: event)
 
-        let touchArea = bounds.insetBy(dx: -15, dy: -15)
+        let touchArea = bounds.insetBy(dx: -10, dy: -10)
         return touchArea.contains(point)
     }
 

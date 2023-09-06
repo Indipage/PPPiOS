@@ -10,17 +10,27 @@ import UIKit
 import SnapKit
 import Then
 
-final class OnboardingAgreementCollectionHeaderView: UICollectionReusableView {
+protocol OnboardingAgreementCollectionHeaderViewDelegate: AnyObject {
+    func allAgreementCheckButtonDidTapped(_ tag: Int)
+}
+
+final class OnboardingAgreementCollectionHeaderView: UIView {
+    
+    //MARK: - Properties
+    
+    weak var delegate: OnboardingAgreementCollectionHeaderViewDelegate?
     
     // MARK: - UI Components
     
-    private lazy var allAgreementCheckButton = UIButton()
+    lazy var allAgreementCheckButton = UIButton()
     private let allAgreementTitleLabel = UILabel()
-
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        target()
         
         style()
         hierarchy()
@@ -32,6 +42,10 @@ final class OnboardingAgreementCollectionHeaderView: UICollectionReusableView {
     }
     
     // MARK: - Custom Method
+    
+    private func target() {
+        allAgreementCheckButton.addTarget(self, action: #selector(allAgreementCheckButtonDidTap), for: .touchUpInside)
+    }
     
     private func style() {
         allAgreementCheckButton.do {
@@ -63,5 +77,9 @@ final class OnboardingAgreementCollectionHeaderView: UICollectionReusableView {
             $0.leading.equalTo(allAgreementCheckButton.snp.trailing).offset(13)
         }
     }
+    
+    @objc private func allAgreementCheckButtonDidTap(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        delegate?.allAgreementCheckButtonDidTapped(sender.tag)
+    }
 }
-

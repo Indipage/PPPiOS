@@ -22,7 +22,7 @@ final class OnboardingAgreementCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     
-    private lazy var checkButton =  UIButton()
+    private lazy var checkButton =  BaseButton()
     private let agreementLabel = UILabel()
     private lazy var agreementDetailButton = UIButton()
     

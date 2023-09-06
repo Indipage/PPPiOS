@@ -19,6 +19,7 @@ final class OnboardingAgreementView: UIView {
     private lazy var backButton = UIButton()
     private let titleLabel = UILabel()
     let agreementCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let agreementHeaderView = OnboardingAgreementCollectionHeaderView()
     lazy var agreementButton = UIButton()
     
     // MARK: - Life Cycle
@@ -40,7 +41,10 @@ final class OnboardingAgreementView: UIView {
     // MARK: - Custom Method
     
     private func register() {
-        agreementCollectionView.register(OnboardingAgreementCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingAgreementCollectionViewCell.cellIdentifier)
+        agreementCollectionView.register(
+            OnboardingAgreementCollectionViewCell.self,
+            forCellWithReuseIdentifier: OnboardingAgreementCollectionViewCell.cellIdentifier
+        )
     }
     
     private func style() {
@@ -54,7 +58,6 @@ final class OnboardingAgreementView: UIView {
             $0.text = "서비스 이용 동의"
             $0.font = .pppOnboarding1
             $0.textColor = .pppBlack
-            $0.setLineSpacing(spacing: 13)
         }
 
         agreementCollectionView.do {
@@ -77,7 +80,13 @@ final class OnboardingAgreementView: UIView {
     }
     
     private func hieararchy() {
-        self.addSubviews(backButton, titleLabel, agreementCollectionView,agreementButton)
+        self.addSubviews(
+            backButton,
+            titleLabel,
+            agreementHeaderView,
+            agreementCollectionView,
+            agreementButton
+        )
     }
     
     private func layout() {
@@ -87,14 +96,20 @@ final class OnboardingAgreementView: UIView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(backButton.snp.bottom).offset(10)
+            $0.top.equalTo(backButton.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(28)
         }
         
-        agreementCollectionView.snp.makeConstraints {
+        agreementHeaderView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(42)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(171)
+            $0.height.equalTo(33)
+        }
+        
+        agreementCollectionView.snp.makeConstraints {
+            $0.top.equalTo(agreementHeaderView.snp.bottom).offset(6)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(400)
         }
         
         agreementButton.snp.makeConstraints {
