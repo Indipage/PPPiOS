@@ -150,6 +150,13 @@
 		D2D483662AA028B000261CFF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D2D483652AA028B000261CFF /* RxSwift */; };
 		D2D4836A2AA0312100261CFF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D483692AA0312100261CFF /* ViewModelType.swift */; };
 		D2D4836D2AA0473600261CFF /* TicketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D4836C2AA0473600261CFF /* TicketRepository.swift */; };
+		D2E45CF02AA71694002A6830 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */; };
+		D2E45CF32AA716CA002A6830 /* OnboardingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CF22AA716CA002A6830 /* OnboardingLoginView.swift */; };
+		D2E45CF52AA71FA8002A6830 /* OnboardingAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CF42AA71FA8002A6830 /* OnboardingAgreementViewController.swift */; };
+		D2E45CF72AA71FE5002A6830 /* OnboardingAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CF62AA71FE5002A6830 /* OnboardingAgreementView.swift */; };
+		D2E45CFA2AA72579002A6830 /* OnboardingAgreementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CF92AA72579002A6830 /* OnboardingAgreementCollectionViewCell.swift */; };
+		D2E45CFE2AA7287F002A6830 /* OnboardingAgreementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CFD2AA7287F002A6830 /* OnboardingAgreementModel.swift */; };
+		D2E45D002AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E45CFF2AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift */; };
 		D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D22A5E811E002004A5 /* CALayer+.swift */; };
 		D2E8C3D52A5E9F71002004A5 /* TicketEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */; };
 		D2E8C3D72A5E9F7D002004A5 /* TicketCardEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */; };
@@ -299,6 +306,13 @@
 		D2D483602A9DCCD200261CFF /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D2D483692AA0312100261CFF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		D2D4836C2AA0473600261CFF /* TicketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketRepository.swift; sourceTree = "<group>"; };
+		D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
+		D2E45CF22AA716CA002A6830 /* OnboardingLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginView.swift; sourceTree = "<group>"; };
+		D2E45CF42AA71FA8002A6830 /* OnboardingAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgreementViewController.swift; sourceTree = "<group>"; };
+		D2E45CF62AA71FE5002A6830 /* OnboardingAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgreementView.swift; sourceTree = "<group>"; };
+		D2E45CF92AA72579002A6830 /* OnboardingAgreementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgreementCollectionViewCell.swift; sourceTree = "<group>"; };
+		D2E45CFD2AA7287F002A6830 /* OnboardingAgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgreementModel.swift; sourceTree = "<group>"; };
+		D2E45CFF2AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgreementCollectionHeaderView.swift; sourceTree = "<group>"; };
 		D2E8C3D22A5E811E002004A5 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		D2E8C3D42A5E9F71002004A5 /* TicketEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEmptyView.swift; sourceTree = "<group>"; };
 		D2E8C3D62A5E9F7D002004A5 /* TicketCardEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardEmptyView.swift; sourceTree = "<group>"; };
@@ -560,6 +574,7 @@
 		D2614A442A52836E00869710 /* PPPCLUB-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D2D4400B2AA332F400329F35 /* Domain */,
 				D2B096032A529794007BC756 /* Presentation */,
 				D2B096012A529730007BC756 /* Resource */,
 				D2614A9B2A5291E300869710 /* Data */,
@@ -658,6 +673,7 @@
 		D2614A9B2A5291E300869710 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D2E45CFB2AA7285A002A6830 /* Onboarding */,
 				2C1796512A670EBB0020B9A5 /* Home */,
 				05CD07DE2A5EA024003EEE84 /* Search */,
 				D224D4A42A5DB5F900B014ED /* My */,
@@ -794,7 +810,7 @@
 		D2B096032A529794007BC756 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				D2D4400B2AA332F400329F35 /* Domain */,
+				D2E45CED2AA71650002A6830 /* Onboarding */,
 				D2D483672AA0310B00261CFF /* Common */,
 				D2B096082A52982E007BC756 /* Ticket */,
 				058326832A5BF08C004A295F /* Component */,
@@ -1015,6 +1031,59 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		D2E45CED2AA71650002A6830 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CF82AA72564002A6830 /* Cell */,
+				D2E45CF12AA716BE002A6830 /* View */,
+				D2E45CEE2AA71664002A6830 /* ViewController */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D2E45CEE2AA71664002A6830 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */,
+				D2E45CF42AA71FA8002A6830 /* OnboardingAgreementViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D2E45CF12AA716BE002A6830 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CF22AA716CA002A6830 /* OnboardingLoginView.swift */,
+				D2E45CF62AA71FE5002A6830 /* OnboardingAgreementView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2E45CF82AA72564002A6830 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CF92AA72579002A6830 /* OnboardingAgreementCollectionViewCell.swift */,
+				D2E45CFF2AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		D2E45CFB2AA7285A002A6830 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CFC2AA72860002A6830 /* Model */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D2E45CFC2AA72860002A6830 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2E45CFD2AA7287F002A6830 /* OnboardingAgreementModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1139,6 +1208,7 @@
 				D2D440102AA3343200329F35 /* TicketUseCase.swift in Sources */,
 				2C0C72992A60696100EC2117 /* HomeArticleView.swift in Sources */,
 				0525C7432A69338700699B2C /* SearchService.swift in Sources */,
+				D2E45CF52AA71FA8002A6830 /* OnboardingAgreementViewController.swift in Sources */,
 				D2B031A62A62B32300DE8896 /* MyUserInfoModel.swift in Sources */,
 				0525C73A2A67261E00699B2C /* DetailGetFollowModel.swift in Sources */,
 				D2B096262A529AC4007BC756 /* PPPTabBarController.swift in Sources */,
@@ -1151,8 +1221,10 @@
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
+				D2E45CF02AA71694002A6830 /* OnboardingLoginViewController.swift in Sources */,
 				D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */,
 				D2D4836A2AA0312100261CFF /* ViewModelType.swift in Sources */,
+				D2E45CFE2AA7287F002A6830 /* OnboardingAgreementModel.swift in Sources */,
 				05CD07D32A5C75FA003EEE84 /* DetailBookCollectionViewCell.swift in Sources */,
 				D2614A6C2A528CCB00869710 /* UILabel+.swift in Sources */,
 				D2614A722A528D1A00869710 /* UITableViewHeaderFooterView+.swift in Sources */,
@@ -1183,6 +1255,7 @@
 				D28ACC1C2A69C55C0093B01E /* TicketQRCodeModel.swift in Sources */,
 				D2B0319B2A6139B800DE8896 /* MySavedArticleViewController.swift in Sources */,
 				D2B096242A529A8C007BC756 /* TicketViewController.swift in Sources */,
+				D2E45CFA2AA72579002A6830 /* OnboardingAgreementCollectionViewCell.swift in Sources */,
 				D2614A7A2A528D6E00869710 /* UITabbar+.swift in Sources */,
 				D2B031AD2A62C63000DE8896 /* MySavedSpaceModel.swift in Sources */,
 				D2614A5C2A528C2300869710 /* URLs.swift in Sources */,
@@ -1192,6 +1265,7 @@
 				D2E8C3D92A5EC2C1002004A5 /* TicketModel.swift in Sources */,
 				2C0C72A22A6069FD00EC2117 /* HomeArticleTableViewCell.swift in Sources */,
 				D2B096202A5299C2007BC756 /* HomeViewController.swift in Sources */,
+				D2E45CF32AA716CA002A6830 /* OnboardingLoginView.swift in Sources */,
 				D26594132A5CF4580089E56A /* TicketCardModel.swift in Sources */,
 				D2D4835D2A9DCBFE00261CFF /* TicketCheckQRCodeViewModel.swift in Sources */,
 				D2B031AF2A62E1D100DE8896 /* MySavedArticleModel.swift in Sources */,
@@ -1225,7 +1299,9 @@
 				D221887D2A5BD90300F097C7 /* TicketCheckQRCodeViewController.swift in Sources */,
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
+				D2E45CF72AA71FE5002A6830 /* OnboardingAgreementView.swift in Sources */,
 				2C1796582A670FC30020B9A5 /* HomeAPI.swift in Sources */,
+				D2E45D002AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
 				D224D4AB2A5DCB7800B014ED /* MySeparatorFooterView.swift in Sources */,
 				2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */,

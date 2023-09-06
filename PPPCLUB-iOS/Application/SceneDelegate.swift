@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         window?.overrideUserInterfaceStyle = .light       
-        let navigationController = UINavigationController(rootViewController: PPPTabBarController())
+        let navigationController = UINavigationController(rootViewController: OnboardingLoginViewController())
         navigationController.isNavigationBarHidden = true
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()

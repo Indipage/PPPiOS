@@ -15,11 +15,17 @@ public enum Image {
     //MARK: - Icon
     
     static let arrowDown = UIImage(named: "back")!
+    static let backThin = UIImage(named: "back.thin")!
     static let bookmark = UIImage(named: "bookMark")!
     static let bookmarkFill = UIImage(named: "bookMark.fill")!
     static let right = UIImage(named: "right")!
     static let ticketIcon = UIImage(named: "ticketIcon")!
     static let xmark = UIImage(named: "xmark")!
+    static let pppLogo = UIImage(named: "ppp")
+    static let check = UIImage(named: "check")
+    static let checkFill = UIImage(named: "check.fill")
+    static let checkRound = UIImage(named: "check.round")
+    static let checkRoundFill = UIImage(named: "check.roundFill")
     
     //MARK: - TabBar
     
