@@ -212,6 +212,7 @@
 		2CDCCE732A69A6810001FD0F /* WeeklyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CDCCE752A6AA35E0001FD0F /* HomeWeeklySlideYetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklySlideYetView.swift; sourceTree = "<group>"; };
 		2CDCCE772A6AA7890001FD0F /* HomeWeeklySlidedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklySlidedView.swift; sourceTree = "<group>"; };
+		2CE71EC72AAB3507002634CE /* PPPCLUB-iOSDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PPPCLUB-iOSDebug.entitlements"; sourceTree = "<group>"; };
 		D20CE78A2A69542800A6A79D /* HomeDetailArticleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailArticleResult.swift; sourceTree = "<group>"; };
 		D221886C2A5924C600F097C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D221886E2A5924D200F097C7 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
@@ -574,6 +575,7 @@
 		D2614A442A52836E00869710 /* PPPCLUB-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				2CE71EC72AAB3507002634CE /* PPPCLUB-iOSDebug.entitlements */,
 				D2D4400B2AA332F400329F35 /* Domain */,
 				D2B096032A529794007BC756 /* Presentation */,
 				D2B096012A529730007BC756 /* Resource */,
@@ -1467,15 +1469,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "http://3.37.34.144";
+				CODE_SIGN_ENTITLEMENTS = "PPPCLUB-iOS/PPPCLUB-iOSDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 27VUFHH5W2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "PPP CLUB";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1500,13 +1503,13 @@
 				BASE_URL = "http://3.37.34.144";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 27VUFHH5W2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PPPCLUB-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "PPP CLUB";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

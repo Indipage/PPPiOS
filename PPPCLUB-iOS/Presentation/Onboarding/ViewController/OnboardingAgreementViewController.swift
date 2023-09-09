@@ -9,8 +9,10 @@ import UIKit
 
 import SnapKit
 import Then
+import AuthenticationServices
 
-final class OnboardingAgreementViewController : UIViewController {
+final class OnboardingAgreementViewController : UIViewController, ASAuthorizationControllerDelegate {
+    
     
     //MARK: - Properties
     
@@ -34,11 +36,11 @@ final class OnboardingAgreementViewController : UIViewController {
         super.viewDidLoad()
         
         delegate()
+        target()
         
     }
     
     //MARK: - Custom Method
-    
     
     private func delegate() {
         rootView.agreementCollectionView.delegate = self
@@ -48,6 +50,23 @@ final class OnboardingAgreementViewController : UIViewController {
     }
     
     //MARK: - Action Method
+    
+    private func target() {
+        rootView.agreementButton.addTarget(self, action: #selector(agreementButtonDidTap), for: .touchUpInside)
+    }
+    
+    @objc
+    private func agreementButtonDidTap() {
+        print("⭐️agree")
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+                
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+//            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+    }
     
 }
 
@@ -91,6 +110,7 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionViewCe
             && agreementData[1].isSelected == true
             && agreementData[2].isSelected == true) {
             rootView.agreementButton.backgroundColor = .pppMainPurple
+            rootView.agreementButton.isEnabled = true
             if agreementData[3].isSelected == true {
                 rootView.agreementHeaderView.allAgreementCheckButton.isSelected = true
             } else {
@@ -99,6 +119,7 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionViewCe
         } else {
             rootView.agreementHeaderView.allAgreementCheckButton.isSelected = false
             rootView.agreementButton.backgroundColor = .pppGrey3
+            rootView.agreementButton.isEnabled = false
         }
     }
 }
