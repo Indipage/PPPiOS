@@ -59,13 +59,13 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
     private func agreementButtonDidTap() {
         print("⭐️agree")
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-            let request = appleIDProvider.createRequest()
-            request.requestedScopes = [.fullName, .email]
-                
-            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-            authorizationController.delegate = self
-//            authorizationController.presentationContextProvider = self
-            authorizationController.performRequests()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        //            authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
 }
@@ -126,8 +126,9 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionViewCe
 
 extension OnboardingAgreementViewController: OnboardingAgreementCollectionHeaderViewDelegate {
     func allAgreementCheckButtonDidTapped(_ tag: Int) {
+        var check = rootView.agreementHeaderView.allAgreementCheckButton.isSelected
         for i in 0..<agreementData.count {
-            agreementData[i].isSelected.toggle()
+            agreementData[i].isSelected = check
         }
         
         if (agreementData[0].isSelected) {
