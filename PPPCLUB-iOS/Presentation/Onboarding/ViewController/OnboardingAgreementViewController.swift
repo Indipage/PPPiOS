@@ -9,8 +9,10 @@ import UIKit
 
 import SnapKit
 import Then
+import AuthenticationServices
 
-final class OnboardingAgreementViewController : UIViewController {
+final class OnboardingAgreementViewController : UIViewController, ASAuthorizationControllerDelegate {
+    
     
     //MARK: - Properties
     
@@ -34,11 +36,11 @@ final class OnboardingAgreementViewController : UIViewController {
         super.viewDidLoad()
         
         delegate()
+        target()
         
     }
     
     //MARK: - Custom Method
-    
     
     private func delegate() {
         rootView.agreementCollectionView.delegate = self
@@ -49,6 +51,64 @@ final class OnboardingAgreementViewController : UIViewController {
     
     //MARK: - Action Method
     
+    private func target() {
+        rootView.agreementButton.addTarget(self, action: #selector(agreementButtonDidTap), for: .touchUpInside)
+    }
+    
+    //Apple 로그인 요청
+    @objc
+    private func agreementButtonDidTap() {
+        print("⭐️agree")
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        //            authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    //토큰 encode - 로그인 성공
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            if  let authorizationCode = appleIDCredential.authorizationCode,
+                let identityToken = appleIDCredential.identityToken,
+                let authString = String(data: authorizationCode, encoding: .utf8),
+                let tokenString = String(data: identityToken, encoding: .utf8) {
+                print("authorizationCode: \(authorizationCode)")
+                print("identityToken: \(identityToken)")
+                print("authString: \(authString)")
+                print("tokenString: \(tokenString)")
+            }
+            
+            print("useridentifier: \(userIdentifier)")
+            print("fullName: \(fullName)")
+            print("email: \(email)")
+            
+        case let passwordCredential as ASPasswordCredential:
+            
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            print("username: \(username)")
+            print("password: \(password)")
+            
+        default:
+            break
+        }
+    }
+    
+    // 로그인 실패
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Apple Login Error")
+    }
 }
 
 extension OnboardingAgreementViewController: UICollectionViewDelegateFlowLayout {
@@ -91,6 +151,7 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionViewCe
             && agreementData[1].isSelected == true
             && agreementData[2].isSelected == true) {
             rootView.agreementButton.backgroundColor = .pppMainPurple
+            rootView.agreementButton.isEnabled = true
             if agreementData[3].isSelected == true {
                 rootView.agreementHeaderView.allAgreementCheckButton.isSelected = true
             } else {
@@ -99,20 +160,24 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionViewCe
         } else {
             rootView.agreementHeaderView.allAgreementCheckButton.isSelected = false
             rootView.agreementButton.backgroundColor = .pppGrey3
+            rootView.agreementButton.isEnabled = false
         }
     }
 }
 
 extension OnboardingAgreementViewController: OnboardingAgreementCollectionHeaderViewDelegate {
     func allAgreementCheckButtonDidTapped(_ tag: Int) {
+        var check = rootView.agreementHeaderView.allAgreementCheckButton.isSelected
         for i in 0..<agreementData.count {
-            agreementData[i].isSelected.toggle()
+            agreementData[i].isSelected = check
         }
         
         if (agreementData[0].isSelected) {
             rootView.agreementButton.backgroundColor = .pppMainPurple
+            rootView.agreementButton.isEnabled = true
         } else {
             rootView.agreementButton.backgroundColor = .pppGrey3
+            rootView.agreementButton.isEnabled = false
         }
     }
 }
