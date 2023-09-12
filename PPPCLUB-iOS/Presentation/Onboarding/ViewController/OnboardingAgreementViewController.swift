@@ -133,8 +133,10 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionHeader
         
         if (agreementData[0].isSelected) {
             rootView.agreementButton.backgroundColor = .pppMainPurple
+            rootView.agreementButton.isEnabled = true
         } else {
             rootView.agreementButton.backgroundColor = .pppGrey3
+            rootView.agreementButton.isEnabled = false
         }
     }
 }
