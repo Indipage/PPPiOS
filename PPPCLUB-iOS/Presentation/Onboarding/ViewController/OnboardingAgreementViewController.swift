@@ -109,7 +109,6 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("Apple Login Error")
     }
-    
 }
 
 extension OnboardingAgreementViewController: UICollectionViewDelegateFlowLayout {
