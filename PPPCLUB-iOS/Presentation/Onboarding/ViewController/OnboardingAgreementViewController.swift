@@ -55,6 +55,7 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
         rootView.agreementButton.addTarget(self, action: #selector(agreementButtonDidTap), for: .touchUpInside)
     }
     
+    //Apple 로그인 요청
     @objc
     private func agreementButtonDidTap() {
         print("⭐️agree")
@@ -66,6 +67,47 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
         authorizationController.delegate = self
         //            authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
+    }
+    
+    //토큰 encode - 로그인 성공
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            if  let authorizationCode = appleIDCredential.authorizationCode,
+                let identityToken = appleIDCredential.identityToken,
+                let authString = String(data: authorizationCode, encoding: .utf8),
+                let tokenString = String(data: identityToken, encoding: .utf8) {
+                print("authorizationCode: \(authorizationCode)")
+                print("identityToken: \(identityToken)")
+                print("authString: \(authString)")
+                print("tokenString: \(tokenString)")
+            }
+            
+            print("useridentifier: \(userIdentifier)")
+            print("fullName: \(fullName)")
+            print("email: \(email)")
+            
+        case let passwordCredential as ASPasswordCredential:
+            
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            print("username: \(username)")
+            print("password: \(password)")
+            
+        default:
+            break
+        }
+    }
+    
+    // 로그인 실패
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Apple Login Error")
     }
     
 }
