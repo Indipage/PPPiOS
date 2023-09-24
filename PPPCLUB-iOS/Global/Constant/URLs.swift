@@ -49,9 +49,7 @@ public enum URLs{
     static let postSavedSpace = "/bookmark/space/{spaceId}"
     static let deleteSavedSpace = "/bookmark/space/{spaceId}"
     
+    //MARK: - Onboarding
     
-    
-    
-    
-    
+    static let postLogin = "/auto/login"
 }

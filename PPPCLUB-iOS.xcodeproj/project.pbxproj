@@ -44,6 +44,9 @@
 		2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */; };
 		2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */; };
 		2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A96382A6304BC009B2919 /* HomeAllView.swift */; };
+		2CC574AD2AC027120023B01E /* OnboardingLoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC574AC2AC027120023B01E /* OnboardingLoginResult.swift */; };
+		2CC574B02AC0283B0023B01E /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC574AF2AC0283B0023B01E /* OnboardingService.swift */; };
+		2CC574B22AC028480023B01E /* OnboardingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC574B12AC028480023B01E /* OnboardingAPI.swift */; };
 		2CC8E6352A68353B00C117D7 /* HomeBookmarkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E6342A68353B00C117D7 /* HomeBookmarkCheckModel.swift */; };
 		2CC8E63A2A6854C100C117D7 /* HomeTicketGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E6392A6854C100C117D7 /* HomeTicketGetModel.swift */; };
 		2CC8E63C2A68735300C117D7 /* HomeTicketCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8E63B2A68735300C117D7 /* HomeTicketCheckModel.swift */; };
@@ -205,6 +208,9 @@
 		2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCardModel.swift; sourceTree = "<group>"; };
 		2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCheckModel.swift; sourceTree = "<group>"; };
 		2C8A96382A6304BC009B2919 /* HomeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAllView.swift; sourceTree = "<group>"; };
+		2CC574AC2AC027120023B01E /* OnboardingLoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginResult.swift; sourceTree = "<group>"; };
+		2CC574AF2AC0283B0023B01E /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
+		2CC574B12AC028480023B01E /* OnboardingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAPI.swift; sourceTree = "<group>"; };
 		2CC8E6342A68353B00C117D7 /* HomeBookmarkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookmarkCheckModel.swift; sourceTree = "<group>"; };
 		2CC8E6392A6854C100C117D7 /* HomeTicketGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTicketGetModel.swift; sourceTree = "<group>"; };
 		2CC8E63B2A68735300C117D7 /* HomeTicketCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTicketCheckModel.swift; sourceTree = "<group>"; };
@@ -480,6 +486,23 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		2CC574AB2AC025C80023B01E /* APIModel */ = {
+			isa = PBXGroup;
+			children = (
+				2CC574AC2AC027120023B01E /* OnboardingLoginResult.swift */,
+			);
+			path = APIModel;
+			sourceTree = "<group>";
+		};
+		2CC574AE2AC027E60023B01E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2CC574B12AC028480023B01E /* OnboardingAPI.swift */,
+				2CC574AF2AC0283B0023B01E /* OnboardingService.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		D22188692A5924A600F097C7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +671,7 @@
 		D2614A8B2A5290CC00869710 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				2CC574AE2AC027E60023B01E /* Onboarding */,
 				0525C7412A69337D00699B2C /* Search */,
 				2C1796562A670FB30020B9A5 /* Home */,
 				0557DDD92A65F6FA00650F75 /* Detail */,
@@ -1046,8 +1070,8 @@
 		D2E45CEE2AA71664002A6830 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */,
 				D2E45CF42AA71FA8002A6830 /* OnboardingAgreementViewController.swift */,
+				D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1073,6 +1097,7 @@
 		D2E45CFB2AA7285A002A6830 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				2CC574AB2AC025C80023B01E /* APIModel */,
 				D2E45CFC2AA72860002A6830 /* Model */,
 			);
 			path = Onboarding;
@@ -1188,6 +1213,7 @@
 				2CC8E63C2A68735300C117D7 /* HomeTicketCheckModel.swift in Sources */,
 				D22188842A5BDC1A00F097C7 /* Size.swift in Sources */,
 				D2B031B22A631A2600DE8896 /* TicketAPI.swift in Sources */,
+				2CC574B02AC0283B0023B01E /* OnboardingService.swift in Sources */,
 				0525C73C2A67533A00699B2C /* DetailRecommendBookModel.swift in Sources */,
 				D2614A8E2A52911000869710 /* GenericResponse.swift in Sources */,
 				D2614A702A528D0300869710 /* UIImageView+.swift in Sources */,
@@ -1220,6 +1246,7 @@
 				D2B031A12A61B89A00DE8896 /* MySavedBookStoreView.swift in Sources */,
 				D28ACC212A6ADF1E0093B01E /* PPPToastMessage.swift in Sources */,
 				D2D440122AA3345300329F35 /* DefaultTicketUseCase.swift in Sources */,
+				2CC574AD2AC027120023B01E /* OnboardingLoginResult.swift in Sources */,
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
@@ -1302,6 +1329,7 @@
 				D2614A6E2A528CD900869710 /* UIButton+.swift in Sources */,
 				D221886D2A5924C600F097C7 /* DetailViewController.swift in Sources */,
 				D2E45CF72AA71FE5002A6830 /* OnboardingAgreementView.swift in Sources */,
+				2CC574B22AC028480023B01E /* OnboardingAPI.swift in Sources */,
 				2C1796582A670FC30020B9A5 /* HomeAPI.swift in Sources */,
 				D2E45D002AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
