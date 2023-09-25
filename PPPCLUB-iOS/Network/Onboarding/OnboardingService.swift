@@ -9,8 +9,13 @@ import Foundation
 
 import Moya
 
+enum Platform : String {
+    case apple = "APPLE"
+    case google = "GOOGLE"
+}
+
 enum OnboardingService {
-    case postLogin(accessToken : String, platform : String)
+    case postLogin(accessToken : String, platform : Platform)
 }
 
 extension OnboardingService: BaseTargetType {
@@ -33,7 +38,7 @@ extension OnboardingService: BaseTargetType {
         case .postLogin(let accessToken, let platform):
             let parameters: [String: Any] = [
                 "accessToken": accessToken,
-                "platform": platform
+                "platform": platform.rawValue
             ]
             
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
