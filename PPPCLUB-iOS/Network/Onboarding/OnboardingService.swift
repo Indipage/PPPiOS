@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum OnboardingService {
-    case postLogin
+    case postLogin(accessToken : String, platform : String)
 }
 
 extension OnboardingService: BaseTargetType {
@@ -30,8 +30,13 @@ extension OnboardingService: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
-        case .postLogin:
-            return .requestPlain
+        case .postLogin(let accessToken, let platform):
+            let parameters: [String: Any] = [
+                "accessToken": accessToken,
+                "platform": platform
+            ]
+            
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
     
