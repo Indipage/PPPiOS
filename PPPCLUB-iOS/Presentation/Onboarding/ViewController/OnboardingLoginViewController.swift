@@ -14,8 +14,6 @@ final class OnboardingLoginViewController : UIViewController {
     
     //MARK: - Properties
     
-    
-    
     //MARK: - UI Components
     
     let rootView = OnboardingLoginView()
@@ -44,5 +42,4 @@ final class OnboardingLoginViewController : UIViewController {
         let onboardingAgreementVC = OnboardingAgreementViewController()
         self.navigationController?.pushViewController(onboardingAgreementVC, animated: true)
     }
-    
 }

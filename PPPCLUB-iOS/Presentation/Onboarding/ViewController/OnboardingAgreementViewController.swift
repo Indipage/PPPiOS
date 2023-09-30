@@ -11,8 +11,7 @@ import SnapKit
 import Then
 import AuthenticationServices
 
-final class OnboardingAgreementViewController : UIViewController, ASAuthorizationControllerDelegate {
-    
+final class OnboardingAgreementViewController : BaseViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties
     
@@ -21,6 +20,8 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
             rootView.agreementCollectionView.reloadData()
         }
     }
+    
+    var accesstoken : String = ""
     
     //MARK: - UI Components
     
@@ -65,7 +66,6 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
         
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
-        //            authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
     
@@ -74,31 +74,11 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
         
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            
-            if  let authorizationCode = appleIDCredential.authorizationCode,
-                let identityToken = appleIDCredential.identityToken,
-                let authString = String(data: authorizationCode, encoding: .utf8),
-                let tokenString = String(data: identityToken, encoding: .utf8) {
-                print("authorizationCode: \(authorizationCode)")
-                print("identityToken: \(identityToken)")
-                print("authString: \(authString)")
-                print("tokenString: \(tokenString)")
+            if let identityToken = appleIDCredential.identityToken,
+               let tokenString = String(data: identityToken, encoding: .utf8) {
+                accesstoken = tokenString
+                requestAppleLoginAPI()
             }
-            
-            print("useridentifier: \(userIdentifier)")
-            print("fullName: \(fullName)")
-            print("email: \(email)")
-            
-        case let passwordCredential as ASPasswordCredential:
-            
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            print("username: \(username)")
-            print("password: \(password)")
             
         default:
             break
@@ -135,8 +115,8 @@ extension OnboardingAgreementViewController: UICollectionViewDataSource {
         print(#function)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingAgreementCollectionViewCell.cellIdentifier, for: indexPath) as? OnboardingAgreementCollectionViewCell else {
             return UICollectionViewCell()
-            
         }
+        
         cell.dataBind(tag: indexPath.item, agreementData[indexPath.item])
         cell.delegate = self
         return cell
@@ -178,6 +158,16 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionHeader
         } else {
             rootView.agreementButton.backgroundColor = .pppGrey3
             rootView.agreementButton.isEnabled = false
+        }
+    }
+}
+
+extension OnboardingAgreementViewController {
+    func requestAppleLoginAPI() {
+        OnboardingAPI.shared.postLogin(accessToken: accesstoken, platform: Platform.apple) { result in
+            guard let result = self.validateResult(result) as? OnboardingLoginResult else { return }
+            let PPPTabBarC = PPPTabBarController()
+            self.navigationController?.pushViewController(PPPTabBarC, animated: true)
         }
     }
 }
