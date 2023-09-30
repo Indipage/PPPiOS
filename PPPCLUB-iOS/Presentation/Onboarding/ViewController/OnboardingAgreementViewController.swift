@@ -11,8 +11,7 @@ import SnapKit
 import Then
 import AuthenticationServices
 
-final class OnboardingAgreementViewController : UIViewController, ASAuthorizationControllerDelegate {
-    
+final class OnboardingAgreementViewController : BaseViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties
     
@@ -21,6 +20,8 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
             rootView.agreementCollectionView.reloadData()
         }
     }
+    
+    var accesstoken : String = ""
     
     //MARK: - UI Components
     
@@ -37,7 +38,7 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
         
         delegate()
         target()
-        
+    
     }
     
     //MARK: - Custom Method
@@ -86,6 +87,10 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
                 print("identityToken: \(identityToken)")
                 print("authString: \(authString)")
                 print("tokenString: \(tokenString)")
+                
+                accesstoken = tokenString
+                print("🍎")
+                requestAppleLoginAPI()
             }
             
             print("useridentifier: \(userIdentifier)")
@@ -103,6 +108,7 @@ final class OnboardingAgreementViewController : UIViewController, ASAuthorizatio
         default:
             break
         }
+        
     }
     
     // 로그인 실패
@@ -178,6 +184,15 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionHeader
         } else {
             rootView.agreementButton.backgroundColor = .pppGrey3
             rootView.agreementButton.isEnabled = false
+        }
+    }
+}
+
+extension OnboardingAgreementViewController {
+    func requestAppleLoginAPI() {
+        OnboardingAPI.shared.postLogin(accessToken: accesstoken, platform: Platform.apple) { result in
+            guard let result = self.validateResult(result) as? OnboardingLoginResult else { return }
+            print("🍿\(result.accessToken)")
         }
     }
 }

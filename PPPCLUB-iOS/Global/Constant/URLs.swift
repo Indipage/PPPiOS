@@ -51,5 +51,5 @@ public enum URLs{
     
     //MARK: - Onboarding
     
-    static let postLogin = "/auto/login"
+    static let postLogin = "/auth/login"
 }

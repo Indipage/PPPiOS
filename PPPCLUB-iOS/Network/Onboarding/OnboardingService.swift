@@ -48,7 +48,7 @@ extension OnboardingService: BaseTargetType {
     var headers: [String : String]? {
         switch self {
         case .postLogin:
-            return APIConstants.hasTokenHeader
+            return APIConstants.noTokenHeader
         }
     }
 }

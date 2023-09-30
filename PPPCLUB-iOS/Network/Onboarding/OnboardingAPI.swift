@@ -19,7 +19,7 @@ extension OnboardingAPI {
     public func postLogin(accessToken: String, platform: Platform, completion: @escaping (NetworkResult<Any>) -> Void) {
         onboardingProvider.request(.postLogin(accessToken: accessToken, platform: Platform.apple)) { (result) in
             self.disposeNetwork(result,
-                                dataModel: VoidResult.self,
+                                dataModel: OnboardingLoginResult.self,
                                 completion: completion
             )
         }
