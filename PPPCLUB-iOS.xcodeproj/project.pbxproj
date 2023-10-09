@@ -15,6 +15,7 @@
 		0525C7402A6932EA00699B2C /* SearchSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C73F2A6932EA00699B2C /* SearchSpaceModel.swift */; };
 		0525C7432A69338700699B2C /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7422A69338700699B2C /* SearchService.swift */; };
 		0525C7452A69362B00699B2C /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C7442A69362B00699B2C /* SearchAPI.swift */; };
+		0545C6D02AD3CE75007C60F3 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545C6CF2AD3CE75007C60F3 /* TokenManager.swift */; };
 		0557DDDB2A65F71100650F75 /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDA2A65F71100650F75 /* DetailService.swift */; };
 		0557DDDD2A65F92900650F75 /* DetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDC2A65F92900650F75 /* DetailAPI.swift */; };
 		0557DDDF2A65FD7200650F75 /* DetailSavedBookMarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */; };
@@ -179,6 +180,7 @@
 		0525C73F2A6932EA00699B2C /* SearchSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSpaceModel.swift; sourceTree = "<group>"; };
 		0525C7422A69338700699B2C /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		0525C7442A69362B00699B2C /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
+		0545C6CF2AD3CE75007C60F3 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		0557DDDA2A65F71100650F75 /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
 		0557DDDC2A65F92900650F75 /* DetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPI.swift; sourceTree = "<group>"; };
 		0557DDDE2A65FD7200650F75 /* DetailSavedBookMarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSavedBookMarkModel.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				D2614A952A52917B00869710 /* NetworkResult.swift */,
 				D2614A972A52918A00869710 /* BaseTargetType.swift */,
 				D2614A992A52919A00869710 /* BaseAPI.swift */,
+				0545C6CF2AD3CE75007C60F3 /* TokenManager.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1273,6 +1276,7 @@
 				2CC8E6352A68353B00C117D7 /* HomeBookmarkCheckModel.swift in Sources */,
 				D265940C2A5C88A80089E56A /* TicketCollectionViewCell.swift in Sources */,
 				055E51C32A6329F5001BD991 /* UIImage+.swift in Sources */,
+				0545C6D02AD3CE75007C60F3 /* TokenManager.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
 				058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */,
 				D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */,
