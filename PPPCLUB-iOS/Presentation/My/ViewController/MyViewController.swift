@@ -85,6 +85,10 @@ extension MyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 23
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        logout()
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -136,6 +140,11 @@ extension MyViewController {
             }
             self.userInfo = result
         }
+    }
+    
+    private func logout() {
+        TokenManager.shared.removeToken()
+        changeRootViewController(OnboardingLoginViewController())
     }
     
     private func dataBind() {
