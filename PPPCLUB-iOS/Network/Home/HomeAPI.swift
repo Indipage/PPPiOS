@@ -115,6 +115,4 @@ extension HomeAPI{
             )
         }
     }
-    
-    
 }

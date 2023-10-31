@@ -48,16 +48,5 @@ extension MyService: BaseTargetType {
             return .requestPlain
         }
     }
-    
-    var headers: [String : String]? {
-        switch self {
-        case .getMySavedArticle:
-            return APIConstants.noTokenHeader
-        case .getMyInfo:
-            return APIConstants.noTokenHeader
-        case .getMySavedSpace:
-            return APIConstants.noTokenHeader
-        }
-    }
 }
 
