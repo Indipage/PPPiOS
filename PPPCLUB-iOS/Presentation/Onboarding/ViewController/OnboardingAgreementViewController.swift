@@ -166,8 +166,8 @@ extension OnboardingAgreementViewController {
     func requestAppleLoginAPI() {
         OnboardingAPI.shared.postLogin(accessToken: accesstoken, platform: Platform.apple) { result in
             guard let result = self.validateResult(result) as? OnboardingLoginResult else { return }
-            let PPPTabBarC = PPPTabBarController()
-            self.navigationController?.pushViewController(PPPTabBarC, animated: true)
+            let OnboardingInfoVC = OnboardingInfoViewController()
+            self.navigationController?.pushViewController(OnboardingInfoVC, animated: true)
         }
     }
 }

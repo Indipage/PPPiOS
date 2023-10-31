@@ -85,4 +85,13 @@ public enum Image {
     static let blankCard = UIImage(named: "blankCard")!
     static let blankPlace = UIImage(named: "blankPlace")!
     static let blankTicket = UIImage(named: "blankTicket")!
+    
+    //MARK: - Onboarding
+    static let infoArticle = UIImage(named: "article")!
+    static let infoTicket = UIImage(named: "ticket")!
+    static let infoPlace = UIImage(named: "place")!
+    static let infoWelcome = UIImage(named: "welcome")!
+    static let infoCollection1 = UIImage(named: "collection1")!
+    static let infoCollection2 = UIImage(named: "collection2")!
+    static let infoCollection3 = UIImage(named: "collection3")!
 }

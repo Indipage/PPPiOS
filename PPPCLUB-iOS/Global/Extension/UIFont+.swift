@@ -86,6 +86,18 @@ extension UIFont{
         return UIFont(name: "Unbounded-Light", size: 20)!
     }
     
+    class var pppOnboarding2: UIFont {
+        return UIFont(name: "Pretendard-Light", size: 17)!
+    }
+
+    class var pppOnboarding3: UIFont {
+        return UIFont(name: "Unbounded-Regular", size: 30)!
+    }
+    
+    class var pppOnboarding4: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 17)!
+    }
+    
     class var pppEnCaption: UIFont {
         return UIFont(name: "Unbounded-Light", size: 14)!
     }
