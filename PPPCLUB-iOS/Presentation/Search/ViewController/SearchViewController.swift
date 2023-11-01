@@ -83,6 +83,11 @@ final class SearchViewController: BaseViewController {
         searchView.noResultImageView.isHidden = isExisted
         searchView.noResultLabelStackView.isHidden = isExisted
     }
+    
+    private func scrollListToTop() {
+        let endIndex = IndexPath(row: 0, section: 0)
+        searchView.searchTableView.scrollToRow(at: endIndex, at: .top, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -131,12 +136,14 @@ extension SearchViewController: UISearchBarDelegate {
         if searchBar.text == "" {
             self.searchView.searchBar.resignFirstResponder()
             requestGetAllSpace()
+            self.scrollListToTop()
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != "" {
             requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
+            scrollListToTop()
         }
         self.searchView.searchBar.resignFirstResponder()
     }
@@ -148,8 +155,9 @@ extension SearchViewController: UISearchBarDelegate {
             requestGetSearchSpace(keyword: searchView.searchBar.text ?? String())
         }
         self.searchView.searchBar.resignFirstResponder()
-        
     }
+    
+
 }
 
 extension SearchViewController {
