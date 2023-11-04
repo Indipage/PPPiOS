@@ -76,7 +76,6 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         ticketButton.do {
             $0.setImage(Image.mockNoTicket, for: .normal)
             $0.imageView?.contentMode = .scaleAspectFill
-            $0.addTarget(self, action: #selector(ticketButtonDidTap), for: .touchUpInside)
         }
     }
     
@@ -143,7 +142,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         ticketSubLabel.text = "이번 주 아티클은 잘 읽으셨나요?\nPPPclub에서 드리는 티켓을 가지고\n\(articleData.spaceName)에 방문하여 인증받아보세요!"
     }
     
-    public func showToast() {
+    private func showToast() {
         let toastView = PPPToastMessage()
         toastView.layer.cornerRadius = 6
         toastView.toastButton.isEnabled = true
@@ -151,12 +150,11 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         self.addSubview(toastView)
         
         toastView.snp.makeConstraints() {
-            $0.bottom.equalToSuperview().inset(46)
+            $0.bottom.equalToSuperview().inset(12)
             $0.centerX.equalToSuperview()
             $0.leading.equalTo(28)
             $0.height.equalTo(54)
         }
-        
         
         UIView.animate(withDuration: 1.0, delay: 4.0, options: .curveEaseIn) {
             toastView.alpha = 0.0

@@ -52,7 +52,7 @@ class HomeArticleView: UIView {
     private func hierarchy() {
         
         self.addSubviews(articleNavigationView,
-                                  articleTableView)
+                         articleTableView)
         
     }
     

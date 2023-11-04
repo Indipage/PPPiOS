@@ -52,7 +52,7 @@ class PPPToastMessage: UIView {
             $0.setTitle("티켓함 가기", for: .normal)
             $0.titleLabel?.font = .pppBody3
             $0.setTitleColor(.pppMainLightGreen, for: .normal)
-            $0.addTarget(self, action: #selector(toastBtnTap), for: .touchUpInside)
+//            $0.addTarget(self, action: #selector(toastBtnTap), for: .touchUpInside)
         }
     }
     
@@ -75,8 +75,8 @@ class PPPToastMessage: UIView {
     }
     
     //MARK: - Action Method
-    @objc
-    private func toastBtnTap() {
-        delegate?.pushTicketView()
-    }
+//    @objc
+//    private func toastBtnTap() {
+//        delegate?.pushTicketView()
+//    }
 }
