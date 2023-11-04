@@ -69,7 +69,7 @@ final class HomeArticleViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         target()
         delegate()
     }
@@ -123,7 +123,7 @@ extension HomeArticleViewController: UITableViewDelegate {
         let blockType = parsingData[indexPath.row].keys
         let content = parsingData[indexPath.row].values
         
-//        print("😄Type: \(blockType), 😍Content: \(content)")
+        //        print("😄Type: \(blockType), 😍Content: \(content)")
         
         switch blockType.first {
         case .title, .body:
@@ -132,12 +132,12 @@ extension HomeArticleViewController: UITableViewDelegate {
             tmpLabel.font = blockType.first?.font
             let cellWidth = 319.0
             let heightCnt = ceil((tmpLabel.intrinsicContentSize.width) / cellWidth)
-//            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
-//            print("몇 번째: \(indexPath.row)")
-//            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
-//            print("줄 개수 \(heightCnt)")
-//            print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
-//            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+            //            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+            //            print("몇 번째: \(indexPath.row)")
+            //            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
+            //            print("줄 개수 \(heightCnt)")
+            //            print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
+            //            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
             return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9 + 30
         case .img:
             return 300
@@ -202,6 +202,12 @@ extension HomeArticleViewController: ArticleHeaderViewDelegate {
     }
 }
 
+extension HomeArticleViewController: PPPToastMessageDelegate {
+    func pushTicketView() {
+        pushTicketViewController()
+    }
+}
+
 extension HomeArticleViewController {
     func requestBookmarkCheckAPI() {
         guard let articleID = articleID else { return }
@@ -257,5 +263,15 @@ extension HomeArticleViewController {
         let detailViewController = DetailViewController()
         detailViewController.dataBind(spaceID: spaceID)
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    public func pushTicketViewController() {
+        let ticketVC = TicketViewController(
+            viewModel: TicketViewModel(
+                ticketUseCase: DefaultTicketUseCase(
+                    repository: DefaultTicketRepository())),
+            animationManager: AnimationManager())
+        
+        self.navigationController?.pushViewController(ticketVC, animated: true)
     }
 }
