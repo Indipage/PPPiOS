@@ -19,7 +19,11 @@ final class DefaultTicketUseCase: TicketUseCase {
     var ticketData: BehaviorRelay<[TicketResult]> = BehaviorRelay<[TicketResult]>(value: [])
     var cardData: BehaviorRelay<[TicketCardResult]> = BehaviorRelay<[TicketCardResult]>(value: [])
     
-    init(repository: TicketRepository) {
+    init(displayMode: DisplayMode,
+         toggleMode: DisplayMode,
+         repository: TicketRepository) {
+        self.displayMode.accept(displayMode)
+        self.toggleMode.accept(toggleMode)
         self.ticketRepository = repository
     }
     

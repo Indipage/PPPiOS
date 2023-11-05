@@ -63,6 +63,18 @@ final class TicketViewController: BaseViewController {
         
         let output = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
         
+        output.displayMode
+            .asDriver(onErrorJustReturn: .ticket)
+            .drive(with: self, onNext: { owner, displayMode in
+                owner.updateSelectedView(with: displayMode)
+            }).disposed(by: disposeBag)
+        
+        output.toggleMode
+            .asDriver(onErrorJustReturn: .ticket)
+            .drive(with: self, onNext: { owner, toggleMode in
+                owner.updateToggleView(toggleMode)
+            }).disposed(by: disposeBag)
+        
         output.ticketData
             .asDriver(onErrorJustReturn: [])
             .drive(
@@ -88,6 +100,7 @@ final class TicketViewController: BaseViewController {
                 self.rootView.cardView.cardImageView.kfSetImage(
                     url: data.imageURL
                 )
+                cell.configureCell(card: data)
                 cell.delegate = self
                 self.updateSelectedView(with: self.viewModel.getDisplayMode())
             }.disposed(by: disposeBag)
@@ -172,13 +185,7 @@ extension TicketViewController {
     }
     
     private func pushToQRChecktView(spaceID: Int?) {
-        guard let spaceID = spaceID else { return }
-        let qrcheckViewController = TicketCheckQRCodeViewController(
-            viewModel: TicketCheckQRCodeViewModel(
-                spaceID: spaceID,
-                repository: DefaultTicketRepository()
-            ), qrManager: QRManager()
-        )
+        let qrcheckViewController = TicketCheckQRCodeViewController(spaceID: spaceID!)
         self.navigationController?.pushViewController(qrcheckViewController, animated: true)
     }
 }
