@@ -20,8 +20,6 @@ final class TicketViewController: BaseViewController {
     private var viewModel: TicketViewModel
     private var animationManager: AnimationManager
     
-    private let requestTotalTicket = PublishRelay<Void>()
-    private let requestTotalCard =  PublishRelay<Void>()
     private let disposeBag = DisposeBag()
     
     init(viewModel: TicketViewModel, animationManager: AnimationManager) {
@@ -47,27 +45,17 @@ final class TicketViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bind()
-        delegate()
+        bindUI()
+        bindViewModel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.tabBarController?.tabBar.isHidden = false
+    private func bindUI() {
+        self.rx.viewWillAppear.subscribe(with: self, onNext: { owner, _ in
+            owner.tabBarController?.tabBar.isHidden = false
+        }).disposed(by: disposeBag)
     }
     
-    //MARK: - Custom Method
-    
-    private func delegate() {
-        rootView.ticketView.ticketCollectionView.delegate = self
-        rootView.ticketView.ticketCollectionView.dataSource = self
-        
-        rootView.cardView.ticketCardCollectionView.delegate = self
-        rootView.cardView.ticketCardCollectionView.dataSource = self
-    }
-    
-    private func bind() {
+    private func bindViewModel() {
         let input = TicketViewModel.Input(
             viewWillAppearEvent: self.rx.viewWillAppear.asObservable(),
             ticketToggleButtonDidTapEvent: rootView.ticketToggleView.ticketToggleButton.rx.tap.asObservable(),
@@ -75,102 +63,61 @@ final class TicketViewController: BaseViewController {
         
         let output = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
         
-        updateSelectedView(with: output.displayMode.value)
+        output.ticketData
+            .asDriver(onErrorJustReturn: [])
+            .drive(
+                self.rootView.ticketView.ticketCollectionView.rx.items(
+                    cellIdentifier: TicketCollectionViewCell.cellIdentifier,
+                    cellType: TicketCollectionViewCell.self)
+            ) { index, data, cell in
+                cell.configureCell(
+                    ticket: data,
+                    point: cell.center
+                )
+                cell.delegate = self
+                self.updateSelectedView(with: self.viewModel.getDisplayMode())
+            }.disposed(by: disposeBag)
         
-        output.ticketData.asObservable().subscribe(onNext: { [weak self] _ in
-            self?.rootView.ticketView.ticketCollectionView.reloadData()
-        }).disposed(by: self.disposeBag)
-        
-        output.cardData.asObservable().subscribe(onNext: { [weak self] _ in
-            if !output.cardData.value.isEmpty {
-                self?.rootView.cardView.cardImageView.kfSetImage(url: output.cardData.value[0].imageURL)
-            }
-            self?.rootView.cardView.ticketCardCollectionView.reloadData()
-        }).disposed(by: self.disposeBag)
+        output.cardData
+            .asDriver(onErrorJustReturn: [])
+            .drive(
+                self.rootView.cardView.ticketCardCollectionView.rx.items(
+                    cellIdentifier: TicketCardCollectionViewCell.cellIdentifier,
+                    cellType: TicketCardCollectionViewCell.self)
+            ) { index, data, cell in
+                self.rootView.cardView.cardImageView.kfSetImage(
+                    url: data.imageURL
+                )
+                cell.delegate = self
+                self.updateSelectedView(with: self.viewModel.getDisplayMode())
+            }.disposed(by: disposeBag)
         
         self.rootView.ticketToggleView.ticketToggleButton.rx.tap.bind { [weak self] _ in
-            guard let self = self else { return }
-            let toggleView = self.rootView.ticketToggleView
-            
-            self.animationManager.ticketToggleButtonAnimate (
-                targetView: toggleView.toggleButton,
-                translationX: self.viewModel.moveBy(),
-                selectedLabel: toggleView.ticketLabel,
-                unSelectedLable: toggleView.cardLabel
-            )
-            self.updateSelectedView(with: output.displayMode.value)
-        }.disposed(by: self.disposeBag)
-        
-        self.rootView.ticketToggleView.cardToggleButton.rx.tap.bind { [weak self] _ in
-            guard let self = self else { return }
-            let toggleView = self.rootView.ticketToggleView
-            
-            self.animationManager.ticketToggleButtonAnimate (
-                targetView: toggleView.toggleButton,
-                translationX: self.viewModel.moveBy(),
-                selectedLabel: toggleView.cardLabel,
-                unSelectedLable: toggleView.ticketLabel
-            )
-            self.updateSelectedView(with: output.displayMode.value)
-        }.disposed(by: self.disposeBag)
-    }
-}
+                     guard let self = self else { return }
+                     let toggleView = self.rootView.ticketToggleView
 
-//MARK: - UICollectionViewDelegate
+                     self.animationManager.ticketToggleButtonAnimate (
+                         targetView: toggleView.toggleButton,
+                         translationX: self.viewModel.moveBy(),
+                         selectedLabel: toggleView.ticketLabel,
+                         unSelectedLable: toggleView.cardLabel
+                     )
+                     self.updateSelectedView(with: output.displayMode.value)
+                 }.disposed(by: self.disposeBag)
 
-extension TicketViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch collectionView {
-        case rootView.ticketView.ticketCollectionView:
-            return CGSize(width: Size.width, height: 247.adjusted)
-        case rootView.cardView.ticketCardCollectionView:
-            return CGSize(width: 68.adjusted, height: 108.adjusted)
-        default:
-            return CGSize(width: 0, height: 0)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        switch collectionView {
-        case rootView.ticketView.ticketCollectionView:
-            return 25.adjusted
-        case rootView.cardView.ticketCardCollectionView:
-            return 15
-        default:
-            return 0
-        }
-    }
-}
+                 self.rootView.ticketToggleView.cardToggleButton.rx.tap.bind { [weak self] _ in
+                     guard let self = self else { return }
+                     let toggleView = self.rootView.ticketToggleView
 
-//MARK: - UICollectionViewDataSource
+                     self.animationManager.ticketToggleButtonAnimate (
+                         targetView: toggleView.toggleButton,
+                         translationX: self.viewModel.moveBy(),
+                         selectedLabel: toggleView.cardLabel,
+                         unSelectedLable: toggleView.ticketLabel
+                     )
+                     self.updateSelectedView(with: output.displayMode.value)
+                 }.disposed(by: self.disposeBag)
 
-extension TicketViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-        case rootView.ticketView.ticketCollectionView:
-            return viewModel.getTicketData().value.count
-        case rootView.cardView.ticketCardCollectionView:
-            return viewModel.getCardData().value.count
-        default:
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView {
-        case rootView.ticketView.ticketCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(ticket: viewModel.getTicketData().value[indexPath.item], point: cell.center)
-            cell.delegate = self
-            return cell
-        case rootView.cardView.ticketCardCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCardCollectionViewCell.cellIdentifier, for: indexPath) as? TicketCardCollectionViewCell else { return UICollectionViewCell() }
-            cell.delegate = self
-            cell.configureCell(card: viewModel.getCardData().value[indexPath.item])
-            return cell
-        default:
-            return UICollectionViewCell()
-        }
     }
 }
 
@@ -196,13 +143,13 @@ extension TicketViewController {
     private func updateSelectedView(with displayMode: DisplayMode) {
         switch displayMode {
         case .ticket:
-            let isHidden = viewModel.getTicketData().value.isEmpty
+            let isHidden = viewModel.getTicketData().isEmpty
             rootView.ticketView.isHidden = false
             rootView.cardView.isHidden = true
             rootView.ticketView.noTicketView.isHidden = !isHidden
             rootView.ticketView.ticketCollectionView.isHidden = isHidden
         case .card:
-            let isHidden = viewModel.getCardData().value.isEmpty
+            let isHidden = viewModel.getCardData().isEmpty
             rootView.ticketView.isHidden = true
             rootView.cardView.isHidden = false
             rootView.cardView.noTicketCardView.isHidden = !isHidden
