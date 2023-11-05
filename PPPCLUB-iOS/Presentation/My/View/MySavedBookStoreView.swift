@@ -18,6 +18,7 @@ final class MySavedBookStoreView: UIView {
     lazy var backButton = UIButton()
     private let titleLabel = UILabel()
     let savedBookStoreTableView = UITableView(frame: .zero, style: .plain)
+    let noSavedSpaceView = MyNoSavedSpaceView()
     
     // MARK: - Life Cycle
     
@@ -57,10 +58,14 @@ final class MySavedBookStoreView: UIView {
             $0.font = .pppSubHead1
             $0.textColor = .pppBlack
         }
+        
+        noSavedSpaceView.do {
+            $0.isHidden = true
+        }
     }
     
     private func hieararchy() {
-        self.addSubviews(savedBookStoreNavigationBar, savedBookStoreTableView)
+        self.addSubviews(savedBookStoreNavigationBar, savedBookStoreTableView, noSavedSpaceView)
         savedBookStoreNavigationBar.addSubviews(backButton, titleLabel)
     }
     
@@ -76,6 +81,11 @@ final class MySavedBookStoreView: UIView {
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().offset(28)
             $0.bottom.equalToSuperview()
+        }
+        
+        noSavedSpaceView.snp.makeConstraints {
+            $0.top.equalTo(self.savedBookStoreNavigationBar.snp.bottom)
+            $0.width.bottom.equalToSuperview()
         }
         
         backButton.snp.makeConstraints {
