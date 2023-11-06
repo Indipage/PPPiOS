@@ -84,7 +84,7 @@ final class TicketCardView: UIView {
         ticketCardCollectionView.snp.makeConstraints {
             $0.top.equalTo(self.cardImageView.snp.bottom).offset(20.adjusted)
             $0.leading.equalToSuperview().offset(28)
-            $0.width.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(5)
             $0.height.equalTo(108.adjusted)
         }
     }

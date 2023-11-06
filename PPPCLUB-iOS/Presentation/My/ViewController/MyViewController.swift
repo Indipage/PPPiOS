@@ -87,7 +87,11 @@ extension MyViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        logout()
+        if indexPath == IndexPath(row: 0, section: 1) {
+            logout()
+        } else {
+            showToast(message: "준비 중인 기능입니다", font: .pppBody3)
+        }
     }
 }
 
@@ -144,7 +148,14 @@ extension MyViewController {
     
     private func logout() {
         TokenManager.shared.removeToken()
-        changeRootViewController(OnboardingLoginViewController())
+        let onboardingLoginVC = UINavigationController(rootViewController: OnboardingLoginViewController())
+        
+        if !TokenManager.shared.isTokenExist() {
+            UIApplication.shared.changeRootViewController(onboardingLoginVC)
+        } else {
+            showToast(message: "로그아웃 과정에서 에러가 발생했습니다.", font: .pppBody3)
+        }
+        
     }
     
     private func dataBind() {

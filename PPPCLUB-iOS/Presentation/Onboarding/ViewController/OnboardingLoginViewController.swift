@@ -27,7 +27,6 @@ final class OnboardingLoginViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkToken()
         target()
     }
     
@@ -35,13 +34,6 @@ final class OnboardingLoginViewController : UIViewController {
     
     private func target() {
         rootView.appleLoginButton.addTarget(self, action: #selector(appleLoginButtonDidTap), for: .touchUpInside)
-    }
-    
-    private func checkToken() {
-        if TokenManager.shared.isTokenExist() {
-            let PPPTabBar = PPPTabBarController()
-            self.navigationController?.pushViewController(PPPTabBar, animated: true)
-        }
     }
     
     //MARK: - Action Method

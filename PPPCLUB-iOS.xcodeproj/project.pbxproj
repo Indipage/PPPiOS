@@ -119,6 +119,7 @@
 		D273F2762A7B70360022BE63 /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D273F2752A7B70360022BE63 /* TicketViewModel.swift */; };
 		D27726212AF7BD0C00CF1739 /* MyNoSavedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27726202AF7BD0C00CF1739 /* MyNoSavedArticleView.swift */; };
 		D27726232AF7BF2100CF1739 /* MyNoSavedSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27726222AF7BF2100CF1739 /* MyNoSavedSpaceView.swift */; };
+		D27726252AF8B54C00CF1739 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27726242AF8B54C00CF1739 /* UIApplication+.swift */; };
 		D28ACC1C2A69C55C0093B01E /* TicketQRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */; };
 		D28ACC1E2A69C9DF0093B01E /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */; };
 		D28ACC1F2A6A89BB0093B01E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2614A4E2A52837000869710 /* Assets.xcassets */; };
@@ -285,6 +286,7 @@
 		D273F2752A7B70360022BE63 /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
 		D27726202AF7BD0C00CF1739 /* MyNoSavedArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNoSavedArticleView.swift; sourceTree = "<group>"; };
 		D27726222AF7BF2100CF1739 /* MyNoSavedSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNoSavedSpaceView.swift; sourceTree = "<group>"; };
+		D27726242AF8B54C00CF1739 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		D28ACC1B2A69C55C0093B01E /* TicketQRCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketQRCodeModel.swift; sourceTree = "<group>"; };
 		D28ACC1D2A69C9DF0093B01E /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPToastMessage.swift; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 				055E51BA2A603FCC001BD991 /* UITextView+.swift */,
 				055E51C22A6329F5001BD991 /* UIImage+.swift */,
 				D2B0F9CD2AA1BEE800821110 /* Reactive+.swift */,
+				D27726242AF8B54C00CF1739 /* UIApplication+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1283,6 +1286,7 @@
 				D265940C2A5C88A80089E56A /* TicketCollectionViewCell.swift in Sources */,
 				055E51C32A6329F5001BD991 /* UIImage+.swift in Sources */,
 				0545C6D02AD3CE75007C60F3 /* TokenManager.swift in Sources */,
+				D27726252AF8B54C00CF1739 /* UIApplication+.swift in Sources */,
 				D2614A642A528C6400869710 /* UIViewController+.swift in Sources */,
 				058326892A5C00C7004A295F /* DetailTagCollectionViewCell.swift in Sources */,
 				D2E8C3DF2A5F3934002004A5 /* TicketFailureViewController.swift in Sources */,
