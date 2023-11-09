@@ -36,11 +36,6 @@ final class TicketViewModel: ViewModelType {
         self.ticketUseCase = ticketUseCase
     }
     
-    private let displayMode = BehaviorRelay<DisplayMode>(value: .ticket)
-    private let toggleMode = BehaviorRelay<DisplayMode>(value: .ticket)
-    private let ticketData: BehaviorRelay<[TicketResult]> = BehaviorRelay<[TicketResult]>(value: [])
-    private let cardData: BehaviorRelay<[TicketCardResult]> = BehaviorRelay<[TicketCardResult]>(value: [])
-    
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
         let output = Output()
         self.bindOutput(output: output, disposeBag: disposeBag)
@@ -90,11 +85,15 @@ final class TicketViewModel: ViewModelType {
 }
 
 extension TicketViewModel {
-    func getTicketData() -> BehaviorRelay<[TicketResult]> {
-        return ticketUseCase.ticketData
+    func getTicketData() -> [TicketResult] {
+        return ticketUseCase.ticketData.value
     }
     
-    func getCardData() -> BehaviorRelay<[TicketCardResult]> {
-        return ticketUseCase.cardData
+    func getCardData() -> [TicketCardResult] {
+        return ticketUseCase.cardData.value
+    }
+    
+    func getDisplayMode() -> DisplayMode {
+        return ticketUseCase.displayMode.value
     }
 }

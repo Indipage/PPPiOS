@@ -12,11 +12,14 @@ class TokenManager {
     static let shared = TokenManager()
     let defaults = UserDefaults.standard
     
+    @discardableResult
     func isTokenExist() -> Bool {
         let token = defaults.string(forKey: "accessToken")
         if token != nil {
+            print("🫶 있음")
             return true
         } else {
+            print("❌ 없음")
             return false
         }
     }
@@ -32,7 +35,9 @@ class TokenManager {
     // MARK: - 로그아웃, 탈퇴 및 로그인 테스트시 사용
     
     func removeToken() {
+        print("토큰을 삭제했습니다")
         defaults.removeObject(forKey: "accessToken")
+        defaults.synchronize()
     }
-    
 }
+
