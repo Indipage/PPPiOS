@@ -380,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				058326862A5BF893004A295F /* PPPTagView.swift */,
-				D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -453,6 +452,7 @@
 			children = (
 				2C0C72A52A606A3900EC2117 /* HomeArticleHeaderView.swift */,
 				2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */,
+				D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */,
 			);
 			path = HomeHeaderFooterView;
 			sourceTree = "<group>";

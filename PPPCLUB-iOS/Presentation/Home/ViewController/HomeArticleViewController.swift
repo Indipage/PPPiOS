@@ -49,7 +49,6 @@ final class HomeArticleViewController: BaseViewController {
     }
     
     // MARK: - UI Components
-    
     private let rootView = HomeArticleView()
     
     // MARK: - Life Cycles
@@ -88,12 +87,12 @@ final class HomeArticleViewController: BaseViewController {
     private func target() {
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
         rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
-        
     }
     
     private func delegate() {
         rootView.articleTableView.delegate = self
         rootView.articleTableView.dataSource = self
+//        toastView.delegate = self
     }
     
     //MARK: - Action Method
@@ -183,6 +182,7 @@ extension HomeArticleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
+        footer.delegate = self
         footer.dataBindTicketCheck(articleData: ticketCheckData)
         footer.dataBindTicketCheck2(articleData: homeDetailArticleData)
         return footer
@@ -199,12 +199,6 @@ extension HomeArticleViewController: TableViewCellDelegate {
 extension HomeArticleViewController: ArticleHeaderViewDelegate {
     func enterStoreButtonDidTap() {
         pushDetailViewController()
-    }
-}
-
-extension HomeArticleViewController: PPPToastMessageDelegate {
-    func pushTicketView() {
-        pushTicketViewController()
     }
 }
 
@@ -264,8 +258,39 @@ extension HomeArticleViewController {
         detailViewController.dataBind(spaceID: spaceID)
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
+}
+
+extension HomeArticleViewController : HomeArticleFooterViewDelegate {
+    public func presentToastView() {
+        
+        DispatchQueue.main.async { [self] in
+            let toastView = PPPToastMessage()
+        
+            self.view.addSubview(toastView)
+            toastView.toastButton.addTarget(self, action: #selector(toastButtonTapped), for: .touchUpInside)
+            
+            toastView.snp.makeConstraints() {
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-46)
+                $0.centerX.equalToSuperview()
+                $0.leading.equalTo(28)
+            }
+
+            UIView.animate(withDuration: 1.0, delay: 4.0, options: .allowUserInteraction) {
+                toastView.alpha = 0.0
+            } completion: { _ in
+                toastView.removeFromSuperview()
+            }
+        }
+    }
     
-    public func pushTicketViewController() {
+    @objc
+    private func toastButtonTapped() {
+        print("💗")
+        pushTicketViewController()
+    }
+    
+    func pushTicketViewController() {
+        print("💗⭐️")
         let ticketVC = TicketViewController(
             viewModel: TicketViewModel(
                 ticketUseCase: DefaultTicketUseCase(

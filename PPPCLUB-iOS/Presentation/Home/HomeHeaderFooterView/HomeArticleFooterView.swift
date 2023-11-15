@@ -10,10 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HomeArticleFooterViewDelegate : AnyObject {
+    func presentToastView()
+}
+
 class HomeArticleFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Properties
     
+    var delegate : HomeArticleFooterViewDelegate?
     var ticketID = Int()
     var ticketURL = String()
     var cardURL = String()
@@ -45,9 +50,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     // MARK: - Custom Method
     
     private func target() {
-        ticketButton.addAction(UIAction(handler: { action in
-            self.ticketButtonDidTap(image: self.ticketURL)
-        }), for: .touchUpInside)
+        ticketButton.addTarget(self, action: #selector(ticketButtonDidTap), for: .touchUpInside)
     }
     private func style() {
         
@@ -115,9 +118,9 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     }
     
     //MARK: - Action Method
-    @objc func ticketButtonDidTap(image: String) {
-        ticketButton.kfSetButtonImage(url: image, state: .normal)
-        showToast()
+    @objc func ticketButtonDidTap() {
+        ticketButton.kfSetButtonImage(url: ticketURL, state: .normal)
+        delegate?.presentToastView()
     }
     
     func dataBindTicketCheck(articleData: HomeTicketCheckResult?) {
@@ -140,27 +143,6 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     func dataBindTicketCheck2(articleData: HomeDetailArticleResult?) {
         guard let articleData = articleData else { return }
         ticketSubLabel.text = "이번 주 아티클은 잘 읽으셨나요?\nPPPclub에서 드리는 티켓을 가지고\n\(articleData.spaceName)에 방문하여 인증받아보세요!"
-    }
-    
-    private func showToast() {
-        let toastView = PPPToastMessage()
-        toastView.layer.cornerRadius = 6
-        toastView.toastButton.isEnabled = true
-        
-        self.addSubview(toastView)
-        
-        toastView.snp.makeConstraints() {
-            $0.bottom.equalToSuperview().inset(12)
-            $0.centerX.equalToSuperview()
-            $0.leading.equalTo(28)
-            $0.height.equalTo(54)
-        }
-        
-        UIView.animate(withDuration: 1.0, delay: 4.0, options: .curveEaseIn) {
-            toastView.alpha = 0.0
-        } completion: { _ in
-            toastView.removeFromSuperview()
-        }
     }
 }
 

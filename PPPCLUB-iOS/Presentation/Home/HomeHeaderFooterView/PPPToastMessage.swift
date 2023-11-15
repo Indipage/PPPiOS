@@ -10,20 +10,12 @@ import UIKit
 import SnapKit
 import Then
 
-protocol PPPToastMessageDelegate: AnyObject {
-    func pushTicketView()
-}
-
 class PPPToastMessage: UIView {
-    
-    //MARK: - Properties
-    
-    weak var delegate: PPPToastMessageDelegate?
     
     //MARK: - UI Components
     
     private let toastMessageLabel = UILabel()
-    lazy var toastButton = UIButton()
+    let toastButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,13 +25,14 @@ class PPPToastMessage: UIView {
         layout()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func style() {
         self.do {
             $0.backgroundColor = .pppGrey9
+            $0.layer.cornerRadius = 6
         }
         
         toastMessageLabel.do {
@@ -52,7 +45,7 @@ class PPPToastMessage: UIView {
             $0.setTitle("티켓함 가기", for: .normal)
             $0.titleLabel?.font = .pppBody3
             $0.setTitleColor(.pppMainLightGreen, for: .normal)
-//            $0.addTarget(self, action: #selector(toastBtnTap), for: .touchUpInside)
+            $0.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(tapEvent)))
         }
     }
     
@@ -61,22 +54,20 @@ class PPPToastMessage: UIView {
     }
     
     private func layout() {
+        
         toastMessageLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
             $0.centerY.equalToSuperview()
         }
         
         toastButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(20)
-            $0.width.equalTo(73)
-            $0.height.equalTo(22)
+            $0.top.bottom.equalToSuperview().inset(16)
         }
     }
     
-    //MARK: - Action Method
-//    @objc
-//    private func toastBtnTap() {
-//        delegate?.pushTicketView()
-//    }
+    @objc
+    private func tapEvent() {
+        print("💗🍎")
+    }
 }
