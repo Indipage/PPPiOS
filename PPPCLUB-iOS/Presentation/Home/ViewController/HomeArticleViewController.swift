@@ -49,7 +49,6 @@ final class HomeArticleViewController: BaseViewController {
     }
     
     // MARK: - UI Components
-    
     private let rootView = HomeArticleView()
     
     // MARK: - Life Cycles
@@ -69,7 +68,7 @@ final class HomeArticleViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         target()
         delegate()
     }
@@ -88,12 +87,12 @@ final class HomeArticleViewController: BaseViewController {
     private func target() {
         rootView.articleNavigationView.articleBackButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
         rootView.articleNavigationView.saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
-        
     }
     
     private func delegate() {
         rootView.articleTableView.delegate = self
         rootView.articleTableView.dataSource = self
+//        toastView.delegate = self
     }
     
     //MARK: - Action Method
@@ -123,7 +122,7 @@ extension HomeArticleViewController: UITableViewDelegate {
         let blockType = parsingData[indexPath.row].keys
         let content = parsingData[indexPath.row].values
         
-//        print("😄Type: \(blockType), 😍Content: \(content)")
+        //        print("😄Type: \(blockType), 😍Content: \(content)")
         
         switch blockType.first {
         case .title, .body:
@@ -132,12 +131,12 @@ extension HomeArticleViewController: UITableViewDelegate {
             tmpLabel.font = blockType.first?.font
             let cellWidth = 319.0
             let heightCnt = ceil((tmpLabel.intrinsicContentSize.width) / cellWidth)
-//            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
-//            print("몇 번째: \(indexPath.row)")
-//            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
-//            print("줄 개수 \(heightCnt)")
-//            print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
-//            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+            //            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
+            //            print("몇 번째: \(indexPath.row)")
+            //            print("전체 가로 길이: \((round(tmpLabel.intrinsicContentSize.width) / cellWidth))")
+            //            print("줄 개수 \(heightCnt)")
+            //            print("세로 길이 \(heightCnt * tmpLabel.intrinsicContentSize.height)")
+            //            print("🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎🦎")
             return heightCnt * tmpLabel.intrinsicContentSize.height + (heightCnt - 1) * 9 + 30
         case .img:
             return 300
@@ -183,6 +182,7 @@ extension HomeArticleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeArticleFooterView.cellIdentifier) as? HomeArticleFooterView else { return UIView()}
+        footer.delegate = self
         footer.dataBindTicketCheck(articleData: ticketCheckData)
         footer.dataBindTicketCheck2(articleData: homeDetailArticleData)
         return footer
@@ -257,5 +257,46 @@ extension HomeArticleViewController {
         let detailViewController = DetailViewController()
         detailViewController.dataBind(spaceID: spaceID)
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}
+
+extension HomeArticleViewController : HomeArticleFooterViewDelegate {
+    public func presentToastView() {
+        
+        DispatchQueue.main.async { [self] in
+            let toastView = PPPToastMessage()
+        
+            self.view.addSubview(toastView)
+            toastView.toastButton.addTarget(self, action: #selector(toastButtonTapped), for: .touchUpInside)
+            
+            toastView.snp.makeConstraints() {
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-46)
+                $0.centerX.equalToSuperview()
+                $0.leading.equalTo(28)
+            }
+
+            UIView.animate(withDuration: 1.0, delay: 4.0, options: .allowUserInteraction) {
+                toastView.alpha = 0.0
+            } completion: { _ in
+                toastView.removeFromSuperview()
+            }
+        }
+    }
+    
+    @objc
+    private func toastButtonTapped() {
+        print("💗")
+        pushTicketViewController()
+    }
+    
+    func pushTicketViewController() {
+        print("💗⭐️")
+        let ticketVC = TicketViewController(
+            viewModel: TicketViewModel(
+                ticketUseCase: DefaultTicketUseCase(
+                    repository: DefaultTicketRepository())),
+            animationManager: AnimationManager())
+        
+        self.navigationController?.pushViewController(ticketVC, animated: true)
     }
 }

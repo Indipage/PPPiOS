@@ -10,10 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HomeArticleFooterViewDelegate : AnyObject {
+    func presentToastView()
+}
+
 class HomeArticleFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Properties
     
+    var delegate : HomeArticleFooterViewDelegate?
     var ticketID = Int()
     var ticketURL = String()
     var cardURL = String()
@@ -45,9 +50,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     // MARK: - Custom Method
     
     private func target() {
-        ticketButton.addAction(UIAction(handler: { action in
-            self.ticketButtonDidTap(image: self.ticketURL)
-        }), for: .touchUpInside)
+        ticketButton.addTarget(self, action: #selector(ticketButtonDidTap), for: .touchUpInside)
     }
     private func style() {
         
@@ -75,7 +78,7 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
         
         ticketButton.do {
             $0.setImage(Image.mockNoTicket, for: .normal)
-            ticketButton.imageView?.contentMode = .scaleAspectFill
+            $0.imageView?.contentMode = .scaleAspectFill
         }
     }
     
@@ -115,8 +118,9 @@ class HomeArticleFooterView: UITableViewHeaderFooterView {
     }
     
     //MARK: - Action Method
-    @objc func ticketButtonDidTap(image: String) {
-        ticketButton.kfSetButtonImage(url: image, state: .normal)
+    @objc func ticketButtonDidTap() {
+        ticketButton.kfSetButtonImage(url: ticketURL, state: .normal)
+        delegate?.presentToastView()
     }
     
     func dataBindTicketCheck(articleData: HomeTicketCheckResult?) {

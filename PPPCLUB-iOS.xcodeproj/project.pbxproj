@@ -39,12 +39,17 @@
 		2C0C72A82A606A4F00EC2117 /* HomeArticleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */; };
 		2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */; };
 		2C0C72AC2A608C8B00EC2117 /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */; };
+		2C1699342AEF480B00118B18 /* OnboardingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1699332AEF480B00118B18 /* OnboardingInfoView.swift */; };
+		2C1699372AEF482E00118B18 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1699362AEF482E00118B18 /* OnboardingInfoViewController.swift */; };
+		2C1699392AEF489200118B18 /* OnboardingInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1699382AEF489200118B18 /* OnboardingInfoCollectionViewCell.swift */; };
+		2C16993B2AEF4DC600118B18 /* OnboardingInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16993A2AEF4DC600118B18 /* OnboardingInfoModel.swift */; };
 		2C1796532A670F110020B9A5 /* HomeArticleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */; };
 		2C1796582A670FC30020B9A5 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796572A670FC30020B9A5 /* HomeAPI.swift */; };
 		2C17965A2A6710980020B9A5 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1796592A6710980020B9A5 /* HomeService.swift */; };
 		2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */; };
 		2C17965F2A67353C0020B9A5 /* HomeArticleCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */; };
 		2C8A96392A6304BC009B2919 /* HomeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A96382A6304BC009B2919 /* HomeAllView.swift */; };
+		2C90652B2AF0F5DE006A4B5C /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C90652A2AF0F5DE006A4B5C /* Pretendard-Light.ttf */; };
 		2CC574AD2AC027120023B01E /* OnboardingLoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC574AC2AC027120023B01E /* OnboardingLoginResult.swift */; };
 		2CC574B02AC0283B0023B01E /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC574AF2AC0283B0023B01E /* OnboardingService.swift */; };
 		2CC574B22AC028480023B01E /* OnboardingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC574B12AC028480023B01E /* OnboardingAPI.swift */; };
@@ -207,12 +212,17 @@
 		2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleFooterView.swift; sourceTree = "<group>"; };
 		2C0C72A92A608BB000EC2117 /* HomeWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklyView.swift; sourceTree = "<group>"; };
 		2C0C72AB2A608C8B00EC2117 /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
+		2C1699332AEF480B00118B18 /* OnboardingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoView.swift; sourceTree = "<group>"; };
+		2C1699362AEF482E00118B18 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
+		2C1699382AEF489200118B18 /* OnboardingInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C16993A2AEF4DC600118B18 /* OnboardingInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoModel.swift; sourceTree = "<group>"; };
 		2C1796522A670F110020B9A5 /* HomeArticleListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleListModel.swift; sourceTree = "<group>"; };
 		2C1796572A670FC30020B9A5 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
 		2C1796592A6710980020B9A5 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		2C17965C2A672B460020B9A5 /* HomeArticleCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCardModel.swift; sourceTree = "<group>"; };
 		2C17965E2A67353C0020B9A5 /* HomeArticleCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleCheckModel.swift; sourceTree = "<group>"; };
 		2C8A96382A6304BC009B2919 /* HomeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAllView.swift; sourceTree = "<group>"; };
+		2C90652A2AF0F5DE006A4B5C /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
 		2CC574AC2AC027120023B01E /* OnboardingLoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginResult.swift; sourceTree = "<group>"; };
 		2CC574AF2AC0283B0023B01E /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		2CC574B12AC028480023B01E /* OnboardingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAPI.swift; sourceTree = "<group>"; };
@@ -378,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				058326862A5BF893004A295F /* PPPTagView.swift */,
-				D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -451,6 +460,7 @@
 			children = (
 				2C0C72A52A606A3900EC2117 /* HomeArticleHeaderView.swift */,
 				2C0C72A72A606A4F00EC2117 /* HomeArticleFooterView.swift */,
+				D28ACC202A6ADF1E0093B01E /* PPPToastMessage.swift */,
 			);
 			path = HomeHeaderFooterView;
 			sourceTree = "<group>";
@@ -837,6 +847,7 @@
 				D224D4B52A5DFB7300B014ED /* Unbounded-Light.ttf */,
 				D224D4B32A5DFB6B00B014ED /* Unbounded-Regular.ttf */,
 				D224D4B12A5DFAE900B014ED /* Pretendard-Regular.otf */,
+				2C90652A2AF0F5DE006A4B5C /* Pretendard-Light.ttf */,
 				D224D4AF2A5DFAC300B014ED /* Pretendard-Bold.otf */,
 				D22188762A5925F100F097C7 /* Pretendard-SemiBold.otf */,
 			);
@@ -1082,6 +1093,7 @@
 		D2E45CEE2AA71664002A6830 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2C1699362AEF482E00118B18 /* OnboardingInfoViewController.swift */,
 				D2E45CF42AA71FA8002A6830 /* OnboardingAgreementViewController.swift */,
 				D2E45CEF2AA71694002A6830 /* OnboardingLoginViewController.swift */,
 			);
@@ -1091,6 +1103,7 @@
 		D2E45CF12AA716BE002A6830 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C1699332AEF480B00118B18 /* OnboardingInfoView.swift */,
 				D2E45CF22AA716CA002A6830 /* OnboardingLoginView.swift */,
 				D2E45CF62AA71FE5002A6830 /* OnboardingAgreementView.swift */,
 			);
@@ -1102,6 +1115,7 @@
 			children = (
 				D2E45CF92AA72579002A6830 /* OnboardingAgreementCollectionViewCell.swift */,
 				D2E45CFF2AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift */,
+				2C1699382AEF489200118B18 /* OnboardingInfoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1119,6 +1133,7 @@
 			isa = PBXGroup;
 			children = (
 				D2E45CFD2AA7287F002A6830 /* OnboardingAgreementModel.swift */,
+				2C16993A2AEF4DC600118B18 /* OnboardingInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1198,6 +1213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C90652B2AF0F5DE006A4B5C /* Pretendard-Light.ttf in Resources */,
 				D224D4B62A5DFB7300B014ED /* Unbounded-Light.ttf in Resources */,
 				D2614A522A52837000869710 /* LaunchScreen.storyboard in Resources */,
 				D28ACC242A6BAAF90093B01E /* logo.png in Resources */,
@@ -1262,6 +1278,7 @@
 				D224D4942A5D1C6A00B014ED /* TicketSuccessViewController.swift in Sources */,
 				2C0C729B2A60697600EC2117 /* HomeArticleNavigationView.swift in Sources */,
 				058326902A5C290A004A295F /* DetailView.swift in Sources */,
+				2C1699342AEF480B00118B18 /* OnboardingInfoView.swift in Sources */,
 				D2E45CF02AA71694002A6830 /* OnboardingLoginViewController.swift in Sources */,
 				D2E8C3E12A5FF2D0002004A5 /* TicketToggleView.swift in Sources */,
 				D2D4836A2AA0312100261CFF /* ViewModelType.swift in Sources */,
@@ -1276,6 +1293,7 @@
 				D23B6AFF2A6908A700894C38 /* ArticleParsingManager.swift in Sources */,
 				D20CE78B2A69542800A6A79D /* HomeDetailArticleResult.swift in Sources */,
 				D2B031AB2A62B46E00DE8896 /* MyService.swift in Sources */,
+				2C1699392AEF489200118B18 /* OnboardingInfoCollectionViewCell.swift in Sources */,
 				D2E8C3D32A5E811E002004A5 /* CALayer+.swift in Sources */,
 				2C17965D2A672B460020B9A5 /* HomeArticleCardModel.swift in Sources */,
 				2CDCCE762A6AA35E0001FD0F /* HomeWeeklySlideYetView.swift in Sources */,
@@ -1347,6 +1365,7 @@
 				2CC574B22AC028480023B01E /* OnboardingAPI.swift in Sources */,
 				2C1796582A670FC30020B9A5 /* HomeAPI.swift in Sources */,
 				D2E45D002AA72D0A002A6830 /* OnboardingAgreementCollectionHeaderView.swift in Sources */,
+				2C1699372AEF482E00118B18 /* OnboardingInfoViewController.swift in Sources */,
 				D2614A922A52913900869710 /* APIConstants.swift in Sources */,
 				D224D4AB2A5DCB7800B014ED /* MySeparatorFooterView.swift in Sources */,
 				2C0C72AA2A608BB000EC2117 /* HomeWeeklyView.swift in Sources */,
@@ -1358,6 +1377,7 @@
 				D2614A622A528C5100869710 /* UIView+.swift in Sources */,
 				D2614A682A528C9100869710 /* UITextField+.swift in Sources */,
 				D2614A9A2A52919A00869710 /* BaseAPI.swift in Sources */,
+				2C16993B2AEF4DC600118B18 /* OnboardingInfoModel.swift in Sources */,
 				058326872A5BF893004A295F /* PPPTagView.swift in Sources */,
 				D2614A6A2A528CA300869710 /* UIColor+.swift in Sources */,
 				D27726212AF7BD0C00CF1739 /* MyNoSavedArticleView.swift in Sources */,
