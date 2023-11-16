@@ -13,19 +13,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+            // 앱 시작 시 루트 뷰 컨트롤러 설정
+//            let initialViewController: UIViewController
+//            if TokenManager.shared.isTokenExist() {
+//                // 토큰이 있을 경우, 메인 뷰 컨트롤러로 설정
+//                initialViewController = PPPTabBarController()
+//            } else {
+//                // 토큰이 없을 경우, 로그인 뷰 컨트롤러로 설정
+//                initialViewController = OnboardingLoginViewController()
+//            }
+//            
+//            // 네비게이션 컨트롤러 초기화
+//            let navigationController = UINavigationController(rootViewController: initialViewController)
+//
+//            window = UIWindow(frame: UIScreen.main.bounds)
+//            window?.rootViewController = navigationController
+//            window?.makeKeyAndVisible()
+
+            return true
+        }
         
-        // Splash 화면을 2초 동안 보여줍니다.
-        Thread.sleep(forTimeInterval: 1.5)
-        
-        // Main.storyboard에서 초기 뷰 컨트롤러를 찾아 메인 화면으로 이동합니다.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateInitialViewController()
-        window?.overrideUserInterfaceStyle = .light
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
-        
-        return true
-    }
 
 // MARK: UISceneSession Lifecycle
 

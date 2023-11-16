@@ -63,6 +63,7 @@ final class MySavedView: UIView {
     private var savedTitleLabel = UILabel()
     private var savedSubTitleLabel = UILabel()
     
+    
     // MARK: - Life Cycle
     
     init(frame: CGRect, savedViewType: SavedViewType) {

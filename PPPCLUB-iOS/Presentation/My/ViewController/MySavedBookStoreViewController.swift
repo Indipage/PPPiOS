@@ -100,6 +100,7 @@ extension MySavedBookStoreViewController {
         MyAPI.shared.getSavedSpace() { result in
             guard let result = self.validateResult(result) as? [MySavedSpaceResult] else { return }
             self.savedSpaceData = result
+            if self.savedSpaceData.isEmpty { self.rootView.noSavedSpaceView.isHidden = false }
         }
     }
 }

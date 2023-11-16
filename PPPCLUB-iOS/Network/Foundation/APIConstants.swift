@@ -16,6 +16,7 @@ struct APIConstants{
     static let auth = "Authorization"
     static let refresh = "RefreshToken"
     static let fcm = "FcmToken"
+    static let accessToken = TokenManager.shared.getToken()
     
 }
 
@@ -27,7 +28,7 @@ extension APIConstants{
     
     static var hasTokenHeader: Dictionary<String,String> {
         [contentType: applicationJSON,
-               auth : ""]
+               auth : "\(accessToken)"]
     }
 }
 

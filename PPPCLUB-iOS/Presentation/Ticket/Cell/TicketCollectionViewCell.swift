@@ -20,7 +20,7 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    private var animationManager: AnimationManager
+    private var animationManager: AnimationManager?
     
     weak var delegate: TicketDelegate?
     private var point: CGPoint = CGPoint(x: 0, y: 0)
@@ -33,15 +33,15 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Life Cycles
     
-    init(frame: CGRect, animationManager: AnimationManager) {
-        self.animationManager = animationManager
+    override init(frame: CGRect) {
+        self.animationManager = AnimationManager()
         super.init(frame: frame)
         
         gesture()
-        
         hierarchy()
         layout()
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -69,7 +69,7 @@ final class TicketCollectionViewCell: UICollectionViewCell {
     //MARK: - Action Method
     
     @objc func ticketGestureHandler(recognizer: UIPanGestureRecognizer) {
-        animationManager.ticketAnimate(
+        animationManager?.ticketAnimate(
             point: point,
             targetView: ticketImageView,
             recoginizer: recognizer

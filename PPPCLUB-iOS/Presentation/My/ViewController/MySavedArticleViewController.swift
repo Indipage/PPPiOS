@@ -102,6 +102,7 @@ extension MySavedArticleViewController: SavedArticleCellDelegate {
         MyAPI.shared.getSavedArticle() { result in
             guard let result = self.validateResult(result) as? [MySavedArticleResult] else { return }
             self.savedArticleData = result
+            if self.savedArticleData.isEmpty { self.rootView.noSavedArticleView.isHidden = false }
         }
     }
 }

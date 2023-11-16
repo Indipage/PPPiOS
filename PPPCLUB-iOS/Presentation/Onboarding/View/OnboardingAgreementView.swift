@@ -16,7 +16,7 @@ final class OnboardingAgreementView: UIView {
     
     // MARK: - UI Components
     
-    private lazy var backButton = UIButton()
+    lazy var backButton = UIButton()
     private let titleLabel = UILabel()
     let agreementCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     let agreementHeaderView = OnboardingAgreementCollectionHeaderView()

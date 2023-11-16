@@ -108,28 +108,10 @@ extension HomeService: BaseTargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .getArticleCard:
-            return APIConstants.noTokenHeader
         case .getArticleCheck:
             return APIConstants.noTokenHeader
-        case .patchArticleCheck:
-            return APIConstants.noTokenHeader
-        case .getAllArticle:
-            return APIConstants.noTokenHeader
-        case .getDetailArticle:
-            return APIConstants.noTokenHeader
-        case .getBookmarkCheck:
-            return APIConstants.noTokenHeader
-        case .postBookmarkCheck:
-            return APIConstants.noTokenHeader
-        case .deleteBookmarkCheck:
-            return APIConstants.noTokenHeader
-            
-        case .getTicketCheck:
-            return APIConstants.noTokenHeader
-        case .postTicketGet:
-            return APIConstants.noTokenHeader
-        
+        default:
+            return APIConstants.hasTokenHeader
         }
     }
 }

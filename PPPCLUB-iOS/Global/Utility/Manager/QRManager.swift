@@ -1,39 +1,15 @@
-//
-//  QRManager.swift
-//  PPPCLUB-iOS
-//
-//  Created by 류희재 on 2023/07/11.
-//
-
 import AVFoundation
 import UIKit
 
-protocol QRManagerInput {
-    var captureSession: AVCaptureSession { get }
-    var cameraDevice: AVCaptureDevice? { get }
-    var captureMetadataOutput: AVCaptureMetadataOutput { get }
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer? { get }
+final class QRManager {
+    static let shared = QRManager()
     
-    func initCameraDevice()
-    func initCameraInputData()
-    func initCameraOutputData()
-    func initVideoPreviewLayer()
-}
-
-protocol QRManagerOutput {
-    func setCamaera()
-    func start()
-    func stop()
-}
-
-typealias QRManagering = QRManagerInput & QRManagerOutput
-
-final class QRManager: QRManagering {
-    var captureSession: AVCaptureSession = AVCaptureSession()
+    //var videoPreviewLayer = AVCaptureVideoPreviewLayer(session: QRManager.shared.captureSession)
+    var captureSession = AVCaptureSession()
     var cameraDevice: AVCaptureDevice?
-    var captureMetadataOutput: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    let captureMetadataOutput = AVCaptureMetadataOutput()
     
+    // 카메라 장치 설정 - 뒷면으로 설정
     func initCameraDevice() {
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
             print("Failed to get the camera device")
@@ -42,6 +18,7 @@ final class QRManager: QRManagering {
         cameraDevice = captureDevice
     }
     
+    // 카메라 Input 설정
     func initCameraInputData() {
         if let cameraDevice = self.cameraDevice {
             do {
@@ -58,23 +35,13 @@ final class QRManager: QRManagering {
         if captureSession.canAddOutput(captureMetadataOutput) {
             captureSession.addOutput(captureMetadataOutput)
         }
+        //         captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr] // Camera로 들어오는 데이터 타입이 QR코드 임을 명시
         if captureMetadataOutput.availableMetadataObjectTypes.contains(AVMetadataObject.ObjectType.qr) {
             captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         } else {
             print("QR code metadata is not supported")
+            // 다른 조치를 취하거나 오류 처리를 수행해야 할 수 있습니다.
         }
-    }
-    
-    func initVideoPreviewLayer() {
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-    }
-    
-    func setCamaera() {
-        initCameraDevice()
-        initCameraInputData()
-        initCameraOutputData()
-        initVideoPreviewLayer()
     }
     
     func start() {
@@ -87,5 +54,12 @@ final class QRManager: QRManagering {
     
     func stop() {
         captureSession.stopRunning()
+    }
+    
+    
+    func setCamera() {
+        initCameraDevice()
+        initCameraInputData()
+        initCameraOutputData()
     }
 }

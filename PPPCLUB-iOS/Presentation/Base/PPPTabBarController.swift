@@ -22,6 +22,8 @@ class PPPTabBarController: UITabBarController {
     let ticketViewController = TicketViewController(
         viewModel: TicketViewModel(
             ticketUseCase: DefaultTicketUseCase(
+                displayMode: .ticket,
+                toggleMode: .ticket,
                 repository: DefaultTicketRepository()
             )
         ),

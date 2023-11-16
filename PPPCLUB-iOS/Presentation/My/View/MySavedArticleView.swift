@@ -18,6 +18,7 @@ final class MySavedArticleView: UIView {
     lazy var backButton = UIButton()
     private let titleLabel = UILabel()
     let savedArticleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    let noSavedArticleView = MyNoSavedArticleView()
     
     // MARK: - Life Cycle
     
@@ -60,10 +61,14 @@ final class MySavedArticleView: UIView {
             $0.font = .pppSubHead1
             $0.textColor = .pppBlack
         }
+        
+        noSavedArticleView.do {
+            $0.isHidden = true
+        }
     }
     
     private func hieararchy() {
-        self.addSubviews(savedArticleNavigationBar, savedArticleCollectionView)
+        self.addSubviews(savedArticleNavigationBar, savedArticleCollectionView, noSavedArticleView)
         savedArticleNavigationBar.addSubviews(backButton, titleLabel)
     }
     
@@ -75,6 +80,11 @@ final class MySavedArticleView: UIView {
         }
         
         savedArticleCollectionView.snp.makeConstraints {
+            $0.top.equalTo(self.savedArticleNavigationBar.snp.bottom)
+            $0.width.bottom.equalToSuperview()
+        }
+        
+        noSavedArticleView.snp.makeConstraints {
             $0.top.equalTo(self.savedArticleNavigationBar.snp.bottom)
             $0.width.bottom.equalToSuperview()
         }

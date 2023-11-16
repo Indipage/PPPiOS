@@ -38,7 +38,12 @@ final class OnboardingAgreementViewController : BaseViewController, ASAuthorizat
         
         delegate()
         target()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     //MARK: - Custom Method
@@ -54,12 +59,13 @@ final class OnboardingAgreementViewController : BaseViewController, ASAuthorizat
     
     private func target() {
         rootView.agreementButton.addTarget(self, action: #selector(agreementButtonDidTap), for: .touchUpInside)
+        
+        rootView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
     }
     
     //Apple 로그인 요청
     @objc
     private func agreementButtonDidTap() {
-        print("⭐️agree")
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -67,6 +73,11 @@ final class OnboardingAgreementViewController : BaseViewController, ASAuthorizat
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.performRequests()
+    }
+    
+    @objc
+    private func backButtonDidTap() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     //토큰 encode - 로그인 성공
@@ -107,12 +118,10 @@ extension OnboardingAgreementViewController: UICollectionViewDelegateFlowLayout 
 
 extension OnboardingAgreementViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(#function)
         return agreementData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(#function)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingAgreementCollectionViewCell.cellIdentifier, for: indexPath) as? OnboardingAgreementCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -165,9 +174,10 @@ extension OnboardingAgreementViewController: OnboardingAgreementCollectionHeader
 extension OnboardingAgreementViewController {
     func requestAppleLoginAPI() {
         OnboardingAPI.shared.postLogin(accessToken: accesstoken, platform: Platform.apple) { result in
-            guard let result = self.validateResult(result) as? OnboardingLoginResult else { return }
-            let OnboardingInfoVC = OnboardingInfoViewController()
-            self.navigationController?.pushViewController(OnboardingInfoVC, animated: true)
+            guard let result = self.validateResult(result) as? OnboardingLoginResult else { return }                                                                           
+            TokenManager.shared.saveToken(token: "Bearer \(result.accessToken)")
+            let PPPTabBarC = PPPTabBarController()
+            self.navigationController?.pushViewController(PPPTabBarC, animated: true)
         }
     }
 }

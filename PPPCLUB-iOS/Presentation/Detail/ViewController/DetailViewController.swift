@@ -17,13 +17,14 @@ final class DetailViewController: BaseViewController {
     private var spaceID: Int?
     private var articleID: Int?
     private var isFollowed: Bool = false
+    private var isTouched: Bool = false
     private var hashTagList: [String] = [String]()
     private var totalCellWidth: Int = 0
     private var recommandBookData: [DetailRecommendBookResult] = [] {
         didSet {
             detailView.ownerView.bookCollectionView.reloadData()
-            if (!recommandBookData.isEmpty) {
-                self.moveCellToMiddle()
+            if !recommandBookData.isEmpty {
+                self.moveCellToCurrentIndex(index: 1)
             } else {
                 presentBottomAlert("추천서가가 비어있습니다!")
             }
@@ -36,6 +37,7 @@ final class DetailViewController: BaseViewController {
                 self.detailView.curationDataBind(curation: recommandBookData[self.currentIndex].comment)
                 detailView.ownerView.curationTextView.text = recommandBookData[self.currentIndex].comment
                 detailView.ownerView.bookNameLabel.text = recommandBookData[self.currentIndex].book.title
+                print("\(detailView.ownerView.bookNameLabel.text)")
             }
         }
     }
@@ -121,8 +123,8 @@ final class DetailViewController: BaseViewController {
     private func addHashTag(list: [TagList]) {
         let label = UILabel()
         for index in 0..<list.count {
-            hashTagList.append("#\(list[index].name)")
-            label.text = "#\(list[index].name)"
+            hashTagList.append("# \(list[index].name)")
+            label.text = "# \(list[index].name)"
             totalCellWidth = totalCellWidth + Int(label.intrinsicContentSize.width) + 40
         }
             totalCellWidth = totalCellWidth - 20
@@ -133,9 +135,9 @@ final class DetailViewController: BaseViewController {
         detailView.articleRequestView.requestButton.backgroundColor = .pppMainPurple
     }
     
-    private func moveCellToMiddle() {
+    private func moveCellToCurrentIndex(index: Int) {
         self.detailView.ownerView.bookCollectionView.isPagingEnabled = false
-        self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
+        self.detailView.ownerView.bookCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
         self.detailView.ownerView.bookCollectionView.isPagingEnabled = true
     }
     
@@ -186,7 +188,13 @@ final class DetailViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegate
 
-extension DetailViewController: UICollectionViewDelegate {}
+extension DetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        isTouched = true
+        currentIndex = indexPath.item
+        self.moveCellToCurrentIndex(index: currentIndex)
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 
@@ -272,8 +280,19 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         let scrolledOffset = scrollView.contentOffset.x + scrollView.contentInset.left
         let cellWidth = Const.itemSize.width + Const.itemSpacing
         let index = Int(round(scrolledOffset / cellWidth))
-        currentIndex = checkCellIndex(index: index)
+        if !isTouched {
+            currentIndex = checkCellIndex(index: index)
+        }
         detailView.ownerView.bookCollectionView.reloadData()
+    }
+    
+    /// 터치시 스크롤 되면, scrollViewDidScroll이 실행되면서
+    /// currentIndex가 다시 이전 인덱스로 변화하게 된다.
+    /// 따라서 isTouched라는 변수를 만들고,
+    /// 스크롤이 끝났을 때 false로 변화시켜줌으로써 문제 해결!
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        isTouched = false
     }
 }
 

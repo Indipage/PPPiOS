@@ -46,6 +46,11 @@ final class TicketTicketView: UIView {
         ticketCollectionView.do {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
+            layout.itemSize = CGSize(
+                width: Size.width,
+                height: 247.adjusted
+            )
+            layout.minimumLineSpacing = 25.adjusted
             
             $0.collectionViewLayout = layout
             $0.showsVerticalScrollIndicator = false

@@ -14,23 +14,12 @@ final class TicketSuccessViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private let viewModel: TicketViewModel
-    
     //MARK: - UI Components
     
     let rootView = TicketSuccessView()
     
     //MARK: - Life Cycle
-    
-    init(viewModel: TicketViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func loadView() {
         self.view = rootView
     }
@@ -56,12 +45,17 @@ final class TicketSuccessViewController: BaseViewController {
     //MARK: - Action Method
     
     @objc func cardButtonDidTap() {
-//        viewModel.toggleMode.value = .card
-//        viewModel.displayMode.value = .card
-//        let ticketViewController = TicketViewController(viewModel: viewModel, animatinoManager: AnimationManager())
-//        
-//        
-//        self.navigationController?.pushViewController(ticketViewController, animated: true)
+        let ticketViewController = TicketViewController(
+            viewModel: TicketViewModel(
+                ticketUseCase: DefaultTicketUseCase(
+                    displayMode: .card,
+                    toggleMode: .card,
+                    repository: DefaultTicketRepository()
+                )
+            ),
+            animationManager: AnimationManager()
+        )
+        self.navigationController?.pushViewController(ticketViewController, animated: true)
     }
 }
 
