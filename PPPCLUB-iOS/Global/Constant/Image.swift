@@ -90,9 +90,9 @@ public enum Image {
     static let blankTicket = UIImage(named: "blankTicket")!
     
     //MARK: - Onboarding
-    static let infoArticle = UIImage(named: "article")!
-    static let infoTicket = UIImage(named: "ticket")!
-    static let infoPlace = UIImage(named: "place")!
+    static let infoArticle = UIImage(named: "infoArticle")!
+    static let infoTicket = UIImage(named: "infoTicket")!
+    static let infoPlace = UIImage(named: "infoPlace")!
     static let infoWelcome = UIImage(named: "welcome")!
     static let infoCollection1 = UIImage(named: "collection1")!
     static let infoCollection2 = UIImage(named: "collection2")!

@@ -176,8 +176,8 @@ extension OnboardingAgreementViewController {
         OnboardingAPI.shared.postLogin(accessToken: accesstoken, platform: Platform.apple) { result in
             guard let result = self.validateResult(result) as? OnboardingLoginResult else { return }                                                                           
             TokenManager.shared.saveToken(token: "Bearer \(result.accessToken)")
-            let PPPTabBarC = PPPTabBarController()
-            self.navigationController?.pushViewController(PPPTabBarC, animated: true)
+            let onboardingInfoVC = OnboardingInfoViewController()
+            self.navigationController?.pushViewController(onboardingInfoVC, animated: true)
         }
     }
 }

@@ -51,8 +51,8 @@ class OnboardingInfoViewController: UIViewController {
     
     @objc
     private func welcomeBtnTap() {
-        let PPPTabBarC = PPPTabBarController()
-        self.navigationController?.pushViewController(PPPTabBarC, animated: true)
+        let tbc = PPPTabBarController()
+        UIApplication.shared.changeRootViewController(tbc)
     }
 }
 

@@ -294,7 +294,9 @@ extension HomeArticleViewController : HomeArticleFooterViewDelegate {
         let ticketVC = TicketViewController(
             viewModel: TicketViewModel(
                 ticketUseCase: DefaultTicketUseCase(
-                    repository: DefaultTicketRepository())),
+                    repository: DefaultTicketRepository()
+                )
+            ),
             animationManager: AnimationManager())
         
         self.navigationController?.pushViewController(ticketVC, animated: true)
